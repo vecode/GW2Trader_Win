@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="ApiWrapper\ApiAccessor.cs" />
     <Compile Include="ApiWrapper\IApiAccessor.cs" />
-    <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\ItemDetails.cs" />
     <Compile Include="Entities\ItemListing.cs" />
     <Compile Include="Entities\ItemPrice.cs" />
     <Compile Include="ApiWrapper\ITradingPostApiWrapper.cs" />

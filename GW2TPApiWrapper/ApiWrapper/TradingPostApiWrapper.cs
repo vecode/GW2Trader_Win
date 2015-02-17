@@ -23,14 +23,14 @@ namespace GW2TPApiWrapper.Entities
             return ids;
         }
 
-        public Item ItemDetails(int id)
+        public ItemDetails ItemDetails(int id)
         {
             String jsonResult = _apiAccessor.ItemDetails(id);
             if (String.IsNullOrEmpty(jsonResult))
                 return null;
             else
             {
-                Item item = JsonConvert.DeserializeObject<Item>(jsonResult);
+                ItemDetails item = JsonConvert.DeserializeObject<ItemDetails>(jsonResult);
                 return item;
             }
         }

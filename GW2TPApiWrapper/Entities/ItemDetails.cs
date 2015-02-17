@@ -12,7 +12,7 @@ namespace GW2TPApiWrapper.Entities
     /// </summary>
     /// api documentation is avaible at http://wiki.guildwars2.com/wiki/API:2/items
  
-    public class Item
+    public class ItemDetails
     {
         [JsonProperty("item_id")]
         public int ID { get; set; }
@@ -30,10 +30,7 @@ namespace GW2TPApiWrapper.Entities
         [JsonProperty("vendor_value")]
         public int VendorValue { get; set; }
 
-        [JsonProperty("icon_file_id")]
-        public int IconFileID { get; set; }
-
-        [JsonProperty("icon_file_signature")]
-        public String IconFileSignature { get; set; }
+        [JsonProperty("icon")]
+        public String IconUrl { get; set; }
     }
 }

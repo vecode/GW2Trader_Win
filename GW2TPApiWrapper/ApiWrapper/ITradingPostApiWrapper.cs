@@ -17,7 +17,7 @@ namespace GW2TPApiWrapper.Entities
         /// </summary>
         /// <param name="id">Id of the item</param>
         /// <returns>Returns an instance of Item</returns>
-        Item ItemDetails(int id);    
+        ItemDetails ItemDetails(int id);    
 
         /// <summary>
         /// </summary>
