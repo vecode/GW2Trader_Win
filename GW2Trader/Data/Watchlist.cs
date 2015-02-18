@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GW2Trader.Data
 {
-    public class DataContext : DbContext, IDataContext
+    // TODO implement Watchlist as ObservableObject
+    class Watchlist
     {
-
     }
 }

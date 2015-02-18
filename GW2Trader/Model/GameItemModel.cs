@@ -25,10 +25,13 @@ namespace GW2Trader.Model
         public Item.ItemRarity Rarity { get; set; }
 
         [Required]
+        public Item.ItemType Type { get; set; }
+
+        [Required]
         public int RestrictionLevel { get; set; }
 
         [Required]
-        public String _iconUrl { get; set; }
+        public String IconUrl { get; set; }
 
         [Required]
         private byte[] _image { get; set; }
