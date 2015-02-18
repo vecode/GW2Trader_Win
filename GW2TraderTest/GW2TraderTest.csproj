@@ -52,8 +52,14 @@
   <ItemGroup>
     <Compile Include="DataContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InvestmentModelTest.cs" />
+    <Compile Include="GameItemModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
+      <Project>{a37ca4f0-b48c-43d0-95b9-1f955e450fa1}</Project>
+      <Name>GW2TPApiWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2Trader\GW2Trader.csproj">
       <Project>{ed8d17b1-18df-444b-9471-58db1ea79e4b}</Project>
       <Name>GW2Trader</Name>

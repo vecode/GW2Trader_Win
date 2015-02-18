@@ -8,8 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GW2Trader.Model
 {
-    public class Investment
+    public class InvestmentModel
     {
+        [NotMapped]
+        private readonly float _salesCommission = 0.15f;
+
         [Key]
         int Id { get; set; }
 
@@ -34,31 +37,44 @@ namespace GW2Trader.Model
 
         public int? SoldFor { get; set; }
 
-        public Investment(int itemId)
+        public InvestmentModel()
+        {
+            IsSold = false;
+        }
+
+        public InvestmentModel(int itemId)
         {
             ItemId = itemId;
             IsSold = false;
         }
 
-        public int ProfitPerUnit()
+        public int PrognosedProfitPerUnit()
         {
-            if (SoldFor == null)
+            if (DesiredSellPrice != null)
             {
-                if (DesiredSellPrice != null)
-                {
-                    return (int)(DesiredSellPrice * 0.85) - PurchasePrice;
-                }
-                else { return 0; }
+                return (int)(DesiredSellPrice * (1 - _salesCommission)) - PurchasePrice;
             }
-            else
-            {
-                return (int)(SoldFor * 0.85) - PurchasePrice;
-            }
+            else return 0;
         }
 
-        public int TotalProfit()
+        public int PrognosedTotalProfit()
         {
-            return ProfitPerUnit() * Count;
+            return PrognosedProfitPerUnit() * Count;
+        }
+
+        public int ActualProfitPerUnit()
+        {
+            if (SoldFor != null)
+            {
+                return (int)(SoldFor * (1 - _salesCommission)) - PurchasePrice;
+
+            }
+            else return 0;
+        }
+
+        public int ActualTotalProfit()
+        {
+            return ActualProfitPerUnit() * Count;
         }
     }
 }

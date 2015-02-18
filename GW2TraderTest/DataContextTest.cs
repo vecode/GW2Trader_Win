@@ -6,9 +6,6 @@ namespace GW2TraderTest
     [TestClass]
     public class DataContextTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+
     }
 }

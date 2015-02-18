@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GW2TPApiWrapperTest
 {
-    class MockApiAccessor : IApiAccessor
+    class ApiAccessorMock : IApiAccessor
     {
         #region valid results
         private int _validTestId = 30689;

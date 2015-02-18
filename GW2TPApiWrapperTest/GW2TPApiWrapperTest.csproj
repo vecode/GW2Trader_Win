@@ -54,7 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MockApiAccessor.cs" />
+    <Compile Include="ApiAccessorMock.cs" />
     <Compile Include="TradingPostApiWrapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApiAccessorTest.cs" />

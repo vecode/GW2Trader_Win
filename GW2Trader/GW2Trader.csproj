@@ -102,10 +102,10 @@
     </Compile>
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\IDataContext.cs" />
-    <Compile Include="Model\GameItem.cs" />
-    <Compile Include="Model\Investment.cs" />
+    <Compile Include="Model\GameItemModel.cs" />
+    <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="MVVM\ObservableObject.cs" />
-    <Compile Include="Model\Watchlist.cs" />
+    <Compile Include="Model\WatchlistModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -13,7 +13,7 @@ using System.IO;
 
 namespace GW2Trader.Model
 {
-    public class GameItem
+    public class GameItemModel
     {
         [Key]
         public int Id { get; set; }
@@ -41,7 +41,7 @@ namespace GW2Trader.Model
         {
             get
             {
-                if(_imageSource == null)
+                if (_imageSource == null)
                 {
                     BitmapImage img = new BitmapImage();
                     MemoryStream ms = new MemoryStream(_image);
@@ -61,26 +61,30 @@ namespace GW2Trader.Model
         [NotMapped]
         public ItemPrice Price { get; set; }
 
-        private double Margin()
+        [NotMapped]
+        public int Margin
         {
-
-            if (Price != null)
+            get
             {
-                // trading post has a 15% fee
-                return (int)(Price.Sells.UnitPrice * 0.85) - Price.Buys.UnitPrice;
+                if (Price != null)
+                {
+                    // trading post has a 15% fee
+                    return (int)Math.Round(Price.Sells.UnitPrice * 0.85) - Price.Buys.UnitPrice;
+                }
+                else return 0;
             }
-            else { return 0; }
         }
+
 
         /// <summary>
         /// Calculates the return of investment as percentage based on current prices.
         /// </summary>
         /// <returns>Returns the return of investment based on current prices</returns>
-        public double ROI()
+        /// 
+        public int ROI()
         {
-            double margin = Margin();
-            double result = (Margin() / (Price.Buys.UnitPrice + 1)) * 100;
-            return Math.Round(result, 2);
+            double result = (1.0 * Margin / Price.Buys.UnitPrice) * 100;
+            return (int)Math.Round(result);
         }
     }
 }
