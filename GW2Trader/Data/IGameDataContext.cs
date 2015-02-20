@@ -10,8 +10,10 @@ namespace GW2Trader.Data
 {
     public interface IGameDataContext
     {
-        IDbSet<GameItemModel> GameItems { get; }
-        IDbSet<Watchlist<InvestmentModel>> Investments { get; }
-        IDbSet<Watchlist<int>> WatchedItemIds { get; }
+        DbSet<GameItemModel> GameItems { get; }
+        DbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; }
+        DbSet<ItemIdWatchlistModel> ItemIdWatchlists { get; }
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        void Save();
     }
 }

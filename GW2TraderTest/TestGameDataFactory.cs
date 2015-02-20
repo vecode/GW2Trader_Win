@@ -18,7 +18,7 @@ namespace GW2TraderTest
             {
                 new GameItemModel 
                 {
-                    Id = 1,
+                    Id = 123456,
                     IconUrl = @"http://icon_file_1.png",
                     Name = "Test Item 1",
                     Rarity = Item.ItemRarity.Basic,
@@ -86,27 +86,27 @@ namespace GW2TraderTest
             return items;
         }
 
-        public IEnumerable<Watchlist<int>> GetTestWatchlistsWithIds()
+        public IEnumerable<ItemIdWatchlistModel> GetTestItemIdWatchlists()
         {
-            List<Watchlist<int>> watchlists = new List<Watchlist<int>>()
+            List<ItemIdWatchlistModel> watchlists = new List<ItemIdWatchlistModel>()
             {
-                new Watchlist<int>()
+                new ItemIdWatchlistModel()
                 { 
                     Id = 0,
                     Description = "some really special items", 
                     Name = "some items",
-                    Items = new List<int> { 1, 2, 3, 4 }
+                    Items = new List<int> { 2, 3, 123456 }
                 },
-                new Watchlist<int>()
+                new ItemIdWatchlistModel()
                 { 
                     Id = 1,
                     Description = "some basic items", 
                     Name = "basic items",
-                    Items = new List<int> { 99, 4, 7 }
+                    Items = new List<int> { 2, 3 }
                 },
-                new Watchlist<int>()
+                new ItemIdWatchlistModel()
                 { 
-                    Id = 0,
+                    Id = 2,
                     Description = "some really special items", 
                     Name = "some items",
                     Items = new List<int>()
@@ -115,11 +115,11 @@ namespace GW2TraderTest
             return watchlists;
         }
 
-        public IEnumerable<Watchlist<InvestmentModel>> GetTestWatchlistsWithInvestments()
+        public IEnumerable<InvestmentWatchlistModel> GetTestInvestmentWatchlists()
         {
-            List<Watchlist<InvestmentModel>> watchlists = new List<Watchlist<InvestmentModel>>()
+            List<InvestmentWatchlistModel> watchlists = new List<InvestmentWatchlistModel>()
             {
-                new Watchlist<InvestmentModel>()
+                new InvestmentWatchlistModel()
                 {
                     Id = 0,
                     Description = "some investments in rare weapons",
@@ -128,7 +128,7 @@ namespace GW2TraderTest
                     {
                         new InvestmentModel 
                         {
-                            ItemId = 100,
+                            ItemId = 2,
                             Count = 5,
                             PurchasePrice = 12345,
                             DesiredSellPrice = 99999,
@@ -137,7 +137,7 @@ namespace GW2TraderTest
                         },
                         new InvestmentModel 
                         {
-                            ItemId = 111,
+                            ItemId = 3,
                             Count = 8,
                             PurchasePrice = 1254,
                             DesiredSellPrice = 7188,
@@ -146,7 +146,7 @@ namespace GW2TraderTest
                         }
                     }
                 },
-                new Watchlist<InvestmentModel>()
+                new InvestmentWatchlistModel()
                 {
                     Id = 0,
                     Description = "some investments in rare weapons",

@@ -14,7 +14,7 @@ namespace GW2Trader.Model
         private readonly float _salesCommission = 0.15f;
 
         [Key]
-        int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public bool IsSold { get; set; }
@@ -22,10 +22,10 @@ namespace GW2Trader.Model
         [Required]
         [DataType(DataType.Date)]
         DateTime PurchaseDate { get; set; }
-
-        [Required]
-        [ForeignKey("Id")]
+       
         public int ItemId { get; set; }
+        [ForeignKey("ItemId")]
+        public virtual GameItemModel GameItem { get; set; }
 
         [Required]
         public int PurchasePrice { get; set; }
@@ -67,7 +67,6 @@ namespace GW2Trader.Model
             if (SoldFor != null)
             {
                 return (int)(SoldFor * (1 - _salesCommission)) - PurchasePrice;
-
             }
             else return 0;
         }

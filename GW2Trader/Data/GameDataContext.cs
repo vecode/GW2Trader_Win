@@ -5,18 +5,19 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace GW2Trader.Data
 {
     public class GameDataContext : DbContext, IGameDataContext
     {
-        public IDbSet<GameItemModel> GameItems { get; set; }
-        public IDbSet<Watchlist<InvestmentModel>> Investments { get; set; }
-        public IDbSet<Watchlist<int>> WatchedItemIds { get; set; }
+        public DbSet<GameItemModel> GameItems { get; set; }
+        public DbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; set; }
+        public DbSet<ItemIdWatchlistModel> ItemIdWatchlists { get; set; }
 
         static GameDataContext()
         {
-            Database.SetInitializer<GameDataContext>(new DbInitializer());
+            Database.SetInitializer<GameDataContext>(new DbInitializer());            
         }
 
         class DbInitializer : DropCreateDatabaseIfModelChanges<GameDataContext>
@@ -26,6 +27,11 @@ namespace GW2Trader.Data
                 // TODO add seed
                 base.Seed(context);
             }
+        }
+
+        public void Save()
+        {
+            this.SaveChanges();
         }
     }
 }

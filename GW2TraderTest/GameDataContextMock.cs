@@ -13,36 +13,47 @@ namespace GW2TraderTest
     public class GameDataContextMock : IGameDataContext
     {
         private GameDataContext _context = new GameDataContext();
+        private TestGameDataFactory _dataFactory = new TestGameDataFactory();
 
         public GameDataContextMock()
         {
-            _context.GameItems.Add(
-                new GameItemModel
-                {
-                    Id = 1,
-                    IconUrl = @"http://icon_file_1.png"
-                    
-                    //Listing = new Listing { Quantity = 100, UnitPrice = 50000 },
+            _context.Database.Delete();
 
-
-                }
-
-                );
+            AddToContext(_dataFactory.GetTestGameItems());
+            AddToContext(_dataFactory.GetTestItemIdWatchlists());
+            AddToContext(_dataFactory.GetTestInvestmentWatchlists());
+            Save();
         }
 
-        public IDbSet<GameItemModel> GameItems
+        public DbSet<GameItemModel> GameItems
         {
-            get { throw new NotImplementedException(); }
+            get { return _context.GameItems; }
         }
 
-        public IDbSet<Watchlist<InvestmentModel>> Investments
+        public DbSet<InvestmentWatchlistModel> InvestmentWatchlists
         {
-            get { throw new NotImplementedException(); }
+            get { return _context.InvestmentWatchlists; }
         }
 
-        public IDbSet<Watchlist<int>> WatchedItemIds
+        public DbSet<ItemIdWatchlistModel> ItemIdWatchlists
         {
-            get { throw new NotImplementedException(); }
+            get { return _context.ItemIdWatchlists; }
+        }
+
+
+        public DbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return _context.Set<TEntity>();
+        }
+
+        public void Save()
+        {
+            _context.Save();
+        }
+
+        private void AddToContext<T>(IEnumerable<T> entities) where T : class
+        {
+            _context.Set<T>().AddRange(entities);
         }
     }
 }

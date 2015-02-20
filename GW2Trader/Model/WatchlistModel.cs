@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GW2Trader.Model
 {
-    public class Watchlist <T>
+    public abstract class WatchlistModel <T>
     {
         [Key]
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace GW2Trader.Model
         public String Name { get; set; }
 
         public String Description { get; set; }
-        public List<T> Items { get; set; }
+        public virtual ICollection<T> Items { get; set; }
     }
 }

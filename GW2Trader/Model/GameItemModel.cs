@@ -16,6 +16,7 @@ namespace GW2Trader.Model
     public class GameItemModel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [Required]
@@ -65,6 +66,9 @@ namespace GW2Trader.Model
         public ItemPrice Price { get; set; }
 
         [NotMapped]
+        public DateTime LastUpdated { get; set; }
+
+        [NotMapped]
         public int Margin
         {
             get
@@ -77,7 +81,6 @@ namespace GW2Trader.Model
                 else return 0;
             }
         }
-
 
         /// <summary>
         /// Calculates the return of investment as percentage based on current prices.
