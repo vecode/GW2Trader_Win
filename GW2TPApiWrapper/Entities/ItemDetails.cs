@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GW2TPApiWrapper.Enums;
 
 namespace GW2TPApiWrapper.Entities
 {
@@ -21,11 +22,11 @@ namespace GW2TPApiWrapper.Entities
 
         public String Description { get; set; }
 
-        public Enums.Item.ItemType Type { get; set; }
+        public Item.ItemType Type { get; set; }
 
         public int Level { get; set; }
 
-        public Enums.Item.ItemRarity Rarity { get; set; }
+        public Item.ItemRarity Rarity { get; set; }
 
         [JsonProperty("vendor_value")]
         public int VendorValue { get; set; }

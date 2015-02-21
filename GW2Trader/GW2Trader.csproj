@@ -100,14 +100,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\GameDataContext.cs" />
     <Compile Include="Data\GameDataRepository.cs" />
+    <Compile Include="Data\IApiDataUpdater.cs" />
     <Compile Include="Data\IGameDataContext.cs" />
     <Compile Include="Data\IGameDataRepository.cs" />
     <Compile Include="Model\GameItemModel.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\InvestmentWatchlistModel.cs" />
     <Compile Include="Model\ItemIdWatchlistModel.cs" />
+    <Compile Include="Model\ItemWatchlistModel.cs" />
     <Compile Include="MVVM\ObservableObject.cs" />
     <Compile Include="Model\WatchlistModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">

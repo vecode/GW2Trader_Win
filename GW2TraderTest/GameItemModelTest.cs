@@ -16,9 +16,16 @@ namespace GW2TraderTest
             ItemPrice price = new ItemPrice
             {
                 Buys = new Listing { Quantity = 10, UnitPrice = 100 },
-                Sells = new Listing { Quantity = 20, UnitPrice = 150}
+                Sells = new Listing { Quantity = 20, UnitPrice = 150 }
             };
-            _gameItem = new GameItemModel { Price = price };
+            _gameItem = new GameItemModel
+            {
+                Listing = new ItemListing
+                {
+                    Buys = new Listing[] { new Listing { Quantity = 10, UnitPrice = 100 } },
+                    Sells = new Listing[] { new Listing { Quantity = 20, UnitPrice = 150 } }
+                }
+            };
         }
 
         [TestMethod]

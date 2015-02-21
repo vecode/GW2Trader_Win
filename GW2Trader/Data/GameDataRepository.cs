@@ -16,31 +16,16 @@ namespace GW2Trader.Data
         private IGameDataContext _context;
         private Dictionary<int, GameItemModel> _gameItems;
         private ObservableCollection<InvestmentWatchlistModel> _investmentLists;
-        private ObservableCollection<ItemIdWatchlistModel> _gameItemWatchlists;
+        private ObservableCollection<ItemWatchlistModel> _itemWatchlists;
 
         public GameDataRepository(IGameDataContext context)
         {
             _context = context;
+            _investmentLists = new ObservableCollection<InvestmentWatchlistModel>(_context.InvestmentWatchlists);
+            _itemWatchlists = new ObservableCollection<ItemWatchlistModel>();
 
             BuildGameItemDictionary();
-
-            if (_context.InvestmentWatchlists != null)
-            {
-                _investmentLists = new ObservableCollection<InvestmentWatchlistModel>(_context.InvestmentWatchlists);
-            }
-            else
-            {
-                _investmentLists = new ObservableCollection<InvestmentWatchlistModel>();
-            }
-
-            if (_context.ItemIdWatchlists != null)
-            {
-                _gameItemWatchlists = new ObservableCollection<ItemIdWatchlistModel>(_context.ItemIdWatchlists);
-            }
-            else
-            {
-                _gameItemWatchlists = new ObservableCollection<ItemIdWatchlistModel>();
-            }
+            BuildWatchedItemsCollection();
         }
 
         #region retrieving data
@@ -65,29 +50,12 @@ namespace GW2Trader.Data
             return _context.GameItems;
         }
 
-        public ObservableCollection<ItemIdWatchlistModel> ItemWatchlists
-        {
-            get { return _gameItemWatchlists; }
-        }
-
         public IEnumerable<GameItemModel> GameItemsById(int[] ids)
         {
             List<GameItemModel> items = new List<GameItemModel>();
 
             Array.ForEach(ids, id => items.Add(GameItemById(id)));
             return items;
-        }
-
-        public void AddWatchlist<T>(WatchlistModel<T> watchlist)
-        {
-            _context.Set<WatchlistModel<T>>().Add(watchlist);
-            _context.Save();
-        }
-
-        public void AddItemToWatchlist<T>(WatchlistModel<T> watchlist, T item)
-        {
-            watchlist.Items.Add(item);
-            _context.Save();
         }
 
         public void DeleteWatchlist<T>(WatchlistModel<T> watchlist) where T : WatchlistModel<T>
@@ -99,12 +67,12 @@ namespace GW2Trader.Data
 
         public void UpdateWatchlist<T>(WatchlistModel<T> watchlist)
         {
-            throw new NotImplementedException();
+            _context.Save();
         }
 
         public void UpdateWatchlistItem<T>(WatchlistModel<T> watchlist, T item)
         {
-            throw new NotImplementedException();
+            _context.Save();
         }
 
         public void RebuiltGameItemDatabase(ITradingPostApiWrapper tpApiWrapper)
@@ -142,7 +110,7 @@ namespace GW2Trader.Data
                 Rarity = item.Rarity,
                 RestrictionLevel = item.Level,
                 Type = item.Type,
-                LastUpdated = DateTime.Now                                
+                LastUpdated = DateTime.Now
             };
             return itemModel;
         }
@@ -152,6 +120,64 @@ namespace GW2Trader.Data
             if (_context.GameItems != null)
             {
                 _gameItems = _context.GameItems.ToDictionary(item => item.Id, item => item);
+            }
+        }
+
+        public void AddWatchlist(ItemWatchlistModel watchlist)
+        {
+            _context.ItemIdWatchlists.Add(
+                new ItemIdWatchlistModel
+                {
+                    Id = watchlist.Id,
+                    Description = watchlist.Description,
+                    Name = watchlist.Name
+                });
+            _context.Save();
+            _itemWatchlists.Add(watchlist);
+        }
+
+        public void AddWatchlist(InvestmentWatchlistModel watchlist)
+        {
+            _context.InvestmentWatchlists.Add(watchlist);
+            _context.Save();
+            _investmentLists.Add(watchlist);
+        }
+
+
+        public ObservableCollection<ItemWatchlistModel> ItemWatchlists
+        {
+            get { return _itemWatchlists; }
+        }
+
+        public void AddItemToWatchlist(ItemWatchlistModel watchlist, GameItemModel item)
+        {
+            watchlist.Items.Add(item);
+            _context.Save();
+        }
+
+        public void AddInvestmentToWatchlist(InvestmentWatchlistModel watchlist, InvestmentModel investment)
+        {
+            watchlist.Items.Add(investment);
+            _context.Save();
+        }
+
+        private void BuildWatchedItemsCollection()
+        {
+            if (_itemWatchlists == null)
+                _itemWatchlists = new ObservableCollection<ItemWatchlistModel>();
+
+            List<GameItemModel> watchedItems;
+            foreach (ItemIdWatchlistModel idWatchlist in _context.ItemIdWatchlists)
+            {
+                watchedItems = new List<GameItemModel>();
+                foreach (int id in idWatchlist.Items)
+                {
+                    watchedItems.Add(GameItemById(id));
+                }
+
+                ItemWatchlistModel itemWatchlist = new ItemWatchlistModel();
+                itemWatchlist.Items = watchedItems;
+                _itemWatchlists.Add(itemWatchlist);
             }
         }
     }

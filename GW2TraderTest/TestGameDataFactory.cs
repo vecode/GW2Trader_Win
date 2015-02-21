@@ -25,19 +25,21 @@ namespace GW2TraderTest
                     Rarity = Item.ItemRarity.Basic,
                     RestrictionLevel = 10,
                     Type = Item.ItemType.Weapon,
-                    Price = new ItemPrice 
+                    Listing = new ItemListing 
+                    {
+                        Id = 3,
+                        Buys = new Listing[] 
                         {
-                            Id = 1, 
-                            Sells = new Listing 
-                            {
-                                Quantity = 20, 
-                                UnitPrice = 100
-                            }, 
-                            Buys = new Listing 
-                            {
-                                Quantity = 123, 
-                                UnitPrice = 87
-                            }},            
+                            new Listing { Quantity = 50, UnitPrice = 200 },
+                            new Listing { Quantity = 55, UnitPrice = 202 }
+                        },
+                        Sells = new Listing[]
+                        {
+                            new Listing { Quantity = 10, UnitPrice = 500 },
+                            new Listing { Quantity = 20, UnitPrice = 501 },
+                            new Listing { Quantity = 30, UnitPrice = 502 }
+                        }                        
+                    }        
                 },
                 new GameItemModel 
                 {
@@ -47,19 +49,21 @@ namespace GW2TraderTest
                     Rarity = Item.ItemRarity.Fine,
                     RestrictionLevel = 20,
                     Type = Item.ItemType.Armor,
-                    Price = new ItemPrice 
+                    Listing = new ItemListing 
+                    {
+                        Id = 3,
+                        Buys = new Listing[] 
                         {
-                            Id = 2, 
-                            Sells = new Listing 
-                            {
-                                Quantity = 40, 
-                                UnitPrice = 200
-                            }, 
-                            Buys = new Listing 
-                            {
-                                Quantity = 246, 
-                                UnitPrice = 174
-                            }},            
+                            new Listing { Quantity = 50, UnitPrice = 200 },
+                            new Listing { Quantity = 55, UnitPrice = 202 }
+                        },
+                        Sells = new Listing[]
+                        {
+                            new Listing { Quantity = 10, UnitPrice = 500 },
+                            new Listing { Quantity = 20, UnitPrice = 501 },
+                            new Listing { Quantity = 30, UnitPrice = 502 }
+                        }                        
+                    }          
                 },
                                 new GameItemModel 
                 {
@@ -69,19 +73,21 @@ namespace GW2TraderTest
                     Rarity = Item.ItemRarity.Fine,
                     RestrictionLevel = 30,
                     Type = Item.ItemType.Armor,
-                    Price = new ItemPrice 
+                    Listing = new ItemListing 
+                    {
+                        Id = 3,
+                        Buys = new Listing[] 
                         {
-                            Id = 3, 
-                            Sells = new Listing 
-                            {
-                                Quantity = 60, 
-                                UnitPrice = 300
-                            }, 
-                            Buys = new Listing 
-                            {
-                                Quantity = 369, 
-                                UnitPrice = 261
-                            }},            
+                            new Listing { Quantity = 50, UnitPrice = 200 },
+                            new Listing { Quantity = 55, UnitPrice = 202 }
+                        },
+                        Sells = new Listing[]
+                        {
+                            new Listing { Quantity = 10, UnitPrice = 500 },
+                            new Listing { Quantity = 20, UnitPrice = 501 },
+                            new Listing { Quantity = 30, UnitPrice = 502 }
+                        }                        
+                    }
                 }
             };
             return items;

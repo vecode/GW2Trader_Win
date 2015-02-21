@@ -66,7 +66,64 @@ namespace GW2Trader.Model
         // TODO add methods for listings average
 
         [NotMapped]
-        public ItemPrice Price { get; set; }        
+        public int BuyOrder
+        {
+            get
+            {
+                if (Listing != null)
+                {
+                    return Listing.Buys.OrderByDescending(b => b.UnitPrice)
+                        .Select(b => b.UnitPrice)
+                        .First();
+                }
+                else return 0;
+            }
+        }
+
+        [NotMapped]
+        public int BuyOrderQuantity
+        {
+            get
+            {
+                if (Listing != null)
+                {
+                    return Listing.Buys.OrderByDescending(b => b.UnitPrice)
+                        .Select(b => b.Quantity)
+                        .First();
+                }
+                else return 0;
+            }
+        }
+
+        [NotMapped]
+        public int SellListing
+        {
+            get
+            {
+                if (Listing != null)
+                {
+                    return Listing.Sells.OrderBy(s => s.UnitPrice)
+                        .Select(s => s.UnitPrice)
+                        .First();
+                }
+                else return 0;
+            }
+        }
+
+        [NotMapped]
+        public int SellListingQuantity
+        {
+            get
+            {
+                if (Listing != null)
+                {
+                    return Listing.Sells.OrderBy(s => s.UnitPrice)
+                        .Select(s => s.Quantity)
+                        .First();
+                }
+                else return 0;
+            }
+        }
 
         [NotMapped]
         public DateTime LastUpdated { get; set; }
@@ -76,12 +133,8 @@ namespace GW2Trader.Model
         {
             get
             {
-                if (Price != null)
-                {
                     // trading post has a 15% fee
-                    return (int)Math.Round(Price.Sells.UnitPrice * 0.85) - Price.Buys.UnitPrice;
-                }
-                else return 0;
+                    return (int)Math.Round(SellListing * 0.85) - BuyOrder;
             }
         }
 
@@ -92,7 +145,7 @@ namespace GW2Trader.Model
         /// 
         public int ROI()
         {
-            double result = (1.0 * Margin / Price.Buys.UnitPrice) * 100;
+            double result = (1.0 * Margin / BuyOrder) * 100;
             return (int)Math.Round(result);
         }
     }

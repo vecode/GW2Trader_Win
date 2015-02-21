@@ -33,9 +33,9 @@ namespace GW2TraderTest
 
 
         [TestMethod]
-        public void WatchedItemIdsShouldBeAdded()
+        public void ItemWatchlistsShouldBeAdded()
         {
-            Assert.AreNotEqual(0, _dataRepository.ItemWatchlists.Count());
+            Assert.AreNotEqual(0, _dataRepository.ItemWatchlists.Count);
         }
 
         [TestMethod]
@@ -48,11 +48,11 @@ namespace GW2TraderTest
         [TestMethod]
         public void ItemShouldBeAdded()
         {
-            int newItemId = 999;
-            ItemIdWatchlistModel watchlist = _dataRepository.ItemWatchlists.First();
-            _dataRepository.AddItemToWatchlist<int>(watchlist, newItemId);
+            GameItemModel item = new GameItemModel { Id = 999 };
+            ItemWatchlistModel watchlist = _dataRepository.ItemWatchlists.First();
+            _dataRepository.AddItemToWatchlist(watchlist, item);
 
-            Assert.IsTrue(_dataRepository.ItemWatchlists.First().Items.Contains(newItemId));
+            Assert.IsTrue(_dataRepository.ItemWatchlists.First().Items.Contains(item));
         }
 
         [TestMethod]
@@ -83,6 +83,27 @@ namespace GW2TraderTest
             ApiTestDataFactory apiDataFactory = new ApiTestDataFactory();
             int[] ids = apiDataFactory.Items.Select(item => item.ID).ToArray();
             Array.ForEach( ids, id => Assert.IsNotNull( dataRepository.GameItemById(id) ) );
+        }
+
+        [TestMethod]
+        public void InvestmentShouldBeAdded()
+        {
+            GameItemModel item = _testGameDataFactory.GetTestGameItems().First();
+            InvestmentModel investment = new InvestmentModel
+            {
+                Count = 20,
+                DesiredSellPrice = 10000,
+                GameItem = item,
+                IsSold = false,
+                PurchasePrice = 500
+            };
+           
+            InvestmentWatchlistModel investmentWatchlist = _dataRepository.InvestmentLists.First();
+            int investmentCount = investmentWatchlist.Items.Count;
+
+            investmentWatchlist.Items.Add(investment);
+
+            Assert.AreEqual(investmentCount + 1, investmentWatchlist.Items.Count);
         }
     }
 }
