@@ -1,9 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GW2Trader.Data;
 using GW2Trader.Model;
-using System.Collections.Generic;
+using GW2TPApiWrapper.Wrapper;
+using GW2TPApiWrapperTest;
+using System;
+using System.Data.Entity.Validation;
+using System.Text;
 
 namespace GW2TraderTest
 {
@@ -13,6 +16,8 @@ namespace GW2TraderTest
         private GameDataRepository _dataRepository = new GameDataRepository(new GameDataContextMock());
         private TestGameDataFactory _testGameDataFactory = new TestGameDataFactory();
 
+
+        #region constructor thest
         [TestMethod]
         public void ItemsFromContextShouldBeAddedToDictionary()
         {
@@ -38,6 +43,7 @@ namespace GW2TraderTest
         {
             Assert.AreNotEqual(0, _dataRepository.InvestmentLists);
         }
+        #endregion
 
         [TestMethod]
         public void ItemShouldBeAdded()
@@ -50,7 +56,7 @@ namespace GW2TraderTest
         }
 
         [TestMethod]
-        public void ItemShoudlBeRemoved()
+        public void ItemShouldBeRemoved()
         {
             InvestmentModel validInvestment = new InvestmentModel
             {
@@ -63,6 +69,20 @@ namespace GW2TraderTest
             };
             InvestmentWatchlistModel investments = _dataRepository.InvestmentLists.First();
             _dataRepository.DeleteItemFromWatchlist(investments, validInvestment);
+            Assert.IsFalse(_dataRepository.InvestmentLists.First().Items.Contains(validInvestment));
+        }
+
+        [TestMethod]
+        public void DbShouldBeBuild()
+        {
+            GameDataRepository dataRepository = new GameDataRepository(new GameDataContextMock());
+            ITradingPostApiWrapper wrapper = new TradingPostApiWrapperMock();
+
+            dataRepository.RebuiltGameItemDatabase(wrapper);
+
+            ApiTestDataFactory apiDataFactory = new ApiTestDataFactory();
+            int[] ids = apiDataFactory.Items.Select(item => item.ID).ToArray();
+            Array.ForEach( ids, id => Assert.IsNotNull( dataRepository.GameItemById(id) ) );
         }
     }
 }

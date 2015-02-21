@@ -1,4 +1,4 @@
-﻿using GW2TPApiWrapper.Entities;
+﻿using GW2TPApiWrapper.Wrapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;

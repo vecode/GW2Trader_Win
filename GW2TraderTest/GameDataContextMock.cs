@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using GW2Trader.Model;
 using GW2Trader.Data;
-using GW2TPApiWrapper.Entities;
+using GW2TPApiWrapper.Wrapper;
 
 namespace GW2TraderTest
 {

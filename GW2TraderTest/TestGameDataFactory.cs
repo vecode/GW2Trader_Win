@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using GW2Trader.Model;
 using GW2Trader.Data;
-using GW2TPApiWrapper.Entities;
+using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Enums;
+using GW2TPApiWrapper.Entities;
 
 namespace GW2TraderTest
 {
@@ -156,5 +157,6 @@ namespace GW2TraderTest
             };
             return watchlists;
         }
+
     }
 }

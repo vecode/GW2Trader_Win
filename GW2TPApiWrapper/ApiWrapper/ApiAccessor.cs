@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 
-namespace GW2TPApiWrapper.Entities
+namespace GW2TPApiWrapper.Wrapper
 {
     public class ApiAccessor : IApiAccessor
     {

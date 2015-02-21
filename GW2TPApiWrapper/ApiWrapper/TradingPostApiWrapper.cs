@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using GW2TPApiWrapper.Entities;
 
-namespace GW2TPApiWrapper.Entities
+namespace GW2TPApiWrapper.Wrapper
 {
     public class TradingPostApiWrapper : ITradingPostApiWrapper
     {

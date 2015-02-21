@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Schema;
-using GW2TPApiWrapper.Entities;
+using GW2TPApiWrapper.Wrapper;
 using Newtonsoft.Json.Linq;
 
 namespace GW2TPApiWrapperTest

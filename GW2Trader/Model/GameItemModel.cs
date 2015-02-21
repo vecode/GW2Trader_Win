@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using GW2TPApiWrapper.Entities;
+using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Enums;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
+using GW2TPApiWrapper.Entities;
 
 namespace GW2Trader.Model
 {
@@ -62,8 +63,10 @@ namespace GW2Trader.Model
         [NotMapped]
         public ItemListing Listing { get; set; }
 
+        // TODO add methods for listings average
+
         [NotMapped]
-        public ItemPrice Price { get; set; }
+        public ItemPrice Price { get; set; }        
 
         [NotMapped]
         public DateTime LastUpdated { get; set; }

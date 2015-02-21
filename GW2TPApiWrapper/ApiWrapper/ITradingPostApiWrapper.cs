@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GW2TPApiWrapper.Entities;
 
-namespace GW2TPApiWrapper.Entities
+
+namespace GW2TPApiWrapper.Wrapper
 {
     public interface ITradingPostApiWrapper
     {

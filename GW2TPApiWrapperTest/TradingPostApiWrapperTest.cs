@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Entities;
 
 namespace GW2TPApiWrapperTest

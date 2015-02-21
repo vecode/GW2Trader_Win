@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using GW2Trader.Model;
 using System.Collections.ObjectModel;
-using GW2TPApiWrapper.Entities;
+using GW2TPApiWrapper.Wrapper;
 using System.Data.Entity;
+using GW2TPApiWrapper.Entities;
 
 namespace GW2Trader.Data
 {
@@ -21,11 +22,7 @@ namespace GW2Trader.Data
         {
             _context = context;
 
-            _gameItems = new Dictionary<int, GameItemModel>();
-            if (_context.GameItems != null)
-            {
-                _gameItems = _context.GameItems.ToDictionary(item => item.Id, item => item);
-            }
+            BuildGameItemDictionary();
 
             if (_context.InvestmentWatchlists != null)
             {
@@ -61,11 +58,7 @@ namespace GW2Trader.Data
             _gameItems.TryGetValue(id, out item);
             return item;
         }
-
-
         #endregion
-
-
 
         public IEnumerable<GameItemModel> GetAllGameItems()
         {
@@ -77,15 +70,18 @@ namespace GW2Trader.Data
             get { return _gameItemWatchlists; }
         }
 
-
         public IEnumerable<GameItemModel> GameItemsById(int[] ids)
         {
-            throw new NotImplementedException();
+            List<GameItemModel> items = new List<GameItemModel>();
+
+            Array.ForEach(ids, id => items.Add(GameItemById(id)));
+            return items;
         }
 
         public void AddWatchlist<T>(WatchlistModel<T> watchlist)
         {
-            throw new NotImplementedException();
+            _context.Set<WatchlistModel<T>>().Add(watchlist);
+            _context.Save();
         }
 
         public void AddItemToWatchlist<T>(WatchlistModel<T> watchlist, T item)
@@ -111,14 +107,52 @@ namespace GW2Trader.Data
             throw new NotImplementedException();
         }
 
-        public bool RebuiltGameItemDatabase(ITradingPostApiWrapper tpApiWrapper)
+        public void RebuiltGameItemDatabase(ITradingPostApiWrapper tpApiWrapper)
         {
-            throw new NotImplementedException();
+            foreach (var entity in _context.GameItems)
+                _context.GameItems.Remove(entity);
+
+            int[] itemIdsFromApi = tpApiWrapper.ItemIds();
+
+            GameItemModel convertedItemModel;
+            ItemDetails itemDetailsFromApi;
+
+            foreach (int id in itemIdsFromApi)
+            {
+                itemDetailsFromApi = tpApiWrapper.ItemDetails(id);
+                convertedItemModel = ConvertToGameItem(itemDetailsFromApi);
+                _context.GameItems.Add(convertedItemModel);
+            }
+            _context.Save();
+            BuildGameItemDictionary();
         }
 
         public void DeleteItemFromWatchlist<T>(WatchlistModel<T> watchlist, T item)
         {
-            throw new NotImplementedException();
+            watchlist.Items.Remove(item);
+        }
+
+        private static GameItemModel ConvertToGameItem(ItemDetails item)
+        {
+            GameItemModel itemModel = new GameItemModel
+            {
+                Id = item.ID,
+                IconUrl = item.IconUrl,
+                Name = item.Name,
+                Rarity = item.Rarity,
+                RestrictionLevel = item.Level,
+                Type = item.Type,
+                LastUpdated = DateTime.Now                                
+            };
+            return itemModel;
+        }
+
+        private void BuildGameItemDictionary()
+        {
+            if (_context.GameItems != null)
+            {
+                _gameItems = _context.GameItems.ToDictionary(item => item.Id, item => item);
+            }
         }
     }
 }
