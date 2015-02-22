@@ -27,6 +27,6 @@ namespace GW2Trader.Data
         void DeleteWatchlist<T>(WatchlistModel<T> watchlist) where T : WatchlistModel<T>;
         void DeleteItemFromWatchlist<T>(WatchlistModel<T> watchlist, T item);
 
-        void RebuiltGameItemDatabase(ITradingPostApiWrapper tpApiWrapper);
+        void RebuildGameItemDatabase(ITradingPostApiWrapper tpApiWrapper);
     }
 }

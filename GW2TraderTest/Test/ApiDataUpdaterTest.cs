@@ -75,6 +75,5 @@ namespace GW2TraderTest.Test
             CollectionAssert.AreEqual(updatedCommerceData.Buys, item.Listing.Buys);
             CollectionAssert.AreEqual(updatedCommerceData.Sells, item.Listing.Sells);
         }
-
     }
 }

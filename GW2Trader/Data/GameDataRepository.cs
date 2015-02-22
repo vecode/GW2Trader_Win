@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using GW2TPApiWrapper.Wrapper;
 using System.Data.Entity;
 using GW2TPApiWrapper.Entities;
+using System.Net;
 
 namespace GW2Trader.Data
 {
@@ -75,7 +77,7 @@ namespace GW2Trader.Data
             _context.Save();
         }
 
-        public void RebuiltGameItemDatabase(ITradingPostApiWrapper tpApiWrapper)
+        public void RebuildGameItemDatabase(ITradingPostApiWrapper tpApiWrapper)
         {
             foreach (var entity in _context.GameItems)
                 _context.GameItems.Remove(entity);
@@ -89,8 +91,10 @@ namespace GW2Trader.Data
             {
                 itemDetailsFromApi = tpApiWrapper.ItemDetails(id);
                 convertedItemModel = ConvertToGameItem(itemDetailsFromApi);
+                convertedItemModel.IconImageByte = LoadImage(convertedItemModel.IconUrl);
                 _context.GameItems.Add(convertedItemModel);
             }
+            // TODO load images
             _context.Save();
             BuildGameItemDictionary();
         }
@@ -143,7 +147,6 @@ namespace GW2Trader.Data
             _investmentLists.Add(watchlist);
         }
 
-
         public ObservableCollection<ItemWatchlistModel> ItemWatchlists
         {
             get { return _itemWatchlists; }
@@ -179,6 +182,23 @@ namespace GW2Trader.Data
                 itemWatchlist.Items = watchedItems;
                 _itemWatchlists.Add(itemWatchlist);
             }
+        }
+
+        private byte[] LoadImage(string url)
+        {
+            byte[] image;
+            Uri uri;
+            
+            // validate url
+            if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out uri))
+            {
+                using (var webClient = new WebClient())
+                {
+                    image = webClient.DownloadData(uri);
+                }
+            }
+            else image = null;
+            return image;
         }
     }
 }

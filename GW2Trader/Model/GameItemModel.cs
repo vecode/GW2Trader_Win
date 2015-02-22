@@ -36,27 +36,27 @@ namespace GW2Trader.Model
         public String IconUrl { get; set; }
 
         [Required]
-        private byte[] _image { get; set; }
+        public byte[] IconImageByte { get; set; }
 
         [NotMapped]
-        private ImageSource _imageSource { get; set; }
+        private ImageSource _iconImageSource { get; set; }
 
         [NotMapped]
-        public ImageSource ImageSource
+        public ImageSource IconImageSource
         {
             get
             {
-                if (_imageSource == null)
+                if (_iconImageSource == null)
                 {
                     BitmapImage img = new BitmapImage();
-                    MemoryStream ms = new MemoryStream(_image);
+                    MemoryStream ms = new MemoryStream(IconImageByte);
                     img.BeginInit();
                     img.StreamSource = ms;
                     img.EndInit();
 
-                    _imageSource = img as ImageSource;
+                    _iconImageSource = img as ImageSource;
                 }
-                return _imageSource;
+                return _iconImageSource;
             }
         }
 

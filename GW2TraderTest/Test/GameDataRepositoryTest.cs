@@ -78,7 +78,7 @@ namespace GW2TraderTest
             GameDataRepository dataRepository = new GameDataRepository(new GameDataContextMock());
             ITradingPostApiWrapper wrapper = new TradingPostApiWrapperMock(new ApiTestDataFactory());
 
-            dataRepository.RebuiltGameItemDatabase(wrapper);
+            dataRepository.RebuildGameItemDatabase(wrapper);
 
             ApiTestDataFactory apiDataFactory = new ApiTestDataFactory();
             int[] ids = apiDataFactory.Items.Select(item => item.Id).ToArray();
