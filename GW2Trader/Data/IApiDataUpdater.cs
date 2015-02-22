@@ -9,7 +9,7 @@ namespace GW2Trader.Data
 {
     interface IApiDataUpdater
     {
-        void UpdateItemInformation(GameItemModel item);
+        void UpdateItemData(GameItemModel item);
         void UpdateCommerceData(GameItemModel item);
     }
 }

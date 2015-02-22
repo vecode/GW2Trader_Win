@@ -110,7 +110,7 @@ namespace GW2Trader.Data
                 Rarity = item.Rarity,
                 RestrictionLevel = item.Level,
                 Type = item.Type,
-                LastUpdated = DateTime.Now
+                CommerceDataLastUpdated = DateTime.Now
             };
             return itemModel;
         }

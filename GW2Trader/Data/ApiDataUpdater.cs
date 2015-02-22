@@ -18,16 +18,14 @@ namespace GW2Trader.Data
             _tpApiWrapper = wrapper;
         }
 
-
-        public void UpdateItemInformation(GameItemModel item)
+        public void UpdateItemData(GameItemModel item)
         {
-            ItemDetails updatedInformation = _tpApiWrapper.ItemDetails(item.Id);
-            item.IconUrl = updatedInformation.IconUrl;
-            item.LastUpdated = DateTime.Now;
-            item.Name = updatedInformation.Name;
-            item.Rarity = updatedInformation.Rarity;
-            item.RestrictionLevel = updatedInformation.Level;
-            item.Type = updatedInformation.Type;
+            ItemDetails updatedData = _tpApiWrapper.ItemDetails(item.Id);
+            item.IconUrl = updatedData.IconUrl;
+            item.Name = updatedData.Name;
+            item.Rarity = updatedData.Rarity;
+            item.RestrictionLevel = updatedData.Level;
+            item.Type = updatedData.Type;
         }
 
         public void UpdateCommerceData(GameItemModel item)
@@ -35,6 +33,7 @@ namespace GW2Trader.Data
             ItemListing updatedData = _tpApiWrapper.Listings(item.Id);
             item.Listing.Buys = updatedData.Buys;
             item.Listing.Sells = updatedData.Sells;
+            item.CommerceDataLastUpdated = DateTime.Now;
         }
 
     }

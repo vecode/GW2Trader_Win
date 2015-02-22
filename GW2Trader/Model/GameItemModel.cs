@@ -126,7 +126,7 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
-        public DateTime LastUpdated { get; set; }
+        public DateTime CommerceDataLastUpdated { get; set; }
 
         [NotMapped]
         public int Margin
