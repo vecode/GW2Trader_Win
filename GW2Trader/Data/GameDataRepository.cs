@@ -94,7 +94,6 @@ namespace GW2Trader.Data
                 convertedItemModel.IconImageByte = LoadImage(convertedItemModel.IconUrl);
                 _context.GameItems.Add(convertedItemModel);
             }
-            // TODO load images
             _context.Save();
             BuildGameItemDictionary();
         }
