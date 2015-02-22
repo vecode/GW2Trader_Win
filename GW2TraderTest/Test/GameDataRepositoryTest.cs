@@ -76,12 +76,12 @@ namespace GW2TraderTest
         public void DbShouldBeBuild()
         {
             GameDataRepository dataRepository = new GameDataRepository(new GameDataContextMock());
-            ITradingPostApiWrapper wrapper = new TradingPostApiWrapperMock();
+            ITradingPostApiWrapper wrapper = new TradingPostApiWrapperMock(new ApiTestDataFactory());
 
             dataRepository.RebuiltGameItemDatabase(wrapper);
 
             ApiTestDataFactory apiDataFactory = new ApiTestDataFactory();
-            int[] ids = apiDataFactory.Items.Select(item => item.ID).ToArray();
+            int[] ids = apiDataFactory.Items.Select(item => item.Id).ToArray();
             Array.ForEach( ids, id => Assert.IsNotNull( dataRepository.GameItemById(id) ) );
         }
 

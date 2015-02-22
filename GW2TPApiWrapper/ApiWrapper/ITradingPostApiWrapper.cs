@@ -23,16 +23,6 @@ namespace GW2TPApiWrapper.Wrapper
 
         /// <summary>
         /// </summary>
-        /// <param name="id">Id of the item to get the price for.</param>
-        /// <returns>
-        /// Returns an instance of ItemPrice containing the highest buy order, 
-        /// lowest sell offer and their quantities
-        /// </returns>
-        ItemPrice ItemPrice(int id);
-
-
-        /// <summary>
-        /// </summary>
         /// <param name="id">Id of the item to get the listings for.</param>
         /// <returns>
         /// Returns an instance of ItemListing containing all buy orders and sell offers.2

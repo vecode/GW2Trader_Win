@@ -41,20 +41,21 @@ namespace GW2TPApiWrapperTest
             Assert.AreEqual(item.Rarity.ToString(), "Legendary");
         }
 
-        [TestMethod]
-        public void ItemPriceShouldBeValid()
-        {
-            // check for invalid item id
-            ItemPrice itemPrice = _tpApiWrapper.ItemPrice(_invalidId);
-            Assert.IsNull(itemPrice);
+        // TODO obsolete
+        //[TestMethod]
+        //public void ItemPriceShouldBeValid()
+        //{
+        //    // check for invalid item id
+        //    ItemPrice itemPrice = _tpApiWrapper.ItemPrice(_invalidId);
+        //    Assert.IsNull(itemPrice);
 
-            // check price details for valid item
-            itemPrice = _tpApiWrapper.ItemPrice(_validId);
-            Assert.AreEqual(itemPrice.Buys.Quantity, 29728);
-            Assert.AreEqual(itemPrice.Buys.UnitPrice, 35560206);
-            Assert.AreEqual(itemPrice.Sells.Quantity, 19);
-            Assert.AreEqual(itemPrice.Sells.UnitPrice, 41980000);
-        }
+        //    // check price details for valid item
+        //    itemPrice = _tpApiWrapper.ItemPrice(_validId);
+        //    Assert.AreEqual(itemPrice.Buys.Quantity, 29728);
+        //    Assert.AreEqual(itemPrice.Buys.UnitPrice, 35560206);
+        //    Assert.AreEqual(itemPrice.Sells.Quantity, 19);
+        //    Assert.AreEqual(itemPrice.Sells.UnitPrice, 41980000);
+        //}
 
         [TestMethod]
         public void ItemListingsShouldBeValid()

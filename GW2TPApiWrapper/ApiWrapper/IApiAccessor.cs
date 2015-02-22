@@ -23,16 +23,17 @@ namespace GW2TPApiWrapper.Wrapper
         /// <returns>Returns details of an item formatted as json</returns>
         String ItemDetails(int id);
 
-        /// <summary>
-        /// Makes an api call and returns the json result string containing the prices
-        /// of an item.
-        /// </summary>
-        /// <param name="id">Id of the requested item</param>
-        /// <returns>
-        /// Returns an items highest buy order, lowest sell offer and their quantites
-        /// formatted as json.
-        /// </returns>
-        String ItemPrice(int id);
+        // TODO obsolete
+        ///// <summary>
+        ///// Makes an api call and returns the json result string containing the prices
+        ///// of an item.
+        ///// </summary>
+        ///// <param name="id">Id of the requested item</param>
+        ///// <returns>
+        ///// Returns an items highest buy order, lowest sell offer and their quantites
+        ///// formatted as json.
+        ///// </returns>
+        //String ItemPrice(int id);
 
         /// <summary>
         /// Makes an api call and returns the json result string containing buy and sell

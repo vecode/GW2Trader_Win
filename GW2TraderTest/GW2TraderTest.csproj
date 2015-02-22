@@ -67,6 +67,7 @@
     <Compile Include="TestDataFactory\ApiTestDataFactory.cs" />
     <Compile Include="TestDataFactory\TestGameDataFactory.cs" />
     <Compile Include="Mock\TradingPostApiWrapperMock.cs" />
+    <Compile Include="Test\ApiDataUpdaterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">

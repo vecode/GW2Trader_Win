@@ -27,11 +27,12 @@ namespace GW2TPApiWrapper.Wrapper
             return ApiRequest(apiUrl);
         }
 
-        public string ItemPrice(int id)
-        {
-            String apiUrl = FormatApiUrl(_pricesApiUrl, id);
-            return ApiRequest(apiUrl);
-        }
+        // TODO obsolete
+        //public string ItemPrice(int id)
+        //{
+        //    String apiUrl = FormatApiUrl(_pricesApiUrl, id);
+        //    return ApiRequest(apiUrl);
+        //}
 
         public string Listings(int id)
         {

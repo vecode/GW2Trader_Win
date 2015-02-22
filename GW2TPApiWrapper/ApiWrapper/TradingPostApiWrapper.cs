@@ -36,17 +36,18 @@ namespace GW2TPApiWrapper.Wrapper
             }
         }
 
-        public ItemPrice ItemPrice(int id)
-        {
-            String jsonResult = _apiAccessor.ItemPrice(id);
-            if (String.IsNullOrEmpty(jsonResult))
-                return null;
-            else
-            {
-                ItemPrice itemPrice = JsonConvert.DeserializeObject<ItemPrice>(jsonResult);
-                return itemPrice;
-            }
-        }
+        // TODO obsolete
+        //public ItemPrice ItemPrice(int id)
+        //{
+        //    String jsonResult = _apiAccessor.ItemPrice(id);
+        //    if (String.IsNullOrEmpty(jsonResult))
+        //        return null;
+        //    else
+        //    {
+        //        ItemPrice itemPrice = JsonConvert.DeserializeObject<ItemPrice>(jsonResult);
+        //        return itemPrice;
+        //    }
+        //}
 
         public ItemListing Listings(int id)
         {
@@ -59,7 +60,5 @@ namespace GW2TPApiWrapper.Wrapper
                 return itemListing;
             }
         }
-
-
     }
 }

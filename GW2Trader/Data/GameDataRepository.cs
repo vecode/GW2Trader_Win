@@ -104,7 +104,7 @@ namespace GW2Trader.Data
         {
             GameItemModel itemModel = new GameItemModel
             {
-                Id = item.ID,
+                Id = item.Id,
                 IconUrl = item.IconUrl,
                 Name = item.Name,
                 Rarity = item.Rarity,

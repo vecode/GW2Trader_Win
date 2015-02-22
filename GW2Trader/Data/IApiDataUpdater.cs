@@ -7,7 +7,7 @@ using GW2Trader.Model;
 
 namespace GW2Trader.Data
 {
-    interface IApiDataUpdater
+    public interface IApiDataUpdater
     {
         void UpdateItemData(GameItemModel item);
         void UpdateCommerceData(GameItemModel item);

@@ -82,54 +82,55 @@ namespace GW2TPApiWrapperTest
             Assert.IsTrue(itemDetails.IsValid(schema));            
         }
 
-        [TestMethod]
-        public void ItemPriceShouldBeValidJson()
-        {
-            JsonSchema schema = JsonSchema.Parse(@"
-                {
-                    'type' : 'object',
-                    'properties': {
-                        'id': {
-                            'id' : 'id',
-                            'type' : 'integer',
-                            'required' : 'true'
-                        },
-                        'buys': {
-                            'id': 'buys',
-                            'type': 'object',
-                            'properties': {
-                                'quantity': {
-                                    'id': 'quantity',
-                                    'type': 'integer'
-                                },
-                                'unit_price': {
-                                    'id': 'unit_price',
-                                    'type': 'integer'                                    
-                                }
-                            },
-                            'required' : 'true'
-                        },
-                        'sells': {
-                            'id': 'sells',
-                            'type': 'object',
-                            'properties': {
-                                'quantity': {
-                                    'id': 'quantity',
-                                    'type': 'integer'
-                                },
-                                'unit_price': {
-                                    'id': 'unit_price',
-                                    'type': 'integer'                                    
-                                }
-                            },
-                            'required' : 'true'
-                        }
-                    },
-                }");
+// TODO obosolete
+//        [TestMethod]
+//        public void ItemPriceShouldBeValidJson()
+//        {
+//            JsonSchema schema = JsonSchema.Parse(@"
+//                {
+//                    'type' : 'object',
+//                    'properties': {
+//                        'id': {
+//                            'id' : 'id',
+//                            'type' : 'integer',
+//                            'required' : 'true'
+//                        },
+//                        'buys': {
+//                            'id': 'buys',
+//                            'type': 'object',
+//                            'properties': {
+//                                'quantity': {
+//                                    'id': 'quantity',
+//                                    'type': 'integer'
+//                                },
+//                                'unit_price': {
+//                                    'id': 'unit_price',
+//                                    'type': 'integer'                                    
+//                                }
+//                            },
+//                            'required' : 'true'
+//                        },
+//                        'sells': {
+//                            'id': 'sells',
+//                            'type': 'object',
+//                            'properties': {
+//                                'quantity': {
+//                                    'id': 'quantity',
+//                                    'type': 'integer'
+//                                },
+//                                'unit_price': {
+//                                    'id': 'unit_price',
+//                                    'type': 'integer'                                    
+//                                }
+//                            },
+//                            'required' : 'true'
+//                        }
+//                    },
+//                }");
 
-            JObject itemPrice = JObject.Parse(_apiAccessor.ItemPrice(_validItemId));
-            Assert.IsTrue(itemPrice.IsValid(schema));
-        }
+//            JObject itemPrice = JObject.Parse(_apiAccessor.ItemPrice(_validItemId));
+//            Assert.IsTrue(itemPrice.IsValid(schema));
+//        }
 
         [TestMethod]
         public void ListingsShouldBeValidJson()
