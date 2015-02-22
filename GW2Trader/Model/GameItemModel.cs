@@ -40,6 +40,7 @@ namespace GW2Trader.Model
         [Required]
         public String IconUrl { get; set; }
         
+        [MaxLength]
         public byte[] IconImageByte { get; set; }
 
         [NotMapped]
