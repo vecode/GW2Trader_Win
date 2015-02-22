@@ -2,16 +2,20 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:properties="clr-namespace:GW2Trader.Properties"
+        xmlns:control="clr-namespace:GW2Trader.Control"
+        xmlns:view="clr-namespace:GW2Trader.ViewModel"
         Title="MainWindow" Height="350" Width="525">
     
     <Window.Resources>
-
+        <view:MainViewModel x:Key="MainViewModel"/>
     </Window.Resources>
     
-    <Grid>
+    <Grid DataContext="{Binding Source={StaticResource MainViewModel}}">
         <TabControl>
-            <TabItem>
-                <ContentControl Template="{StaticResource ResourceKey=ItemOverviewControlTemplate}"/>
+            <TabItem DataContext="{Binding ChildViews[0]}">
+                <Grid>
+                    <DataGrid ItemsSource="{Binding Path=FilteredItems}"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

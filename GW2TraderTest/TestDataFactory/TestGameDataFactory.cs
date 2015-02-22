@@ -19,7 +19,7 @@ namespace GW2TraderTest
             {
                 new GameItemModel 
                 {
-                    Id = 123456,
+                    ItemId = 123456,
                     IconUrl = @"http://icon_file_1.png",
                     Name = "Test Item 1",
                     Rarity = Item.ItemRarity.Basic,
@@ -43,7 +43,7 @@ namespace GW2TraderTest
                 },
                 new GameItemModel 
                 {
-                    Id = 2,
+                    ItemId = 2,
                     IconUrl = @"http://icon_file_2.png",
                     Name = "Test Item 2",
                     Rarity = Item.ItemRarity.Fine,
@@ -67,7 +67,7 @@ namespace GW2TraderTest
                 },
                                 new GameItemModel 
                 {
-                    Id = 3,
+                    ItemId = 3,
                     IconUrl = @"http://icon_file_3.png",
                     Name = "Test Item 3",
                     Rarity = Item.ItemRarity.Fine,

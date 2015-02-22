@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Control\HidingDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\GameDataContext.cs" />
     <Compile Include="Data\GameDataRepository.cs" />
@@ -111,6 +112,9 @@
     <Compile Include="Model\InvestmentWatchlistModel.cs" />
     <Compile Include="Model\ItemIdWatchlistModel.cs" />
     <Compile Include="Model\ItemWatchlistModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\InvestmentViewModel.cs" />
+    <Compile Include="ViewModel\ItemOverviewViewModel.cs" />
     <Compile Include="MVVM\ObservableObject.cs" />
     <Compile Include="Model\WatchlistModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -145,7 +149,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

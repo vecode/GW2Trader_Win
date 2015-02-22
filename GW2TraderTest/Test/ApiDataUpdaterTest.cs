@@ -16,7 +16,7 @@ namespace GW2TraderTest.Test
         {
             return new GameItemModel
             {
-                Id = 1,
+                ItemId = 1,
                 IconUrl = "oldUrl",
                 Name = "oldName",
                 RestrictionLevel = 0,
@@ -49,7 +49,7 @@ namespace GW2TraderTest.Test
             GameItemModel item = ValidGameItem();
             updater.UpdateItemData(item);
 
-            ItemDetails updateditemDetails = testDataFactory.Items.Find(i => i.Id == item.Id);
+            ItemDetails updateditemDetails = testDataFactory.Items.Find(i => i.Id == item.ItemId);
 
             Assert.AreEqual(updateditemDetails.IconUrl, item.IconUrl);
             Assert.AreEqual(updateditemDetails.Level, item.RestrictionLevel);
@@ -68,7 +68,7 @@ namespace GW2TraderTest.Test
             GameItemModel item = ValidGameItem();
             updater.UpdateCommerceData(item);
 
-            ItemListing updatedCommerceData = testDataFactory.ItemListings.Find(i => i.Id == item.Id);
+            ItemListing updatedCommerceData = testDataFactory.ItemListings.Find(i => i.Id == item.ItemId);
 
             Listing[] buys = updatedCommerceData.Buys;
             

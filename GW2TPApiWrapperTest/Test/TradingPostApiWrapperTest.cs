@@ -36,6 +36,7 @@ namespace GW2TPApiWrapperTest
             // details from https://api.guildwars2.com/v2/items/30689
             item = _tpApiWrapper.ItemDetails(_validId);
             Assert.IsNotNull(item);
+            Assert.AreEqual(30689, item.Id);
             Assert.AreEqual(item.Name, "Eternity");
             Assert.AreEqual(item.Type.ToString(), "Weapon");
             Assert.AreEqual(item.Rarity.ToString(), "Legendary");

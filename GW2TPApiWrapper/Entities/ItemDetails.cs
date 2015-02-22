@@ -15,7 +15,7 @@ namespace GW2TPApiWrapper.Entities
  
     public class ItemDetails
     {
-        [JsonProperty("item_id")]
+        //[JsonProperty("item_id")]
         public int Id { get; set; }
 
         public String Name { get; set; }

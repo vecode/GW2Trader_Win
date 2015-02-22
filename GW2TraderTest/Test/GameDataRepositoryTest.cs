@@ -48,7 +48,7 @@ namespace GW2TraderTest
         [TestMethod]
         public void ItemShouldBeAdded()
         {
-            GameItemModel item = new GameItemModel { Id = 999 };
+            GameItemModel item = new GameItemModel { ItemId = 999 };
             ItemWatchlistModel watchlist = _dataRepository.ItemWatchlists.First();
             _dataRepository.AddItemToWatchlist(watchlist, item);
 

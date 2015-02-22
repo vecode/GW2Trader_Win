@@ -49,14 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiWrapper\ApiAccessor.cs" />
-    <Compile Include="ApiWrapper\IApiAccessor.cs" />
+    <Compile Include="Wrapper\ApiAccessor.cs" />
+    <Compile Include="Wrapper\IApiAccessor.cs" />
     <Compile Include="Entities\ItemDetails.cs" />
     <Compile Include="Entities\ItemListing.cs" />
     <Compile Include="Entities\ItemPrice.cs" />
-    <Compile Include="ApiWrapper\ITradingPostApiWrapper.cs" />
+    <Compile Include="Wrapper\ITradingPostApiWrapper.cs" />
     <Compile Include="Entities\Listing.cs" />
-    <Compile Include="ApiWrapper\TradingPostApiWrapper.cs" />
+    <Compile Include="Wrapper\TradingPostApiWrapper.cs" />
     <Compile Include="Enums\Armor.cs" />
     <Compile Include="Enums\Item.cs" />
     <Compile Include="Enums\Weapon.cs" />

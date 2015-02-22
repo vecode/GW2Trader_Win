@@ -6,25 +6,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using GW2TPApiWrapper.Enums;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace GW2Trader.Data
 {
-    public class GameDataContext : DbContext, IGameDataContext
+    public partial class GameDataContext : DbContext, IGameDataContext
     {
         public DbSet<GameItemModel> GameItems { get; set; }
         public DbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; set; }
         public DbSet<ItemIdWatchlistModel> ItemIdWatchlists { get; set; }
 
-        static GameDataContext()
+        public GameDataContext()
+            : base("ItemDb.DbConnection")
         {
             Database.SetInitializer<GameDataContext>(new DbInitializer());            
         }
 
-        class DbInitializer : DropCreateDatabaseIfModelChanges<GameDataContext>
+        class DbInitializer : DropCreateDatabaseAlways<GameDataContext>
         {
             protected override void Seed(GameDataContext context)
             {
-                // TODO add seed
                 base.Seed(context);
             }
         }
@@ -34,4 +37,5 @@ namespace GW2Trader.Data
             this.SaveChanges();
         }
     }
+
 }

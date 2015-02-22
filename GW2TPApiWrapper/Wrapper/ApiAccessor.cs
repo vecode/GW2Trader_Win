@@ -64,6 +64,7 @@ namespace GW2TPApiWrapper.Wrapper
                 try
                 {
                     jsonResult = webClient.DownloadString(apiUrl);
+                    return jsonResult;
                 }
                 catch (Exception ex) { return String.Empty; }               
             }

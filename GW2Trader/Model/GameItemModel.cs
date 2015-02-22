@@ -11,14 +11,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 using GW2TPApiWrapper.Entities;
+using System.ComponentModel;
 
 namespace GW2Trader.Model
 {
     public class GameItemModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Browsable(false)]
         public int Id { get; set; }
+
+        [Required]
+        [Browsable(false)]
+        public int ItemId { get; set; }
 
         [Required]
         public String Name { get; set; }
@@ -34,8 +39,7 @@ namespace GW2Trader.Model
 
         [Required]
         public String IconUrl { get; set; }
-
-        [Required]
+        
         public byte[] IconImageByte { get; set; }
 
         [NotMapped]

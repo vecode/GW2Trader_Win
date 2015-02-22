@@ -20,7 +20,7 @@ namespace GW2Trader.Data
 
         public void UpdateItemData(GameItemModel item)
         {
-            ItemDetails updatedData = _tpApiWrapper.ItemDetails(item.Id);
+            ItemDetails updatedData = _tpApiWrapper.ItemDetails(item.ItemId);
             item.IconUrl = updatedData.IconUrl;
             item.Name = updatedData.Name;
             item.Rarity = updatedData.Rarity;
@@ -30,7 +30,7 @@ namespace GW2Trader.Data
 
         public void UpdateCommerceData(GameItemModel item)
         {
-            ItemListing updatedData = _tpApiWrapper.Listings(item.Id);
+            ItemListing updatedData = _tpApiWrapper.Listings(item.ItemId);
             item.Listing.Buys = updatedData.Buys;
             item.Listing.Sells = updatedData.Sells;
             item.CommerceDataLastUpdated = DateTime.Now;

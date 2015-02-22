@@ -15,7 +15,7 @@ namespace GW2Trader.Data
 {
     public class GameDataRepository : IGameDataRepository
     {
-        private IGameDataContext _context;
+        private readonly IGameDataContext _context;
         private Dictionary<int, GameItemModel> _gameItems;
         private ObservableCollection<InvestmentWatchlistModel> _investmentLists;
         private ObservableCollection<ItemWatchlistModel> _itemWatchlists;
@@ -87,8 +87,12 @@ namespace GW2Trader.Data
             GameItemModel convertedItemModel;
             ItemDetails itemDetailsFromApi;
 
+            int count = 0;
             foreach (int id in itemIdsFromApi)
             {
+                if (count == 10) break;
+                count++;
+                Console.WriteLine("ID: " + id);
                 itemDetailsFromApi = tpApiWrapper.ItemDetails(id);
                 convertedItemModel = ConvertToGameItem(itemDetailsFromApi);
                 convertedItemModel.IconImageByte = LoadImage(convertedItemModel.IconUrl);
@@ -107,7 +111,7 @@ namespace GW2Trader.Data
         {
             GameItemModel itemModel = new GameItemModel
             {
-                Id = item.Id,
+                ItemId = item.Id,
                 IconUrl = item.IconUrl,
                 Name = item.Name,
                 Rarity = item.Rarity,
@@ -120,10 +124,16 @@ namespace GW2Trader.Data
 
         private void BuildGameItemDictionary()
         {
+            
             if (_context.GameItems != null)
             {
-                _gameItems = _context.GameItems.ToDictionary(item => item.Id, item => item);
+                _gameItems = _context.GameItems.ToDictionary(item => item.ItemId, item => item);
             }
+            //_gameItems = new Dictionary<int, GameItemModel>();
+            //foreach (var item in _context.GameItems)
+            //{
+            //    _gameItems.Add(item.ItemId, item);
+            //}
         }
 
         public void AddWatchlist(ItemWatchlistModel watchlist)

@@ -11,7 +11,7 @@ namespace GW2TPApiWrapper.Wrapper
     public class TradingPostApiWrapper : ITradingPostApiWrapper
     {
 
-        private IApiAccessor _apiAccessor;
+        private readonly IApiAccessor _apiAccessor;
 
         public TradingPostApiWrapper(IApiAccessor apiAccessor)
         {
