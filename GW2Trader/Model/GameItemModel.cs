@@ -35,12 +35,15 @@ namespace GW2Trader.Model
         public int RestrictionLevel { get; set; }
 
         [Required]
+        [Browsable(false)]
         public String IconUrl { get; set; }
         
         [MaxLength]
+        [Browsable(false)]
         public byte[] IconImageByte { get; set; }
 
         [NotMapped]
+        [Browsable(false)]
         private ImageSource _iconImageSource { get; set; }
 
         [NotMapped]
@@ -63,6 +66,7 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
+        [Browsable(false)]
         public ItemListing Listing { get; set; }
 
         // TODO add methods for listings average
@@ -83,6 +87,7 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
+        [Browsable(false)]
         public int BuyOrderQuantity
         {
             get
@@ -113,6 +118,7 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
+        [Browsable(false)]
         public int SellListingQuantity
         {
             get
@@ -128,6 +134,7 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
+        [Browsable(false)]
         public DateTime CommerceDataLastUpdated { get; set; }
 
         [NotMapped]

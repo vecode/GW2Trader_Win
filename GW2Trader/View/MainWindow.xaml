@@ -14,7 +14,17 @@
         <TabControl>
             <TabItem DataContext="{Binding ChildViews[0]}">
                 <Grid>
-                    <DataGrid ItemsSource="{Binding Path=FilteredItems}"/>
+                    <control:HidingDataGrid ItemsSource="{Binding Path=FilteredItems}">
+                        <control:HidingDataGrid.Columns>
+                            <DataGridTemplateColumn MinWidth="30">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding IconImageSource}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </control:HidingDataGrid.Columns>
+                    </control:HidingDataGrid>
                 </Grid>
             </TabItem>
         </TabControl>
