@@ -18,10 +18,7 @@ namespace GW2Trader.Model
     public class GameItemModel
     {
         [Key]
-        [Browsable(false)]
-        public int Id { get; set; }
-
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Browsable(false)]
         public int ItemId { get; set; }
 
