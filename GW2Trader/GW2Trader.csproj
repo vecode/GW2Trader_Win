@@ -177,11 +177,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GW2TraderDB.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
       <Project>{a37ca4f0-b48c-43d0-95b9-1f955e450fa1}</Project>
       <Name>GW2TPApiWrapper</Name>
