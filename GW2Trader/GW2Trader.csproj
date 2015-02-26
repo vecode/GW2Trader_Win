@@ -134,6 +134,7 @@
     <Compile Include="Model\InvestmentWatchlistModel.cs" />
     <Compile Include="Model\ItemIdWatchlistModel.cs" />
     <Compile Include="Model\ItemWatchlistModel.cs" />
+    <Compile Include="Util\Logger.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\InvestmentViewModel.cs" />
     <Compile Include="ViewModel\ItemOverviewViewModel.cs" />

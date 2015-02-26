@@ -11,13 +11,16 @@
     </Window.Resources>
     
     <Grid DataContext="{Binding Source={StaticResource MainViewModel}}">
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
             <TabItem DataContext="{Binding ChildViews[0]}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     
                     <control:HidingDataGrid Grid.Row="1" ItemsSource="{Binding Path=Items.View}">
@@ -36,5 +39,9 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        
+     <!--   <Label Grid.Row="1" DataContext="{Binding ElementName=MainViewModel}" Content="{Binding Source=Logger, Path=LastLog}"/> -->
+        <Label Grid.Row="1" DataContext="{Binding Logger}" Content="{Binding Path=LastLog}" FontSize="14"/>
+
     </Grid>
 </Window>

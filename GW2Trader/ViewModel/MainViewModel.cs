@@ -7,6 +7,7 @@ using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Data;
 using GW2Trader.MVVM;
 using System.Collections.ObjectModel;
+using GW2Trader.Util;
 
 
 namespace GW2Trader.ViewModel
@@ -18,6 +19,7 @@ namespace GW2Trader.ViewModel
         private IGameDataRepository _dataRepository;
         private IApiDataUpdater _dataUpdater;
         private DbBuilder _dbBuilder;
+        public Logger Logger { get; set; }
 
         private int _selectedTabIndex = 0;
         public int SelectedTabIndex
@@ -44,6 +46,7 @@ namespace GW2Trader.ViewModel
 
         public MainViewModel()
         {
+            Logger = Logger.Instance;
             _dataContext = new GameDataContext();
             _tradingPostWrapper = new TradingPostApiWrapper(new ApiAccessor());
             _dataRepository = new GameDataRepository(_dataContext);
@@ -51,7 +54,11 @@ namespace GW2Trader.ViewModel
             _dbBuilder = new DbBuilder(_tradingPostWrapper, _dataContext);
 
             if (_dataRepository.GetAllGameItems().Count() == 0)
+            {
+                Logger.AddLog("building database..");
                 _dbBuilder.BuildDatabase();
+            }
+            else { Logger.AddLog("database loaded"); }
 
             _childViews = new ObservableCollection<BaseViewModel>();
             _childViews.Add(new ItemOverviewViewModel(_dataRepository, _tradingPostWrapper, _dataUpdater, _dbBuilder));
