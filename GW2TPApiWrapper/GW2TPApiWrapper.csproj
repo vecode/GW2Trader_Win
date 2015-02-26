@@ -51,17 +51,14 @@
   <ItemGroup>
     <Compile Include="Enum\ItemType.cs" />
     <Compile Include="Util\ApiUrlFormatter.cs" />
-    <Compile Include="ToBeDeleted\ApiAccessor.cs" />
     <Compile Include="Util\ApiResponseConverter.cs" />
     <Compile Include="Wrapper\ApiAccessor.cs" />
     <Compile Include="Wrapper\IApiAccessor.cs" />
-    <Compile Include="ToBeDeleted\IApiAccessor.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\ItemListing.cs" />
     <Compile Include="Entities\ItemPrice.cs" />
     <Compile Include="Wrapper\ITradingPostApiWrapper.cs" />
     <Compile Include="Entities\Listing.cs" />
-    <Compile Include="ToBeDeleted\TradingPostApiWrapperOld.cs" />
     <Compile Include="Wrapper\TradingPostApiWrapper.cs" />
     <Compile Include="Enum\Armor.cs" />
     <Compile Include="Enum\ItemRarity.cs" />
