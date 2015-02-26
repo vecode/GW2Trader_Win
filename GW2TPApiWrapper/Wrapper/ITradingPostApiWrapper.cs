@@ -19,7 +19,13 @@ namespace GW2TPApiWrapper.Wrapper
         /// </summary>
         /// <param name="id">Id of the item</param>
         /// <returns>Returns an instance of Item</returns>
-        ItemDetails ItemDetails(int id);    
+        Item ItemDetails(int id);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="ids">Ids of the items</param>
+        /// <returns>Returns a list of ItemDetails</returns>
+        List<Item> ItemDetails(int[] ids);
 
         /// <summary>
         /// </summary>
@@ -28,5 +34,13 @@ namespace GW2TPApiWrapper.Wrapper
         /// Returns an instance of ItemListing containing all buy orders and sell offers.2
         /// </returns>
         ItemListing Listings(int id);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="id">Ids of the items to get the listings for.</param>
+        /// <returns>
+        /// Returns a list of ItemListing containing all buy orders and sell offers.
+        /// </returns>
+        List<ItemListing> Listings(int[] ids);
     }
 }

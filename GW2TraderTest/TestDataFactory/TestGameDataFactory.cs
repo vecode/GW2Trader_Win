@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using GW2Trader.Model;
 using GW2Trader.Data;
 using GW2TPApiWrapper.Wrapper;
-using GW2TPApiWrapper.Enums;
+using GW2TPApiWrapper.Enum;
 using GW2TPApiWrapper.Entities;
 
 namespace GW2TraderTest
@@ -22,9 +22,9 @@ namespace GW2TraderTest
                     ItemId = 123456,
                     IconUrl = @"http://icon_file_1.png",
                     Name = "Test Item 1",
-                    Rarity = Item.ItemRarity.Basic,
+                    Rarity = ItemRarity.Rarity.Basic,
                     RestrictionLevel = 10,
-                    Type = Item.ItemType.Weapon,
+                    Type = ItemType.Type.Weapon,
                     Listing = new ItemListing 
                     {
                         Id = 3,
@@ -46,9 +46,9 @@ namespace GW2TraderTest
                     ItemId = 2,
                     IconUrl = @"http://icon_file_2.png",
                     Name = "Test Item 2",
-                    Rarity = Item.ItemRarity.Fine,
+                    Rarity = ItemRarity.Rarity.Fine,
                     RestrictionLevel = 20,
-                    Type = Item.ItemType.Armor,
+                    Type = ItemType.Type.Armor,
                     Listing = new ItemListing 
                     {
                         Id = 3,
@@ -70,9 +70,9 @@ namespace GW2TraderTest
                     ItemId = 3,
                     IconUrl = @"http://icon_file_3.png",
                     Name = "Test Item 3",
-                    Rarity = Item.ItemRarity.Fine,
+                    Rarity = ItemRarity.Rarity.Fine,
                     RestrictionLevel = 30,
-                    Type = Item.ItemType.Armor,
+                    Type = ItemType.Type.Armor,
                     Listing = new ItemListing 
                     {
                         Id = 3,

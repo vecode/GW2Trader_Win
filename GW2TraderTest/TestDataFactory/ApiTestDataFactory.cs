@@ -1,5 +1,5 @@
 ﻿using GW2TPApiWrapper.Entities;
-using GW2TPApiWrapper.Enums;
+using GW2TPApiWrapper.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,37 +10,37 @@ namespace GW2TPApiWrapperTest
 {
     public class ApiTestDataFactory
     {
-        private List<ItemDetails> _items = new List<ItemDetails>
+        private List<Item> _items = new List<Item>
         {
-            new ItemDetails 
+            new Item 
             {
                 Id = 1,
                 Description = "this is item 1",
                 Level = 10,
-                Rarity = Item.ItemRarity.Basic,
-                Type = Item.ItemType.Armor,
+                Rarity = ItemRarity.Rarity.Basic,
+                Type = ItemType.Type.Armor,
                 VendorValue = 3, 
                 Name = "item 1",
                 IconUrl = "http://item_icon.png"
             },
-            new ItemDetails 
+            new Item 
             {
                 Id = 2,
                 Description = "this is item 2",
                 Level = 20,
-                Rarity = Item.ItemRarity.Basic,
-                Type = Item.ItemType.Armor,
+                Rarity = ItemRarity.Rarity.Basic,
+                Type = ItemType.Type.Armor,
                 VendorValue = 6, 
                 Name = "item 2",
                 IconUrl = "http://item_icon.png"
             },
-            new ItemDetails 
+            new Item 
             {
                 Id = 3,
                 Description = "this is item 3",
                 Level = 30,
-                Rarity = Item.ItemRarity.Basic,
-                Type = Item.ItemType.Armor,
+                Rarity = ItemRarity.Rarity.Basic,
+                Type = ItemType.Type.Armor,
                 VendorValue = 9, 
                 Name = "item 3",
                 IconUrl = "http://item_icon.png"
@@ -130,7 +130,7 @@ namespace GW2TPApiWrapperTest
             }
         }
 
-        public List<ItemDetails> Items
+        public List<Item> Items
         {
             get
             {

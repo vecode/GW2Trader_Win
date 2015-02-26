@@ -66,6 +66,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -122,6 +123,7 @@
     </Compile>
     <Compile Include="Control\HidingDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
+    <Compile Include="Data\DbBuilder.cs" />
     <Compile Include="Data\GameDataContext.cs" />
     <Compile Include="Data\GameDataRepository.cs" />
     <Compile Include="Data\IApiDataUpdater.cs" />

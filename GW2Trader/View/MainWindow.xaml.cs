@@ -11,8 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using  GW2Trader.ViewModel;
+using System.IO;
+using GW2Trader.ViewModel;
 
 namespace GW2Trader
 {
@@ -23,6 +23,11 @@ namespace GW2Trader
     {
         public MainWindow()
         {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GW2Trader");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
+
             InitializeComponent();
         }
     }

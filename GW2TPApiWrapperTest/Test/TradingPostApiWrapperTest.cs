@@ -2,8 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using GW2TPApiWrapperTest.Mock;
 
-namespace GW2TPApiWrapperTest
+namespace GW2TPApiWrapperTest.Test
 {
     [TestClass]
     public class TradingPostApiWrapperTest
@@ -27,36 +30,20 @@ namespace GW2TPApiWrapperTest
         }
 
         [TestMethod]
-        public void ItemDetailsShouldBeValid()
+        public void SingleItemRetrievalShouldWork()
         {
             // check for invalid item id
-            ItemDetails item = _tpApiWrapper.ItemDetails(_invalidId);
-            Assert.IsNull(item);
+            //Item item = _tpApiWrapper.ItemDetails(_invalidId);
+            //Assert.IsNull(item);
 
             // details from https://api.guildwars2.com/v2/items/30689
-            item = _tpApiWrapper.ItemDetails(_validId);
+            var item = _tpApiWrapper.ItemDetails(30689);
             Assert.IsNotNull(item);
             Assert.AreEqual(30689, item.Id);
             Assert.AreEqual(item.Name, "Eternity");
             Assert.AreEqual(item.Type.ToString(), "Weapon");
             Assert.AreEqual(item.Rarity.ToString(), "Legendary");
         }
-
-        // TODO obsolete
-        //[TestMethod]
-        //public void ItemPriceShouldBeValid()
-        //{
-        //    // check for invalid item id
-        //    ItemPrice itemPrice = _tpApiWrapper.ItemPrice(_invalidId);
-        //    Assert.IsNull(itemPrice);
-
-        //    // check price details for valid item
-        //    itemPrice = _tpApiWrapper.ItemPrice(_validId);
-        //    Assert.AreEqual(itemPrice.Buys.Quantity, 29728);
-        //    Assert.AreEqual(itemPrice.Buys.UnitPrice, 35560206);
-        //    Assert.AreEqual(itemPrice.Sells.Quantity, 19);
-        //    Assert.AreEqual(itemPrice.Sells.UnitPrice, 41980000);
-        //}
 
         [TestMethod]
         public void ItemListingsShouldBeValid()

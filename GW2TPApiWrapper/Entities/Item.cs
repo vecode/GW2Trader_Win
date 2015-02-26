@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GW2TPApiWrapper.Enums;
+using GW2TPApiWrapper.Enum;
 
 namespace GW2TPApiWrapper.Entities
 {
@@ -13,20 +13,20 @@ namespace GW2TPApiWrapper.Entities
     /// </summary>
     /// api documentation is avaible at http://wiki.guildwars2.com/wiki/API:2/items
  
-    public class ItemDetails
+    public class Item
     {
-        //[JsonProperty("item_id")]
+        // [JsonProperty("item_id")]
         public int Id { get; set; }
 
-        public String Name { get; set; }
+        public string Name { get; set; }
 
-        public String Description { get; set; }
+        public string Description { get; set; }
 
-        public Item.ItemType Type { get; set; }
+        public ItemType.Type Type { get; set; }
 
         public int Level { get; set; }
 
-        public Item.ItemRarity Rarity { get; set; }
+        public ItemRarity.Rarity Rarity { get; set; }
 
         [JsonProperty("vendor_value")]
         public int VendorValue { get; set; }

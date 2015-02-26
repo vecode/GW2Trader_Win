@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
-namespace GW2TPApiWrapperTest
+namespace GW2TPApiWrapperTest.Mock
 {
-    class ApiAccessorMock : IApiAccessor
+    public class ApiAccessorMock : IApiAccessor
     {
+        private IApiAccessor _apiAccessor = new ApiAccessor();
         #region valid results
         private int _validTestId = 30689;
+        private int[] _validTestIds = { 1, 2 };
 
-        private String _validItemDetailsAsJson = @"
+        private string _validItemAsJson = @"
             {
                 'name':'Eternity',
                 'type':'Weapon',
@@ -59,20 +62,78 @@ namespace GW2TPApiWrapperTest
                 }
             }";
 
-        private String _validItemPriceAsJson = @"
+        private string _validItemArrayAsJson = @"
+        [
             {
-                'id':30689,
-                'buys':{
-                    'quantity':29728,
-                    'unit_price':35560206
-                },
-                'sells':{
-                    'quantity':19,
-                    'unit_price':41980000
-                }
-            }";
+            'name':'MONSTER ONLY Moa Unarmed Pet',
+            'type':'Weapon',
+            'level':0,
+            'rarity':'Fine',
+            'vendor_value':0,
+            'default_skin':3265,
+            'game_types':[
+	            'Activity',
+	            'Dungeon',
+	            'Pve',
+	            'Wvw'
+            ],
+            'flags':[
+	            'NoSell',
+	            'SoulbindOnAcquire',
+	            'SoulBindOnUse'
+            ],
+            'restrictions':[
 
-        private String _validItemListingsAsJson = @"
+            ],
+            'id':1,
+            'icon':'https://render.guildwars2.com/file/4AECE5EA59CA057F4C53E1EDFE95E0E3E61DE37F/60980.png',
+            'details':{
+	            'type':'Staff',
+	            'damage_type':'Physical',
+	            'min_power':146,
+	            'max_power':165,
+	            'defense':0,
+	            'infusion_slots':[
+
+	            ],
+	            'infix_upgrade':{
+	            'attributes':[
+
+	            ]
+	            },
+	            'secondary_suffix_item_id':''
+            }
+            },
+            {
+            'name':'Assassin Pill',
+            'description':'Take this pill to participate in the next round of Assassin',
+            'type':'Consumable',
+            'level':0,
+            'rarity':'Basic',
+            'vendor_value':0,
+            'game_types':[
+	            'Dungeon',
+	            'Pve',
+	            'Wvw'
+            ],
+            'flags':[
+	            'NoSell',
+	            'SoulbindOnAcquire',
+	            'SoulBindOnUse'
+            ],
+            'restrictions':[
+
+            ],
+            'id':2,
+            'icon':'https://render.guildwars2.com/file/ED903431B97968C79AEC7FB21535FC015DBB0BBA/60981.png',
+            'details':{
+	            'type':'Food'
+            }
+            }
+        ]";
+    
+
+        private string _validItemListingsAsJson = @"
             {
                 'id':30689,
                 'buys':[
@@ -100,27 +161,103 @@ namespace GW2TPApiWrapperTest
                     }
                 ]
             }";
+
+        private string _validItemListingsArrayAsJson = @"
+            [
+                {
+                    'id':24,
+                    'buys':[
+                        {
+                            'listings':6,
+                            'unit_price':101,
+                            'quantity':1410
+                        },
+                        {
+                            'listings':10,
+                            'unit_price':99,
+                            'quantity':2499
+                        }
+                    ],
+                    'sells':[
+                        {
+                            'listings':1,
+                            'unit_price':179,
+                            'quantity':43
+                        },
+                        {
+                            'listings':1,
+                            'unit_price':180,
+                            'quantity':49
+                        }
+                    ]
+                },
+                {
+                    'id':68,
+                    'buys':[
+                        {
+                            'listings':2,
+                            'unit_price':116,
+                            'quantity':498
+                        },
+                        {
+                            'listings':1,
+                            'unit_price':115,
+                            'quantity':32
+                        }
+                    ],
+                    'sells':[
+                        {
+                            'listings':2,
+                            'unit_price':397,
+                            'quantity':2
+                        },
+                        {
+                            'listings':1,
+                            'unit_price':398,
+                            'quantity':1
+                        }
+                    ]
+                }
+            ]";
+
         #endregion
 
-        public string ItemIds()
+        public Stream ItemIds()
         {
             // valid id list
-            return @"[1,2,11]";
+            return StringToStream(@"[1,2,11]");
         }
 
-        public string ItemDetails(int id)
+        public Stream ItemDetails(int id)
         {
-            return id == _validTestId ? _validItemDetailsAsJson : null;
+            return _validTestId == id ? StringToStream(_validItemAsJson) : null;
         }
 
-        public string ItemPrice(int id)
+        public Stream Listings(int id)
         {
-            return id == _validTestId ? _validItemPriceAsJson : null;
+            return id == _validTestId ? StringToStream(_validItemListingsAsJson) : null;
         }
 
-        public string Listings(int id)
+        public Stream ItemDetails(int[] ids)
         {
-            return id == _validTestId ? _validItemListingsAsJson : null;
+            if (ids[0] == 1 && ids[1] == 2)
+                return StringToStream(_validItemArrayAsJson);
+            else
+                return null;
+        }
+
+        private Stream StringToStream(String str)
+        {
+            byte[] byteArray = Encoding.UTF8.GetBytes(str);            
+            return new MemoryStream(byteArray);
+        }
+
+        public Stream Listings(int[] ids)
+        {
+            if (ids[0] == 24 && ids[1] == 68)
+                return StringToStream(_validItemListingsArrayAsJson);
+            else
+                return null;
         }
     }
 }

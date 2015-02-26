@@ -28,7 +28,7 @@ namespace GW2TraderTest
                 .ToArray();
         }
 
-        public ItemDetails ItemDetails(int id)
+        public Item ItemDetails(int id)
         {
             return _testDataFactory
                 .Items
@@ -51,6 +51,18 @@ namespace GW2TraderTest
                 .ItemListings
                 .Where(listing => listing.Id == id)
                 .FirstOrDefault();              
+        }
+
+
+        public List<Item> ItemDetails(int[] ids)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<ItemListing> Listings(int[] ids)
+        {
+            throw new NotImplementedException();
         }
     }
 }

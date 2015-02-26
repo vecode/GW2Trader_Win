@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GW2Trader.Model;
-using GW2TPApiWrapper.Enums;
+using GW2TPApiWrapper.Enum;
 using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Data;
@@ -20,8 +20,8 @@ namespace GW2TraderTest.Test
                 IconUrl = "oldUrl",
                 Name = "oldName",
                 RestrictionLevel = 0,
-                Type = Item.ItemType.Armor,
-                Rarity = Item.ItemRarity.Basic,
+                Type = ItemType.Type.Armor,
+                Rarity = ItemRarity.Rarity.Basic,
                 Listing = new ItemListing
                 {
                     Id = 1,
@@ -49,13 +49,13 @@ namespace GW2TraderTest.Test
             GameItemModel item = ValidGameItem();
             updater.UpdateItemData(item);
 
-            ItemDetails updateditemDetails = testDataFactory.Items.Find(i => i.Id == item.ItemId);
+            Item updatedItem = testDataFactory.Items.Find(i => i.Id == item.ItemId);
 
-            Assert.AreEqual(updateditemDetails.IconUrl, item.IconUrl);
-            Assert.AreEqual(updateditemDetails.Level, item.RestrictionLevel);
-            Assert.AreEqual(updateditemDetails.Name, item.Name);
-            Assert.AreEqual(updateditemDetails.Rarity, item.Rarity);
-            Assert.AreEqual(updateditemDetails.Type, item.Type);
+            Assert.AreEqual(updatedItem.IconUrl, item.IconUrl);
+            Assert.AreEqual(updatedItem.Level, item.RestrictionLevel);
+            Assert.AreEqual(updatedItem.Name, item.Name);
+            Assert.AreEqual(updatedItem.Rarity, item.Rarity);
+            Assert.AreEqual(updatedItem.Type, item.Type);
         }
 
         [TestMethod]

@@ -17,6 +17,7 @@ namespace GW2Trader.ViewModel
         private ITradingPostApiWrapper _tradingPostWrapper;
         private IGameDataRepository _dataRepository;
         private IApiDataUpdater _dataUpdater;
+        private DbBuilder _dbBuilder;
 
         private int _selectedTabIndex = 0;
         public int SelectedTabIndex
@@ -32,7 +33,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private readonly ObservableCollection<BaseViewModel> _childViews;
+        private ObservableCollection<BaseViewModel> _childViews;
         public ObservableCollection<BaseViewModel> ChildViews
         {
             get
@@ -47,10 +48,14 @@ namespace GW2Trader.ViewModel
             _tradingPostWrapper = new TradingPostApiWrapper(new ApiAccessor());
             _dataRepository = new GameDataRepository(_dataContext);
             _dataUpdater = new ApiDataUpdater(_tradingPostWrapper);
+            _dbBuilder = new DbBuilder(_tradingPostWrapper, _dataContext);
+
+            if (_dataRepository.GetAllGameItems().Count() == 0)
+                _dbBuilder.BuildDatabase();
 
             _childViews = new ObservableCollection<BaseViewModel>();
-            _childViews.Add(new ItemOverviewViewModel(_dataRepository, _tradingPostWrapper, _dataUpdater));
-            _childViews.Add(new InvestmentViewModel());
+            _childViews.Add(new ItemOverviewViewModel(_dataRepository, _tradingPostWrapper, _dataUpdater, _dbBuilder));
+            _childViews.Add(new InvestmentViewModel()); ;
         }
     }
 }

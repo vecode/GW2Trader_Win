@@ -10,12 +10,14 @@ using GW2TPApiWrapper.Wrapper;
 using System.Data.Entity;
 using GW2TPApiWrapper.Entities;
 using System.Net;
+using System.Windows.Threading;
 
 namespace GW2Trader.Data
 {
     public class GameDataRepository : IGameDataRepository
     {
-        private readonly IGameDataContext _context;
+        private readonly IGameDataContext _context;        
+
         private Dictionary<int, GameItemModel> _gameItems;
         private ObservableCollection<InvestmentWatchlistModel> _investmentLists;
         private ObservableCollection<ItemWatchlistModel> _itemWatchlists;
@@ -77,63 +79,18 @@ namespace GW2Trader.Data
             _context.Save();
         }
 
-        public void RebuildGameItemDatabase(ITradingPostApiWrapper tpApiWrapper)
-        {
-            foreach (var entity in _context.GameItems)
-                _context.GameItems.Remove(entity);
-
-            int[] itemIdsFromApi = tpApiWrapper.ItemIds();
-
-            GameItemModel convertedItemModel;
-            ItemDetails itemDetailsFromApi;
-
-            int count = 0;
-            foreach (int id in itemIdsFromApi)
-            {
-                if (count == 10) break;
-                count++;
-                Console.WriteLine("ID: " + id);
-                itemDetailsFromApi = tpApiWrapper.ItemDetails(id);
-                convertedItemModel = ConvertToGameItem(itemDetailsFromApi);
-                convertedItemModel.IconImageByte = LoadImage(convertedItemModel.IconUrl);
-                _context.GameItems.Add(convertedItemModel);
-            }
-            _context.Save();
-            BuildGameItemDictionary();
-        }
-
         public void DeleteItemFromWatchlist<T>(WatchlistModel<T> watchlist, T item)
         {
             watchlist.Items.Remove(item);
         }
 
-        private static GameItemModel ConvertToGameItem(ItemDetails item)
-        {
-            GameItemModel itemModel = new GameItemModel
-            {
-                ItemId = item.Id,
-                IconUrl = item.IconUrl,
-                Name = item.Name,
-                Rarity = item.Rarity,
-                RestrictionLevel = item.Level,
-                Type = item.Type,
-                CommerceDataLastUpdated = DateTime.Now
-            };
-            return itemModel;
-        }
-
         private void BuildGameItemDictionary()
         {
-            
+
             if (_context.GameItems != null)
             {
                 _gameItems = _context.GameItems.ToDictionary(item => item.ItemId, item => item);
             }
-            //_gameItems = new Dictionary<int, GameItemModel>();
-            //foreach (var item in _context.GameItems)
-            //{
-            //    _gameItems.Add(item.ItemId, item);
-            //}
         }
 
         public void AddWatchlist(ItemWatchlistModel watchlist)
@@ -165,7 +122,7 @@ namespace GW2Trader.Data
         {
             watchlist.Items.Add(item);
             _context.Save();
-        }
+        }       
 
         public void AddInvestmentToWatchlist(InvestmentWatchlistModel watchlist, InvestmentModel investment)
         {
@@ -197,7 +154,7 @@ namespace GW2Trader.Data
         {
             byte[] image;
             Uri uri;
-            
+
             // validate url
             if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out uri))
             {
@@ -208,6 +165,26 @@ namespace GW2Trader.Data
             }
             else image = null;
             return image;
+        }
+
+        public ObservableCollection<GameItemModel> ItemCollection
+        {
+            get { return _context.GameItems.Local; }
+        }
+
+
+        public void AddToDb(GameItemModel item)
+        {
+            _context.GameItems.Add(item);
+            _context.Save();
+            BuildGameItemDictionary();
+        }
+
+        public void AddToDb(IEnumerable<GameItemModel> items)
+        {
+            _context.GameItems.AddRange(items);
+            _context.Save();
+            BuildGameItemDictionary();
         }
     }
 }

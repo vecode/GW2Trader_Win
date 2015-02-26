@@ -14,9 +14,16 @@
         <TabControl>
             <TabItem DataContext="{Binding ChildViews[0]}">
                 <Grid>
-                    <control:HidingDataGrid ItemsSource="{Binding Path=FilteredItems}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    
+                    <control:HidingDataGrid Grid.Row="1" ItemsSource="{Binding Path=Items.View}">
+                       
                         <control:HidingDataGrid.Columns>
-                            <DataGridTemplateColumn MinWidth="30">
+                            <DataGridTemplateColumn Width="50">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Image Source="{Binding IconImageSource}"/>
@@ -24,6 +31,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </control:HidingDataGrid.Columns>
+                             
                     </control:HidingDataGrid>
                 </Grid>
             </TabItem>

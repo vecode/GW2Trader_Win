@@ -72,18 +72,19 @@ namespace GW2TraderTest
             Assert.IsFalse(_dataRepository.InvestmentLists.First().Items.Contains(validInvestment));
         }
 
-        [TestMethod]
-        public void DbShouldBeBuild()
-        {
-            GameDataRepository dataRepository = new GameDataRepository(new GameDataContextMock());
-            ITradingPostApiWrapper wrapper = new TradingPostApiWrapperMock(new ApiTestDataFactory());
+        //TODO obsolete
+        //[TestMethod]
+        //public void DbShouldBeBuild()
+        //{
+        //    GameDataRepository dataRepository = new GameDataRepository(new GameDataContextMock());
+        //    ITradingPostApiWrapper wrapper = new TradingPostApiWrapperMock(new ApiTestDataFactory());
 
-            dataRepository.RebuildGameItemDatabase(wrapper);
+        //    dataRepository.RebuildGameItemDatabase(wrapper);
 
-            ApiTestDataFactory apiDataFactory = new ApiTestDataFactory();
-            int[] ids = apiDataFactory.Items.Select(item => item.Id).ToArray();
-            Array.ForEach( ids, id => Assert.IsNotNull( dataRepository.GameItemById(id) ) );
-        }
+        //    ApiTestDataFactory apiDataFactory = new ApiTestDataFactory();
+        //    int[] ids = apiDataFactory.Items.Select(item => item.Id).ToArray();
+        //    Array.ForEach( ids, id => Assert.IsNotNull( dataRepository.GameItemById(id) ) );
+        //}
 
         [TestMethod]
         public void InvestmentShouldBeAdded()

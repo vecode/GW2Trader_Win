@@ -5,13 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using GW2TPApiWrapper.Entities;
+using GW2TPApiWrapper.Util;
+using System.IO;
 
 namespace GW2TPApiWrapper.Wrapper
 {
     public class TradingPostApiWrapper : ITradingPostApiWrapper
     {
-
         private readonly IApiAccessor _apiAccessor;
+
+        private const int MaxRequestSize = 200;
+
+        /// <summary>
+        /// Number of ids per request (limited by API)
+        /// </summary>
+        private int _requestSize = 200;
+        public int RequestSize
+        {
+            get { return _requestSize; }
+            set 
+            {
+                if (value < 1) return;
+                else if (value > MaxRequestSize) _requestSize = MaxRequestSize;
+                else _requestSize = value;
+            }
+        }
 
         public TradingPostApiWrapper(IApiAccessor apiAccessor)
         {
@@ -20,44 +38,64 @@ namespace GW2TPApiWrapper.Wrapper
 
         public int[] ItemIds()
         {
-            int[] ids = JsonConvert.DeserializeObject<int[]>(_apiAccessor.ItemIds());
+            Stream responseStream = _apiAccessor.ItemIds();
+            int[] ids =  ApiResponseConverter.DeserializeStream<int[]>(responseStream);
             return ids;
         }
 
-        public ItemDetails ItemDetails(int id)
+        public Item ItemDetails(int id)
         {
-            String jsonResult = _apiAccessor.ItemDetails(id);
-            if (String.IsNullOrEmpty(jsonResult))
-                return null;
+            Stream responseStream = _apiAccessor.ItemDetails(id);
+            if (responseStream == null) return null;
             else
             {
-                ItemDetails item = JsonConvert.DeserializeObject<ItemDetails>(jsonResult);
+                Item item = ApiResponseConverter.DeserializeStream<Item>(responseStream);
                 return item;
             }
         }
 
-        // TODO obsolete
-        //public ItemPrice ItemPrice(int id)
-        //{
-        //    String jsonResult = _apiAccessor.ItemPrice(id);
-        //    if (String.IsNullOrEmpty(jsonResult))
-        //        return null;
-        //    else
-        //    {
-        //        ItemPrice itemPrice = JsonConvert.DeserializeObject<ItemPrice>(jsonResult);
-        //        return itemPrice;
-        //    }
-        //}
-
         public ItemListing Listings(int id)
         {
-            String jsonResult = _apiAccessor.Listings(id);
-            if (String.IsNullOrEmpty(jsonResult))
-                return null;
+            Stream responseStream = _apiAccessor.Listings(id);
+            if (responseStream == null) return null;
+            else
+            {                
+                ItemListing listing = ApiResponseConverter.DeserializeStream<ItemListing>(responseStream);
+                return listing;
+            }
+        }
+
+        public List<Item> ItemDetails(int [] ids)
+        {
+            List<Item> items = new List<Item>(ids.Length);
+
+            int neededRequests = (int)Math.Ceiling(ids.Length / RequestSize * 1.0f);
+
+            int[] idSubset;
+            Item[] itemSubset;
+            Stream responseStream;
+            for (int i = 0; i < neededRequests; i++)
+            {
+                idSubset = ids.Skip(i * RequestSize).Take(RequestSize).ToArray();
+                responseStream = _apiAccessor.ItemDetails(idSubset);
+
+                if (responseStream == null)
+                    break;
+
+                itemSubset = ApiResponseConverter.DeserializeStream<Item[]>(responseStream);
+                items.AddRange(itemSubset);
+            }
+            return items;
+        }
+
+        public List<ItemListing> Listings(int[] ids)
+        {
+            Stream responseStream = _apiAccessor.Listings(ids);
+            if (responseStream == null) return null;
             else
             {
-                ItemListing itemListing = JsonConvert.DeserializeObject<ItemListing>(jsonResult);
-                return itemListing;
+                ItemListing[] listings = ApiResponseConverter.DeserializeStream<ItemListing[]>(responseStream);
+                return listings.ToList();
             }
         }
     }

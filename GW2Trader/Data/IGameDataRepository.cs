@@ -13,12 +13,14 @@ namespace GW2Trader.Data
     public interface IGameDataRepository
     {
         ObservableCollection<InvestmentWatchlistModel> InvestmentLists { get; }
-        ObservableCollection<ItemWatchlistModel> ItemWatchlists {get;}
+        ObservableCollection<ItemWatchlistModel> ItemWatchlists { get; }
 
         GameItemModel GameItemById(int id);
         IEnumerable<GameItemModel> GameItemsById(int[] ids);
         IEnumerable<GameItemModel> GetAllGameItems();
-       
+
+        void AddToDb(GameItemModel item);
+        void AddToDb(IEnumerable<GameItemModel> items);
         void AddWatchlist(InvestmentWatchlistModel watchlist);
         void AddWatchlist(ItemWatchlistModel watchlist);
         void AddItemToWatchlist(ItemWatchlistModel watchlist, GameItemModel item);
@@ -27,6 +29,6 @@ namespace GW2Trader.Data
         void DeleteWatchlist<T>(WatchlistModel<T> watchlist) where T : WatchlistModel<T>;
         void DeleteItemFromWatchlist<T>(WatchlistModel<T> watchlist, T item);
 
-        void RebuildGameItemDatabase(ITradingPostApiWrapper tpApiWrapper);
+        ObservableCollection<GameItemModel> ItemCollection { get; }
     }
 }

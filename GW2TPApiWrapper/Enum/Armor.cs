@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GW2TPApiWrapper.Enums
+namespace GW2TPApiWrapper.Enum
 {
     public class Armor
     {

@@ -4,23 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GW2TPApiWrapper.Enums
+namespace GW2TPApiWrapper.Enum
 {
-    public class Item
+    public class ItemType
     {
-        public enum ItemRarity
-        {
-            Ascended,
-            Basic,
-            Exotic,
-            Fine,
-            Junk,
-            Legendary,
-            Masterwork,
-            Rare
-        }
-
-        public enum ItemType
+        public enum Type
         {
             Armor,
             Back,

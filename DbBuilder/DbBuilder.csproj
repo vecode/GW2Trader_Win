@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A37CA4F0-B48C-43D0-95B9-1F955E450FA1}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{16590EBB-6861-40D1-9453-FDBD1C9E50D8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GW2TPApiWrapper</RootNamespace>
-    <AssemblyName>GW2TPApiWrapper</AssemblyName>
+    <RootNamespace>DbBuilder</RootNamespace>
+    <AssemblyName>DbBuilder</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -29,17 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json.Schema">
-      <HintPath>..\packages\Newtonsoft.Json.Schema.1.0.6\lib\net45\Newtonsoft.Json.Schema.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,27 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enum\ItemType.cs" />
-    <Compile Include="Util\ApiUrlFormatter.cs" />
-    <Compile Include="ToBeDeleted\ApiAccessor.cs" />
-    <Compile Include="Util\ApiResponseConverter.cs" />
-    <Compile Include="Wrapper\ApiAccessor.cs" />
-    <Compile Include="Wrapper\IApiAccessor.cs" />
-    <Compile Include="ToBeDeleted\IApiAccessor.cs" />
-    <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\ItemListing.cs" />
-    <Compile Include="Entities\ItemPrice.cs" />
-    <Compile Include="Wrapper\ITradingPostApiWrapper.cs" />
-    <Compile Include="Entities\Listing.cs" />
-    <Compile Include="ToBeDeleted\TradingPostApiWrapperOld.cs" />
-    <Compile Include="Wrapper\TradingPostApiWrapper.cs" />
-    <Compile Include="Enum\Armor.cs" />
-    <Compile Include="Enum\ItemRarity.cs" />
-    <Compile Include="Enum\Weapon.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
+      <Project>{a37ca4f0-b48c-43d0-95b9-1f955e450fa1}</Project>
+      <Name>GW2TPApiWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2Trader\GW2Trader.csproj">
+      <Project>{ed8d17b1-18df-444b-9471-58db1ea79e4b}</Project>
+      <Name>GW2Trader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

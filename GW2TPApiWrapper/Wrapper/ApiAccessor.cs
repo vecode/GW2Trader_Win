@@ -1,103 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Schema;
+using System.IO;
+using System.Net;
+using GW2TPApiWrapper.Util;
 
 namespace GW2TPApiWrapper.Wrapper
 {
     public class ApiAccessor : IApiAccessor
     {
-        private readonly String _itemsApiUrl = @"https://api.guildwars2.com/v2/items/";
-        private readonly String _listingsApiUrl = @"https://api.guildwars2.com/v2/commerce/listings/";
-        private readonly String _pricesApiUrl = @"https://api.guildwars2.com/v2/commerce/prices/";
-        private readonly String _seperator = ",";
+        private readonly string _itemsApiUrl = @"https://api.guildwars2.com/v2/items/";
+        private readonly string _listingsApiUrl = @"https://api.guildwars2.com/v2/commerce/listings/";
+        private readonly string _pricesApiUrl = @"https://api.guildwars2.com/v2/commerce/prices/";
 
-        public string ItemIds()
+        public ApiAccessor()
         {
-            return ApiRequest(_itemsApiUrl);
+            // prevent auto detecting proxy settings to improve performance
+            WebRequest.DefaultWebProxy = null;
         }
 
-        public string ItemDetails(int id)
+        public Stream ItemIds()
         {
-            String apiUrl = FormatApiUrl(_itemsApiUrl, id);
-            return ApiRequest(apiUrl);
+            return new WebClient().OpenRead(_listingsApiUrl);
         }
 
-        // TODO obsolete
-        //public string ItemPrice(int id)
-        //{
-        //    String apiUrl = FormatApiUrl(_pricesApiUrl, id);
-        //    return ApiRequest(apiUrl);
-        //}
-
-        public string Listings(int id)
+        public Stream ItemDetails(int id)
         {
-            String apiUrl = FormatApiUrl(_listingsApiUrl, id);
-            return ApiRequest(apiUrl);
+            return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(_itemsApiUrl, id));
         }
 
-        /// <summary>
-        /// Appends a id to apiUrl.
-        /// </summary>
-        /// <param name="apiUrl"></param>
-        /// <param name="id"></param>
-        /// <returns>Returns the apiUrl appended with id.</returns>
-        private string FormatApiUrl(String apiUrl, int id)
+        public Stream ItemDetails(int[] ids)
         {
-            return apiUrl + id.ToString();
+            // TODO setting headers needed?
+            WebClient webClient = new WebClient();
+            webClient.Headers["Content-Type"] = "application/json;charset=UTF-8";
+            webClient.Headers.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
+            //webClient.Headers.Add("Accept-Language", " en-US");
+            return webClient.OpenRead(ApiUrlFormatter.FormatUrl(_itemsApiUrl, ids));
         }
 
-        /// <summary>
-        /// Calls the api and returns the result.
-        /// </summary>
-        /// <param name="apiUrl"></param>
-        /// <returns>Returns result of api call.</returns>
-        private string ApiRequest(string apiUrl)
+        public Stream Listings(int id)
         {
-            string jsonResult = String.Empty;
-            using (var webClient = new WebClient())
-            {
-                try
-                {
-                    jsonResult = webClient.DownloadString(apiUrl);
-                    return jsonResult;
-                }
-                catch (Exception ex) { return String.Empty; }               
-            }
-            if (IsIdNotFoundResponse(jsonResult))
-                return null;
-            return jsonResult;
+            return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(_listingsApiUrl, id));
         }
 
-        public bool IsIdNotFoundResponse(string jsonResponse)
+        public Stream Listings(int[] ids)
         {
-            JsonSchema schema = JsonSchema.Parse(@"
-                {
-                  'type': 'object',
-                  'properties': {
-                    'text': {
-                      'id': 'text',
-                      'type': 'string',
-                      'enum': [ null, 'no such id' ]
-                    }
-                  },
-                  'additionalProperties': false,
-                  'required': true
-                }");
-            JObject response;
-            try
-            {
-                response = JObject.Parse(jsonResponse);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return response.IsValid(schema);
+            return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(_listingsApiUrl, ids));
         }
     }
 }
