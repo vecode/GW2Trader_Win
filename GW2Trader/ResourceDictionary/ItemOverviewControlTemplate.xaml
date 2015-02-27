@@ -4,7 +4,7 @@
     
     <ControlTemplate x:Key="ItemOverviewControlTemplate">
         <ControlTemplate.Resources>
-            <view:ItemOverviewViewModel x:Key="ItemOverview"/>
+            <view:ItemSearchViewModel x:Key="ItemOverview"/>
         </ControlTemplate.Resources>
         <Grid>
             <DataGrid DataContext="{StaticResource ItemOverview}">

@@ -4,27 +4,90 @@
         xmlns:properties="clr-namespace:GW2Trader.Properties"
         xmlns:control="clr-namespace:GW2Trader.Control"
         xmlns:view="clr-namespace:GW2Trader.ViewModel"
-        Title="MainWindow" Height="350" Width="525">
-    
+        xmlns:commands="clr-namespace:GW2Trader.Command"
+        Title="MainWindow" Height="750" Width="1000">
+
     <Window.Resources>
         <view:MainViewModel x:Key="MainViewModel"/>
     </Window.Resources>
-    
+
     <Grid DataContext="{Binding Source={StaticResource MainViewModel}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0">
-            <TabItem DataContext="{Binding ChildViews[0]}">
+            <TabItem Header="Search" DataContext="{Binding ChildViews[0]}">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    
-                    <control:HidingDataGrid Grid.Row="1" ItemsSource="{Binding Path=Items.View}">
-                       
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Grid HorizontalAlignment="Center" Width="150">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource SearchControl}" Text="{Binding Path=Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}" Key="Return"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="Type" Style="{StaticResource SearchControl}"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SearchControl}"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SearchControl}"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" Content="Level" Style="{StaticResource SearchControl}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SearchControl}" Text="{Binding Path=MinLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource SearchControl}" Text="{Binding Path=MaxLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="Rarity" Grid.Row="4" Grid.Column="0" Style="{StaticResource SearchControl}"/>
+                        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SearchControl}"/>
+
+                        <Separator Grid.Row="5" Grid.ColumnSpan="3"/>
+
+                        <Label Content="Margin" Grid.Row="6" Grid.Column="0" Style="{StaticResource SearchControl}"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource SearchControl}" Text="{Binding Path=MinMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource SearchControl}" Text="{Binding Path=MaxMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="ROI" Grid.Row="7" Grid.Column="0" Style="{StaticResource SearchControl}"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource SearchControl}" Text="{Binding Path=MinROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SearchControl}" Text="{Binding Path=MaxROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Separator Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                        <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Content="Search" Style="{StaticResource SearchControl}"
+                                CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"/>
+                        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Content="Reset" Style="{StaticResource SearchControl}"
+                                CommandParameter="{Binding}" Command="{Binding Path=SearchResetCommand}"/>
+                    </Grid>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+                    </StackPanel>
+
+                    <control:HidingDataGrid Grid.Column="2" ItemsSource="{Binding Path=Items}" AutoGenerateColumns="True">
                         <control:HidingDataGrid.Columns>
                             <DataGridTemplateColumn Width="50">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -34,13 +97,12 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </control:HidingDataGrid.Columns>
-                             
                     </control:HidingDataGrid>
+                    
                 </Grid>
             </TabItem>
         </TabControl>
-        
-     <!--   <Label Grid.Row="1" DataContext="{Binding ElementName=MainViewModel}" Content="{Binding Source=Logger, Path=LastLog}"/> -->
+
         <Label Grid.Row="1" DataContext="{Binding Logger}" Content="{Binding Path=LastLog}" FontSize="14"/>
 
     </Grid>

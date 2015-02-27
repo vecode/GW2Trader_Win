@@ -143,8 +143,8 @@ namespace GW2Trader.Model
         {
             get
             {
-                    // trading post has a 15% fee
-                    return (int)Math.Round(SellListing * 0.85) - BuyOrder;
+                // trading post has a 15% fee
+                return (int)Math.Round(SellListing * 0.85) - BuyOrder;
             }
         }
 
@@ -153,10 +153,13 @@ namespace GW2Trader.Model
         /// </summary>
         /// <returns>Returns the return of investment based on current prices</returns>
         /// 
-        public int ROI()
+        public int ROI
         {
-            double result = (1.0 * Margin / BuyOrder) * 100;
-            return (int)Math.Round(result);
+            get
+            {
+                double result = (1.0 * Margin / BuyOrder) * 100;
+                return (int)Math.Round(result);
+            }
         }
     }
 }

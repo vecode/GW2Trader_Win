@@ -98,5 +98,16 @@ namespace GW2TPApiWrapper.Wrapper
                 return listings.ToList();
             }
         }
+
+
+        public ItemPrice Price(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        //List<ItemPrice> ITradingPostApiWrapper.Price(int ids)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

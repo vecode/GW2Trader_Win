@@ -61,7 +61,7 @@ namespace GW2Trader.ViewModel
             else { Logger.AddLog("database loaded"); }
 
             _childViews = new ObservableCollection<BaseViewModel>();
-            _childViews.Add(new ItemOverviewViewModel(_dataRepository, _tradingPostWrapper, _dataUpdater, _dbBuilder));
+            _childViews.Add(new ItemSearchViewModel(_dataRepository, _tradingPostWrapper, _dataUpdater, _dbBuilder));
             _childViews.Add(new InvestmentViewModel()); ;
         }
     }

@@ -53,7 +53,6 @@ namespace GW2TraderTest
                 .FirstOrDefault();              
         }
 
-
         public List<Item> ItemDetails(int[] ids)
         {
             throw new NotImplementedException();
@@ -61,6 +60,11 @@ namespace GW2TraderTest
 
 
         public List<ItemListing> Listings(int[] ids)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ItemPrice Price(int id)
         {
             throw new NotImplementedException();
         }

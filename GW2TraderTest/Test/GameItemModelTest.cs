@@ -39,7 +39,7 @@ namespace GW2TraderTest
         public void ROITest()
         {
             int expectedROI = 28;
-            Assert.AreEqual(expectedROI, _gameItem.ROI());
+            Assert.AreEqual(expectedROI, _gameItem.ROI);
         }
     }
 }

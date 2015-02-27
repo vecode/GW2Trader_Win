@@ -51,7 +51,7 @@ namespace GW2Trader.Data
 
         public IEnumerable<GameItemModel> GetAllGameItems()
         {
-            return _context.GameItems;
+            return _context.GameItems.ToList();
         }
 
         public IEnumerable<GameItemModel> GameItemsById(int[] ids)

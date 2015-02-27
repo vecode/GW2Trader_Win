@@ -42,5 +42,9 @@ namespace GW2TPApiWrapper.Wrapper
         /// Returns a list of ItemListing containing all buy orders and sell offers.
         /// </returns>
         List<ItemListing> Listings(int[] ids);
+
+        ItemPrice Price(int id);
+
+        //List<ItemPrice> Price(int ids);
     }
 }

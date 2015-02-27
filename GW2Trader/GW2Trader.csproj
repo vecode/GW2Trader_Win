@@ -93,6 +93,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ResourceDictionary\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResourceDictionary\InvestmentControlTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,6 +125,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command\ItemSearchCommand.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Control\HidingDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\DbBuilder.cs" />
@@ -137,7 +143,7 @@
     <Compile Include="Util\Logger.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\InvestmentViewModel.cs" />
-    <Compile Include="ViewModel\ItemOverviewViewModel.cs" />
+    <Compile Include="ViewModel\ItemSearchViewModel.cs" />
     <Compile Include="MVVM\ObservableObject.cs" />
     <Compile Include="Model\WatchlistModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

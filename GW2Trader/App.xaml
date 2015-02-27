@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="ResourceDictionary/SettingsControlTemplate.xaml"/>
                 <ResourceDictionary Source="ResourceDictionary/WatchlistControlTemplate.xaml"/>
                 <ResourceDictionary Source="ResourceDictionary/CalculatorControlTemplate.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/ControlStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
