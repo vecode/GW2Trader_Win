@@ -65,7 +65,7 @@ namespace GW2TPApiWrapper.Wrapper
             }
         }
 
-        public List<Item> ItemDetails(int [] ids)
+        public IList<Item> ItemDetails(int [] ids)
         {
             List<Item> items = new List<Item>(ids.Length);
 
@@ -88,7 +88,7 @@ namespace GW2TPApiWrapper.Wrapper
             return items;
         }
 
-        public List<ItemListing> Listings(int[] ids)
+        public IList<ItemListing> Listings(int[] ids)
         {
             Stream responseStream = _apiAccessor.Listings(ids);
             if (responseStream == null) return null;
@@ -99,15 +99,15 @@ namespace GW2TPApiWrapper.Wrapper
             }
         }
 
-
         public ItemPrice Price(int id)
         {
             throw new NotImplementedException();
         }
 
-        //List<ItemPrice> ITradingPostApiWrapper.Price(int ids)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IList<ItemPrice> Price(int[] ids)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

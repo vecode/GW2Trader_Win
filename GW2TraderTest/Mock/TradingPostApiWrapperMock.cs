@@ -36,14 +36,14 @@ namespace GW2TraderTest
                 .FirstOrDefault();
         }
 
-        // TODO obsolete
-        //public ItemPrice ItemPrice(int id)
-        //{
-        //    return _apiDataFactory
-        //        .Prices
-        //        .Where(price => price.Id == id)
-        //        .FirstOrDefault();
-        //}
+        public ItemPrice ItemPrice(int id)
+        {
+            throw new NotImplementedException();
+            //return _testDataFactory
+            //    .Prices
+            //    .Where(price => price.Id == id)
+            //    .FirstOrDefault();
+        }
 
         public ItemListing Listings(int id)
         {
@@ -53,13 +53,17 @@ namespace GW2TraderTest
                 .FirstOrDefault();              
         }
 
-        public List<Item> ItemDetails(int[] ids)
+        public IList<Item> ItemDetails(int[] ids)
         {
             throw new NotImplementedException();
         }
 
+        public IList<ItemListing> Listings(int[] ids)
+        {
+            throw new NotImplementedException();
+        }
 
-        public List<ItemListing> Listings(int[] ids)
+        public IList<ItemPrice> Price(int[] ids)
         {
             throw new NotImplementedException();
         }

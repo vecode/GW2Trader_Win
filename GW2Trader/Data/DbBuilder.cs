@@ -26,7 +26,7 @@ namespace GW2Trader.Data
         {
             int[] ids = _wrapper.ItemIds();
 
-            List<Item> items = _wrapper.ItemDetails(ids);
+            List<Item> items = _wrapper.ItemDetails(ids).ToList();
             
             items.ForEach(i => 
                 _context.GameItems.Add(ConvertToGameItem(i)));

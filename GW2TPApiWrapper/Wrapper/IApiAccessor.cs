@@ -35,5 +35,6 @@ namespace GW2TPApiWrapper.Wrapper
         Stream Listings(int id);
         Stream Listings(int[] ids);
 
+        Stream Prices(int[] ids);
       }
 }

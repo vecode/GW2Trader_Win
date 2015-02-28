@@ -11,7 +11,8 @@ namespace GW2TPApiWrapperTest.Mock
     public class ApiAccessorMock : IApiAccessor
     {
         private IApiAccessor _apiAccessor = new ApiAccessor();
-        #region valid results
+
+        #region test data
         private int _validTestId = 30689;
         private int[] _validTestIds = { 1, 2 };
 
@@ -220,6 +221,43 @@ namespace GW2TPApiWrapperTest.Mock
                 }
             ]";
 
+        private string _validMultiplePricesAsJson = @"
+            [
+                {
+                    'id':24,
+                    'buys':{
+                        'quantity':18891,
+                        'unit_price':93
+                    },
+                    'sells':{
+                        'quantity':20835,
+                        'unit_price':175
+                    }
+                },
+                {
+                    'id':68,
+                    'buys':{
+                        'quantity':2219,
+                        'unit_price':117
+                    },
+                    'sells':{
+                        'quantity':311,
+                        'unit_price':390
+                    }
+                },
+                {
+                    'id':69,
+                    'buys':{
+                        'quantity':2865,
+                        'unit_price':182
+                    },
+                    'sells':{
+                        'quantity':353,
+                        'unit_price':381
+                    }
+                }
+            ]";
+
         #endregion
 
         public Stream ItemIds()
@@ -258,6 +296,11 @@ namespace GW2TPApiWrapperTest.Mock
                 return StringToStream(_validItemListingsArrayAsJson);
             else
                 return null;
+        }
+
+        public Stream Prices(int[] ids)
+        {
+            return StringToStream(_validMultiplePricesAsJson);
         }
     }
 }

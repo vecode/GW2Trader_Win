@@ -50,5 +50,10 @@ namespace GW2TPApiWrapper.Wrapper
         {
             return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(_listingsApiUrl, ids));
         }
+
+        public Stream Prices(int[] ids)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

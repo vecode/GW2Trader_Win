@@ -25,7 +25,7 @@ namespace GW2TPApiWrapper.Wrapper
         /// </summary>
         /// <param name="ids">Ids of the items</param>
         /// <returns>Returns a list of ItemDetails</returns>
-        List<Item> ItemDetails(int[] ids);
+        IList<Item> ItemDetails(int[] ids);
 
         /// <summary>
         /// </summary>
@@ -41,10 +41,10 @@ namespace GW2TPApiWrapper.Wrapper
         /// <returns>
         /// Returns a list of ItemListing containing all buy orders and sell offers.
         /// </returns>
-        List<ItemListing> Listings(int[] ids);
+        IList<ItemListing> Listings(int[] ids);
 
         ItemPrice Price(int id);
 
-        //List<ItemPrice> Price(int ids);
+        IList<ItemPrice> Price(int[] ids);
     }
 }

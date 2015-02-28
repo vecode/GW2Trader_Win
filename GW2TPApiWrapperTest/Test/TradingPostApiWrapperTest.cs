@@ -32,10 +32,6 @@ namespace GW2TPApiWrapperTest.Test
         [TestMethod]
         public void SingleItemRetrievalShouldWork()
         {
-            // check for invalid item id
-            //Item item = _tpApiWrapper.ItemDetails(_invalidId);
-            //Assert.IsNull(item);
-
             // details from https://api.guildwars2.com/v2/items/30689
             var item = _tpApiWrapper.ItemDetails(30689);
             Assert.IsNotNull(item);
@@ -58,6 +54,18 @@ namespace GW2TPApiWrapperTest.Test
             Assert.AreEqual(listing.Buys[0].Quantity, 49);
             Assert.AreEqual(listing.Buys[0].UnitPrice, 4);
             Assert.AreEqual(listing.Sells.Length, 2);
+        }
+
+        [TestMethod]
+        public void RetrievalOfMultiplePricesShouldWork()
+        {
+            int[] ids = { 24, 68, 69 };
+
+            List<ItemPrice> prices = _tpApiWrapper.Price(ids).ToList();
+
+            Assert.AreEqual(24, prices[0].Id);
+            Assert.AreEqual(68, prices[1].Id);
+            Assert.AreEqual(69, prices[2].Id);
         }
     }
 }

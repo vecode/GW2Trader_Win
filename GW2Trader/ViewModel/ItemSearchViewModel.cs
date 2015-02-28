@@ -102,9 +102,6 @@ namespace GW2Trader.ViewModel
                 RaisePropertyChanged("MaxROI");
             }
         }
-
-
-
         #endregion
 
         #region Commands
