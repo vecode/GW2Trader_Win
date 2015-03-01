@@ -23,7 +23,7 @@ namespace GW2Trader.ViewModel
         private DbBuilder _dbBuilder;
 
         #region observable properties
-        public ListCollectionView Items { get; set; }
+        public PaginatedObservableCollection<GameItemModel> Items { get; set; }
         public ObservableCollection<GameItemModel> SelectedItems { get; private set; }
 
         private string _keyword = string.Empty;
@@ -114,7 +114,7 @@ namespace GW2Trader.ViewModel
                     _searchCommand = new ItemSearchCommand.SearchCommand();
                 return _searchCommand;
             }
-            set { _searchCommand = value; }
+            private set { _searchCommand = value; }
         }
 
         private RelayCommand _searchResetCommand;
@@ -126,7 +126,31 @@ namespace GW2Trader.ViewModel
                     _searchResetCommand = new ItemSearchCommand.SearchResetCommand();
                 return _searchResetCommand;
             }
-            set { _searchCommand = value; }        
+            private set { _searchCommand = value; }        
+        }
+
+        private RelayCommand _moveToNextPageCommand;
+        public RelayCommand MoveToNextPageCommand
+        {
+            get
+            {
+                if (_moveToNextPageCommand == null)
+                    _moveToNextPageCommand = new ItemSearchCommand.MoveToNextPageCommand();
+                return _moveToNextPageCommand;
+            }
+            private set { _moveToNextPageCommand = value; }
+        }
+
+        private RelayCommand _moveToPreviousCommand;
+        public RelayCommand MoveToPreviousPageCommand
+        {
+            get
+            {
+                if (_moveToPreviousCommand == null)
+                    _moveToPreviousCommand = new ItemSearchCommand.MoveToPreviousPageCommand();
+                return _moveToPreviousCommand;
+            }
+            private set { _moveToPreviousCommand = value; }
         }
         #endregion
 
@@ -146,8 +170,7 @@ namespace GW2Trader.ViewModel
             if (_dataRepository.GetAllGameItems().Count() == 0)
                 _dbBuilder.BuildDatabase();
             
-            Items = new ListCollectionView(
-                new  PaginatedObservableCollection<GameItemModel>(_dataRepository.GetAllGameItems().ToList()));
+            Items = new PaginatedObservableCollection<GameItemModel>(_dataRepository.GetAllGameItems().ToList());
         }
     }
 }

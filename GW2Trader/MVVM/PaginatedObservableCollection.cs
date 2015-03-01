@@ -1,4 +1,4 @@
-﻿// source: http://paginatedcollection.codeplex.com/
+﻿// This class is based on an implementation from http://paginatedcollection.codeplex.com/. 
 // Paginatedcollection is licensed under the Microsoft Public License (MS-PL) which requires a full copy of the license when
 // distributing source code.
 
@@ -46,117 +46,147 @@ namespace GW2Trader.MVVM
 
     public class PaginatedObservableCollection<T> : ObservableCollection<T>
     {
-        #region Properties
+        private List<T> _originalCollection;
+
+        private int _pageSize;
         public int PageSize
         {
-            get { return _itemCountPerPage; }
+            get { return _pageSize; }
             set
             {
                 if (value >= 0)
                 {
-                    _itemCountPerPage = value;
+                    _pageSize = value;
                     RecalculateThePageItems();
                     OnPropertyChanged(new PropertyChangedEventArgs("PageSize"));
                 }
             }
         }
 
+        private int _currentPage;
         public int CurrentPage
         {
-            get { return _currentPageIndex; }
+            get { return _currentPage; }
             set
             {
-                if (value >= 0)
+                if (value >= 0 && value <= PageCount)
                 {
-                    _currentPageIndex = value;
+                    _currentPage = value;
                     RecalculateThePageItems();
                     OnPropertyChanged(new PropertyChangedEventArgs("CurrentPage"));
                 }
             }
         }
 
-        #endregion
-
-        #region Constructor
-        public PaginatedObservableCollection(IEnumerable<T> collection, int itemsPerPage = 10)
+        private int _pageCount;
+        public int PageCount
         {
-            _currentPageIndex = 0;
-            _itemCountPerPage = itemsPerPage;
-            originalCollection = new List<T>(collection);
-            RecalculateThePageItems();
-        }
-
-        public PaginatedObservableCollection(int itemsPerPage)
-        {
-            _currentPageIndex = 0;
-            _itemCountPerPage = itemsPerPage;
-            originalCollection = new List<T>();
-        }
-        public PaginatedObservableCollection()
-        {
-            _currentPageIndex = 0;
-            _itemCountPerPage = 1;
-            originalCollection = new List<T>();
-        }
-        #endregion
-
-        #region private
-        private void RecalculateThePageItems()
-        {
-            Clear();
-
-            int startIndex = _currentPageIndex * _itemCountPerPage;
-
-            for (int i = startIndex; i < startIndex + _itemCountPerPage; i++)
+            get
             {
-                if (originalCollection.Count > i)
-                    base.InsertItem(i - startIndex, originalCollection[i]);
+                return _pageCount;
+            }
+            private set
+            {
+                _pageCount = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PageCount"));
             }
         }
-        #endregion
 
-        #region Overrides
+        private Predicate<T> _filter;
+        public Predicate<T> Filter
+        {
+            get
+            {
+                return _filter;
+            }
+            set
+            {
+                _filter = value;
+                CurrentPage = 0;
+            }
+        }
+
+        public PaginatedObservableCollection(IEnumerable<T> collection, int pageSize = 50)
+        {
+            _currentPage = 0;
+            _pageSize = pageSize;
+            _originalCollection = new List<T>(collection);
+            RecalculateThePageItems();
+            RecalculatePageCount();
+        }
+
+        public PaginatedObservableCollection(int pageSize)
+        {
+            _currentPage = 0;
+            _pageSize = pageSize;
+            _originalCollection = new List<T>();
+            RecalculatePageCount();
+        }
+
+        public PaginatedObservableCollection()
+        {
+            _currentPage = 0;
+            _pageSize = 1;
+            _originalCollection = new List<T>(); 
+            RecalculatePageCount();
+        }
+
+        public void MoveToNextPage()
+        {
+            CurrentPage += 1;
+        }
+
+        public void MoveToPreviousPage()
+        {
+            CurrentPage -= 1;
+        }
+
+        public bool CanMoveToNextPage()
+        {
+            return _currentPage < _pageCount - 1;
+        }
+
+        public bool CanMoveToPreviousPage()
+        {
+            return _currentPage > 0;
+        }
 
         protected override void InsertItem(int index, T item)
         {
-            int startIndex = _currentPageIndex * _itemCountPerPage;
-            int endIndex = startIndex + _itemCountPerPage;
-
-            //Check if the Index is with in the current Page then add to the collection as bellow. And add to the originalCollection also
-            if ((index >= startIndex) && (index < endIndex))
-            {
-                base.InsertItem(index - startIndex, item);
-
-                if (Count > _itemCountPerPage)
-                    base.RemoveItem(endIndex);
-            }
-
-            if (index >= Count)
-                originalCollection.Add(item);
-            else
-                originalCollection.Insert(index, item);
+            throw new NotSupportedException("InsertItem is not supported.");
         }
 
         protected override void RemoveItem(int index)
         {
-            int startIndex = _currentPageIndex * _itemCountPerPage;
-            int endIndex = startIndex + _itemCountPerPage;
-            //Check if the Index is with in the current Page range then remove from the collection as bellow. And remove from the originalCollection also
-            if ((index >= startIndex) && (index < endIndex))
+            throw new NotSupportedException("RemoveItem is not supported.");
+        }       
+
+        private void RecalculateThePageItems()
+        {
+            Clear();
+
+            int startIndex = _currentPage * _pageSize;
+
+            List<T> filteredItems = _filter == null ? _originalCollection : _originalCollection.FindAll(_filter);
+
+            for (int i = startIndex; i < startIndex + _pageSize; i++)
             {
-                base.RemoveAt(index - startIndex);
-
-                if (Count <= _itemCountPerPage)
-                    base.InsertItem(endIndex - 1, originalCollection[index + 1]);
+                if (filteredItems.Count > i)
+                    base.InsertItem(i - startIndex, filteredItems[i]);
             }
-
-            originalCollection.RemoveAt(index);
         }
 
-        #endregion
-
-        private List<T> originalCollection;
-        private int _currentPageIndex;
-        private int _itemCountPerPage;
+        private void RecalculatePageCount()
+        {
+            if (_filter == null)
+            {
+                PageCount = (int)Math.Ceiling(_originalCollection.Count / _pageSize * 1.0f);
+            }
+            else
+            {
+                PageCount = (int)Math.Ceiling(_originalCollection.FindAll(_filter).Count / _pageSize * 1.0f);
+            }
+        }
     }
 }
+

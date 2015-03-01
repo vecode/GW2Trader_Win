@@ -24,9 +24,9 @@ namespace GW2Trader.Command
             public override void Execute(object parameter)
             {
                 ItemSearchViewModel viewModel = parameter as ItemSearchViewModel;
-                CollectionView view = (parameter as ItemSearchViewModel).Items;
+                PaginatedObservableCollection<GameItemModel> itemCollection = (parameter as ItemSearchViewModel).Items;
 
-                view.Filter = item =>
+                itemCollection.Filter = item =>
                 {
                     GameItemModel itemModel = item as GameItemModel;
 
@@ -80,6 +80,32 @@ namespace GW2Trader.Command
                 viewModel.MaxROI = 0;
 
                 viewModel.SearchCommand.Execute(viewModel);
+            }
+        }
+
+        public class MoveToNextPageCommand : RelayCommand
+        {
+            public override bool CanExecute(object parameter)
+            {
+                return (parameter as ItemSearchViewModel).Items.CanMoveToNextPage();
+            }
+
+            public override void Execute(object parameter)
+            {
+                (parameter as ItemSearchViewModel).Items.MoveToNextPage();
+            }
+        }
+
+        public class MoveToPreviousPageCommand : RelayCommand
+        {
+            public override bool CanExecute(object parameter)
+            {
+                return (parameter as ItemSearchViewModel).Items.CanMoveToPreviousPage();
+            }
+
+            public override void Execute(object parameter)
+            {
+                (parameter as ItemSearchViewModel).Items.MoveToPreviousPage();
             }
         }
     }
