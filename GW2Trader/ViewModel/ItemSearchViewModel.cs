@@ -146,7 +146,8 @@ namespace GW2Trader.ViewModel
             if (_dataRepository.GetAllGameItems().Count() == 0)
                 _dbBuilder.BuildDatabase();
             
-            Items = new ListCollectionView(_dataRepository.GetAllGameItems().ToList());
+            Items = new ListCollectionView(
+                new  PaginatedObservableCollection<GameItemModel>(_dataRepository.GetAllGameItems().ToList()));
         }
     }
 }

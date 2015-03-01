@@ -23,7 +23,7 @@ namespace GW2TPApiWrapper.Wrapper
         public int RequestSize
         {
             get { return _requestSize; }
-            set 
+            set
             {
                 if (value < 1) return;
                 else if (value > MaxRequestSize) _requestSize = MaxRequestSize;
@@ -39,7 +39,7 @@ namespace GW2TPApiWrapper.Wrapper
         public int[] ItemIds()
         {
             Stream responseStream = _apiAccessor.ItemIds();
-            int[] ids =  ApiResponseConverter.DeserializeStream<int[]>(responseStream);
+            int[] ids = ApiResponseConverter.DeserializeStream<int[]>(responseStream);
             return ids;
         }
 
@@ -59,14 +59,16 @@ namespace GW2TPApiWrapper.Wrapper
             Stream responseStream = _apiAccessor.Listings(id);
             if (responseStream == null) return null;
             else
-            {                
+            {
                 ItemListing listing = ApiResponseConverter.DeserializeStream<ItemListing>(responseStream);
                 return listing;
             }
         }
 
-        public IList<Item> ItemDetails(int [] ids)
+        public IList<Item> ItemDetails(int[] ids)
         {
+            return LargeRequest<Item>(ids);
+
             List<Item> items = new List<Item>(ids.Length);
 
             int neededRequests = (int)Math.Ceiling(ids.Length / RequestSize * 1.0f);
@@ -86,6 +88,49 @@ namespace GW2TPApiWrapper.Wrapper
                 items.AddRange(itemSubset);
             }
             return items;
+        }
+
+        private IList<T> LargeRequest<T>(int[] ids)
+        {
+            Func<int[], Stream> entityRetrievalMethod;
+
+            if (typeof(T).Equals(typeof(Item)))
+            {
+                entityRetrievalMethod = (i) => _apiAccessor.ItemDetails(i);
+            }
+            else if (typeof(T).Equals(typeof(ItemListing)))
+            {
+                entityRetrievalMethod = (i) => _apiAccessor.Listings(i);
+            }
+            else if (typeof(T).Equals(typeof(ItemPrice)))
+            {
+                entityRetrievalMethod = (i) => _apiAccessor.Listings(i);
+            }
+            else
+            {
+                throw new NotSupportedException("Type " + typeof(T) + " is not supported");
+            }
+
+            List<T> entites = new List<T>(ids.Length);
+            int needRequests = (int)Math.Ceiling(ids.Length / RequestSize * 1.0f);
+            int[] idSubset;
+            T[] entitySubset;
+            Stream responseStream;
+
+            for (int i = 0; i < needRequests; i++)
+            {
+                idSubset = ids.Skip(i * RequestSize).Take(RequestSize).ToArray();
+                responseStream = entityRetrievalMethod(idSubset);
+
+                if (responseStream == null)
+                {
+                    break;
+                }
+
+                entitySubset = ApiResponseConverter.DeserializeStream<T[]>(responseStream);
+                entites.AddRange(entitySubset);
+            }
+                return entites;
         }
 
         public IList<ItemListing> Listings(int[] ids)
