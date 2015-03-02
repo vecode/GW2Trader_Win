@@ -25,11 +25,9 @@ namespace GW2Trader.Data
         public void BuildDatabase()
         {
             int[] ids = _wrapper.ItemIds();
-
             List<Item> items = _wrapper.ItemDetails(ids).ToList();
-            
-            items.ForEach(i => 
-                _context.GameItems.Add(ConvertToGameItem(i)));
+
+            items.ForEach(i => _context.GameItems.Add(ConvertToGameItem(i)));
             _context.Save();
         }
 

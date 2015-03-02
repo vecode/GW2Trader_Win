@@ -12,10 +12,11 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using GW2TPApiWrapper.Entities;
 using System.ComponentModel;
+using GW2Trader.MVVM;
 
 namespace GW2Trader.Model
 {
-    public class GameItemModel
+    public class GameItemModel : ObservableObject
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -70,73 +71,90 @@ namespace GW2Trader.Model
         [Browsable(false)]
         public ItemListing Listing { get; set; }
 
-        // TODO add methods for listings average
+        [NotMapped]
+        private int _buyOrder;
 
         [NotMapped]
         public int BuyOrder
         {
             get
             {
-                if (Listing != null)
-                {
-                    return Listing.Buys.OrderByDescending(b => b.UnitPrice)
-                        .Select(b => b.UnitPrice)
-                        .First();
-                }
-                else return 0;
+                return _buyOrder;
+            }
+            set 
+            {
+                _buyOrder = value;
+                RaisePropertyChanged("BuyOrder");
             }
         }
 
         [NotMapped]
-        [Browsable(false)]
+        private int _buyOrderQuantity;
+
+        [NotMapped]
         public int BuyOrderQuantity
         {
             get
             {
-                if (Listing != null)
-                {
-                    return Listing.Buys.OrderByDescending(b => b.UnitPrice)
-                        .Select(b => b.Quantity)
-                        .First();
-                }
-                else return 0;
+                return _buyOrderQuantity;
+            }
+            set
+            {
+                _buyOrderQuantity = value;
+                RaisePropertyChanged("BuyOrderQuantity");
             }
         }
+
+        [NotMapped]
+        private int _sellListing;
 
         [NotMapped]
         public int SellListing
         {
             get
             {
-                if (Listing != null)
-                {
-                    return Listing.Sells.OrderBy(s => s.UnitPrice)
-                        .Select(s => s.UnitPrice)
-                        .First();
-                }
-                else return 0;
+                return _sellListing;
+            }
+            set
+            {
+                _sellListing = value;
+                RaisePropertyChanged("SellListing");
             }
         }
 
         [NotMapped]
-        [Browsable(false)]
+        private int _sellListingQuantity;
+
+        [NotMapped]
         public int SellListingQuantity
         {
             get
             {
-                if (Listing != null)
-                {
-                    return Listing.Sells.OrderBy(s => s.UnitPrice)
-                        .Select(s => s.Quantity)
-                        .First();
-                }
-                else return 0;
+                return _sellListingQuantity;
+            }
+            set
+            {
+                _sellListingQuantity = value;
+                RaisePropertyChanged("SellListingQuantity");
             }
         }
 
         [NotMapped]
-        [Browsable(false)]
-        public DateTime CommerceDataLastUpdated { get; set; }
+        private DateTime _commerDataLastUpdated;
+
+        [NotMapped]
+        public DateTime CommerceDataLastUpdated
+        {
+            get
+            {
+                return _commerDataLastUpdated;
+            }
+            set
+            {
+                _commerDataLastUpdated = value;
+                RaisePropertyChanged("CommerceDataLastUpdated");
+            }
+        }
 
         [NotMapped]
         public int Margin

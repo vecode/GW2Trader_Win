@@ -36,5 +36,21 @@ namespace GW2Trader.Data
             item.CommerceDataLastUpdated = DateTime.Now;
         }
 
+        public void UpdateCommerceData(IList<GameItemModel> items)
+        {
+            int[] ids = items.Select(i => i.ItemId).ToArray();
+            List<ItemPrice> updatedPrices = _tpApiWrapper.Price(ids).ToList();
+
+            foreach (GameItemModel gameItemModel in items)
+            {
+                ItemPrice respectivePrice = updatedPrices.Find(p => p.Id == gameItemModel.ItemId);
+                gameItemModel.SellListing = respectivePrice.Sells.UnitPrice;
+                gameItemModel.SellListingQuantity = respectivePrice.Sells.Quantity;
+                gameItemModel.BuyOrder = respectivePrice.Buys.UnitPrice;
+                gameItemModel.BuyOrderQuantity = respectivePrice.Buys.Quantity;
+                gameItemModel.CommerceDataLastUpdated = DateTime.Now;
+            }
+        }
+
     }
 }

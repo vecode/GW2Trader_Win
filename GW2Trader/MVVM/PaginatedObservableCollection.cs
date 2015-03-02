@@ -172,7 +172,9 @@ namespace GW2Trader.MVVM
             for (int i = startIndex; i < startIndex + _pageSize; i++)
             {
                 if (filteredItems.Count > i)
+                {
                     base.InsertItem(i - startIndex, filteredItems[i]);
+                }
             }
         }
 

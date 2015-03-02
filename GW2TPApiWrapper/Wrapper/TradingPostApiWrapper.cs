@@ -19,7 +19,7 @@ namespace GW2TPApiWrapper.Wrapper
         /// <summary>
         /// Number of ids per request (limited by API)
         /// </summary>
-        private int _requestSize = 200;
+        private int _requestSize = MaxRequestSize;
         public int RequestSize
         {
             get { return _requestSize; }
@@ -67,30 +67,10 @@ namespace GW2TPApiWrapper.Wrapper
 
         public IList<Item> ItemDetails(int[] ids)
         {
-            return LargeRequest<Item>(ids);
-
-            List<Item> items = new List<Item>(ids.Length);
-
-            int neededRequests = (int)Math.Ceiling(ids.Length / RequestSize * 1.0f);
-
-            int[] idSubset;
-            Item[] itemSubset;
-            Stream responseStream;
-            for (int i = 0; i < neededRequests; i++)
-            {
-                idSubset = ids.Skip(i * RequestSize).Take(RequestSize).ToArray();
-                responseStream = _apiAccessor.ItemDetails(idSubset);
-
-                if (responseStream == null)
-                    break;
-
-                itemSubset = ApiResponseConverter.DeserializeStream<Item[]>(responseStream);
-                items.AddRange(itemSubset);
-            }
-            return items;
+            return ApiRequest<Item>(ids);
         }
 
-        private IList<T> LargeRequest<T>(int[] ids)
+        private IList<T> ApiRequest<T>(int[] ids)
         {
             Func<int[], Stream> entityRetrievalMethod;
 
@@ -104,7 +84,7 @@ namespace GW2TPApiWrapper.Wrapper
             }
             else if (typeof(T).Equals(typeof(ItemPrice)))
             {
-                entityRetrievalMethod = (i) => _apiAccessor.Listings(i);
+                entityRetrievalMethod = (i) => _apiAccessor.Prices(i);
             }
             else
             {
@@ -112,7 +92,7 @@ namespace GW2TPApiWrapper.Wrapper
             }
 
             List<T> entites = new List<T>(ids.Length);
-            int needRequests = (int)Math.Ceiling(ids.Length / RequestSize * 1.0f);
+            int needRequests = (int)Math.Ceiling((double)ids.Length / RequestSize);
             int[] idSubset;
             T[] entitySubset;
             Stream responseStream;
@@ -130,18 +110,12 @@ namespace GW2TPApiWrapper.Wrapper
                 entitySubset = ApiResponseConverter.DeserializeStream<T[]>(responseStream);
                 entites.AddRange(entitySubset);
             }
-                return entites;
+            return entites;
         }
 
         public IList<ItemListing> Listings(int[] ids)
         {
-            Stream responseStream = _apiAccessor.Listings(ids);
-            if (responseStream == null) return null;
-            else
-            {
-                ItemListing[] listings = ApiResponseConverter.DeserializeStream<ItemListing[]>(responseStream);
-                return listings.ToList();
-            }
+            return ApiRequest<ItemListing>(ids);
         }
 
         public ItemPrice Price(int id)
@@ -151,7 +125,7 @@ namespace GW2TPApiWrapper.Wrapper
 
         public IList<ItemPrice> Price(int[] ids)
         {
-            throw new NotImplementedException();
+            return ApiRequest<ItemPrice>(ids);
         }
 
     }

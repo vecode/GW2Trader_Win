@@ -55,9 +55,9 @@ namespace GW2Trader.Command
                         if (!itemModel.Name.ToLower().Contains(viewModel.Keyword.ToLower()))
                             return false;
                     }
-
                     return true;
                 };
+                viewModel.UpdateCommerData();
             }
         }
 

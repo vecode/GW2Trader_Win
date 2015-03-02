@@ -102,6 +102,14 @@ namespace GW2Trader.ViewModel
                 RaisePropertyChanged("MaxROI");
             }
         }
+
+        public string PageInfo
+        {
+            get 
+            { 
+                return Items.CurrentPage + "/" + Items.PageCount; 
+            }
+        }
         #endregion
 
         #region Commands
@@ -126,7 +134,7 @@ namespace GW2Trader.ViewModel
                     _searchResetCommand = new ItemSearchCommand.SearchResetCommand();
                 return _searchResetCommand;
             }
-            private set { _searchCommand = value; }        
+            private set { _searchCommand = value; }
         }
 
         private RelayCommand _moveToNextPageCommand;
@@ -165,12 +173,20 @@ namespace GW2Trader.ViewModel
             _dataRepository = dataRepository;
             _tradingPostApiWrapper = tradingPostApiWrapper;
             _apiDataUpdater = apiDataUpdater;
-            _dbBuilder = dbBuilder;       
-                
+            _dbBuilder = dbBuilder;
+
             if (_dataRepository.GetAllGameItems().Count() == 0)
                 _dbBuilder.BuildDatabase();
-            
+
             Items = new PaginatedObservableCollection<GameItemModel>(_dataRepository.GetAllGameItems().ToList());
+            Task.Run( () => 
+                UpdateCommerData()
+                );
+        }
+
+        public void UpdateCommerData()
+        {
+            _apiDataUpdater.UpdateCommerceData(Items);
         }
     }
 }
