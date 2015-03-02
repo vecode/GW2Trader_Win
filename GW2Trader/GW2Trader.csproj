@@ -125,8 +125,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Command\ItemSearchCommand.cs" />
+    <Compile Include="Command\MoveToNextPageCommand.cs" />
+    <Compile Include="Command\MoveToPreviousPageCommand.cs" />
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Command\SearchCommand.cs" />
+    <Compile Include="Command\SearchResetCommand.cs" />
     <Compile Include="Control\HidingDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\DbBuilder.cs" />

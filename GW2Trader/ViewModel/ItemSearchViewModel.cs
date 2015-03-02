@@ -119,7 +119,7 @@ namespace GW2Trader.ViewModel
             get
             {
                 if (_searchCommand == null)
-                    _searchCommand = new ItemSearchCommand.SearchCommand();
+                    _searchCommand = new SearchCommand();
                 return _searchCommand;
             }
             private set { _searchCommand = value; }
@@ -131,7 +131,7 @@ namespace GW2Trader.ViewModel
             get
             {
                 if (_searchResetCommand == null)
-                    _searchResetCommand = new ItemSearchCommand.SearchResetCommand();
+                    _searchResetCommand = new SearchResetCommand();
                 return _searchResetCommand;
             }
             private set { _searchCommand = value; }
@@ -143,7 +143,7 @@ namespace GW2Trader.ViewModel
             get
             {
                 if (_moveToNextPageCommand == null)
-                    _moveToNextPageCommand = new ItemSearchCommand.MoveToNextPageCommand();
+                    _moveToNextPageCommand = new MoveToNextPageCommand();
                 return _moveToNextPageCommand;
             }
             private set { _moveToNextPageCommand = value; }
@@ -155,7 +155,7 @@ namespace GW2Trader.ViewModel
             get
             {
                 if (_moveToPreviousCommand == null)
-                    _moveToPreviousCommand = new ItemSearchCommand.MoveToPreviousPageCommand();
+                    _moveToPreviousCommand = new MoveToPreviousPageCommand();
                 return _moveToPreviousCommand;
             }
             private set { _moveToPreviousCommand = value; }
