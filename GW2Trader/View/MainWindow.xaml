@@ -5,10 +5,12 @@
         xmlns:control="clr-namespace:GW2Trader.Control"
         xmlns:view="clr-namespace:GW2Trader.ViewModel"
         xmlns:commands="clr-namespace:GW2Trader.Command"
+        xmlns:util="clr-namespace:GW2Trader.Util"
         Title="MainWindow" Height="750" Width="1000" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
         <view:MainViewModel x:Key="MainViewModel"/>
+        <util:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
     </Window.Resources>
 
     <Grid DataContext="{Binding Source={StaticResource MainViewModel}}">
@@ -46,7 +48,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-
+                        
                         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource SearchControl}" Text="{Binding Path=Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <TextBox.InputBindings>
                                 <KeyBinding CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}" Key="Return"/>
@@ -92,7 +94,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <control:HidingDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}" AutoGenerateColumns="True">
+                        <control:HidingDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False">
                             <control:HidingDataGrid.Columns>
                                 <DataGridTemplateColumn Width="50">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -102,6 +104,12 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                             </control:HidingDataGrid.Columns>
+                            
+                            <control:HidingDataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}">
+                                    <Setter Property="Background" Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
+                                </Style>
+                            </control:HidingDataGrid.RowStyle>
                         </control:HidingDataGrid>
 
                         <Grid Grid.Row="1">                                                    

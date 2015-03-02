@@ -146,6 +146,7 @@
     <Compile Include="Model\ItemWatchlistModel.cs" />
     <Compile Include="MVVM\PaginatedObservableCollection.cs" />
     <Compile Include="Util\Logger.cs" />
+    <Compile Include="Util\RarityToBrushConverter.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\InvestmentViewModel.cs" />
     <Compile Include="ViewModel\ItemSearchViewModel.cs" />
