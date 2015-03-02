@@ -52,7 +52,7 @@ namespace GW2Trader.Command
                 }
                 return true;
             };
-            viewModel.UpdateCommerData();
+            viewModel.UpdateCommerceData();
         }
     }
 }

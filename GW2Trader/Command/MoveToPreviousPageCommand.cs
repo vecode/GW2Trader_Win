@@ -16,7 +16,9 @@ namespace GW2Trader.Command
 
         public override void Execute(object parameter)
         {
-            (parameter as ItemSearchViewModel).Items.MoveToPreviousPage();
+            ItemSearchViewModel viewModel = parameter as ItemSearchViewModel;
+            viewModel.Items.MoveToPreviousPage();
+            viewModel.UpdateCommerceData();
         }
     }
 }

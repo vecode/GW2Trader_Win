@@ -180,11 +180,11 @@ namespace GW2Trader.ViewModel
 
             Items = new PaginatedObservableCollection<GameItemModel>(_dataRepository.GetAllGameItems().ToList());
             Task.Run( () => 
-                UpdateCommerData()
+                UpdateCommerceData()
                 );
         }
 
-        public void UpdateCommerData()
+        public void UpdateCommerceData()
         {
             _apiDataUpdater.UpdateCommerceData(Items);
         }

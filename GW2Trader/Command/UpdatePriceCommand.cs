@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace GW2Trader.Command
 {
-    public class MoveToNextPageCommand : RelayCommand
+    public class UpdatePriceCommand : RelayCommand
     {
         public override bool CanExecute(object parameter)
         {
-            return (parameter as ItemSearchViewModel).Items.CanMoveToNextPage();
+            return true;
         }
 
         public override void Execute(object parameter)
         {
             ItemSearchViewModel viewModel = parameter as ItemSearchViewModel;
-            viewModel.Items.MoveToNextPage();
             viewModel.UpdateCommerceData();
         }
     }

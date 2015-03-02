@@ -130,6 +130,7 @@
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Command\SearchCommand.cs" />
     <Compile Include="Command\SearchResetCommand.cs" />
+    <Compile Include="Command\UpdatePriceCommand.cs" />
     <Compile Include="Control\HidingDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\DbBuilder.cs" />

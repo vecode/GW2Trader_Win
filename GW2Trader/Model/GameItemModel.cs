@@ -85,6 +85,7 @@ namespace GW2Trader.Model
             {
                 _buyOrder = value;
                 RaisePropertyChanged("BuyOrder");
+                RaisePropertyChanged("Margin");
             }
         }
 
@@ -119,6 +120,7 @@ namespace GW2Trader.Model
             {
                 _sellListing = value;
                 RaisePropertyChanged("SellListing");
+                RaisePropertyChanged("Margin");
             }
         }
 
