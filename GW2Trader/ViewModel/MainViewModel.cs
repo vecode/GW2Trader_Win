@@ -14,9 +14,8 @@ namespace GW2Trader.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private IGameDataContext _dataContext;
         private ITradingPostApiWrapper _tradingPostWrapper;
-        private IGameDataRepository _dataRepository;
+        private IItemRepository _dataRepository;
         private IApiDataUpdater _dataUpdater;
         private DbBuilder _dbBuilder;
         public Logger Logger { get; set; }
@@ -47,19 +46,17 @@ namespace GW2Trader.ViewModel
         public MainViewModel()
         {
             Logger = Logger.Instance;
-            _dataContext = new GameDataContext();
             _tradingPostWrapper = new TradingPostApiWrapper(new ApiAccessor());
-            _dataRepository = new GameDataRepository(_dataContext);
+            _dataRepository = new ItemRepository(new GameDataContextProvider());
             _dataUpdater = new ApiDataUpdater(_tradingPostWrapper);
-            _dbBuilder = new DbBuilder(_tradingPostWrapper, _dataContext);
+            _dbBuilder = new DbBuilder(_tradingPostWrapper, _dataRepository);
 
-            if (_dataRepository.GetAllGameItems().Count() == 0)
+            if (_dataRepository.Items().Count() == 0)
             {
-                Logger.AddLog("building database..");
-                _dbBuilder.BuildDatabase();
+                _dbBuilder.BuildDatabase();                
             }
-            else { Logger.AddLog("database loaded"); }
-
+            Task.Run(() => _dbBuilder.LoadIcons());            
+            
             _childViews = new ObservableCollection<BaseViewModel>();
             _childViews.Add(new ItemSearchViewModel(_dataRepository, _tradingPostWrapper, _dataUpdater, _dbBuilder));
             _childViews.Add(new InvestmentViewModel()); ;

@@ -13,6 +13,7 @@ using System.IO;
 using GW2TPApiWrapper.Entities;
 using System.ComponentModel;
 using GW2Trader.MVVM;
+using System.Windows;
 
 namespace GW2Trader.Model
 {
@@ -39,33 +40,44 @@ namespace GW2Trader.Model
         [Browsable(false)]
         public String IconUrl { get; set; }
 
-        //[MaxLength]
-        //[Browsable(false)]
-        //public byte[] IconImageByte { get; set; }
+        [MaxLength]
+        [Browsable(false)]
+        public byte[] IconImageByte { get; internal set; }
+        
+        [Browsable(false)]
+        public void SetIconImageByte(byte[] imageByteArray)
+        {
+            IconImageByte = imageByteArray;
+            RaisePropertyChanged("IconImageByte");
+            RaisePropertyChanged("IconImageSource");
+        }
 
-        //[NotMapped]
-        //[Browsable(false)]
-        //private ImageSource _iconImageSource { get; set; }
+        [NotMapped]
+        [Browsable(false)]
+        private ImageSource _iconImageSource { get; set; }
 
-        //[NotMapped]
-        //[Browsable(false)]
-        //public ImageSource IconImageSource
-        //{
-        //    get
-        //    {
-        //        if (_iconImageSource == null)
-        //        {
-        //            BitmapImage img = new BitmapImage();
-        //            MemoryStream ms = new MemoryStream(IconImageByte);
-        //            img.BeginInit();
-        //            img.StreamSource = ms;
-        //            img.EndInit();
+        [NotMapped]
+        [Browsable(false)]
+        public ImageSource IconImageSource
+        {
+            get
+            {
+                if (IconImageByte == null)
+                    return null;
 
-        //            _iconImageSource = img as ImageSource;
-        //        }
-        //        return _iconImageSource;
-        //    }
-        //}
+                if (_iconImageSource == null)
+                {
+                    BitmapImage img = new BitmapImage();
+                    MemoryStream ms = new MemoryStream(IconImageByte);
+                    img.BeginInit();
+                    img.StreamSource = ms;
+                    img.EndInit();
+
+                    _iconImageSource = img as ImageSource;
+                }
+                return _iconImageSource;
+            }
+        }
 
         [NotMapped]
         [Browsable(false)]

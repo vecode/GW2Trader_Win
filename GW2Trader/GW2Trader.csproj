@@ -58,11 +58,26 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.BulkInsert">
+      <HintPath>..\packages\EntityFramework.BulkInsert-ef6.6.0.2.8\lib\Net45\EntityFramework.BulkInsert.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.BulkInsert.SqlServerCe">
+      <HintPath>..\packages\EntityFramework.BulkInsert.SqlServerCe.6.0.2\lib\net45\EntityFramework.BulkInsert.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.MappingAPI">
+      <HintPath>..\packages\EntityFramework.MappingAPI.6.0.0.7\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServerCompact">
       <HintPath>..\packages\EntityFramework.SqlServerCompact.6.1.2\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
+    <Reference Include="ErikEJ.SqlCe40">
+      <HintPath>..\packages\ErikEJ.SqlCeBulkCopy.2.1.6.6\lib\net40\ErikEJ.SqlCe40.dll</HintPath>
+    </Reference>
+    <Reference Include="Salient.Data">
+      <HintPath>..\packages\ErikEJ.SqlCeBulkCopy.2.1.6.6\lib\net40\Salient.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -135,16 +150,19 @@
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\DbBuilder.cs" />
     <Compile Include="Data\GameDataContext.cs" />
-    <Compile Include="Data\GameDataRepository.cs" />
+    <Compile Include="Data\GameDataContextProvider.cs" />
+    <Compile Include="Data\ItemRepository.cs" />
     <Compile Include="Data\IApiDataUpdater.cs" />
+    <Compile Include="Data\IGameDataContextProvider.cs" />
     <Compile Include="Data\IGameDataContext.cs" />
-    <Compile Include="Data\IGameDataRepository.cs" />
+    <Compile Include="Data\IItemRepository.cs" />
     <Compile Include="Model\GameItemModel.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\InvestmentWatchlistModel.cs" />
     <Compile Include="Model\ItemIdWatchlistModel.cs" />
     <Compile Include="Model\ItemWatchlistModel.cs" />
     <Compile Include="MVVM\PaginatedObservableCollection.cs" />
+    <Compile Include="Util\IconBackgroundDownloader.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="Util\RarityToBrushConverter.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />

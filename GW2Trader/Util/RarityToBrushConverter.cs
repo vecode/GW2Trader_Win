@@ -17,12 +17,10 @@ namespace GW2Trader.Util
             switch (value.ToString())
             {
                 case "Junk": return Brushes.LightGray;
-                    break;
                 case "Basic": return Brushes.LightGray;
-                    break;
                 case "Fine": hexCode = "#62a4da";
                     break;
-                case "Masterwork": hexCode = "#02d439";
+                case "Masterwork": hexCode = "#1a9306";
                     break;
                 case "Rare": hexCode = "#fcd00b";
                     break;

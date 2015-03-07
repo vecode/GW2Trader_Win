@@ -13,7 +13,7 @@ namespace GW2TraderTest
     [TestClass]
     public class GameDataRepositoryTest
     {
-        private GameDataRepository _dataRepository = new GameDataRepository(new GameDataContextMock());
+        private ItemRepository _dataRepository = new ItemRepository(new GameDataContextMock());
         private TestGameDataFactory _testGameDataFactory = new TestGameDataFactory();
 
 
@@ -22,13 +22,13 @@ namespace GW2TraderTest
         public void ItemsFromContextShouldBeAddedToDictionary()
         {
             // check whether repository has added game items from context
-            Assert.AreEqual(3, _dataRepository.GetAllGameItems().Count());
-            Assert.IsNotNull(_dataRepository.GameItemById(123456));
-            Assert.IsNotNull(_dataRepository.GameItemById(2));
-            Assert.IsNotNull(_dataRepository.GameItemById(3));
+            Assert.AreEqual(3, _dataRepository.Items().Count());
+            Assert.IsNotNull(_dataRepository.ItemById(123456));
+            Assert.IsNotNull(_dataRepository.ItemById(2));
+            Assert.IsNotNull(_dataRepository.ItemById(3));
 
             // this should not be added
-            Assert.IsNull(_dataRepository.GameItemById(99));
+            Assert.IsNull(_dataRepository.ItemById(99));
         }
 
 

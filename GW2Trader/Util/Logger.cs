@@ -48,7 +48,8 @@ namespace GW2Trader.Util
 
         public void AddLog(string log)
         {
-            _logs.Add(log);
+            _logs.Add(DateTime.Now.TimeOfDay + ": " + log);
+            Console.WriteLine(LastLog);
             RaisePropertyChanged("LastLog");
         }
     }

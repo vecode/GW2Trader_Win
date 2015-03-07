@@ -9,6 +9,8 @@ using System.Windows.Documents;
 using GW2TPApiWrapper.Enum;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Data.Entity.Infrastructure;
+using EntityFramework.BulkInsert.Extensions;
 
 namespace GW2Trader.Data
 {
@@ -21,7 +23,7 @@ namespace GW2Trader.Data
         public GameDataContext()
             : base("ItemDb.DbConnection")
         {
-            Database.SetInitializer<GameDataContext>(new DbInitializer());            
+            Database.SetInitializer<GameDataContext>(new DbInitializer());
         }
 
         class DbInitializer : DropCreateDatabaseIfModelChanges<GameDataContext>
@@ -34,7 +36,17 @@ namespace GW2Trader.Data
 
         public void Save()
         {
-            this.SaveChanges();
+            int b = this.SaveChanges();
+        }
+
+        public new DbEntityEntry Entry<T>(T entity) where T : class
+        {
+            return base.Entry(entity);
+        }
+
+        public void Dispose()
+        {
+            base.Dispose();
         }
     }
 }

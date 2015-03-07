@@ -40,10 +40,9 @@ namespace GW2TraderTest
             get { return _context.ItemIdWatchlists; }
         }
 
-
-        public DbSet<TEntity> Set<TEntity>() where TEntity : class
+        public DbSet<T> Set<T>() where T : class
         {
-            return _context.Set<TEntity>();
+            return _context.Set<T>();
         }
 
         public void Save()
@@ -54,6 +53,12 @@ namespace GW2TraderTest
         private void AddToContext<T>(IEnumerable<T> entities) where T : class
         {
             _context.Set<T>().AddRange(entities);
+        }
+
+
+        public System.Data.Entity.Infrastructure.DbEntityEntry Entry<T>(T entity) where T : class
+        {
+            throw new NotImplementedException();
         }
     }
 }

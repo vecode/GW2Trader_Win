@@ -7,28 +7,33 @@ using GW2TPApiWrapper.Wrapper;
 using System.Data.Entity;
 using GW2Trader.Model;
 using GW2TPApiWrapper.Entities;
-
+using System.Net;
+using GW2Trader.Util;
+using System.Collections;
 
 namespace GW2Trader.Data
 {
     public class DbBuilder
     {
         private readonly ITradingPostApiWrapper _wrapper;
-        private readonly IGameDataContext _context;
+        private readonly IItemRepository _itemRepository;
+        private const int ContextSaveInterval = 100;
 
-        public DbBuilder(ITradingPostApiWrapper wrapper, IGameDataContext context)
+        public DbBuilder(ITradingPostApiWrapper wrapper, IItemRepository itemRepository)
         {
             _wrapper = wrapper;
-            _context = context;
+            _itemRepository = itemRepository;
         }
 
         public void BuildDatabase()
         {
-            int[] ids = _wrapper.ItemIds();
+            int[] ids = _wrapper.ItemIds().ToArray();
             List<Item> items = _wrapper.ItemDetails(ids).ToList();
 
-            items.ForEach(i => _context.GameItems.Add(ConvertToGameItem(i)));
-            _context.Save();
+            List<GameItemModel> convertedItems = items.Select(i => ConvertToGameItem(i)).ToList();
+            _itemRepository.Add(convertedItems);
+            _itemRepository.RebuildItemDictionary();
+            _itemRepository.RebuildItemList();
         }
 
         private static GameItemModel ConvertToGameItem(Item item)
@@ -45,5 +50,39 @@ namespace GW2Trader.Data
             };
             return itemModel;
         }
+
+        public void LoadIcons()
+        {
+            List<GameItemModel> allItems = _itemRepository.Items().ToList();
+            List<GameItemModel> itemsWithoutIcon = allItems.Where(item => item.IconImageByte == null).ToList();
+
+            // nothing to do here
+            if (itemsWithoutIcon.Count == 0)
+            {
+                return;
+            }
+
+            List<string> uniqueIconUrls = itemsWithoutIcon.Select(item => item.IconUrl).Distinct().ToList();
+
+            byte[] image;
+            foreach (string url in uniqueIconUrls)
+            {
+                image = DownloadImage(new Uri(url));
+                foreach (GameItemModel item in allItems.Where(i => i.IconUrl.Equals(url)))
+                {
+                    item.SetIconImageByte(image);
+                    _itemRepository.Update(item);
+                }
+            }
+        }
+
+        private byte[] DownloadImage(Uri uri)
+        {
+            using (WebClient webClient = new WebClient())
+            {
+                return webClient.DownloadData(uri);
+            }
+        }
+
     }
 }
