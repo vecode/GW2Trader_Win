@@ -27,8 +27,6 @@ namespace GW2Trader.ViewModel
         {
             get
             {
-                // load missing icons
-                Task.Run(() => _dbBuilder.LoadIcons(_items.ToList()));
                 return _items;
             }
             private set
@@ -189,7 +187,7 @@ namespace GW2Trader.ViewModel
 
             using (var context = _contextProvider.GetContext())
             {
-                Items = new PaginatedObservableCollection<GameItemModel>(context.GameItems.ToList());
+                Items = new PaginatedObservableCollection<GameItemModel>(context.GameItems.ToList(), 20);
             }
             Task.Run(() => UpdateCommerceData());
         }

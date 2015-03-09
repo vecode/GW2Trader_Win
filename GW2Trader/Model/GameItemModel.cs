@@ -14,6 +14,7 @@ using GW2TPApiWrapper.Entities;
 using System.ComponentModel;
 using GW2Trader.MVVM;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace GW2Trader.Model
 {
@@ -40,18 +41,6 @@ namespace GW2Trader.Model
         [Browsable(false)]
         public String IconUrl { get; set; }
 
-        [MaxLength]
-        [Browsable(false)]
-        public byte[] IconImageByte { get; internal set; }
-        
-        [Browsable(false)]
-        public void SetIconImageByte(byte[] imageByteArray)
-        {
-            IconImageByte = imageByteArray;
-            RaisePropertyChanged("IconImageByte");
-            RaisePropertyChanged("IconImageSource");
-        }
-
         [NotMapped]
         [Browsable(false)]
         private ImageSource _iconImageSource { get; set; }
@@ -62,18 +51,13 @@ namespace GW2Trader.Model
         {
             get
             {
-                if (IconImageByte == null)
-                    return null;
-
                 if (_iconImageSource == null)
                 {
-                    BitmapImage img = new BitmapImage();
-                    MemoryStream ms = new MemoryStream(IconImageByte);
-                    img.BeginInit();
-                    img.StreamSource = ms;
-                    img.EndInit();
-
-                    _iconImageSource = img as ImageSource;
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(IconUrl);
+                    bitmap.EndInit();
+                    _iconImageSource = bitmap;
                 }
                 return _iconImageSource;
             }

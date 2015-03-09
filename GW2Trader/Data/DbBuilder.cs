@@ -17,7 +17,6 @@ namespace GW2Trader.Data
     {
         private readonly ITradingPostApiWrapper _wrapper;
         private readonly GameDataContextProvider _contextProvider;
-        private const int ContextSaveInterval = 10;
 
         public DbBuilder(ITradingPostApiWrapper wrapper, GameDataContextProvider contextProvider)
         {
@@ -54,46 +53,6 @@ namespace GW2Trader.Data
                 CommerceDataLastUpdated = DateTime.Now
             };
             return itemModel;
-        }
-
-        public void LoadIcons(IList<GameItemModel> items)
-        {
-            using(var context = _contextProvider.GetContext())
-            {
-                List<GameItemModel> itemsWithoutIcon = items.Where(item => item.IconImageByte == null).ToList();
-                List<string> uniqueIconurls = itemsWithoutIcon.Select(item => item.IconUrl).Distinct().ToList();
-
-                byte[] iconImage;
-                Uri iconUrlUri;
-                int count = 0;
-                foreach (string url in uniqueIconurls)
-                {
-                    iconUrlUri = new Uri(url);
-                    iconImage = DownloadImage(iconUrlUri);
-                
-                    foreach (GameItemModel item in itemsWithoutIcon.Where(item => item.IconUrl.Equals(url)))
-                    {
-                        item.SetIconImageByte(iconImage);
-                        if (count == ContextSaveInterval)
-                        {
-                            context.Save();
-                        }
-                        else
-                        {
-                            count++;
-                        }
-                    }
-                }
-                context.Save();
-            }
-        }
-
-        private byte[] DownloadImage(Uri uri)
-        {
-            using (WebClient webClient = new WebClient())
-            {
-                return webClient.DownloadData(uri);
-            }
         }
     }
 }
