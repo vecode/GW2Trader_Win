@@ -29,7 +29,6 @@ namespace GW2TPApiWrapper.Util
                 if (id != ids.Last())
                     formattedUrl += _seperator;
             }
-            int a;
             return formattedUrl;
         }
     }

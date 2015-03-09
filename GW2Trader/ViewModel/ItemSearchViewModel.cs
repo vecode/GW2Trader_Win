@@ -22,7 +22,20 @@ namespace GW2Trader.ViewModel
         private DbBuilder _dbBuilder;
 
         #region observable properties
-        public PaginatedObservableCollection<GameItemModel> Items { get; set; }
+        private PaginatedObservableCollection<GameItemModel> _items;
+        public PaginatedObservableCollection<GameItemModel> Items
+        {
+            get
+            {
+                // load missing icons
+                Task.Run(() => _dbBuilder.LoadIcons(_items.ToList()));
+                return _items;
+            }
+            private set
+            {
+                _items = value;
+            }
+        }
         public ObservableCollection<GameItemModel> SelectedItems { get; private set; }
 
         private string _keyword = string.Empty;

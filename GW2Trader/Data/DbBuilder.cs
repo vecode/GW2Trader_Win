@@ -17,7 +17,7 @@ namespace GW2Trader.Data
     {
         private readonly ITradingPostApiWrapper _wrapper;
         private readonly GameDataContextProvider _contextProvider;
-        private const int ContextSaveInterval = 100;
+        private const int ContextSaveInterval = 10;
 
         public DbBuilder(ITradingPostApiWrapper wrapper, GameDataContextProvider contextProvider)
         {
@@ -56,33 +56,35 @@ namespace GW2Trader.Data
             return itemModel;
         }
 
-        public void LoadIcons()
+        public void LoadIcons(IList<GameItemModel> items)
         {
-            using (var context = _contextProvider.GetContext())
+            using(var context = _contextProvider.GetContext())
             {
-                List<GameItemModel> allItems = context.GameItems.ToList();
-                List<GameItemModel> itemsWithoutIcon = allItems.Where(item => item.IconImageByte == null).ToList();
+                List<GameItemModel> itemsWithoutIcon = items.Where(item => item.IconImageByte == null).ToList();
+                List<string> uniqueIconurls = itemsWithoutIcon.Select(item => item.IconUrl).Distinct().ToList();
 
-                // nothing to do here
-                if (itemsWithoutIcon.Count == 0)
+                byte[] iconImage;
+                Uri iconUrlUri;
+                int count = 0;
+                foreach (string url in uniqueIconurls)
                 {
-                    return;
-                }
-
-                List<string> uniqueIconUrls = itemsWithoutIcon.Select(item => item.IconUrl).Distinct().ToList();
-
-                byte[] image;
-                foreach (string url in uniqueIconUrls)
-                {
-                    image = DownloadImage(new Uri(url));
-                    foreach (GameItemModel item in allItems.Where(i => i.IconUrl.Equals(url)))
+                    iconUrlUri = new Uri(url);
+                    iconImage = DownloadImage(iconUrlUri);
+                
+                    foreach (GameItemModel item in itemsWithoutIcon.Where(item => item.IconUrl.Equals(url)))
                     {
-                        item.SetIconImageByte(image);
-                        context.Save();
-                        // TODO update needed?
-                        //context.Update(item);
+                        item.SetIconImageByte(iconImage);
+                        if (count == ContextSaveInterval)
+                        {
+                            context.Save();
+                        }
+                        else
+                        {
+                            count++;
+                        }
                     }
                 }
+                context.Save();
             }
         }
 
@@ -93,6 +95,5 @@ namespace GW2Trader.Data
                 return webClient.DownloadData(uri);
             }
         }
-
     }
 }

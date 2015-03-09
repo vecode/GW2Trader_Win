@@ -10,7 +10,10 @@ namespace GW2Trader.Command
     public class MoveToNextPageCommand : RelayCommand
     {
         public override bool CanExecute(object parameter)
-        {
+        {            
+            ItemSearchViewModel vm = parameter as ItemSearchViewModel;
+            Console.WriteLine("pagecount: " + vm.Items.PageCount);
+            Console.WriteLine("currentpage: " + vm.Items.CurrentPage);
             return (parameter as ItemSearchViewModel).Items.CanMoveToNextPage();
         }
 

@@ -57,7 +57,7 @@ namespace GW2Trader.MVVM
                 if (value >= 0)
                 {
                     _pageSize = value;
-                    RecalculateThePageItems();
+                    RecalculatePage();
                     OnPropertyChanged(new PropertyChangedEventArgs("PageSize"));
                 }
             }
@@ -67,12 +67,11 @@ namespace GW2Trader.MVVM
         public int CurrentPage
         {
             get { return _currentPage; }
-            set
+            protected set
             {
                 if (value >= 0 && value <= PageCount)
                 {
                     _currentPage = value;
-                    RecalculateThePageItems();
                     OnPropertyChanged(new PropertyChangedEventArgs("CurrentPage"));
                 }
             }
@@ -103,6 +102,8 @@ namespace GW2Trader.MVVM
             {
                 _filter = value;
                 CurrentPage = 0;
+                RecalculatePage();
+                RecalculatePageCount();
             }
         }
 
@@ -111,7 +112,7 @@ namespace GW2Trader.MVVM
             _currentPage = 0;
             _pageSize = pageSize;
             _originalCollection = new List<T>(collection);
-            RecalculateThePageItems();
+            RecalculatePage();
             RecalculatePageCount();
         }
 
@@ -128,17 +129,19 @@ namespace GW2Trader.MVVM
             _currentPage = 0;
             _pageSize = 1;
             _originalCollection = new List<T>(); 
-            RecalculatePageCount();
+            RecalculatePageCount();            
         }
 
         public void MoveToNextPage()
         {
             CurrentPage += 1;
+            RecalculatePage();
         }
 
         public void MoveToPreviousPage()
         {
             CurrentPage -= 1;
+            RecalculatePage();
         }
 
         public bool CanMoveToNextPage()
@@ -161,7 +164,7 @@ namespace GW2Trader.MVVM
             throw new NotSupportedException("RemoveItem is not supported.");
         }       
 
-        private void RecalculateThePageItems()
+        private void RecalculatePage()
         {
             Clear();
 

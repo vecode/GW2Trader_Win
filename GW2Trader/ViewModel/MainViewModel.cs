@@ -53,8 +53,6 @@ namespace GW2Trader.ViewModel
 
             _dbBuilder.BuildDatabase();
 
-            Task.Run(() => _dbBuilder.LoadIcons());
-
             _childViews = new ObservableCollection<BaseViewModel>();
             _childViews.Add(new ItemSearchViewModel(_contextProvider, _tradingPostWrapper, _itemUpdater, _dbBuilder));
             _childViews.Add(new WatchlistViewModel());
