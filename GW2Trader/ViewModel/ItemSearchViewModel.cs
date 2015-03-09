@@ -17,8 +17,7 @@ namespace GW2Trader.ViewModel
 {
     public class ItemSearchViewModel : BaseViewModel
     {
-        private IItemRepository _dataRepository;
-        private ITradingPostApiWrapper _tradingPostApiWrapper;
+        private GameDataContextProvider _contextProvider;
         private IApiDataUpdater _apiDataUpdater;
         private DbBuilder _dbBuilder;
 
@@ -164,18 +163,21 @@ namespace GW2Trader.ViewModel
 
         public ItemSearchViewModel() { }
 
-        public ItemSearchViewModel(
-            IItemRepository dataRepository,
+        public ItemSearchViewModel(          
+            GameDataContextProvider contextProvider,
             ITradingPostApiWrapper tradingPostApiWrapper,
             IApiDataUpdater apiDataUpdater,
             DbBuilder dbBuilder)
         {
-            _dataRepository = dataRepository;
-            _tradingPostApiWrapper = tradingPostApiWrapper;
+            ViewModelName = "Search";
+            _contextProvider = contextProvider;
             _apiDataUpdater = apiDataUpdater;
             _dbBuilder = dbBuilder;
 
-            Items = new PaginatedObservableCollection<GameItemModel>(_dataRepository.Items().ToList());
+            using (var context = _contextProvider.GetContext())
+            {
+                Items = new PaginatedObservableCollection<GameItemModel>(context.GameItems.ToList());
+            }
             Task.Run(() => UpdateCommerceData());
         }
 

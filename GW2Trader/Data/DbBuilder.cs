@@ -16,24 +16,29 @@ namespace GW2Trader.Data
     public class DbBuilder
     {
         private readonly ITradingPostApiWrapper _wrapper;
-        private readonly IItemRepository _itemRepository;
+        private readonly GameDataContextProvider _contextProvider;
         private const int ContextSaveInterval = 100;
 
-        public DbBuilder(ITradingPostApiWrapper wrapper, IItemRepository itemRepository)
+        public DbBuilder(ITradingPostApiWrapper wrapper, GameDataContextProvider contextProvider)
         {
             _wrapper = wrapper;
-            _itemRepository = itemRepository;
+            _contextProvider = contextProvider;
         }
 
-        public void BuildDatabase()
+        public void BuildDatabase(bool dropOldDb = false)
         {
-            int[] ids = _wrapper.ItemIds().ToArray();
-            List<Item> items = _wrapper.ItemDetails(ids).ToList();
+            using (var context = _contextProvider.GetContext())
+            {
+                if (context.GameItems.Count() == 0 || dropOldDb)
+                {
+                    int[] ids = _wrapper.ItemIds().ToArray();
+                    List<Item> items = _wrapper.ItemDetails(ids).ToList();
+                    List<GameItemModel> convertedItems = items.Select(i => ConvertToGameItem(i)).ToList();
 
-            List<GameItemModel> convertedItems = items.Select(i => ConvertToGameItem(i)).ToList();
-            _itemRepository.Add(convertedItems);
-            _itemRepository.RebuildItemDictionary();
-            _itemRepository.RebuildItemList();
+                    context.GameItems.AddRange(convertedItems);
+                    context.Save();
+                }
+            }
         }
 
         private static GameItemModel ConvertToGameItem(Item item)
@@ -53,25 +58,30 @@ namespace GW2Trader.Data
 
         public void LoadIcons()
         {
-            List<GameItemModel> allItems = _itemRepository.Items().ToList();
-            List<GameItemModel> itemsWithoutIcon = allItems.Where(item => item.IconImageByte == null).ToList();
-
-            // nothing to do here
-            if (itemsWithoutIcon.Count == 0)
+            using (var context = _contextProvider.GetContext())
             {
-                return;
-            }
+                List<GameItemModel> allItems = context.GameItems.ToList();
+                List<GameItemModel> itemsWithoutIcon = allItems.Where(item => item.IconImageByte == null).ToList();
 
-            List<string> uniqueIconUrls = itemsWithoutIcon.Select(item => item.IconUrl).Distinct().ToList();
-
-            byte[] image;
-            foreach (string url in uniqueIconUrls)
-            {
-                image = DownloadImage(new Uri(url));
-                foreach (GameItemModel item in allItems.Where(i => i.IconUrl.Equals(url)))
+                // nothing to do here
+                if (itemsWithoutIcon.Count == 0)
                 {
-                    item.SetIconImageByte(image);
-                    _itemRepository.Update(item);
+                    return;
+                }
+
+                List<string> uniqueIconUrls = itemsWithoutIcon.Select(item => item.IconUrl).Distinct().ToList();
+
+                byte[] image;
+                foreach (string url in uniqueIconUrls)
+                {
+                    image = DownloadImage(new Uri(url));
+                    foreach (GameItemModel item in allItems.Where(i => i.IconUrl.Equals(url)))
+                    {
+                        item.SetIconImageByte(image);
+                        context.Save();
+                        // TODO update needed?
+                        //context.Update(item);
+                    }
                 }
             }
         }

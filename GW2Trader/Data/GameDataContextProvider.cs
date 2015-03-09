@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace GW2Trader.Data
 {
-    public class GameDataContextProvider : IGameDataContextProvider
+    public class GameDataContextProvider : GenericContextProvider<GameDataContext>
     {
-        public IGameDataContext GetContext()
-        {
-            return new GameDataContext();
-        }
     }
 }

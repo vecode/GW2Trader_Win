@@ -15,8 +15,8 @@ namespace GW2Trader.ViewModel
     public class MainViewModel : BaseViewModel
     {
         private ITradingPostApiWrapper _tradingPostWrapper;
-        private IItemRepository _dataRepository;
-        private IApiDataUpdater _dataUpdater;
+        private GameDataContextProvider _contextProvider;
+        private IApiDataUpdater _itemUpdater;
         private DbBuilder _dbBuilder;
         public Logger Logger { get; set; }
 
@@ -47,19 +47,17 @@ namespace GW2Trader.ViewModel
         {
             Logger = Logger.Instance;
             _tradingPostWrapper = new TradingPostApiWrapper(new ApiAccessor());
-            _dataRepository = new ItemRepository(new GameDataContextProvider());
-            _dataUpdater = new ApiDataUpdater(_tradingPostWrapper);
-            _dbBuilder = new DbBuilder(_tradingPostWrapper, _dataRepository);
+            _contextProvider = new GameDataContextProvider();
+            _itemUpdater = new ApiDataUpdater(_tradingPostWrapper);
+            _dbBuilder = new DbBuilder(_tradingPostWrapper, _contextProvider);
 
-            if (_dataRepository.Items().Count() == 0)
-            {
-                _dbBuilder.BuildDatabase();                
-            }
-            Task.Run(() => _dbBuilder.LoadIcons());            
-            
+            _dbBuilder.BuildDatabase();
+
+            Task.Run(() => _dbBuilder.LoadIcons());
+
             _childViews = new ObservableCollection<BaseViewModel>();
-            _childViews.Add(new ItemSearchViewModel(_dataRepository, _tradingPostWrapper, _dataUpdater, _dbBuilder));
-            _childViews.Add(new InvestmentViewModel()); ;
+            _childViews.Add(new ItemSearchViewModel(_contextProvider, _tradingPostWrapper, _itemUpdater, _dbBuilder));
+            _childViews.Add(new WatchlistViewModel());
         }
     }
 }

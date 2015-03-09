@@ -151,18 +151,14 @@
     <Compile Include="Data\DbBuilder.cs" />
     <Compile Include="Data\GameDataContext.cs" />
     <Compile Include="Data\GameDataContextProvider.cs" />
-    <Compile Include="Data\ItemRepository.cs" />
+    <Compile Include="Data\GenericContextProvider.cs" />
     <Compile Include="Data\IApiDataUpdater.cs" />
-    <Compile Include="Data\IGameDataContextProvider.cs" />
-    <Compile Include="Data\IGameDataContext.cs" />
-    <Compile Include="Data\IItemRepository.cs" />
     <Compile Include="Model\GameItemModel.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\InvestmentWatchlistModel.cs" />
     <Compile Include="Model\ItemIdWatchlistModel.cs" />
     <Compile Include="Model\ItemWatchlistModel.cs" />
     <Compile Include="MVVM\PaginatedObservableCollection.cs" />
-    <Compile Include="Util\IconBackgroundDownloader.cs" />
     <Compile Include="Util\Logger.cs" />
     <Compile Include="Util\RarityToBrushConverter.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -171,6 +167,7 @@
     <Compile Include="MVVM\ObservableObject.cs" />
     <Compile Include="Model\WatchlistModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\WatchlistViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

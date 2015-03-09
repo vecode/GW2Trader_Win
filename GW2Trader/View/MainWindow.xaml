@@ -19,7 +19,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0">
-            <TabItem Header="Search" DataContext="{Binding ChildViews[0]}">
+            <TabItem Header="{Binding ViewModelName}" DataContext="{Binding ChildViews[0]}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -92,10 +92,10 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                        </Grid.RowDefinitions>                       
 
-                        <control:HidingDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False">
-                            <control:HidingDataGrid.Columns>
+                        <control:HidingDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" CellStyle="{StaticResource ItemDataGridCellStyle}">
+                               <control:HidingDataGrid.Columns>
                                 <DataGridTemplateColumn Width="50">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -109,7 +109,8 @@
                                 <Style TargetType="{x:Type DataGridRow}">
                                     <Setter Property="Background" Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
                                 </Style>
-                            </control:HidingDataGrid.RowStyle>
+                            </control:HidingDataGrid.RowStyle>                            
+                            
                         </control:HidingDataGrid>
 
                         <Grid Grid.Row="1">                                                    
@@ -136,6 +137,11 @@
                     </Grid>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="{Binding ViewModelName}" DataContext="{Binding ChildViews[1]}">
+                
+            </TabItem>
+
         </TabControl>
 
         <Label Grid.Row="1" DataContext="{Binding Logger}" Content="{Binding Path=LastLog}" FontSize="14"/>

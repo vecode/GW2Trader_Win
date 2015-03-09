@@ -14,7 +14,7 @@ using EntityFramework.BulkInsert.Extensions;
 
 namespace GW2Trader.Data
 {
-    public partial class GameDataContext : DbContext, IGameDataContext
+    public partial class GameDataContext : DbContext
     {
         public DbSet<GameItemModel> GameItems { get; set; }
         public DbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; set; }
@@ -37,16 +37,6 @@ namespace GW2Trader.Data
         public void Save()
         {
             int b = this.SaveChanges();
-        }
-
-        public new DbEntityEntry Entry<T>(T entity) where T : class
-        {
-            return base.Entry(entity);
-        }
-
-        public void Dispose()
-        {
-            base.Dispose();
         }
     }
 }

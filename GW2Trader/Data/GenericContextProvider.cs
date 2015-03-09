@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace GW2Trader.Data
 {
-    public interface IGameDataContextProvider
+    public abstract class GenericContextProvider<T> where T : DbContext, new()
     {
-        IGameDataContext GetContext();
+        public virtual T GetContext()
+        {
+            return new T();
+        }
     }
 }
