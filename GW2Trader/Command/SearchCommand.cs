@@ -1,11 +1,4 @@
-﻿using GW2Trader.Model;
-using GW2Trader.MVVM;
-using GW2Trader.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GW2Trader.ViewModel;
 
 namespace GW2Trader.Command
 {
@@ -18,12 +11,12 @@ namespace GW2Trader.Command
 
         public override void Execute(object parameter)
         {
-            ItemSearchViewModel viewModel = parameter as ItemSearchViewModel;
-            PaginatedObservableCollection<GameItemModel> itemCollection = (parameter as ItemSearchViewModel).Items;
+            var viewModel = parameter as ItemSearchViewModel;
+            var itemCollection = (parameter as ItemSearchViewModel).Items;
 
             itemCollection.Filter = item =>
             {
-                GameItemModel itemModel = item as GameItemModel;
+                var itemModel = item;
 
                 if (itemModel == null) return false;
 

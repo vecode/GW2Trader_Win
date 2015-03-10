@@ -1,15 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:view="clr-namespace:GW2Trader.ViewModel">
-    
+
     <ControlTemplate x:Key="ItemOverviewControlTemplate">
         <ControlTemplate.Resources>
-            <view:ItemSearchViewModel x:Key="ItemOverview"/>
+            <view:ItemSearchViewModel x:Key="ItemOverview" />
         </ControlTemplate.Resources>
         <Grid>
-            <DataGrid DataContext="{StaticResource ItemOverview}">
-                
-            </DataGrid>
+            <DataGrid DataContext="{StaticResource ItemOverview}" />
         </Grid>
     </ControlTemplate>
 </ResourceDictionary>

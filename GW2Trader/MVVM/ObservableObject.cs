@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace GW2Trader.MVVM
 {
@@ -13,10 +8,10 @@ namespace GW2Trader.MVVM
 
         protected virtual void RaisePropertyChanged(string propertyName)
         {
-            if (this.PropertyChanged != null)
+            if (PropertyChanged != null)
             {
                 var e = new PropertyChangedEventArgs(propertyName);
-                this.PropertyChanged(this, e);
+                PropertyChanged(this, e);
             }
         }
     }

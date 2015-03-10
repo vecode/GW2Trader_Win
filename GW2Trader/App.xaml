@@ -5,13 +5,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceDictionary/ItemOverviewControlTemplate.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/InvestmentControlTemplate.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/NoteControlTemplate.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/SettingsControlTemplate.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/WatchlistControlTemplate.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/CalculatorControlTemplate.xaml"/>
-                <ResourceDictionary Source="ResourceDictionary/ControlStyles.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/ItemOverviewControlTemplate.xaml" />
+                <ResourceDictionary Source="ResourceDictionary/InvestmentControlTemplate.xaml" />
+                <ResourceDictionary Source="ResourceDictionary/NoteControlTemplate.xaml" />
+                <ResourceDictionary Source="ResourceDictionary/SettingsControlTemplate.xaml" />
+                <ResourceDictionary Source="ResourceDictionary/WatchlistControlTemplate.xaml" />
+                <ResourceDictionary Source="ResourceDictionary/CalculatorControlTemplate.xaml" />
+                <ResourceDictionary Source="ResourceDictionary/ControlStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

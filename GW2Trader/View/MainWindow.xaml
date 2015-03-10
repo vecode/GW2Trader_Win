@@ -4,134 +4,152 @@
         xmlns:properties="clr-namespace:GW2Trader.Properties"
         xmlns:control="clr-namespace:GW2Trader.Control"
         xmlns:view="clr-namespace:GW2Trader.ViewModel"
-        xmlns:commands="clr-namespace:GW2Trader.Command"
         xmlns:util="clr-namespace:GW2Trader.Util"
         Title="MainWindow" Height="750" Width="1000" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
         <view:MainViewModel x:Key="MainViewModel"/>
-        <util:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
+        <util:RarityToBrushConverter x:Key="RarityToBrushConverter" />
     </Window.Resources>
 
     <Grid DataContext="{Binding Source={StaticResource MainViewModel}}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0">
             <TabItem Header="{Binding ViewModelName}" DataContext="{Binding ChildViews[0]}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid HorizontalAlignment="Center" Width="150">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
-                        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource SearchControl}" Text="{Binding Path=Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                                 Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <TextBox.InputBindings>
-                                <KeyBinding CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}" Key="Return"/>
+                                <KeyBinding CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"
+                                            Key="Return" />
                             </TextBox.InputBindings>
                         </TextBox>
 
-                        <Label Grid.Row="1" Grid.Column="0" Content="Type" Style="{StaticResource SearchControl}"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SearchControl}"/>
-                        <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SearchControl}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Type" Style="{StaticResource SearchControl}" />
+                        <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                  Style="{StaticResource SearchControl}" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                  Style="{StaticResource SearchControl}" />
 
-                        <Label Grid.Row="3" Grid.Column="0" Content="Level" Style="{StaticResource SearchControl}"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SearchControl}" Text="{Binding Path=MinLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource SearchControl}" Text="{Binding Path=MaxLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Level" Style="{StaticResource SearchControl}" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=MinLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=MaxLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <Label Content="Rarity" Grid.Row="4" Grid.Column="0" Style="{StaticResource SearchControl}"/>
-                        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SearchControl}"/>
+                        <Label Content="Rarity" Grid.Row="4" Grid.Column="0" Style="{StaticResource SearchControl}" />
+                        <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                                  Style="{StaticResource SearchControl}" />
 
-                        <Separator Grid.Row="5" Grid.ColumnSpan="3"/>
+                        <Separator Grid.Row="5" Grid.ColumnSpan="3" />
 
-                        <Label Content="Margin" Grid.Row="6" Grid.Column="0" Style="{StaticResource SearchControl}"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource SearchControl}" Text="{Binding Path=MinMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource SearchControl}" Text="{Binding Path=MaxMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="Margin" Grid.Row="6" Grid.Column="0" Style="{StaticResource SearchControl}" />
+                        <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=MinMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=MaxMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <Label Content="ROI" Grid.Row="7" Grid.Column="0" Style="{StaticResource SearchControl}"/>
-                        <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource SearchControl}" Text="{Binding Path=MinROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SearchControl}" Text="{Binding Path=MaxROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="ROI" Grid.Row="7" Grid.Column="0" Style="{StaticResource SearchControl}" />
+                        <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=MinROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=MaxROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <Separator Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Separator Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" />
 
-                        <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Content="Search" Style="{StaticResource SearchControl}"
-                                CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"/>
-                        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Content="Reset" Style="{StaticResource SearchControl}"
-                                CommandParameter="{Binding}" Command="{Binding Path=SearchResetCommand}"/>
+                        <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Content="Search"
+                                Style="{StaticResource SearchControl}"
+                                CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}" />
+                        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Content="Reset"
+                                Style="{StaticResource SearchControl}"
+                                CommandParameter="{Binding}" Command="{Binding Path=SearchResetCommand}" />
                     </Grid>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+                        <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                     </StackPanel>
 
                     <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>                       
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                        <control:HidingDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}" AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="False" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" CellStyle="{StaticResource ItemDataGridCellStyle}">
-                               <control:HidingDataGrid.Columns>
+                        <control:HidingDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}"
+                                                AutoGenerateColumns="True" CanUserAddRows="False"
+                                                CanUserDeleteRows="False" VerticalContentAlignment="Center"
+                                                HorizontalContentAlignment="Center"
+                                                CellStyle="{StaticResource ItemDataGridCellStyle}">
+                            <control:HidingDataGrid.Columns>
                                 <DataGridTemplateColumn Width="50">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding IconImageSource}"/>
+                                            <Image Source="{Binding IconImageSource}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                             </control:HidingDataGrid.Columns>
-                            
+
                             <control:HidingDataGrid.RowStyle>
                                 <Style TargetType="{x:Type DataGridRow}">
-                                    <Setter Property="Background" Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
+                                    <Setter Property="Background"
+                                            Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}" />
                                 </Style>
-                            </control:HidingDataGrid.RowStyle>                            
-                            
+                            </control:HidingDataGrid.RowStyle>
+
                         </control:HidingDataGrid>
 
-                        <Grid Grid.Row="1">                                                    
+                        <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            
+
                             <Grid.Resources>
                                 <Style x:Key="MovePageButtonStyle" TargetType="Button">
-                                    <Setter Property="Margin" Value="0,4,0,2"/>
-                                    <Setter Property="FontFamily" Value="Marlett"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="Width" Value="75"/>
-                                </Style>                                
+                                    <Setter Property="Margin" Value="0,4,0,2" />
+                                    <Setter Property="FontFamily" Value="Marlett" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Width" Value="75" />
+                                </Style>
                             </Grid.Resources>
-                            
-                            <Button Grid.Column="0" Style="{StaticResource MovePageButtonStyle}" Content="3" 
-                                    CommandParameter="{Binding}" Command="{Binding Path=MoveToPreviousPageCommand}"/>
+
+                            <Button Grid.Column="0" Style="{StaticResource MovePageButtonStyle}" Content="3"
+                                    CommandParameter="{Binding}" Command="{Binding Path=MoveToPreviousPageCommand}" />
                             <Button Grid.Column="1" Style="{StaticResource MovePageButtonStyle}" Content="4"
-                                    CommandParameter="{Binding}" Command="{Binding Path=MoveToNextPageCommand}"/>
+                                    CommandParameter="{Binding}" Command="{Binding Path=MoveToNextPageCommand}" />
                         </Grid>
 
                     </Grid>
@@ -139,12 +157,30 @@
             </TabItem>
 
             <TabItem Header="{Binding ViewModelName}" DataContext="{Binding ChildViews[1]}">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox Grid.Column="0" ItemsSource="{Binding Watchlists}"
+                             SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBox Text="{Binding Source=SelectedWatchlist, Path=Name}"/>
+                    <control:HidingDataGrid Grid.Column="1"
+                                            ItemsSource="{Binding Items}" />
+
+                </Grid>
             </TabItem>
 
         </TabControl>
 
-        <Label Grid.Row="1" DataContext="{Binding Logger}" Content="{Binding Path=LastLog}" FontSize="14"/>
+        <Label Grid.Row="1" DataContext="{Binding Logger}" Content="{Binding Path=LastLog}" FontSize="14" />
 
     </Grid>
 </Window>

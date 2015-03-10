@@ -1,42 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using GW2TPApiWrapper.Wrapper;
-using GW2Trader.MVVM;
+using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
-using GW2Trader.Command;
-using System.Windows.Data;
-using System.Windows.Input;
-using System.ComponentModel;
+using GW2Trader.MVVM;
 
 namespace GW2Trader.ViewModel
 {
     public class ItemSearchViewModel : BaseViewModel
     {
+        private readonly IApiDataUpdater _apiDataUpdater;
         private GameDataContextProvider _contextProvider;
-        private IApiDataUpdater _apiDataUpdater;
         private DbBuilder _dbBuilder;
 
-        #region observable properties
-        private PaginatedObservableCollection<GameItemModel> _items;
-        public PaginatedObservableCollection<GameItemModel> Items
+        public ItemSearchViewModel()
         {
-            get
-            {
-                return _items;
-            }
-            private set
-            {
-                _items = value;
-            }
         }
+
+        public ItemSearchViewModel(
+            List<GameItemModel> items,
+            ITradingPostApiWrapper tradingPostApiWrapper,
+            IApiDataUpdater apiDataUpdater,
+            DbBuilder dbBuilder)
+        {
+            ViewModelName = "Search";
+            _apiDataUpdater = apiDataUpdater;
+            _dbBuilder = dbBuilder;
+
+            Items = new PaginatedObservableCollection<GameItemModel>(items, 10);
+
+            Task.Run(() => UpdateCommerceData());
+        }
+
+        public void UpdateCommerceData()
+        {
+            _apiDataUpdater.UpdateCommerceData(Items);
+        }
+
+        #region observable properties
+
+        public PaginatedObservableCollection<GameItemModel> Items { get; private set; }
+
         public ObservableCollection<GameItemModel> SelectedItems { get; private set; }
 
         private string _keyword = string.Empty;
+
         public string Keyword
         {
             get { return _keyword; }
@@ -47,7 +57,8 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private int _minLvl = 0;
+        private int _minLvl;
+
         public int MinLvl
         {
             get { return _minLvl; }
@@ -59,6 +70,7 @@ namespace GW2Trader.ViewModel
         }
 
         private int _maxLvl = 80;
+
         public int MaxLvl
         {
             get { return _maxLvl; }
@@ -69,7 +81,8 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private int _minMargin = 0;
+        private int _minMargin;
+
         public int MinMargin
         {
             get { return _minMargin; }
@@ -80,7 +93,8 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private int _maxMargin = 0;
+        private int _maxMargin;
+
         public int MaxMargin
         {
             get { return _maxMargin; }
@@ -91,7 +105,8 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private int _minROI = 0;
+        private int _minROI;
+
         public int MinROI
         {
             get { return _minROI; }
@@ -102,7 +117,8 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private int _maxROI = 0;
+        private int _maxROI;
+
         public int MaxROI
         {
             get { return _maxROI; }
@@ -115,15 +131,15 @@ namespace GW2Trader.ViewModel
 
         public string PageInfo
         {
-            get
-            {
-                return Items.CurrentPage + "/" + Items.PageCount;
-            }
+            get { return Items.CurrentPage + "/" + Items.PageCount; }
         }
+
         #endregion
 
         #region Commands
+
         private RelayCommand _searchCommand;
+
         public RelayCommand SearchCommand
         {
             get
@@ -136,6 +152,7 @@ namespace GW2Trader.ViewModel
         }
 
         private RelayCommand _searchResetCommand;
+
         public RelayCommand SearchResetCommand
         {
             get
@@ -148,6 +165,7 @@ namespace GW2Trader.ViewModel
         }
 
         private RelayCommand _moveToNextPageCommand;
+
         public RelayCommand MoveToNextPageCommand
         {
             get
@@ -160,6 +178,7 @@ namespace GW2Trader.ViewModel
         }
 
         private RelayCommand _moveToPreviousCommand;
+
         public RelayCommand MoveToPreviousPageCommand
         {
             get
@@ -170,31 +189,7 @@ namespace GW2Trader.ViewModel
             }
             private set { _moveToPreviousCommand = value; }
         }
+
         #endregion
-
-        public ItemSearchViewModel() { }
-
-        public ItemSearchViewModel(          
-            GameDataContextProvider contextProvider,
-            ITradingPostApiWrapper tradingPostApiWrapper,
-            IApiDataUpdater apiDataUpdater,
-            DbBuilder dbBuilder)
-        {
-            ViewModelName = "Search";
-            _contextProvider = contextProvider;
-            _apiDataUpdater = apiDataUpdater;
-            _dbBuilder = dbBuilder;
-
-            using (var context = _contextProvider.GetContext())
-            {
-                Items = new PaginatedObservableCollection<GameItemModel>(context.GameItems.ToList(), 20);
-            }
-            Task.Run(() => UpdateCommerceData());
-        }
-
-        public void UpdateCommerceData()
-        {
-            _apiDataUpdater.UpdateCommerceData(Items);
-        }
     }
 }

@@ -149,10 +149,14 @@
     <Compile Include="Control\HidingDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\DbBuilder.cs" />
+    <Compile Include="DesignTimeErrorPrevention\DesignTimeGameDataContext.cs" />
     <Compile Include="Data\GameDataContext.cs" />
     <Compile Include="Data\GameDataContextProvider.cs" />
-    <Compile Include="Data\GenericContextProvider.cs" />
     <Compile Include="Data\IApiDataUpdater.cs" />
+    <Compile Include="Data\IGameDataContext.cs" />
+    <Compile Include="Data\IGameDataContextProvider.cs" />
+    <Compile Include="DesignTimeErrorPrevention\FakeDbSet.cs" />
+    <Compile Include="DesignTimeErrorPrevention\IFakeDataContextProvider.cs" />
     <Compile Include="Model\GameItemModel.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\InvestmentWatchlistModel.cs" />

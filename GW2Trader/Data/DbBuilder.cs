@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GW2TPApiWrapper.Wrapper;
-using System.Data.Entity;
-using GW2Trader.Model;
 using GW2TPApiWrapper.Entities;
-using System.Net;
-using GW2Trader.Util;
-using System.Collections;
+using GW2TPApiWrapper.Wrapper;
+using GW2Trader.Model;
 
 namespace GW2Trader.Data
 {
     public class DbBuilder
     {
+        private readonly IGameDataContextProvider _contextProvider;
         private readonly ITradingPostApiWrapper _wrapper;
-        private readonly GameDataContextProvider _contextProvider;
 
-        public DbBuilder(ITradingPostApiWrapper wrapper, GameDataContextProvider contextProvider)
+        public DbBuilder(ITradingPostApiWrapper wrapper, IGameDataContextProvider contextProvider)
         {
             _wrapper = wrapper;
             _contextProvider = contextProvider;
@@ -30,10 +23,10 @@ namespace GW2Trader.Data
             {
                 if (context.GameItems.Count() == 0 || dropOldDb)
                 {
-                    int[] ids = _wrapper.ItemIds().ToArray();
-                    List<Item> items = _wrapper.ItemDetails(ids).ToList();
-                    List<GameItemModel> convertedItems = items.Select(i => ConvertToGameItem(i)).ToList();
-                    
+                    var ids = _wrapper.ItemIds().ToArray();
+                    var items = _wrapper.ItemDetails(ids).ToList();
+                    var convertedItems = items.Select(i => ConvertToGameItem(i)).ToList();
+
                     context.BulkInsert(convertedItems);
                     //context.GameItems.AddRange(convertedItems);
                     //context.Save();
@@ -43,7 +36,7 @@ namespace GW2Trader.Data
 
         private static GameItemModel ConvertToGameItem(Item item)
         {
-            GameItemModel itemModel = new GameItemModel
+            var itemModel = new GameItemModel
             {
                 ItemId = item.Id,
                 IconUrl = item.IconUrl,

@@ -29,83 +29,19 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GW2Trader.MVVM
 {
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Collections.Specialized;
-    using System.Collections.Generic;
-
     /// <summary>
-    /// This class represents a single Page collection, but have the entire items available inside
+    ///     This class represents a single Page collection, but have the entire items available inside
     /// </summary>
-
     public class PaginatedObservableCollection<T> : ObservableCollection<T>
     {
-        private List<T> _originalCollection;
-
-        private int _pageSize;
-        public int PageSize
-        {
-            get { return _pageSize; }
-            set
-            {
-                if (value >= 0)
-                {
-                    _pageSize = value;
-                    RecalculatePage();
-                    OnPropertyChanged(new PropertyChangedEventArgs("PageSize"));
-                }
-            }
-        }
-
+        private readonly List<T> _originalCollection;
         private int _currentPage;
-        public int CurrentPage
-        {
-            get { return _currentPage; }
-            protected set
-            {
-                if (value >= 0 && value <= PageCount)
-                {
-                    _currentPage = value;
-                    OnPropertyChanged(new PropertyChangedEventArgs("CurrentPage"));
-                }
-            }
-        }
-
-        private int _pageCount;
-        public int PageCount
-        {
-            get
-            {
-                return _pageCount;
-            }
-            private set
-            {
-                _pageCount = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("PageCount"));
-            }
-        }
-
         private Predicate<T> _filter;
-        public Predicate<T> Filter
-        {
-            get
-            {
-                return _filter;
-            }
-            set
-            {
-                _filter = value;
-                CurrentPage = 0;
-                RecalculatePage();
-                RecalculatePageCount();
-            }
-        }
+        private int _pageCount;
+        private int _pageSize;
 
         public PaginatedObservableCollection(IEnumerable<T> collection, int pageSize = 50)
         {
@@ -128,8 +64,57 @@ namespace GW2Trader.MVVM
         {
             _currentPage = 0;
             _pageSize = 1;
-            _originalCollection = new List<T>(); 
-            RecalculatePageCount();            
+            _originalCollection = new List<T>();
+            RecalculatePageCount();
+        }
+
+        public int PageSize
+        {
+            get { return _pageSize; }
+            set
+            {
+                if (value >= 0)
+                {
+                    _pageSize = value;
+                    RecalculatePage();
+                    OnPropertyChanged(new PropertyChangedEventArgs("PageSize"));
+                }
+            }
+        }
+
+        public int CurrentPage
+        {
+            get { return _currentPage; }
+            protected set
+            {
+                if (value >= 0 && value <= PageCount)
+                {
+                    _currentPage = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs("CurrentPage"));
+                }
+            }
+        }
+
+        public int PageCount
+        {
+            get { return _pageCount; }
+            private set
+            {
+                _pageCount = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("PageCount"));
+            }
+        }
+
+        public Predicate<T> Filter
+        {
+            get { return _filter; }
+            set
+            {
+                _filter = value;
+                CurrentPage = 0;
+                RecalculatePage();
+                RecalculatePageCount();
+            }
         }
 
         public void MoveToNextPage()
@@ -162,17 +147,17 @@ namespace GW2Trader.MVVM
         protected override void RemoveItem(int index)
         {
             throw new NotSupportedException("RemoveItem is not supported.");
-        }       
+        }
 
         private void RecalculatePage()
         {
             Clear();
 
-            int startIndex = _currentPage * _pageSize;
+            var startIndex = _currentPage*_pageSize;
 
-            List<T> filteredItems = _filter == null ? _originalCollection : _originalCollection.FindAll(_filter);
+            var filteredItems = _filter == null ? _originalCollection : _originalCollection.FindAll(_filter);
 
-            for (int i = startIndex; i < startIndex + _pageSize; i++)
+            for (var i = startIndex; i < startIndex + _pageSize; i++)
             {
                 if (filteredItems.Count > i)
                 {
@@ -185,13 +170,12 @@ namespace GW2Trader.MVVM
         {
             if (_filter == null)
             {
-                PageCount = (int)Math.Ceiling(_originalCollection.Count / _pageSize * 1.0f);
+                PageCount = (int) Math.Ceiling(_originalCollection.Count/_pageSize*1.0f);
             }
             else
             {
-                PageCount = (int)Math.Ceiling(_originalCollection.FindAll(_filter).Count / _pageSize * 1.0f);
+                PageCount = (int) Math.Ceiling(_originalCollection.FindAll(_filter).Count/_pageSize*1.0f);
             }
         }
     }
 }
-

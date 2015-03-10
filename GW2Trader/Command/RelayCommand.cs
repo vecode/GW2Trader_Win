@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GW2Trader.Command
@@ -12,7 +8,6 @@ namespace GW2Trader.Command
         public abstract bool CanExecute(object parameter);
         public abstract void Execute(object parameter);
 
-        private event EventHandler _canExecuteChanged;
         public event EventHandler CanExecuteChanged
         {
             add
@@ -27,9 +22,11 @@ namespace GW2Trader.Command
             }
         }
 
+        private event EventHandler _canExecuteChanged;
+
         public void OnCanExecuteChanged()
         {
-            EventHandler handler = _canExecuteChanged;
+            var handler = _canExecuteChanged;
             if (handler != null)
             {
                 handler.Invoke(this, EventArgs.Empty);

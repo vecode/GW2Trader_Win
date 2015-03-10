@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using GW2TPApiWrapper.Wrapper;
-using GW2TPApiWrapper.Enum;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.IO;
 using GW2TPApiWrapper.Entities;
-using System.ComponentModel;
+using GW2TPApiWrapper.Enum;
 using GW2Trader.MVVM;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace GW2Trader.Model
 {
     public class GameItemModel : ObservableObject
     {
+        [NotMapped] private int _buyOrder;
+        [NotMapped] private int _buyOrderQuantity;
+        [NotMapped] private DateTime _commerDataLastUpdated;
+        [NotMapped] private int _sellListing;
+        [NotMapped] private int _sellListingQuantity;
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Browsable(false)]
@@ -68,16 +66,10 @@ namespace GW2Trader.Model
         public ItemListing Listing { get; set; }
 
         [NotMapped]
-        private int _buyOrder;
-
-        [NotMapped]
         public int BuyOrder
         {
-            get
-            {
-                return _buyOrder;
-            }
-            set 
+            get { return _buyOrder; }
+            set
             {
                 _buyOrder = value;
                 RaisePropertyChanged("BuyOrder");
@@ -86,15 +78,9 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
-        private int _buyOrderQuantity;
-
-        [NotMapped]
         public int BuyOrderQuantity
         {
-            get
-            {
-                return _buyOrderQuantity;
-            }
+            get { return _buyOrderQuantity; }
             set
             {
                 _buyOrderQuantity = value;
@@ -103,15 +89,9 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
-        private int _sellListing;
-
-        [NotMapped]
         public int SellListing
         {
-            get
-            {
-                return _sellListing;
-            }
+            get { return _sellListing; }
             set
             {
                 _sellListing = value;
@@ -121,15 +101,9 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
-        private int _sellListingQuantity;
-
-        [NotMapped]
         public int SellListingQuantity
         {
-            get
-            {
-                return _sellListingQuantity;
-            }
+            get { return _sellListingQuantity; }
             set
             {
                 _sellListingQuantity = value;
@@ -138,15 +112,9 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
-        private DateTime _commerDataLastUpdated;
-
-        [NotMapped]
         public DateTime CommerceDataLastUpdated
         {
-            get
-            {
-                return _commerDataLastUpdated;
-            }
+            get { return _commerDataLastUpdated; }
             set
             {
                 _commerDataLastUpdated = value;
@@ -160,21 +128,20 @@ namespace GW2Trader.Model
             get
             {
                 // trading post has a 15% fee
-                return (int)Math.Round(SellListing * 0.85) - BuyOrder;
+                return (int) Math.Round(SellListing*0.85) - BuyOrder;
             }
         }
 
         /// <summary>
-        /// Calculates the return of investment as percentage based on current prices.
+        ///     Calculates the return of investment as percentage based on current prices.
         /// </summary>
         /// <returns>Returns the return of investment based on current prices</returns>
-        /// 
         public int ROI
         {
             get
             {
-                double result = (1.0 * Margin / BuyOrder) * 100;
-                return (int)Math.Round(result);
+                var result = (1.0*Margin/BuyOrder)*100;
+                return (int) Math.Round(result);
             }
         }
     }
