@@ -33,9 +33,10 @@ namespace GW2Trader.Data
                     int[] ids = _wrapper.ItemIds().ToArray();
                     List<Item> items = _wrapper.ItemDetails(ids).ToList();
                     List<GameItemModel> convertedItems = items.Select(i => ConvertToGameItem(i)).ToList();
-
-                    context.GameItems.AddRange(convertedItems);
-                    context.Save();
+                    
+                    context.BulkInsert(convertedItems);
+                    //context.GameItems.AddRange(convertedItems);
+                    //context.Save();
                 }
             }
         }
