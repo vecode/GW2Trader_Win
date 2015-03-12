@@ -21,5 +21,10 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Margin" Value="2,2,2,2"/>
+    </Style>
 
 </ResourceDictionary>

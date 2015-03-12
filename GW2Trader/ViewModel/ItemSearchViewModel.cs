@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GW2TPApiWrapper.Wrapper;
@@ -6,6 +8,9 @@ using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
 using GW2Trader.MVVM;
+using System.Windows.Controls;
+using System.Windows.Data;
+using GW2Trader.Control;
 
 namespace GW2Trader.ViewModel
 {
@@ -13,7 +18,7 @@ namespace GW2Trader.ViewModel
     {
         private readonly IApiDataUpdater _apiDataUpdater;
         private GameDataContextProvider _contextProvider;
-        private DbBuilder _dbBuilder;
+        private static object _lock = new object();
 
         public ItemSearchViewModel()
         {
@@ -22,16 +27,16 @@ namespace GW2Trader.ViewModel
         public ItemSearchViewModel(
             List<GameItemModel> items,
             ITradingPostApiWrapper tradingPostApiWrapper,
-            IApiDataUpdater apiDataUpdater,
-            DbBuilder dbBuilder)
+            IApiDataUpdater apiDataUpdater)
         {
             ViewModelName = "Search";
             _apiDataUpdater = apiDataUpdater;
-            _dbBuilder = dbBuilder;
 
             Items = new PaginatedObservableCollection<GameItemModel>(items, 10);
-
             Task.Run(() => UpdateCommerceData());
+
+            SelectedItems = new ArrayList();
+            //BindingOperations.EnableCollectionSynchronization();
         }
 
         public void UpdateCommerceData()
@@ -41,9 +46,19 @@ namespace GW2Trader.ViewModel
 
         #region observable properties
 
-        public PaginatedObservableCollection<GameItemModel> Items { get; private set; }
+        private IList _selectedItems;
+        public IList SelectedItems
+        {
+            get { return _selectedItems; }
+            set
+            {
+                _selectedItems = value;
+                RaisePropertyChanged("SelectedItems");
+                if (_selectedItems != null) Console.WriteLine(_selectedItems.Count);
+            }
+        }
 
-        public ObservableCollection<GameItemModel> SelectedItems { get; private set; }
+        public PaginatedObservableCollection<GameItemModel> Items { get; private set; }
 
         private string _keyword = string.Empty;
 

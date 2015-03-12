@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -53,7 +54,16 @@ namespace GW2Trader.DesignTimeErrorPrevention
         {
             get
             {
-                throw new NotImplementedException();
+                var fakeDbSet = new FakeDbSet<ItemIdWatchlistModel>
+                {
+                    new ItemIdWatchlistModel
+                    {
+                        Name = "special items",
+                        Id = 0,
+                        Items = new Collection<int>( _fakeItems.Select(i => i.ItemId).ToList())
+                    }
+                };
+                return fakeDbSet;
             }
             set
             {

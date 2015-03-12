@@ -45,7 +45,7 @@ namespace GW2Trader.ViewModel
 
             ChildViews = new ObservableCollection<BaseViewModel>
             {
-                new ItemSearchViewModel(_items, _tradingPostWrapper, _itemUpdater, _dbBuilder),
+                new ItemSearchViewModel(_items, _tradingPostWrapper, _itemUpdater),
                 new WatchlistViewModel(_contextProvider, _items, _itemUpdater)
             };
         }

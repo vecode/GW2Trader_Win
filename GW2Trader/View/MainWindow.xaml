@@ -1,10 +1,10 @@
 ﻿<Window x:Class="GW2Trader.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:properties="clr-namespace:GW2Trader.Properties"
         xmlns:control="clr-namespace:GW2Trader.Control"
         xmlns:view="clr-namespace:GW2Trader.ViewModel"
         xmlns:util="clr-namespace:GW2Trader.Util"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="MainWindow" Height="750" Width="1000" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
@@ -107,12 +107,15 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <control:HidingDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}"
+                        <control:CustomDataGrid Grid.Row="0" ItemsSource="{Binding Path=Items}"
+                                                SelectedItemsList="{Binding SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 AutoGenerateColumns="True" CanUserAddRows="False"
-                                                CanUserDeleteRows="False" VerticalContentAlignment="Center"
-                                                HorizontalContentAlignment="Center"
-                                                CellStyle="{StaticResource ItemDataGridCellStyle}">
-                            <control:HidingDataGrid.Columns>
+                                                CanUserDeleteRows="False" IsReadOnly="True"
+                                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                                CellStyle="{StaticResource ItemDataGridCellStyle}"
+                                                SelectionUnit="FullRow" SelectionMode="Extended">
+
+                            <control:CustomDataGrid.Columns>
                                 <DataGridTemplateColumn Width="50">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -120,16 +123,16 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                            </control:HidingDataGrid.Columns>
+                            </control:CustomDataGrid.Columns>
 
-                            <control:HidingDataGrid.RowStyle>
+                            <control:CustomDataGrid.RowStyle>
                                 <Style TargetType="{x:Type DataGridRow}">
                                     <Setter Property="Background"
                                             Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}" />
                                 </Style>
-                            </control:HidingDataGrid.RowStyle>
+                            </control:CustomDataGrid.RowStyle>
 
-                        </control:HidingDataGrid>
+                        </control:CustomDataGrid>
 
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
@@ -159,22 +162,62 @@
             <TabItem Header="{Binding ViewModelName}" DataContext="{Binding ChildViews[1]}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="200" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <ListBox Grid.Column="0" ItemsSource="{Binding Watchlists}"
-                             SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <TextBox Text="{Binding Source=SelectedWatchlist, Path=Name}"/>
-                    <control:HidingDataGrid Grid.Column="1"
-                                            ItemsSource="{Binding Items}" />
+                    <StackPanel Grid.Column="0">
 
+                        <ListBox ItemsSource="{Binding Watchlists}" Height="150" Margin="2"
+                                 SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" HorizontalAlignment="Stretch"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="Name:" Margin="2"/>
+                            <TextBox Grid.Column="1" Margin="2" Text="{Binding SelectedWatchlist.Name}" VerticalContentAlignment="Center" />
+                        </Grid>
+
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" Command="{Binding Path=AddWatchlistCommand}" Style="{StaticResource ButtonStyle}"/>
+                            <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{StaticResource ButtonStyle}"/>
+                            <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Command="{Binding Path=DeleteWatchlistCommand}" Style="{StaticResource ButtonStyle}"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <control:CustomDataGrid Grid.Column="1" AutoGenerateColumns="True" CanUserAddRows="False"
+                        ItemsSource="{Binding Path=SelectedWatchlist.Items}" CellStyle="{StaticResource ItemDataGridCellStyle}">
+                        <control:CustomDataGrid.Columns>
+                            <DataGridTemplateColumn Width="50">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding IconImageSource}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </control:CustomDataGrid.Columns>
+
+                        <control:CustomDataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Setter Property="Background"
+                                            Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}" />
+                            </Style>
+                        </control:CustomDataGrid.RowStyle>
+                    </control:CustomDataGrid>
                 </Grid>
             </TabItem>
 

@@ -87,6 +87,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -140,13 +144,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command\AddWatchlistCommand.cs" />
+    <Compile Include="Command\DeleteWatchlistCommand.cs" />
     <Compile Include="Command\MoveToNextPageCommand.cs" />
     <Compile Include="Command\MoveToPreviousPageCommand.cs" />
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Command\SearchCommand.cs" />
     <Compile Include="Command\SearchResetCommand.cs" />
     <Compile Include="Command\UpdatePriceCommand.cs" />
-    <Compile Include="Control\HidingDataGrid.cs" />
+    <Compile Include="Command\UpdateWatchlistNameCommand.cs" />
+    <Compile Include="Control\CustomDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\DbBuilder.cs" />
     <Compile Include="DesignTimeErrorPrevention\DesignTimeGameDataContext.cs" />
