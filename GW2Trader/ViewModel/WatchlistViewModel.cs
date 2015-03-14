@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Security.Permissions;
 using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
@@ -12,22 +12,20 @@ namespace GW2Trader.ViewModel
     {
         private IApiDataUpdater _apiDataUpdater;
         private readonly IGameDataContextProvider _contextProvider;
-        private IList<GameItemModel> _items;
         private ItemWatchlistModel _selectedWatchlist;
         private ObservableCollection<ItemWatchlistModel> _watchlists;
 
-        public WatchlistViewModel(IGameDataContextProvider contextProvider, IList<GameItemModel> items,
+        public WatchlistViewModel(IGameDataContextProvider contextProvider,
             IApiDataUpdater apiDataUpdater)
         {
             ViewModelName = "Watchlists";
             _contextProvider = contextProvider;
             _apiDataUpdater = apiDataUpdater;
-            _items = items;
 
             using (var context = contextProvider.GetContext())
-            {
-
-                Watchlists = new ObservableCollection<ItemWatchlistModel>(BuildWatchlists(context.ItemIdWatchlists.ToList(), items));
+            {             
+                var watchlists = context.ItemWatchlists.Include(wl => wl.Items).ToList();
+                Watchlists = new ObservableCollection<ItemWatchlistModel>(watchlists);
             }
 
             if (Watchlists.Count != 0)
@@ -60,13 +58,13 @@ namespace GW2Trader.ViewModel
         {
             using (var context = _contextProvider.GetContext())
             {
-                context.ItemIdWatchlists.Add(new ItemIdWatchlistModel
+                context.ItemWatchlists.Add(new ItemWatchlistModel
                 {
                     Name = watchlist.Name,
-                    Items = watchlist.Items.Select(i => i.ItemId).ToList()
+                    Items = watchlist.Items == null ? new ObservableCollection<GameItemModel>() : new ObservableCollection<GameItemModel>(watchlist.Items.ToList())
                 });
                 context.Save();
-                watchlist.Id = context.ItemIdWatchlists.ToList().Last().Id;
+                watchlist.Id = context.ItemWatchlists.ToList().Last().Id;
             }
             _watchlists.Add(watchlist);
         }
@@ -76,8 +74,8 @@ namespace GW2Trader.ViewModel
             _watchlists.Remove(watchlist);
             using (var context = _contextProvider.GetContext())
             {
-                var watchlistToRemove = context.ItemIdWatchlists.Single(wl => wl.Id == watchlist.Id);
-                context.ItemIdWatchlists.Remove(watchlistToRemove);
+                var watchlistToRemove = context.ItemWatchlists.Single(wl => wl.Id == watchlist.Id);
+                context.ItemWatchlists.Remove(watchlistToRemove);
                 context.Save();
             }
         }
@@ -86,35 +84,30 @@ namespace GW2Trader.ViewModel
         {
             using (var context = _contextProvider.GetContext())
             {
-                var watchlistToUpdate = context.ItemIdWatchlists.Single(wl => wl.Id == watchlist.Id);
+                var watchlistToUpdate = context.ItemWatchlists.Single(wl => wl.Id == watchlist.Id);
                 watchlistToUpdate.Name = watchlist.Name;
                 context.Save();
             }
         }
 
-
-        private IList<ItemWatchlistModel> BuildWatchlists(IList<ItemIdWatchlistModel> itemIdWatchlists,
-                                                        IList<GameItemModel> items)
+        public void AddItemsToWatchlist(List<GameItemModel> itemsToAdd, ItemWatchlistModel watchlist)
         {
-            return itemIdWatchlists.Select(itemIdWatchlist => BuildWatchlist(itemIdWatchlist, items)).ToList();
-        }
-
-        private ItemWatchlistModel BuildWatchlist(ItemIdWatchlistModel itemIdWatchlist, IList<GameItemModel> items)
-        {
-            var itemWatchlist = new ItemWatchlistModel
+            using (var context = _contextProvider.GetContext())
             {
-                Id = itemIdWatchlist.Id,
-                Name = itemIdWatchlist.Name,
-                Items = new List<GameItemModel>()
-            };
+                ItemWatchlistModel contextWatchlist = context.ItemWatchlists.Single(wl => wl.Id == watchlist.Id);
 
-            if (itemIdWatchlist.Items == null) return itemWatchlist;
+                foreach (GameItemModel item in itemsToAdd)
+                {
+                    if (contextWatchlist.Items.All(i => i.ItemId != item.ItemId))
+                    {
+                        var contextItem = context.GameItems.Single(i => i.ItemId == item.ItemId);
+                        contextWatchlist.Items.Add(contextItem);
 
-            foreach (var id in itemIdWatchlist.Items)
-            {
-                itemWatchlist.Items.Add(items.Single(i => i.ItemId == id));
+                        watchlist.Items.Add(item);
+                    }
+                }
+                context.Save();
             }
-            return itemWatchlist;
         }
 
         #region commands

@@ -15,7 +15,7 @@ namespace GW2Trader.Data
 
         public IDbSet<GameItemModel> GameItems { get; set; }
         public IDbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; set; }
-        public IDbSet<ItemIdWatchlistModel> ItemIdWatchlists { get; set; }
+        public IDbSet<ItemWatchlistModel> ItemWatchlists { get; set; }
 
         public void Save()
         {
@@ -37,6 +37,12 @@ namespace GW2Trader.Data
             {
                 base.Seed(context);
             }
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ItemWatchlistModel>()
+                .HasMany(wl => wl.Items).WithMany(i => i.Watchlists);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,6 +23,10 @@ namespace GW2Trader.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Browsable(false)]
         public int ItemId { get; set; }
+
+        // navigation property
+        [Browsable(false)]
+        public virtual ICollection<ItemWatchlistModel> Watchlists { get; set; }
 
         [Required]
         public String Name { get; set; }
@@ -136,6 +141,8 @@ namespace GW2Trader.Model
         ///     Calculates the return of investment as percentage based on current prices.
         /// </summary>
         /// <returns>Returns the return of investment based on current prices</returns>
+        ///
+        [NotMapped] 
         public int ROI
         {
             get

@@ -144,6 +144,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command\AddItemsToWatchlistCommand.cs" />
     <Compile Include="Command\AddWatchlistCommand.cs" />
     <Compile Include="Command\DeleteWatchlistCommand.cs" />
     <Compile Include="Command\MoveToNextPageCommand.cs" />
@@ -167,10 +168,10 @@
     <Compile Include="Model\GameItemModel.cs" />
     <Compile Include="Model\InvestmentModel.cs" />
     <Compile Include="Model\InvestmentWatchlistModel.cs" />
-    <Compile Include="Model\ItemIdWatchlistModel.cs" />
     <Compile Include="Model\ItemWatchlistModel.cs" />
     <Compile Include="MVVM\PaginatedObservableCollection.cs" />
     <Compile Include="Util\Logger.cs" />
+    <Compile Include="Util\MultiValueConverter.cs" />
     <Compile Include="Util\RarityToBrushConverter.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\InvestmentViewModel.cs" />

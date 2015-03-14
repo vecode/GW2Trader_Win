@@ -50,17 +50,17 @@ namespace GW2Trader.DesignTimeErrorPrevention
             }
         }
 
-        public IDbSet<ItemIdWatchlistModel> ItemIdWatchlists
+        public IDbSet<ItemWatchlistModel> ItemWatchlists
         {
             get
             {
-                var fakeDbSet = new FakeDbSet<ItemIdWatchlistModel>
+                var fakeDbSet = new FakeDbSet<ItemWatchlistModel>
                 {
-                    new ItemIdWatchlistModel
+                    new ItemWatchlistModel
                     {
                         Name = "special items",
                         Id = 0,
-                        Items = new Collection<int>( _fakeItems.Select(i => i.ItemId).ToList())
+                        Items = new ObservableCollection<GameItemModel>(_fakeItems.ToList())
                     }
                 };
                 return fakeDbSet;

@@ -21,15 +21,13 @@ namespace GW2Trader.Data
         {
             using (var context = _contextProvider.GetContext())
             {
-                if (context.GameItems.Count() == 0 || dropOldDb)
+                if (!context.GameItems.Any() || dropOldDb)
                 {
-                    var ids = _wrapper.ItemIds().ToArray();
+                    var ids = _wrapper.ItemIds().Take(100).ToArray();
                     var items = _wrapper.ItemDetails(ids).ToList();
-                    var convertedItems = items.Select(i => ConvertToGameItem(i)).ToList();
+                    var convertedItems = items.Select(ConvertToGameItem).ToList();
 
                     context.BulkInsert(convertedItems);
-                    //context.GameItems.AddRange(convertedItems);
-                    //context.Save();
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace GW2Trader.Command
             viewModel.AddWatchlist(new ItemWatchlistModel
             {
                 Name = "new watchlist",
-                Items = new List<GameItemModel>()
+                Items = new ObservableCollection<GameItemModel>()
             });
             viewModel.SelectedWatchlist = viewModel.Watchlists.Last();
         }

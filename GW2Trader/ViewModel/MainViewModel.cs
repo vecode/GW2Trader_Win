@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using GW2TPApiWrapper.Wrapper;
@@ -13,40 +14,37 @@ namespace GW2Trader.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly IGameDataContextProvider _contextProvider;
-        private readonly DbBuilder _dbBuilder;
-        private readonly List<GameItemModel> _items;
-        private readonly IApiDataUpdater _itemUpdater;
-        private readonly ITradingPostApiWrapper _tradingPostWrapper;
         private int _selectedTabIndex;
 
         public MainViewModel()
         {
+            IGameDataContextProvider contextProvider;
             if(System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
-                _contextProvider = new FakeDataContextProvider();
+                contextProvider = new FakeDataContextProvider();
             }
             else
             {
-                _contextProvider = new GameDataContextProvider();
+                contextProvider = new GameDataContextProvider();
             }
 
             Logger = Logger.Instance;
-            _tradingPostWrapper = new TradingPostApiWrapper(new ApiAccessor());
-            _itemUpdater = new ApiDataUpdater(_tradingPostWrapper);
-            _dbBuilder = new DbBuilder(_tradingPostWrapper, _contextProvider);
+            ITradingPostApiWrapper tradingPostWrapper = new TradingPostApiWrapper(new ApiAccessor());
+            IApiDataUpdater itemUpdater = new ApiDataUpdater(tradingPostWrapper);
 
-            _dbBuilder.BuildDatabase();
+            DbBuilder dbBuilder = new DbBuilder(tradingPostWrapper, contextProvider);
+            dbBuilder.BuildDatabase();
 
-            using (var context = _contextProvider.GetContext())
+            List<GameItemModel> items;
+            using (var context = contextProvider.GetContext())
             {
-                _items = context.GameItems.ToList();
+                items = context.GameItems.ToList();
             }
 
             ChildViews = new ObservableCollection<BaseViewModel>
             {
-                new ItemSearchViewModel(_items, _tradingPostWrapper, _itemUpdater),
-                new WatchlistViewModel(_contextProvider, _items, _itemUpdater)
+                new ItemSearchViewModel(items, tradingPostWrapper, itemUpdater),
+                new WatchlistViewModel(contextProvider, itemUpdater)
             };
         }
 

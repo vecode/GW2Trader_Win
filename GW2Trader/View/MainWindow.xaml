@@ -10,6 +10,7 @@
     <Window.Resources>
         <view:MainViewModel x:Key="MainViewModel"/>
         <util:RarityToBrushConverter x:Key="RarityToBrushConverter" />
+        <util:MultiValueConverter x:Key="MultiValueConverter"/>
     </Window.Resources>
 
     <Grid DataContext="{Binding Source={StaticResource MainViewModel}}">
@@ -131,6 +132,28 @@
                                             Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}" />
                                 </Style>
                             </control:CustomDataGrid.RowStyle>
+
+                            <control:CustomDataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="add to watchlist" ItemsSource="{Binding Source={StaticResource MainViewModel}, Path=ChildViews[1].Watchlists}">
+                                        <MenuItem.ItemContainerStyle>
+                                            <Style TargetType="{x:Type MenuItem}">
+                                                <Setter Property="Header" Value="{Binding Name}"/>
+                                                <Setter Property="CommandParameter">
+                                                    <Setter.Value>
+                                                        <MultiBinding Converter="{StaticResource MultiValueConverter}">
+                                                            <Binding Source="{StaticResource MainViewModel}" Path="ChildViews[0].SelectedItems"/>
+                                                            <Binding Source="{StaticResource MainViewModel}" Path="ChildViews[1]"/>
+                                                            <Binding  />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="Command" Value="{Binding Source={StaticResource MainViewModel}, Path=ChildViews[0].AddItemsToWatchlistCommand}"/>
+                                            </Style>
+                                        </MenuItem.ItemContainerStyle>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </control:CustomDataGrid.ContextMenu>
 
                         </control:CustomDataGrid>
 

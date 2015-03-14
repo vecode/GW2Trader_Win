@@ -34,9 +34,6 @@ namespace GW2Trader.ViewModel
 
             Items = new PaginatedObservableCollection<GameItemModel>(items, 10);
             Task.Run(() => UpdateCommerceData());
-
-            SelectedItems = new ArrayList();
-            //BindingOperations.EnableCollectionSynchronization();
         }
 
         public void UpdateCommerceData()
@@ -54,7 +51,6 @@ namespace GW2Trader.ViewModel
             {
                 _selectedItems = value;
                 RaisePropertyChanged("SelectedItems");
-                if (_selectedItems != null) Console.WriteLine(_selectedItems.Count);
             }
         }
 
@@ -157,12 +153,7 @@ namespace GW2Trader.ViewModel
 
         public RelayCommand SearchCommand
         {
-            get
-            {
-                if (_searchCommand == null)
-                    _searchCommand = new SearchCommand();
-                return _searchCommand;
-            }
+            get { return _searchCommand ?? (_searchCommand = new SearchCommand()); }
             private set { _searchCommand = value; }
         }
 
@@ -170,12 +161,7 @@ namespace GW2Trader.ViewModel
 
         public RelayCommand SearchResetCommand
         {
-            get
-            {
-                if (_searchResetCommand == null)
-                    _searchResetCommand = new SearchResetCommand();
-                return _searchResetCommand;
-            }
+            get { return _searchResetCommand ?? (_searchResetCommand = new SearchResetCommand()); }
             private set { _searchCommand = value; }
         }
 
@@ -183,12 +169,7 @@ namespace GW2Trader.ViewModel
 
         public RelayCommand MoveToNextPageCommand
         {
-            get
-            {
-                if (_moveToNextPageCommand == null)
-                    _moveToNextPageCommand = new MoveToNextPageCommand();
-                return _moveToNextPageCommand;
-            }
+            get { return _moveToNextPageCommand ?? (_moveToNextPageCommand = new MoveToNextPageCommand()); }
             private set { _moveToNextPageCommand = value; }
         }
 
@@ -196,13 +177,18 @@ namespace GW2Trader.ViewModel
 
         public RelayCommand MoveToPreviousPageCommand
         {
-            get
-            {
-                if (_moveToPreviousCommand == null)
-                    _moveToPreviousCommand = new MoveToPreviousPageCommand();
-                return _moveToPreviousCommand;
-            }
+            get { return _moveToPreviousCommand ?? (_moveToPreviousCommand = new MoveToPreviousPageCommand()); }
             private set { _moveToPreviousCommand = value; }
+        }
+
+        private RelayCommand _addItemsToWatchlistCommand;
+
+        public RelayCommand AddItemsToWatchlistCommand
+        {
+            get {
+                return _addItemsToWatchlistCommand ?? (_addItemsToWatchlistCommand = new AddItemsToWatchlistCommand());
+            }
+            private set { _addItemsToWatchlistCommand = value; }
         }
 
         #endregion

@@ -12,7 +12,7 @@ namespace GW2Trader.Data
     {
         IDbSet<GameItemModel> GameItems { get; set; }
         IDbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; set; }
-        IDbSet<ItemIdWatchlistModel> ItemIdWatchlists { get; set; }
+        IDbSet<ItemWatchlistModel> ItemWatchlists { get; set; }
 
         void Save();
         void BulkInsert(IList<GameItemModel> items);

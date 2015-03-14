@@ -37,7 +37,7 @@ namespace GW2TraderTest
 
         public DbSet<ItemIdWatchlistModel> ItemIdWatchlists
         {
-            get { return _context.ItemIdWatchlists; }
+            get { return _context.ItemWatchlists; }
         }
 
         public DbSet<T> Set<T>() where T : class
