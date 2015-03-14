@@ -170,11 +170,11 @@ namespace GW2Trader.MVVM
         {
             if (_filter == null)
             {
-                PageCount = (int) Math.Ceiling(_originalCollection.Count/_pageSize*1.0f);
+                PageCount = (int) Math.Ceiling(1.0 * _originalCollection.Count/_pageSize * 1.0f);
             }
             else
             {
-                PageCount = (int) Math.Ceiling(_originalCollection.FindAll(_filter).Count/_pageSize*1.0f);
+                PageCount = (int) Math.Ceiling(1.0 * _originalCollection.FindAll(_filter).Count/_pageSize * 1.0f);
             }
         }
     }
