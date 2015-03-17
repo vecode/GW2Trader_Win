@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DataGridTemplateColumn x:Key="IconColumn" x:Shared="False" Header="">
+        <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+                <Image Source="{Binding IconImageSource}" Width="50"/>
+            </DataTemplate>
+        </DataGridTemplateColumn.CellTemplate>
+    </DataGridTemplateColumn>
+    
+    <DataGridTextColumn x:Key="NameColumn" Header="Name" Binding="{Binding Name}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="TypeColumn" Header="Type" Binding="{Binding Type}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="BuyPriceColumn" Header="Buy price" Binding="{Binding BuyOrder}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="DemandColumn" Header="Demand" Binding="{Binding BuyOrderQuantity}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="SellPriceColumn" Header="Sell price" Binding="{Binding SellListing}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="SupplyColumn" Header="Supply" Binding="{Binding SellListingQuantity}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="MarginColumn" Header="Margin" Binding="{Binding Margin}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="RoiColumn" Header="ROI" Binding="{Binding ROI}" x:Shared="False"/>
+
+    <DataGridTextColumn x:Key="PlaceholderColumn" Width="*" x:Shared="False"/>    
+</ResourceDictionary>
