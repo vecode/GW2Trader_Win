@@ -22,6 +22,7 @@ namespace GW2Trader.Control
         public CustomDataGrid()
         {
             SelectionChanged += CustomDataGrid_SelectionChanged;
+            SelectedItemsList = new ArrayList();
         }
 
         void CustomDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

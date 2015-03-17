@@ -18,12 +18,9 @@ namespace GW2Trader.Command
 
         public override void Execute(object parameter)
         {
-            var parameters = parameter as object[];
-            List<GameItemModel> selectedItems = (parameters[0] as IList).Cast<GameItemModel>().ToList();
-            WatchlistViewModel viewModel = parameters[1] as WatchlistViewModel;
-            ItemWatchlistModel watchlist = parameters[2] as ItemWatchlistModel;
-
-            viewModel.AddItemsToWatchlist(selectedItems, watchlist);
+            object[] parameters = parameter as object[];
+            ItemSearchViewModel viewModel = parameters[0] as ItemSearchViewModel;
+            viewModel.AddItemsToWatchlist(parameters[1] as ItemWatchlistModel);
         }
     }
 }

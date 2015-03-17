@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="GW2Trader.View.ItemSearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:control="clr-namespace:GW2Trader.Control"
+             xmlns:util="clr-namespace:GW2Trader.Util"             
+             x:Name="ItemControl">
+    
+    <UserControl.Resources>
+        <util:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
+        <util:MultiValueConverter x:Key="MultiValueConverter"/>
+    </UserControl.Resources>
+
+    <Grid Name="Grid" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid HorizontalAlignment="Center" Width="150">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                                 Style="{StaticResource SearchControl}"
+                                 Text="{Binding Path=Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"
+                                            Key="Return"/>
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Type" Style="{StaticResource SearchControl}"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                Style="{StaticResource SearchControl}"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                Style="{StaticResource SearchControl}"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Level" Style="{StaticResource SearchControl}"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SearchControl}"
+                Text="{Binding MinLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource SearchControl}"
+                Text="{Binding Path=MaxLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Rarity" Grid.Row="4" Grid.Column="0" Style="{StaticResource SearchControl}"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                Style="{StaticResource SearchControl}"/>
+
+            <Separator  Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+            <Label Content="Margin" Grid.Row="6" Grid.Column="0" Style="{StaticResource SearchControl}"/>
+            <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource SearchControl}"
+                Text="{Binding Path=MinMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource SearchControl}"
+                Text="{Binding Path=MaxMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="ROI" Grid.Row="7" Grid.Column="0" Style="{StaticResource SearchControl}"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource SearchControl}"
+                Text="{Binding Path=MinROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SearchControl}"
+                Text="{Binding Path=MaxROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Separator Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+            <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Content="Search"
+                Style="{StaticResource SearchControl}"
+                CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"/>
+            <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Content="Reset"
+                Style="{StaticResource SearchControl}"
+                CommandParameter="{Binding}" Command="{Binding Path=SearchResetCommand}"/>
+        </Grid>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+        </StackPanel>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <control:CustomDataGrid Grid.Row="0" 
+                ItemsSource="{Binding Items}"
+                SelectedItemsList="{Binding SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                AutoGenerateColumns="True" CanUserAddRows="False"
+                CanUserDeleteRows="False" IsReadOnly="True"
+                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                CellStyle="{StaticResource ItemDataGridCellStyle}"
+                SelectionUnit="FullRow" SelectionMode="Extended">
+
+                <control:CustomDataGrid.Columns>
+                    <DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding IconImageSource}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </control:CustomDataGrid.Columns>
+
+                <control:CustomDataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="Background"
+                            Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
+                    </Style>
+                </control:CustomDataGrid.RowStyle>
+
+                <control:CustomDataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="add to watchlist" ItemsSource="{Binding Watchlists}">
+                            <MenuItem.ItemContainerStyle>
+                                <Style TargetType="{x:Type MenuItem}">
+                                    <Setter Property="Header" Value="{Binding Name}"/>
+                                    <Setter Property="CommandParameter">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource MultiValueConverter}">
+                                                <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=control:CustomDataGrid}" Path="DataContext"/>
+                                                <Binding />
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter> 
+                                    <Setter Property="Command" 
+                                            Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=control:CustomDataGrid}, 
+                                            Path=DataContext.AddItemsToWatchlistCommand}"/>
+                                </Style>
+                            </MenuItem.ItemContainerStyle>
+                        </MenuItem>
+                    </ContextMenu>
+                </control:CustomDataGrid.ContextMenu>
+            </control:CustomDataGrid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Resources>
+                    <Style x:Key="MovePageButtonStyle" TargetType="Button">
+                        <Setter Property="Margin" Value="0,4,0,2"/>
+                        <Setter Property="FontFamily" Value="Marlett"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Width" Value="75"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Button Grid.Column="0" Style="{StaticResource MovePageButtonStyle}" Content="3"
+                        CommandParameter="{Binding}" Command="{Binding Path=MoveToPreviousPageCommand}"/>
+                <Button Grid.Column="1" Style="{StaticResource MovePageButtonStyle}" Content="4"
+                        CommandParameter="{Binding}" Command="{Binding Path=MoveToNextPageCommand}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

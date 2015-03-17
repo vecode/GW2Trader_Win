@@ -15,36 +15,22 @@ namespace GW2Trader.ViewModel
     public class MainViewModel : BaseViewModel
     {
         private int _selectedTabIndex;
+        private IGameDataContextProvider _contextProvider = new GameDataContextProvider();
+        private List<GameItemModel> _items;
+        private ITradingPostApiWrapper _tpApiWrapper;
+        private IApiDataUpdater _dataUpdater;
 
         public MainViewModel()
         {
-            IGameDataContextProvider contextProvider;
-            if(System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
-            {
-                contextProvider = new FakeDataContextProvider();
-            }
-            else
-            {
-                contextProvider = new GameDataContextProvider();
-            }
+            Init();
 
-            Logger = Logger.Instance;
-            ITradingPostApiWrapper tradingPostWrapper = new TradingPostApiWrapper(new ApiAccessor());
-            IApiDataUpdater itemUpdater = new ApiDataUpdater(tradingPostWrapper);
-
-            DbBuilder dbBuilder = new DbBuilder(tradingPostWrapper, contextProvider);
-            dbBuilder.BuildDatabase();
-
-            List<GameItemModel> items;
-            using (var context = contextProvider.GetContext())
-            {
-                items = context.GameItems.ToList();
-            }
+            var watchlistViewModel = new WatchlistViewModel(_contextProvider, _dataUpdater);
+            var searchViewModel = new ItemSearchViewModel(_items, _tpApiWrapper, _dataUpdater, watchlistViewModel);
 
             ChildViews = new ObservableCollection<BaseViewModel>
             {
-                new ItemSearchViewModel(items, tradingPostWrapper, itemUpdater),
-                new WatchlistViewModel(contextProvider, itemUpdater)
+                searchViewModel,
+                watchlistViewModel
             };
         }
 
@@ -61,5 +47,28 @@ namespace GW2Trader.ViewModel
         }
 
         public ObservableCollection<BaseViewModel> ChildViews { get; private set; }
+
+        private void Init()
+        {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
+            {
+                _contextProvider = new FakeDataContextProvider();
+            }
+            else
+            {
+                _contextProvider = new GameDataContextProvider();
+            }
+
+            _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessor());
+            _dataUpdater = new ApiDataUpdater(_tpApiWrapper);
+
+            DbBuilder dbBuilder = new DbBuilder(_tpApiWrapper, _contextProvider);
+            dbBuilder.BuildDatabase();
+            
+            using (var context = _contextProvider.GetContext())
+            {
+                _items = context.GameItems.ToList();
+            }
+        }
     }
 }

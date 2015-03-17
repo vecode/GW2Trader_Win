@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="GW2Trader.View.WatchlistView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:control="clr-namespace:GW2Trader.Control"
+             xmlns:util="clr-namespace:GW2Trader.Util">
+    
+    <UserControl.Resources>
+        <util:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+
+            <ListBox ItemsSource="{Binding Watchlists}" Height="150" Margin="2" 
+                     SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Stretch"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Name:" Margin="2"/>
+                <TextBox Grid.Column="1" Margin="2" Text="{Binding SelectedWatchlist.Name}" 
+                         VerticalContentAlignment="Center" />
+            </Grid>
+
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" 
+                        Command="{Binding Path=AddWatchlistCommand}" Style="{StaticResource ButtonStyle}"/>
+                <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" 
+                        Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{StaticResource ButtonStyle}"/>
+                <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" 
+                        Command="{Binding Path=DeleteWatchlistCommand}" Style="{StaticResource ButtonStyle}"/>
+            </Grid>
+            
+        </StackPanel>
+
+        <control:CustomDataGrid Grid.Column="1" AutoGenerateColumns="True" CanUserAddRows="False"
+                                ItemsSource="{Binding Path=SelectedWatchlist.Items}" 
+                                CellStyle="{StaticResource ItemDataGridCellStyle}">
+            
+            <control:CustomDataGrid.Columns>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding IconImageSource}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </control:CustomDataGrid.Columns>
+
+            <control:CustomDataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Background"
+                            Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}" />
+                </Style>
+            </control:CustomDataGrid.RowStyle>
+        </control:CustomDataGrid>
+    </Grid>
+</UserControl>

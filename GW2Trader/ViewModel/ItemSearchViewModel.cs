@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Command;
@@ -17,22 +18,23 @@ namespace GW2Trader.ViewModel
     public class ItemSearchViewModel : BaseViewModel
     {
         private readonly IApiDataUpdater _apiDataUpdater;
-        private GameDataContextProvider _contextProvider;
-        private static object _lock = new object();
+        private readonly WatchlistViewModel _watchlistViewModel;
 
-        public ItemSearchViewModel()
-        {
-        }
+        public ItemSearchViewModel() {}
 
-        public ItemSearchViewModel(
+        public ItemSearchViewModel
+            (
             List<GameItemModel> items,
             ITradingPostApiWrapper tradingPostApiWrapper,
-            IApiDataUpdater apiDataUpdater)
+            IApiDataUpdater apiDataUpdater,
+            WatchlistViewModel watchlistViewModel
+            )
         {
             ViewModelName = "Search";
             _apiDataUpdater = apiDataUpdater;
+            _watchlistViewModel = watchlistViewModel;
 
-            Items = new PaginatedObservableCollection<GameItemModel>(items, 10);
+            Items = new PaginatedObservableCollection<GameItemModel>(items, 20);
             Task.Run(() => UpdateCommerceData());
         }
 
@@ -140,9 +142,26 @@ namespace GW2Trader.ViewModel
             }
         }
 
+        private ItemWatchlistModel _selectedWatchlist;
+
+        public ItemWatchlistModel SelectedWatchlist
+        {
+            get { return _selectedWatchlist; }
+            set
+            {
+                _selectedWatchlist = value;
+                RaisePropertyChanged("SelectedWatchlist");
+            }
+        }
+
         public string PageInfo
         {
             get { return Items.CurrentPage + "/" + Items.PageCount; }
+        }
+
+        public ObservableCollection<ItemWatchlistModel> Watchlists
+        {
+            get { return _watchlistViewModel.Watchlists; }
         }
 
         #endregion
@@ -185,12 +204,18 @@ namespace GW2Trader.ViewModel
 
         public RelayCommand AddItemsToWatchlistCommand
         {
-            get {
+            get
+            {
                 return _addItemsToWatchlistCommand ?? (_addItemsToWatchlistCommand = new AddItemsToWatchlistCommand());
             }
             private set { _addItemsToWatchlistCommand = value; }
         }
-
         #endregion
+
+        public void AddItemsToWatchlist(ItemWatchlistModel watchlist)
+        {
+            List<GameItemModel> itemsToAdd = SelectedItems.Cast<GameItemModel>().ToList();
+            _watchlistViewModel.AddItemsToWatchlist(itemsToAdd, watchlist);
+        }
     }
 }
