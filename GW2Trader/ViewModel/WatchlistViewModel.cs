@@ -133,5 +133,12 @@ namespace GW2Trader.ViewModel
         }
 
         #endregion
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is InvestmentViewModel)) return false;
+
+            return (obj as InvestmentViewModel).ViewModelName == this.ViewModelName;
+        }
     }
 }

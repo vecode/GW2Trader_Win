@@ -2,23 +2,32 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:control="clr-namespace:GW2Trader.Control"
+             xmlns:view="clr-namespace:GW2Trader.View"
              xmlns:util="clr-namespace:GW2Trader.Util">
-    
+
     <UserControl.Resources>
         <util:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="2"/>
+            </Style>
+        </Grid.Resources>
 
-            <ListBox ItemsSource="{Binding Watchlists}" Height="150" Margin="2" 
+        <StackPanel Grid.Column="0" Margin="5,35,5,0">
+            <ListBox ItemsSource="{Binding Watchlists}" Height="150" Margin="2" BorderThickness="1" BorderBrush="LightGray"
                      SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
-                
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" HorizontalAlignment="Stretch"/>
@@ -43,28 +52,30 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" 
-                        Command="{Binding Path=AddWatchlistCommand}" Style="{StaticResource ButtonStyle}"/>
-                <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" 
-                        Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{StaticResource ButtonStyle}"/>
-                <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" 
-                        Command="{Binding Path=DeleteWatchlistCommand}" Style="{StaticResource ButtonStyle}"/>
+                <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=AddWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=DeleteWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
             </Grid>
-            
         </StackPanel>
 
-        <control:CustomDataGrid Grid.Column="1" AutoGenerateColumns="True" CanUserAddRows="False"
+        <control:CustomDataGrid Grid.Column="1" CanUserAddRows="False" AutoGenerateColumns="False"
                                 ItemsSource="{Binding Path=SelectedWatchlist.Items}" 
-                                CellStyle="{StaticResource ItemDataGridCellStyle}">
-            
+                                CellStyle="{StaticResource ItemDataGridCellStyle}"
+                                Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
+
             <control:CustomDataGrid.Columns>
-                <DataGridTemplateColumn Width="50">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding IconImageSource}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <StaticResource ResourceKey="IconColumn"/>
+                <StaticResource ResourceKey="NameColumn"/>
+                <StaticResource ResourceKey="BuyPriceColumn"/>
+                <StaticResource ResourceKey="DemandColumn"/>
+                <StaticResource ResourceKey="SellPriceColumn"/>
+                <StaticResource ResourceKey="SupplyColumn"/>
+                <StaticResource ResourceKey="MarginColumn"/>
+                <StaticResource ResourceKey="RoiColumn"/>
+                <StaticResource ResourceKey="PlaceholderColumn"/>
             </control:CustomDataGrid.Columns>
 
             <control:CustomDataGrid.RowStyle>

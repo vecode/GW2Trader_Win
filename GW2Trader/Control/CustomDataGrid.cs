@@ -11,23 +11,11 @@ namespace GW2Trader.Control
     /// </summary>
     public class CustomDataGrid : DataGrid
     {
-        /// Source: 
-        /// http://stackoverflow.com/questions/2816929/wpf-toolkit-datagrid-show-fields-even-with-browsable-attribute-set-to-false
-        protected override void OnAutoGeneratingColumn(DataGridAutoGeneratingColumnEventArgs e)
-        {
-            if (((PropertyDescriptor)e.PropertyDescriptor).IsBrowsable == false)
-                e.Cancel = true;
-        }
-
         public CustomDataGrid()
         {
             SelectionChanged += CustomDataGrid_SelectionChanged;
             SelectedItemsList = new ArrayList();
-        }
-
-        void CustomDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedItemsList = this.SelectedItems;
+            RowMargin = new Thickness(0);
         }
 
         public IList SelectedItemsList
@@ -36,7 +24,33 @@ namespace GW2Trader.Control
             set { SetValue(SelectedItemsListProperty, value); }
         }
 
+        public Thickness RowMargin
+        {
+            get { return (Thickness)GetValue(RowMarginProperty); }
+            set { SetValue(RowMarginProperty, value); }
+        }
+
         public static readonly DependencyProperty SelectedItemsListProperty =
                 DependencyProperty.Register("SelectedItemsList", typeof(IList), typeof(CustomDataGrid), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty RowMarginProperty =
+            DependencyProperty.Register(("RowMargin"), typeof(Thickness), typeof(CustomDataGrid),
+                new PropertyMetadata(null));
+
+        protected override void OnAutoGeneratingColumn(DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (((PropertyDescriptor)e.PropertyDescriptor).IsBrowsable == false)
+                e.Cancel = true;
+        }
+
+        void CustomDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedItemsList = this.SelectedItems;
+        }
+
+        protected override void OnLoadingRow(DataGridRowEventArgs e)
+        {
+            e.Row.Margin = RowMargin;
+        }
     }
 }

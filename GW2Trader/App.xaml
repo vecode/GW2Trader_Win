@@ -5,13 +5,14 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceDictionary/ItemOverviewControlTemplate.xaml" />
-                <ResourceDictionary Source="ResourceDictionary/InvestmentControlTemplate.xaml" />
-                <ResourceDictionary Source="ResourceDictionary/NoteControlTemplate.xaml" />
-                <ResourceDictionary Source="ResourceDictionary/SettingsControlTemplate.xaml" />
-                <ResourceDictionary Source="ResourceDictionary/WatchlistControlTemplate.xaml" />
-                <ResourceDictionary Source="ResourceDictionary/CalculatorControlTemplate.xaml" />
                 <ResourceDictionary Source="ResourceDictionary/ControlStyles.xaml" />
+                <ResourceDictionary Source="ResourceDictionary/DataGridColumns.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

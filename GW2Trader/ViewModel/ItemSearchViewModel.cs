@@ -11,6 +11,7 @@ using GW2Trader.Model;
 using GW2Trader.MVVM;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Navigation;
 using GW2Trader.Control;
 
 namespace GW2Trader.ViewModel
@@ -20,7 +21,7 @@ namespace GW2Trader.ViewModel
         private readonly IApiDataUpdater _apiDataUpdater;
         private readonly WatchlistViewModel _watchlistViewModel;
 
-        public ItemSearchViewModel() {}
+        public ItemSearchViewModel() { }
 
         public ItemSearchViewModel
             (
@@ -216,6 +217,13 @@ namespace GW2Trader.ViewModel
         {
             List<GameItemModel> itemsToAdd = SelectedItems.Cast<GameItemModel>().ToList();
             _watchlistViewModel.AddItemsToWatchlist(itemsToAdd, watchlist);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is ItemSearchViewModel)) return false;
+
+            return (obj as ItemSearchViewModel).ViewModelName == this.ViewModelName;
         }
     }
 }
