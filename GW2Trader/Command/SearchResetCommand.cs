@@ -20,7 +20,8 @@ namespace GW2Trader.Command
             viewModel.MinROI = 0;
             viewModel.MaxROI = 0;
 
-            viewModel.SearchCommand.Execute(viewModel);
+            viewModel.Items.Clear();
+            viewModel.Items.Filter = null;
         }
     }
 }

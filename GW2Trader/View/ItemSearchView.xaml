@@ -54,9 +54,14 @@
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="Margin" Value="2"/>
                 </Style>
+                <Style TargetType="controls:SplitButton">
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="BorderBrush" Value="#abadb3"></Setter>
+                </Style>
             </Grid.Resources>
 
-            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,2,0,2"
+            <Label Grid.Row="0" Grid.Column="0" Content="Keyword:" />
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="2"
                      Text="{Binding Path=Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
                     <KeyBinding CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"
@@ -64,12 +69,35 @@
                 </TextBox.InputBindings>
             </TextBox>
 
-            <controls:DropDownButton Content="Type" Grid.Row="1" Grid.Column="0" 
-                                     Grid.ColumnSpan="3" Margin="0,2,0,2"/>
-            <controls:DropDownButton Content="Subtype" Grid.Row="2" Grid.Column="0" 
-                                     Grid.ColumnSpan="3" Margin="0,2,0,2"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Type:" />
+            <controls:SplitButton Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                  ItemsSource="{Binding Types}" SelectedItem="{Binding SelectedType}"/>
 
-            <controls:DropDownButton Content="Rarity" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Subtype:" />
+            <controls:SplitButton Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                  ItemsSource="{Binding SubTypes}" SelectedItem="{Binding SelectedSubType}"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Rarity:" />
+            <controls:SplitButton Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
+                                  ItemsSource="{Binding Rarities}" HorizontalContentAlignment="Stretch"
+                                  SelectedItem="{Binding SelectedRarity, Mode=TwoWay}">
+               
+                <controls:SplitButton.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,1,0,1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=Name}" 
+                                        FontSize="14" Margin="5,0,0,0"/>
+                            <Rectangle Grid.Column="1" Fill="{Binding ColorHexCode}" Width="25"/>
+                        </Grid>
+                        
+                    </DataTemplate>
+                </controls:SplitButton.ItemTemplate>
+
+            </controls:SplitButton>
 
             <Label Grid.Row="4" Grid.Column="0" Content="Level:"/>
             <TextBox Grid.Row="4" Grid.Column="1" 
@@ -127,10 +155,10 @@
                     <StaticResource ResourceKey="IconColumn"/>
                     <StaticResource ResourceKey="NameColumn"/>
                     <StaticResource ResourceKey="BuyPriceColumn"/>
-                    <StaticResource ResourceKey="DemandColumn"/>
                     <StaticResource ResourceKey="SellPriceColumn"/>
-                    <StaticResource ResourceKey="SupplyColumn"/>
                     <StaticResource ResourceKey="MarginColumn"/>
+                    <StaticResource ResourceKey="DemandColumn"/>                    
+                    <StaticResource ResourceKey="SupplyColumn"/>                   
                     <StaticResource ResourceKey="RoiColumn"/>
                     <StaticResource ResourceKey="PlaceholderColumn"/>
                 </control:CustomDataGrid.Columns>
@@ -139,6 +167,7 @@
                     <Style TargetType="{x:Type DataGridRow}">
                         <Setter Property="Background"
                             Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
+                        <Setter Property="FontSize" Value="14"></Setter>
                     </Style>
                 </control:CustomDataGrid.RowStyle>
 

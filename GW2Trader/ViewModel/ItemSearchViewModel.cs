@@ -9,10 +9,6 @@ using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
 using GW2Trader.MVVM;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Navigation;
-using GW2Trader.Control;
 
 namespace GW2Trader.ViewModel
 {
@@ -20,6 +16,8 @@ namespace GW2Trader.ViewModel
     {
         private readonly IApiDataUpdater _apiDataUpdater;
         private readonly WatchlistViewModel _watchlistViewModel;
+        private List<GameItemModel> _items;
+        private Dictionary<string, List<string>> _subTypeDictionary; 
 
         public ItemSearchViewModel() { }
 
@@ -34,15 +32,17 @@ namespace GW2Trader.ViewModel
             ViewModelName = "Search";
             _apiDataUpdater = apiDataUpdater;
             _watchlistViewModel = watchlistViewModel;
+            _items = items;
 
-            Items = new PaginatedObservableCollection<GameItemModel>(items, 20);
+            Items = new PaginatedObservableCollection<GameItemModel>(_items, 20);
             Task.Run(() => UpdateCommerceData());
+
+            _subTypeDictionary = BuildSubtypeDictionary(_items);
+            SelectedRarity = RarityModel.Rarities.First();
         }
 
-        public void UpdateCommerceData()
-        {
-            _apiDataUpdater.UpdateCommerceData(Items);
-        }
+        public PaginatedObservableCollection<GameItemModel> Items { get; private set; }
+        public List<RarityModel> Rarities { get { return RarityModel.Rarities; } }
 
         #region observable properties
 
@@ -57,10 +57,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public PaginatedObservableCollection<GameItemModel> Items { get; private set; }
-
         private string _keyword = string.Empty;
-
         public string Keyword
         {
             get { return _keyword; }
@@ -72,7 +69,6 @@ namespace GW2Trader.ViewModel
         }
 
         private int _minLvl;
-
         public int MinLvl
         {
             get { return _minLvl; }
@@ -84,7 +80,6 @@ namespace GW2Trader.ViewModel
         }
 
         private int _maxLvl = 80;
-
         public int MaxLvl
         {
             get { return _maxLvl; }
@@ -96,7 +91,6 @@ namespace GW2Trader.ViewModel
         }
 
         private int _minMargin;
-
         public int MinMargin
         {
             get { return _minMargin; }
@@ -108,7 +102,6 @@ namespace GW2Trader.ViewModel
         }
 
         private int _maxMargin;
-
         public int MaxMargin
         {
             get { return _maxMargin; }
@@ -120,7 +113,6 @@ namespace GW2Trader.ViewModel
         }
 
         private int _minROI;
-
         public int MinROI
         {
             get { return _minROI; }
@@ -132,7 +124,6 @@ namespace GW2Trader.ViewModel
         }
 
         private int _maxROI;
-
         public int MaxROI
         {
             get { return _maxROI; }
@@ -144,7 +135,6 @@ namespace GW2Trader.ViewModel
         }
 
         private ItemWatchlistModel _selectedWatchlist;
-
         public ItemWatchlistModel SelectedWatchlist
         {
             get { return _selectedWatchlist; }
@@ -152,6 +142,67 @@ namespace GW2Trader.ViewModel
             {
                 _selectedWatchlist = value;
                 RaisePropertyChanged("SelectedWatchlist");
+            }
+        }
+
+        private RarityModel _selectedRarity;
+        public RarityModel SelectedRarity
+        {
+            get
+            {
+                return _selectedRarity;                
+            }
+            set
+            {
+                _selectedRarity = value;
+                RaisePropertyChanged("SelectedRarityIndex");
+            }
+        }
+
+        private string _selectedType;
+        public string SelectedType
+        {
+            get
+            {
+                return _selectedType;
+            }
+            set
+            {
+                _selectedType = value;
+                RaisePropertyChanged("SelectedType");
+                SubTypes = _subTypeDictionary[SelectedType];
+                SelectedSubType = SubTypes != null? SubTypes[0] : null;
+            }
+        }
+
+        private string _selectedSubType;
+        public string SelectedSubType
+        {
+            get
+            {
+                return _selectedSubType;
+            }
+            set
+            {
+                _selectedSubType = value;
+                RaisePropertyChanged("SelectedSubType");
+            }
+        }
+
+        private List<string> types;
+        public List<string> Types
+        {
+            get { return _subTypeDictionary.Keys.ToList(); }            
+        }
+
+        private List<string> _subTypes;
+        public List<string> SubTypes
+        {
+            get { return _subTypes; }
+            set
+            {
+                _subTypes = value;
+                RaisePropertyChanged("SubTypes");
             }
         }
 
@@ -213,17 +264,28 @@ namespace GW2Trader.ViewModel
         }
         #endregion
 
+        public void UpdateCommerceData()
+        {
+            _apiDataUpdater.UpdateCommerceData(_items);
+        }
+
         public void AddItemsToWatchlist(ItemWatchlistModel watchlist)
         {
             List<GameItemModel> itemsToAdd = SelectedItems.Cast<GameItemModel>().ToList();
             _watchlistViewModel.AddItemsToWatchlist(itemsToAdd, watchlist);
         }
 
-        public override bool Equals(object obj)
+        private Dictionary<string, List<string>> BuildSubtypeDictionary(List<GameItemModel> items)
         {
-            if (!(obj is ItemSearchViewModel)) return false;
+            var dictionary = new Dictionary<string, List<string>> {{"All", null}};
 
-            return (obj as ItemSearchViewModel).ViewModelName == this.ViewModelName;
+            foreach (string type in items.Select(i => i.Type).Distinct())
+            {
+                dictionary.Add(type, 
+                    items.Where(i => i.Type == type).Select(t => t.SubType).Distinct().ToList());
+                dictionary[type].Insert(0, "All");
+            }
+            return dictionary;
         }
     }
 }

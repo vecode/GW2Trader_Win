@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:viewModel="clr-namespace:GW2Trader.ViewModel"
         xmlns:view="clr-namespace:GW2Trader.View"
-        xmlns:util="clr-namespace:GW2Trader.Util"
+        AllowsTransparency="True"
         Title="GW2Trader" Height="750" Width="1000" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
@@ -15,13 +15,13 @@
         <TabControl>
 
             <TabItem DataContext="{Binding ChildViews[0]}" Header="{Binding ViewModelName}">
-                <view:ItemSearchView DataContext="{Binding}"/>                
+                <view:ItemSearchView DataContext="{Binding}"/>
             </TabItem>
 
             <TabItem DataContext="{Binding ChildViews[1]}" Header="{Binding ViewModelName}">
                 <view:WatchlistView DataContext="{Binding}"/>
             </TabItem>
-            
+
         </TabControl>
     </Grid>
 </Controls:MetroWindow>

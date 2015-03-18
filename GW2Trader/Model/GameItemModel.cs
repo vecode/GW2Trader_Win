@@ -32,10 +32,12 @@ namespace GW2Trader.Model
         public String Name { get; set; }
 
         [Required]
-        public ItemRarity.Rarity Rarity { get; set; }
+        public string Rarity { get; set; }
 
         [Required]
-        public ItemType.Type Type { get; set; }
+        public string Type { get; set; }
+
+        public string SubType { get; set; }
 
         [Required]
         public int RestrictionLevel { get; set; }

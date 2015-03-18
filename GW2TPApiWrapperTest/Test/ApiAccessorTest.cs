@@ -12,8 +12,8 @@ namespace GW2TPApiWrapperTest.Test
     [TestClass]
     public class ApiAccessorTest
     {
-        private IApiAccessor _apiAccessor = new ApiAccessor();
-        private const int _validItemId = 19684;
+        private readonly IApiAccessor _apiAccessor = new ApiAccessor();
+        private const int ValidItemId = 19684;
 
         [TestMethod]
         public void IdListShouldBeValidJson()
@@ -27,7 +27,7 @@ namespace GW2TPApiWrapperTest.Test
         public void SingleItemShouldBeValidJson()
         {
             JsonSchema schema = JsonSchema.Parse(JsonResultSchema.ItemSchema);
-            JObject itemDetails = JObject.Parse(StreamToString(_apiAccessor.ItemDetails(_validItemId)));
+            JObject itemDetails = JObject.Parse(StreamToString(_apiAccessor.ItemDetails(ValidItemId)));
             Assert.IsTrue(itemDetails.IsValid(schema));
         }
 

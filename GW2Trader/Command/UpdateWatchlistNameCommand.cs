@@ -18,7 +18,7 @@ namespace GW2Trader.Command
         public override void Execute(object parameter)
         {
             WatchlistViewModel viewModel = parameter as WatchlistViewModel;
-            viewModel.UpdateWatchlistName(viewModel.SelectedWatchlist);
+            viewModel.UpdateWatchlistName();
         }
     }
 }

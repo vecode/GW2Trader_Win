@@ -14,38 +14,53 @@ namespace GW2Trader.Command
             var viewModel = parameter as ItemSearchViewModel;
             var itemCollection = (parameter as ItemSearchViewModel).Items;
 
-            itemCollection.Filter = item =>
+            itemCollection.Filter = i =>
             {
-                var itemModel = item;
+                var item = i;
 
-                if (itemModel == null) return false;
+                if (item == null) return false;
 
-                if (itemModel.RestrictionLevel < viewModel.MinLvl)
+                if (item.RestrictionLevel < viewModel.MinLvl)
                     return false;
 
-                if (itemModel.RestrictionLevel > viewModel.MaxLvl)
+                if (item.RestrictionLevel > viewModel.MaxLvl)
                     return false;
 
-                //if (itemModel.Margin < viewModel.MinMargin)
+                if (item.Margin < viewModel.MinMargin)
+                    return false;
+
+                if (item.Margin > viewModel.MaxMargin && viewModel.MaxMargin != 0)
+                    return false;
+
+                if (viewModel.SelectedRarity.Name != "All" && viewModel.SelectedRarity.Name != item.Rarity)
+                    return false;
+
+
+                if (item.ROI <= viewModel.MinROI)
+                    return false;
+
+                //if (item.ROI > viewModel.MaxROI && viewModel.MaxROI != 0)
                 //    return false;
 
-                //if (itemModel.Margin > viewModel.MaxMargin && viewModel.MaxMargin != 0)
-                //    return false;
-
-                //if (itemModel.ROI < viewModel.MinROI)
-                //    return false;
-
-                //if (itemModel.ROI > viewModel.MaxROI && viewModel.MaxROI != 0)
-                //    return false;
+                if (viewModel.SelectedType != "All" && viewModel.SelectedType != null)
+                {
+                    if (viewModel.SelectedType != item.Type)
+                    {
+                        return false;
+                    }
+                    if (viewModel.SelectedSubType != "All" && viewModel.SelectedSubType != item.SubType)
+                    {
+                        return false;
+                    }
+                }
 
                 if (!(string.IsNullOrWhiteSpace(viewModel.Keyword) || string.IsNullOrEmpty(viewModel.Keyword)))
                 {
-                    if (!itemModel.Name.ToLower().Contains(viewModel.Keyword.ToLower()))
+                    if (!item.Name.ToLower().Contains(viewModel.Keyword.ToLower()))
                         return false;
                 }
                 return true;
             };
-            viewModel.UpdateCommerceData();
         }
     }
 }

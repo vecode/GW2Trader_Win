@@ -22,16 +22,23 @@ namespace GW2TPApiWrapper.Entities
 
         public string Description { get; set; }
 
-        public ItemType.Type Type { get; set; }
+        public string Type { get; set; }
 
         public int Level { get; set; }
 
-        public ItemRarity.Rarity Rarity { get; set; }
+        public string Rarity { get; set; }
 
         [JsonProperty("vendor_value")]
         public int VendorValue { get; set; }
 
         [JsonProperty("icon")]
         public String IconUrl { get; set; }
+
+        public Details Details { get; set; }
+    }
+
+    public class Details
+    {
+        public string Type { get; set; }
     }
 }

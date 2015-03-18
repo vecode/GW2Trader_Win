@@ -31,12 +31,8 @@ namespace GW2Trader.Data
             }
         }
 
-        private class DbInitializer : DropCreateDatabaseIfModelChanges<GameDataContext>
+        private class DbInitializer : CreateDatabaseIfNotExists<GameDataContext>
         {
-            protected override void Seed(GameDataContext context)
-            {
-                base.Seed(context);
-            }
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

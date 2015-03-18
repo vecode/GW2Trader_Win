@@ -41,11 +41,14 @@ namespace GW2Trader.Data
             foreach (var gameItemModel in items)
             {
                 var respectivePrice = updatedPrices.Find(p => p.Id == gameItemModel.ItemId);
-                gameItemModel.SellListing = respectivePrice.Sells.UnitPrice;
-                gameItemModel.SellListingQuantity = respectivePrice.Sells.Quantity;
-                gameItemModel.BuyOrder = respectivePrice.Buys.UnitPrice;
-                gameItemModel.BuyOrderQuantity = respectivePrice.Buys.Quantity;
-                gameItemModel.CommerceDataLastUpdated = DateTime.Now;
+                if (respectivePrice != null)
+                {
+                    gameItemModel.SellListing = respectivePrice.Sells.UnitPrice;
+                    gameItemModel.SellListingQuantity = respectivePrice.Sells.Quantity;
+                    gameItemModel.BuyOrder = respectivePrice.Buys.UnitPrice;
+                    gameItemModel.BuyOrderQuantity = respectivePrice.Buys.Quantity;
+                    gameItemModel.CommerceDataLastUpdated = DateTime.Now;
+                }
             }
         }
     }

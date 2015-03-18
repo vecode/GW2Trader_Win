@@ -19,7 +19,6 @@ namespace GW2Trader.Command
         {
             WatchlistViewModel viewModel = parameter as WatchlistViewModel;
             viewModel.RemoveWatchlist(viewModel.SelectedWatchlist);
-            viewModel.SelectedWatchlist = null;
         }
     }
 }

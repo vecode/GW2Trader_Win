@@ -23,7 +23,7 @@ namespace GW2Trader.Data
             {
                 if (!context.GameItems.Any() || dropOldDb)
                 {
-                    var ids = _wrapper.ItemIds().Take(100).ToArray();
+                    var ids = _wrapper.ItemIds().ToArray();
                     var items = _wrapper.ItemDetails(ids).ToList();
                     var convertedItems = items.Select(ConvertToGameItem).ToList();
 
@@ -42,6 +42,7 @@ namespace GW2Trader.Data
                 Rarity = item.Rarity,
                 RestrictionLevel = item.Level,
                 Type = item.Type,
+                SubType = item.Details != null? item.Details.Type : null,
                 CommerceDataLastUpdated = DateTime.Now
             };
             return itemModel;

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapImage x:Key="CopperCoin" UriSource="../Resource/Copper_coin.png"/>
+    <BitmapImage x:Key="SilverCoin" UriSource="../Resource/Silver_coin.png"/>
+    <BitmapImage x:Key="GoldCoin" UriSource="../Resource/Gold_coin.png"/>
+    <BitmapImage x:Key="Delete" UriSource="../Resource/Delete.png"/>        
+</ResourceDictionary>

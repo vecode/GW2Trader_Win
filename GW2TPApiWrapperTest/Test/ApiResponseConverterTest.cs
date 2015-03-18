@@ -170,8 +170,9 @@ namespace GW2TPApiWrapperTest.Test
             Assert.IsNotNull(item);
             Assert.AreEqual("Eternity", item.Name);
             Assert.AreEqual(30689, item.Id);
-            Assert.AreEqual(ItemRarity.Rarity.Legendary, item.Rarity);
-            Assert.AreEqual(ItemType.Type.Weapon, item.Type);
+            Assert.AreEqual("Legendary", item.Rarity);
+            Assert.AreEqual("Weapon", item.Type);
+            Assert.AreEqual("Greatsword", item.Details.Type);
         }
 
         [TestMethod]

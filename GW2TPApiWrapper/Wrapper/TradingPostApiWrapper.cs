@@ -74,15 +74,15 @@ namespace GW2TPApiWrapper.Wrapper
         {
             Func<int[], Stream> entityRetrievalMethod;
 
-            if (typeof(T).Equals(typeof(Item)))
+            if (typeof(T) == typeof(Item))
             {
                 entityRetrievalMethod = (i) => _apiAccessor.ItemDetails(i);
             }
-            else if (typeof(T).Equals(typeof(ItemListing)))
+            else if (typeof(T) == typeof(ItemListing))
             {
                 entityRetrievalMethod = (i) => _apiAccessor.Listings(i);
             }
-            else if (typeof(T).Equals(typeof(ItemPrice)))
+            else if (typeof(T) == typeof(ItemPrice))
             {
                 entityRetrievalMethod = (i) => _apiAccessor.Prices(i);
             }
@@ -93,21 +93,18 @@ namespace GW2TPApiWrapper.Wrapper
 
             List<T> entites = new List<T>(ids.Length);
             int needRequests = (int)Math.Ceiling((double)ids.Length / RequestSize);
-            int[] idSubset;
-            T[] entitySubset;
-            Stream responseStream;
 
             for (int i = 0; i < needRequests; i++)
             {
-                idSubset = ids.Skip(i * RequestSize).Take(RequestSize).ToArray();
-                responseStream = entityRetrievalMethod(idSubset);
+                var idSubset = ids.Skip(i * RequestSize).Take(RequestSize).ToArray();
+                var responseStream = entityRetrievalMethod(idSubset);
 
                 if (responseStream == null)
                 {
                     break;
                 }
 
-                entitySubset = ApiResponseConverter.DeserializeStream<T[]>(responseStream);
+                var entitySubset = ApiResponseConverter.DeserializeStream<T[]>(responseStream);
                 entites.AddRange(entitySubset);
             }
             return entites;
@@ -127,6 +124,5 @@ namespace GW2TPApiWrapper.Wrapper
         {
             return ApiRequest<ItemPrice>(ids);
         }
-
     }
 }

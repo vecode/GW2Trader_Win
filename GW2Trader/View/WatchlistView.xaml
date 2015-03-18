@@ -2,7 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:control="clr-namespace:GW2Trader.Control"
-             xmlns:view="clr-namespace:GW2Trader.View"
              xmlns:util="clr-namespace:GW2Trader.Util">
 
     <UserControl.Resources>
@@ -24,8 +23,16 @@
             </Style>
         </Grid.Resources>
 
-        <StackPanel Grid.Column="0" Margin="5,35,5,0">
-            <ListBox ItemsSource="{Binding Watchlists}" Height="150" Margin="2" BorderThickness="1" BorderBrush="LightGray"
+        <Grid Grid.Column="0" Margin="5,35,5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0" ItemsSource="{Binding Watchlists}" MinHeight="150" Margin="2" 
+                     BorderThickness="1" BorderBrush="LightGray"
                      SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
 
                 <ListBox.ItemTemplate>
@@ -35,17 +42,19 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Grid>
+            <GridSplitter Grid.Row="1" Height="2" HorizontalAlignment="Stretch" Margin="2"/>
+
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Name:" Margin="2"/>
-                <TextBox Grid.Column="1" Margin="2" Text="{Binding SelectedWatchlist.Name}" 
+                <TextBox Grid.Column="1" Margin="2" Text="{Binding WatchlistName}" 
                          VerticalContentAlignment="Center" />
             </Grid>
 
-            <Grid Margin="2">
+            <Grid Grid.Row="3" Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -59,7 +68,7 @@
                 <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
                         Command="{Binding Path=DeleteWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
             </Grid>
-        </StackPanel>
+        </Grid>
 
         <control:CustomDataGrid Grid.Column="1" CanUserAddRows="False" AutoGenerateColumns="False"
                                 ItemsSource="{Binding Path=SelectedWatchlist.Items}" 
@@ -70,18 +79,38 @@
                 <StaticResource ResourceKey="IconColumn"/>
                 <StaticResource ResourceKey="NameColumn"/>
                 <StaticResource ResourceKey="BuyPriceColumn"/>
-                <StaticResource ResourceKey="DemandColumn"/>
                 <StaticResource ResourceKey="SellPriceColumn"/>
-                <StaticResource ResourceKey="SupplyColumn"/>
                 <StaticResource ResourceKey="MarginColumn"/>
+                <StaticResource ResourceKey="DemandColumn"/>
+                <StaticResource ResourceKey="SupplyColumn"/>
                 <StaticResource ResourceKey="RoiColumn"/>
-                <StaticResource ResourceKey="PlaceholderColumn"/>
+
+                <DataGridTemplateColumn Header=" ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontFamily="Webdings" Content="r" Background="Transparent" FontSize="20">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiValueConverter}">
+                                        <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=control:CustomDataGrid}" Path="DataContext"/>
+                                        <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=control:CustomDataGrid}" Path="SelectedItem"/>
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                                <Button.Command>
+                                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=control:CustomDataGrid}" Path="DataContext.DeleteWatchlistItemCommand"/>
+                                </Button.Command>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
             </control:CustomDataGrid.Columns>
+
 
             <control:CustomDataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Setter Property="Background"
                             Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}" />
+                    <Setter Property="FontSize" Value="14"/>
                 </Style>
             </control:CustomDataGrid.RowStyle>
         </control:CustomDataGrid>

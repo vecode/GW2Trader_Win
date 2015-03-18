@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="GW2Trader.View.MoneyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:util="clr-namespace:GW2Trader.Util"
+             mc:Ignorable="d" Width="Auto" x:Name="Money">
+
+    <UserControl.Resources>
+        <util:GoldVisibilityConverter x:Key="GoldVisibilityConverter"/>    
+        <util:SilverVisibilityConverter x:Key="SilverVisibilityConverter"/>
+        <util:MoneyToGoldConverter x:Key="MoneyToGoldConverter"/>
+        <util:MoneyToSilverConverter x:Key="MoneyToSilverConverter"/>
+        <util:MoneyToCopperConverter x:Key="MoneyToCopperConverter"/>
+    </UserControl.Resources>   
+    
+    <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="2,0,2,0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="25" Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                </Style>
+                <Style TargetType="Image">
+                    <Setter Property="Width" Value="15"></Setter>
+                </Style>
+            </Grid.Resources>
+
+            <Label Grid.Column="0" Content="{Binding Converter={StaticResource MoneyToGoldConverter}}" MinWidth="40" 
+                   Visibility="{Binding Converter={StaticResource GoldVisibilityConverter}}"/>
+            <Image Grid.Column="1" Source="{StaticResource GoldCoin}" 
+                   Visibility="{Binding Converter={StaticResource GoldVisibilityConverter}}"/>
+            <Label Grid.Column="2" Content="{Binding Converter={StaticResource MoneyToSilverConverter}}" MinWidth="25" 
+                   Visibility="{Binding Converter={StaticResource SilverVisibilityConverter}}"/>
+            <Image Grid.Column="3" Source="{StaticResource SilverCoin}"
+                   Visibility="{Binding Converter={StaticResource SilverVisibilityConverter}}"/>
+            <Label Grid.Column="4" Content="{Binding Converter={StaticResource MoneyToCopperConverter}}" MinWidth="25"/>
+            <Image Grid.Column="5" Source="{StaticResource CopperCoin}" Margin="0,0,2,0"/>
+
+        </Grid>
+    </Border>
+</UserControl>
