@@ -73,6 +73,7 @@
         <control:CustomDataGrid Grid.Column="1" CanUserAddRows="False" AutoGenerateColumns="False"
                                 ItemsSource="{Binding Path=SelectedWatchlist.Items}" 
                                 CellStyle="{StaticResource ItemDataGridCellStyle}"
+                                CanUserDeleteRows="False" CanUserReorderColumns="False"
                                 Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
 
             <control:CustomDataGrid.Columns>
