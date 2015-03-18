@@ -13,7 +13,6 @@ namespace GW2Trader.Command
         {
             var viewModel = parameter as ItemSearchViewModel;
             viewModel.Items.MoveToPreviousPage();
-            viewModel.UpdateCommerceData();
         }
     }
 }
