@@ -1,14 +1,14 @@
-- [ ] implement functionality to update listings
-- [ ] add db migration
-- [ ] implement local icon storage
-- [ ] download missing icons in background, preferring those from current show items (maybe use 2 queues + concurrentdictionary?)
-- [ ] add buttons linking to gw2tp and gw2spidy for each item in searchview
-- [ ] color margin field depending on its value (green for postive, red for negative values)
-- [ ] add button (and progressbar) for updating commerce date manually (place it in mainviewmodel to be always viewable)
-- [ ] inform user of missing database
-- [ ] inform user of non up-to-date database
-- [ ] add description property to watchlist
-- [ ] add sorting to paginatedobservablecollection
-- [ ] add settings view + viewmodel
-- [ ] implement item inventory (singleton) composed of dbcontext, apiupdater
-- [ ] implement searching by multiple keywords
+- implement functionality to update listings
+- add db migration
+- implement local icon storage
+- download missing icons in background, preferring those from current show items (maybe use 2 queues + concurrentdictionary?)
+- add buttons linking to gw2tp and gw2spidy for each item in searchview
+- color margin field depending on its value (green for postive, red for negative values)
+- add button (and progressbar) for updating commerce date manually (place it in mainviewmodel to be always viewable)
+- inform user of missing database
+- inform user of non up-to-date database
+- add description property to watchlist
+- add sorting to paginatedobservablecollection
+- add settings view + viewmodel
+- implement item inventory (singleton) composed of dbcontext, apiupdater
+- implement searching by multiple keywords
