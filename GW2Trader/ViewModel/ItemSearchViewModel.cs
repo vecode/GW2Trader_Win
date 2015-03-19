@@ -17,14 +17,13 @@ namespace GW2Trader.ViewModel
         private readonly IApiDataUpdater _apiDataUpdater;
         private readonly WatchlistViewModel _watchlistViewModel;
         private List<GameItemModel> _items;
-        private Dictionary<string, List<string>> _subTypeDictionary; 
+        private readonly Dictionary<string, List<string>> _subTypeDictionary; 
 
         public ItemSearchViewModel() { }
 
         public ItemSearchViewModel
             (
             List<GameItemModel> items,
-            ITradingPostApiWrapper tradingPostApiWrapper,
             IApiDataUpdater apiDataUpdater,
             WatchlistViewModel watchlistViewModel
             )
@@ -35,7 +34,7 @@ namespace GW2Trader.ViewModel
             _items = items;
 
             Items = new PaginatedObservableCollection<GameItemModel>(_items, 20);
-            Task.Run(() => UpdateCommerceData());
+            //Task.Run(() => UpdateCommerceData());
 
             _subTypeDictionary = BuildSubtypeDictionary(_items);
             SelectedRarity = RarityModel.Rarities.First();
@@ -189,10 +188,9 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private List<string> types;
         public List<string> Types
         {
-            get { return _subTypeDictionary.Keys.ToList(); }            
+            get { return _subTypeDictionary.Keys.ToList(); }
         }
 
         private List<string> _subTypes;

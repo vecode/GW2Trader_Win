@@ -9,6 +9,7 @@ using GW2Trader.Data;
 using GW2Trader.DesignTimeErrorPrevention;
 using GW2Trader.Model;
 using GW2Trader.Util;
+using System.Threading.Tasks;
 
 namespace GW2Trader.ViewModel
 {
@@ -16,16 +17,18 @@ namespace GW2Trader.ViewModel
     {
         private int _selectedTabIndex;
         private IGameDataContextProvider _contextProvider = new GameDataContextProvider();
-        private List<GameItemModel> _items;
+        private List<GameItemModel> _sharedItems;
         private ITradingPostApiWrapper _tpApiWrapper;
         private IApiDataUpdater _dataUpdater;
+
+        public ObservableCollection<BaseViewModel> ChildViews { get; private set; }
 
         public MainViewModel()
         {
             Init();
 
-            var watchlistViewModel = new WatchlistViewModel(_contextProvider, _dataUpdater);
-            var searchViewModel = new ItemSearchViewModel(_items, _tpApiWrapper, _dataUpdater, watchlistViewModel);
+            var watchlistViewModel = new WatchlistViewModel(_contextProvider, _sharedItems);
+            var searchViewModel = new ItemSearchViewModel(_sharedItems, _dataUpdater, watchlistViewModel);
 
             ChildViews = new ObservableCollection<BaseViewModel>
             {
@@ -33,8 +36,6 @@ namespace GW2Trader.ViewModel
                 watchlistViewModel
             };
         }
-
-        public Logger Logger { get; set; }
 
         public int SelectedTabIndex
         {
@@ -46,10 +47,9 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public ObservableCollection<BaseViewModel> ChildViews { get; private set; }
-
         private void Init()
         {
+            // prevent design time error in xaml designer
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
                 _contextProvider = new FakeDataContextProvider();
@@ -67,8 +67,9 @@ namespace GW2Trader.ViewModel
             
             using (var context = _contextProvider.GetContext())
             {
-                _items = context.GameItems.ToList();
+                _sharedItems = context.GameItems.ToList();
             }
+            Task.Run(() => _dataUpdater.UpdateCommerceData(_sharedItems));
         }
     }
 }

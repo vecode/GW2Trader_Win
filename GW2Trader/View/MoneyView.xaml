@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:util="clr-namespace:GW2Trader.Util"
-             mc:Ignorable="d" Width="Auto" x:Name="Money">
+             mc:Ignorable="d" Width="150" x:Name="Money">
 
     <UserControl.Resources>
         <util:GoldVisibilityConverter x:Key="GoldVisibilityConverter"/>    

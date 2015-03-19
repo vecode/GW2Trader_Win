@@ -10,5 +10,4 @@
 - [ ] add description property to watchlist
 - [ ] add sorting to paginatedobservablecollection
 - [ ] add settings view + viewmodel
-- [ ] implement item inventory (singleton) composed of dbcontext, apiupdater
 - [ ] implement searching by multiple keywords

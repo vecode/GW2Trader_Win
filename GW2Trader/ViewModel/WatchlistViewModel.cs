@@ -10,27 +10,40 @@ namespace GW2Trader.ViewModel
 {
     public class WatchlistViewModel : BaseViewModel
     {
-        private IApiDataUpdater _apiDataUpdater;
         private readonly IGameDataContextProvider _contextProvider;
         private ItemWatchlistModel _selectedWatchlist;
         private ObservableCollection<ItemWatchlistModel> _watchlists;
+        private readonly List<GameItemModel> _sharedItems;
 
-        public WatchlistViewModel(IGameDataContextProvider contextProvider,
-            IApiDataUpdater apiDataUpdater)
+        public WatchlistViewModel(IGameDataContextProvider contextProvider, List<GameItemModel> sharedItems)
         {
             ViewModelName = "Watchlists";
             _contextProvider = contextProvider;
-            _apiDataUpdater = apiDataUpdater;
+            _sharedItems = sharedItems;
 
-            using (var context = contextProvider.GetContext())
+            BuildWatchlists();
+
+            if (Watchlists.Count != 0)
+            {
+                SelectedWatchlist = Watchlists[0];
+            }
+        }
+
+        private void BuildWatchlists()
+        {
+            using (var context = _contextProvider.GetContext())
             {
                 var watchlists = context.ItemWatchlists.Include(wl => wl.Items).ToList();
                 Watchlists = new ObservableCollection<ItemWatchlistModel>(watchlists);
             }
 
-            if (Watchlists.Count != 0)
+            foreach (ItemWatchlistModel watchlist in Watchlists)
             {
-                SelectedWatchlist = Watchlists[0];
+                List<GameItemModel> sharedItemsToAdd = 
+                    _sharedItems.Where(item => watchlist.Items.Select(i => i.ItemId).Contains(item.ItemId)).ToList();
+
+                watchlist.Items.Clear();
+                sharedItemsToAdd.ForEach(item => watchlist.Items.Add(item));
             }
         }
 
@@ -52,7 +65,7 @@ namespace GW2Trader.ViewModel
                 _selectedWatchlist = value;
                 RaisePropertyChanged("SelectedWatchlist");
                 WatchlistName = _selectedWatchlist == null ? null : _selectedWatchlist.Name;
-           }
+            }
         }
 
         private string _watchlistName;
@@ -70,7 +83,7 @@ namespace GW2Trader.ViewModel
         {
             ItemWatchlistModel newWatchlist = new ItemWatchlistModel { Name = WatchlistName };
             using (var context = _contextProvider.GetContext())
-            {                
+            {
                 context.ItemWatchlists.Add(newWatchlist);
                 context.Save();
                 newWatchlist.Id = context.ItemWatchlists.ToList().Last().Id;
