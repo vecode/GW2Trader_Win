@@ -1,7 +1,7 @@
 - implement functionality to update listings
 - add db migration
 - implement local icon storage
-- download missing icons in background, preferring those from current show items (maybe use 2 queues + concurrentdictionary?)
+- download missing icons in background, preferring those from current shown items (maybe use 2 queues + concurrentdictionary?)
 - add buttons linking to gw2tp and gw2spidy for each item in searchview
 - color margin field depending on its value (green for postive, red for negative values)
 - add button (and progressbar) for updating commerce date manually (place it in mainviewmodel to be always viewable)
