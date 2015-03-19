@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:control="clr-namespace:GW2Trader.Control"
              xmlns:util="clr-namespace:GW2Trader.Util"     
+             xmlns:view="clr-namespace:GW2Trader.View"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
 
     <UserControl.Resources>
@@ -45,6 +46,8 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.Resources>
@@ -60,7 +63,7 @@
                 </Style>
             </Grid.Resources>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Keyword:" />
+            <Label Grid.Row="0" Grid.Column="0" Content="Keyword" />
             <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="2"
                      Text="{Binding Path=Keyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
@@ -69,15 +72,15 @@
                 </TextBox.InputBindings>
             </TextBox>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Type:" />
+            <Label Grid.Row="1" Grid.Column="0" Content="Type" />
             <controls:SplitButton Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
                                   ItemsSource="{Binding Types}" SelectedItem="{Binding SelectedType}"/>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Subtype:" />
+            <Label Grid.Row="2" Grid.Column="0" Content="Subtype" />
             <controls:SplitButton Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                   ItemsSource="{Binding SubTypes}" SelectedItem="{Binding SelectedSubType}"/>
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Rarity:" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Rarity" />
             <controls:SplitButton Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
                                   ItemsSource="{Binding Rarities}" HorizontalContentAlignment="Stretch"
                                   SelectedItem="{Binding SelectedRarity, Mode=TwoWay}">
@@ -99,27 +102,35 @@
 
             </controls:SplitButton>
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Level:"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Level"/>
             <TextBox Grid.Row="4" Grid.Column="1" 
                 Text="{Binding MinLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Grid.Row="4" Grid.Column="2" 
                 Text="{Binding Path=MaxLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Row="6" Grid.Column="0" Content="Margin:"/>
+            <Label Grid.Row="6" Grid.Column="0" Content="Margin"/>
             <TextBox Grid.Row="6" Grid.Column="1"
                 Text="{Binding Path=MinMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Grid.Row="6" Grid.Column="2"
                 Text="{Binding Path=MaxMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="ROI:" Grid.Row="7" Grid.Column="0" ToolTip="return of investment"/>
+            <Label Content="ROI" Grid.Row="7" Grid.Column="0" ToolTip="return of investment"/>
             <TextBox Grid.Row="7" Grid.Column="1"
                 Text="{Binding Path=MinROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Grid.Row="7" Grid.Column="2"
                 Text="{Binding Path=MaxROI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            
+            <Label Grid.Row="8" Grid.Column="0" Content="Sort by"/>
+            <controls:SplitButton Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False"
+                                  ItemsSource="{Binding Path=SortProperties}"/>
 
-            <Separator Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"/>
+            <Label Grid.Row="9" Grid.Column="0" Content="Sort Order"/>
+            <controls:SplitButton Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False"
+                                  ItemsSource="{Binding Path=SortOrders}"/>
 
-            <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3">
+            <Separator Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+            <Grid Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -142,15 +153,15 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <control:CustomDataGrid Grid.Row="0" 
+            <control:CustomDataGrid Grid.Row="0" RowDetailsVisibilityMode="Collapsed"
                 ItemsSource="{Binding Items}" AutoGenerateColumns="False"
                 SelectedItemsList="{Binding SelectedItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                 CellStyle="{StaticResource ItemDataGridCellStyle}"
                 SelectionUnit="FullRow" SelectionMode="Extended"
-                Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
-
+                Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">       
+                
                 <control:CustomDataGrid.Columns>
                     <StaticResource ResourceKey="IconColumn"/>
                     <StaticResource ResourceKey="NameColumn"/>
@@ -167,7 +178,12 @@
                     <Style TargetType="{x:Type DataGridRow}">
                         <Setter Property="Background"
                             Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
-                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="BorderBrush" Value="GreenYellow"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </control:CustomDataGrid.RowStyle>
 
@@ -193,6 +209,15 @@
                         </MenuItem>
                     </ContextMenu>
                 </control:CustomDataGrid.ContextMenu>
+                
+                <control:CustomDataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <view:ListingView/>
+                    </DataTemplate>
+                </control:CustomDataGrid.RowDetailsTemplate>
+                    
+                
+                
             </control:CustomDataGrid>
 
             <Grid Grid.Row="1">

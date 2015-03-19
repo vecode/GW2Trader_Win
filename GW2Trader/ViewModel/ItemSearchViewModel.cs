@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using GW2TPApiWrapper.Wrapper;
@@ -16,8 +17,25 @@ namespace GW2Trader.ViewModel
     {
         private readonly IApiDataUpdater _apiDataUpdater;
         private readonly WatchlistViewModel _watchlistViewModel;
-        private List<GameItemModel> _items;
-        private readonly Dictionary<string, List<string>> _subTypeDictionary; 
+        private readonly List<GameItemModel> _items;
+        private readonly Dictionary<string, List<string>> _subTypeDictionary;
+
+        public enum SortProperty
+        {
+            Name,
+            BuyPrice,
+            SellPrice,
+            Margin,
+            Demand,
+            Supplay,
+            Roi
+        };
+
+        public enum SortOrder
+        {
+            Ascending,
+            Descending
+        };
 
         public ItemSearchViewModel() { }
 
@@ -34,7 +52,6 @@ namespace GW2Trader.ViewModel
             _items = items;
 
             Items = new PaginatedObservableCollection<GameItemModel>(_items, 20);
-            //Task.Run(() => UpdateCommerceData());
 
             _subTypeDictionary = BuildSubtypeDictionary(_items);
             SelectedRarity = RarityModel.Rarities.First();
@@ -202,6 +219,45 @@ namespace GW2Trader.ViewModel
                 _subTypes = value;
                 RaisePropertyChanged("SubTypes");
             }
+        }
+
+        private SortProperty _selectedSortProperty;
+        public SortProperty SelectedSortProperty
+        {
+            get
+            {
+                return _selectedSortProperty;
+            }
+            set
+            {
+                _selectedSortProperty = value;
+                RaisePropertyChanged("SelectedSortProperty");
+            }
+        }
+
+        private SortOrder _selectedSortOrder;
+
+        public SortOrder SelectedSortOrder
+        {
+            get
+            {
+                return _selectedSortOrder;
+            }
+            set
+            {
+                _selectedSortOrder = value;
+                RaisePropertyChanged("SelectedSortOrder");
+            }
+        }
+
+        public List<string> SortProperties
+        {
+            get { return Enum.GetNames(typeof(SortProperty)).ToList(); }
+        }
+
+        public List<string> SortOrders
+        {
+            get { return Enum.GetNames(typeof (SortOrder)).ToList(); }
         }
 
         public string PageInfo

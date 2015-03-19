@@ -26,7 +26,7 @@ namespace GW2Trader.Command
                 if (item.RestrictionLevel > viewModel.MaxLvl)
                     return false;
 
-                if (item.Margin < viewModel.MinMargin)
+                if (item.Margin < viewModel.MinMargin && viewModel.MinMargin != 0)
                     return false;
 
                 if (item.Margin > viewModel.MaxMargin && viewModel.MaxMargin != 0)
@@ -36,11 +36,11 @@ namespace GW2Trader.Command
                     return false;
 
 
-                if (item.ROI <= viewModel.MinROI)
+                if (item.ROI <= viewModel.MinROI && viewModel.MinROI != 0)
                     return false;
 
-                //if (item.ROI > viewModel.MaxROI && viewModel.MaxROI != 0)
-                //    return false;
+                if (item.ROI > viewModel.MaxROI && viewModel.MaxROI != 0)
+                    return false;
 
                 if (viewModel.SelectedType != "All" && viewModel.SelectedType != null)
                 {

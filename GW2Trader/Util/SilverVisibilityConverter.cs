@@ -13,6 +13,10 @@ namespace GW2Trader.Util
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value == null)
+            {
+                return null;
+            }
             int val = (int)value;
             return (val > 99) ? Visibility.Visible : Visibility.Hidden;
         }

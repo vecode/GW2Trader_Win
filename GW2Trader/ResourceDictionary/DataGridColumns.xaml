@@ -5,7 +5,7 @@
 
     <util:MultiValueConverter x:Key="MultiValueConverter"/>
     
-    <DataGridTemplateColumn x:Key="IconColumn" x:Shared="False" Header="">
+    <DataGridTemplateColumn x:Key="IconColumn" x:Shared="False" Header="Icon" CanUserSort="False">
         <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
                 <Image Source="{Binding IconImageSource}" Width="50"/>
@@ -14,34 +14,34 @@
     </DataGridTemplateColumn>    
     
     <DataGridTextColumn x:Key="NameColumn" Header="Name" Binding="{Binding Name}" x:Shared="False"/>
-    <DataGridTextColumn x:Key="TypeColumn" Header="Type" Binding="{Binding Type}" x:Shared="False"/>
+    <DataGridTextColumn x:Key="TypeColumn" Header="Type" Binding="{Binding Type}" x:Shared="False" SortMemberPath="{Binding Type}"/>
     <DataGridTextColumn x:Key="DemandColumn" Header="Demand" Binding="{Binding BuyOrderQuantity}" x:Shared="False"/>
     <DataGridTextColumn x:Key="SupplyColumn" Header="Supply" Binding="{Binding SellListingQuantity}" x:Shared="False"/>
     <DataGridTextColumn x:Key="RoiColumn" Header="ROI" Binding="{Binding ROI}" x:Shared="False"/>
     <DataGridTextColumn x:Key="PlaceholderColumn" Width="*" x:Shared="False"/>
 
-    <DataGridTemplateColumn Header="Buy Price" x:Key="BuyPriceColumn" x:Shared="False">
+    <DataGridTemplateColumn Header="Buy Price" x:Key="BuyPriceColumn" x:Shared="False" SortMemberPath="{Binding Path=BuyPrice}">
         <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
-                <view:MoneyView DataContext="{Binding Path=BuyOrder}"/>
+                <view:MoneyView DataContext="{Binding Path=BuyPrice}"/>
             </DataTemplate>
         </DataGridTemplateColumn.CellTemplate>
     </DataGridTemplateColumn>
 
-    <DataGridTemplateColumn Header="Sell Price" x:Key="SellPriceColumn" x:Shared="False">
+    <DataGridTemplateColumn Header="Sell Price" x:Key="SellPriceColumn" x:Shared="False" SortMemberPath="{Binding Path=SellPrice}">
         <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
-                <view:MoneyView DataContext="{Binding Path=SellListing}"/>
+                <view:MoneyView DataContext="{Binding Path=SellPrice}"/>
             </DataTemplate>
         </DataGridTemplateColumn.CellTemplate>
     </DataGridTemplateColumn>
 
-    <DataGridTemplateColumn Header="Margin" x:Key="MarginColumn" x:Shared="False">
+    <DataGridTemplateColumn Header="Margin" x:Key="MarginColumn" x:Shared="False" SortMemberPath="{Binding Path=Margin}" CanUserSort="True">
         <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
                 <view:MoneyView DataContext="{Binding Path=Margin}"/>
             </DataTemplate>
         </DataGridTemplateColumn.CellTemplate>
     </DataGridTemplateColumn>
-
+    
 </ResourceDictionary>

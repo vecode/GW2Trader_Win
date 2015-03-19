@@ -12,6 +12,10 @@ namespace GW2Trader.Util
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value == null)
+            {
+                return null;
+            }
             int num = (int)value % 10000;
             int val = num/100;
             return val;

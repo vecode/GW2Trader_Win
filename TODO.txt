@@ -11,3 +11,4 @@
 - [ ] add sorting to paginatedobservablecollection
 - [ ] add settings view + viewmodel
 - [ ] implement searching by multiple keywords
+- copy name to clipboard

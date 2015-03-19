@@ -7,15 +7,15 @@
              mc:Ignorable="d" Width="150" x:Name="Money">
 
     <UserControl.Resources>
-        <util:GoldVisibilityConverter x:Key="GoldVisibilityConverter"/>    
+        <util:GoldVisibilityConverter x:Key="GoldVisibilityConverter"/>
         <util:SilverVisibilityConverter x:Key="SilverVisibilityConverter"/>
         <util:MoneyToGoldConverter x:Key="MoneyToGoldConverter"/>
         <util:MoneyToSilverConverter x:Key="MoneyToSilverConverter"/>
         <util:MoneyToCopperConverter x:Key="MoneyToCopperConverter"/>
-    </UserControl.Resources>   
-    
-    <Border BorderThickness="1" BorderBrush="Black" Background="White" Margin="2,0,2,0">
-        <Grid>
+    </UserControl.Resources>
+
+    <Border BorderThickness="0" BorderBrush="Black" Background="Transparent" Margin="2,0,2,0">
+        <Grid Background="Transparent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="25" Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -24,20 +24,21 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.Resources>
                 <Style TargetType="Label">
                     <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                    <Setter Property="Foreground" Value="White"/>
                 </Style>
                 <Style TargetType="Image">
-                    <Setter Property="Width" Value="15"></Setter>
-                </Style>
+                    <Setter Property="Width" Value="15"/>
+               </Style>
             </Grid.Resources>
 
             <Label Grid.Column="0" Content="{Binding Converter={StaticResource MoneyToGoldConverter}}" MinWidth="40" 
                    Visibility="{Binding Converter={StaticResource GoldVisibilityConverter}}"/>
-            <Image Grid.Column="1" Source="{StaticResource GoldCoin}" 
+            <Image Grid.Column="1" Source="{StaticResource GoldCoin}"
                    Visibility="{Binding Converter={StaticResource GoldVisibilityConverter}}"/>
             <Label Grid.Column="2" Content="{Binding Converter={StaticResource MoneyToSilverConverter}}" MinWidth="25" 
                    Visibility="{Binding Converter={StaticResource SilverVisibilityConverter}}"/>

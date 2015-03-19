@@ -8,8 +8,8 @@ using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Data;
 using GW2Trader.DesignTimeErrorPrevention;
 using GW2Trader.Model;
-using GW2Trader.Util;
 using System.Threading.Tasks;
+using GW2Trader.Command;
 
 namespace GW2Trader.ViewModel
 {
@@ -70,6 +70,23 @@ namespace GW2Trader.ViewModel
                 _sharedItems = context.GameItems.ToList();
             }
             Task.Run(() => _dataUpdater.UpdateCommerceDataParallel(_sharedItems));
+        }
+
+        public void UpdateCommerceData()
+        {
+            _dataUpdater.UpdateCommerceDataParallel(_sharedItems);
+        }
+
+        private RelayCommand _updateCommerceDataCommand;
+
+        public RelayCommand UpdateCommerceDataCommand
+        {
+            get
+            {
+                if(_updateCommerceDataCommand == null) 
+                    _updateCommerceDataCommand = new UpdateCommerceDataCommand();
+                return _updateCommerceDataCommand;
+            }
         }
     }
 }

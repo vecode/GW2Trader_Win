@@ -13,10 +13,10 @@ namespace GW2Trader.Model
 {
     public class GameItemModel : ObservableObject
     {
-        [NotMapped] private int _buyOrder;
+        [NotMapped] private int _buyPrice;
         [NotMapped] private int _buyOrderQuantity;
         [NotMapped] private DateTime _commerDataLastUpdated;
-        [NotMapped] private int _sellListing;
+        [NotMapped] private int _sellPrice;
         [NotMapped] private int _sellListingQuantity;
 
         [Key]
@@ -73,13 +73,13 @@ namespace GW2Trader.Model
         public ItemListing Listing { get; set; }
 
         [NotMapped]
-        public int BuyOrder
+        public int BuyPrice
         {
-            get { return _buyOrder; }
+            get { return _buyPrice; }
             set
             {
-                _buyOrder = value;
-                RaisePropertyChanged("BuyOrder");
+                _buyPrice = value;
+                RaisePropertyChanged("BuyPrice");
                 RaisePropertyChanged("Margin");
             }
         }
@@ -96,13 +96,13 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
-        public int SellListing
+        public int SellPrice
         {
-            get { return _sellListing; }
+            get { return _sellPrice; }
             set
             {
-                _sellListing = value;
-                RaisePropertyChanged("SellListing");
+                _sellPrice = value;
+                RaisePropertyChanged("SellPrice");
                 RaisePropertyChanged("Margin");
             }
         }
@@ -135,7 +135,7 @@ namespace GW2Trader.Model
             get
             {
                 // trading post has a 15% fee
-                return (int) Math.Round(SellListing*0.85) - BuyOrder;
+                return (int) Math.Round(SellPrice*0.85) - BuyPrice;
             }
         }
 
@@ -149,7 +149,7 @@ namespace GW2Trader.Model
         {
             get
             {
-                var result = (1.0*Margin/BuyOrder)*100;
+                var result = (1.0*Margin/BuyPrice)*100;
                 return (int) Math.Round(result);
             }
         }

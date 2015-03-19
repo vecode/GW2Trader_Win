@@ -13,8 +13,12 @@ namespace GW2Trader.Util
     public class GoldVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {            
-            int val = (int) value;
+        {
+            if (value == null)
+            {
+                return null;
+            }
+            int val = (int)value;
             return (val > 9999) ? Visibility.Visible : Visibility.Hidden;
         }
 

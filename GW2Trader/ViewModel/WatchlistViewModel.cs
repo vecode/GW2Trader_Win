@@ -64,7 +64,7 @@ namespace GW2Trader.ViewModel
             {
                 _selectedWatchlist = value;
                 RaisePropertyChanged("SelectedWatchlist");
-                WatchlistName = _selectedWatchlist == null ? null : _selectedWatchlist.Name;
+                WatchlistName = _selectedWatchlist != null ? _selectedWatchlist.Name : null;
             }
         }
 

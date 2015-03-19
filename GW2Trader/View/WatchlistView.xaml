@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="205" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -25,7 +25,7 @@
 
         <Grid Grid.Column="0" Margin="5,35,5,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MaxHeight="500"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -71,9 +71,10 @@
         </Grid>
 
         <control:CustomDataGrid Grid.Column="1" CanUserAddRows="False" AutoGenerateColumns="False"
-                                ItemsSource="{Binding Path=SelectedWatchlist.Items}" 
+                                ItemsSource="{Binding Path=SelectedWatchlist.Items}" CanUserSortColumns="True"
                                 CellStyle="{StaticResource ItemDataGridCellStyle}"
                                 CanUserDeleteRows="False" CanUserReorderColumns="False"
+                                SelectionUnit="FullRow" SelectionMode="Single"
                                 Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
 
             <control:CustomDataGrid.Columns>

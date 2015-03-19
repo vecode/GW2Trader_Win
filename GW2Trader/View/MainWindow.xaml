@@ -21,7 +21,15 @@
             <TabItem DataContext="{Binding ChildViews[1]}" Header="{Binding ViewModelName}">
                 <view:WatchlistView DataContext="{Binding}"/>
             </TabItem>
-
+            <Button Width="20" Height="20"></Button>
         </TabControl>
     </Grid>
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="Update Items" 
+                    CommandParameter="{Binding Source={StaticResource MainViewModel}}"
+                    Command="{Binding Source={StaticResource MainViewModel}, Path=UpdateCommerceDataCommand}"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
 </Controls:MetroWindow>
