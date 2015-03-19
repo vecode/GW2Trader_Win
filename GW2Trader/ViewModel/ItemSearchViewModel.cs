@@ -264,7 +264,7 @@ namespace GW2Trader.ViewModel
 
         public void UpdateCommerceData()
         {
-            _apiDataUpdater.UpdateCommerceData(_items);
+            _apiDataUpdater.UpdateCommerceDataParallel(_items);
         }
 
         public void AddItemsToWatchlist(ItemWatchlistModel watchlist)

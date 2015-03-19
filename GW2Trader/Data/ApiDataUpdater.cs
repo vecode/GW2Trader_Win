@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Model;
+using System.Threading.Tasks;
 
 namespace GW2Trader.Data
 {
@@ -49,6 +50,20 @@ namespace GW2Trader.Data
                     gameItemModel.BuyOrderQuantity = respectivePrice.Buys.Quantity;
                     gameItemModel.CommerceDataLastUpdated = DateTime.Now;
                 }
+            }
+        }
+
+        public void UpdateCommerceDataParallel(IList<GameItemModel> items)
+        {
+            const int itemsToProcessPerTask = 200;
+            int neededTasks = (int)Math.Ceiling(items.Count/ (itemsToProcessPerTask * 1.0f));
+
+            foreach (int taskIndex in Enumerable.Range(0,neededTasks))
+            {
+                // divide items in smaller subsets and process each subset in parallel
+                var itemSubset = items.Skip(taskIndex * itemsToProcessPerTask)
+                    .Take(itemsToProcessPerTask).ToList();
+                Task.Run(() => UpdateCommerceData(itemSubset));
             }
         }
     }

@@ -8,5 +8,6 @@ namespace GW2Trader.Data
         void UpdateItemData(GameItemModel item);
         void UpdateCommerceData(GameItemModel item);
         void UpdateCommerceData(IList<GameItemModel> items);
+        void UpdateCommerceDataParallel(IList<GameItemModel> items);
     }
 }
