@@ -20,7 +20,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
         <!--<Style.Triggers>
             <Trigger Property="IsSelected" Value="False">                
                 <Setter Property="BitmapEffect">
@@ -37,4 +37,31 @@
         <Setter Property="Margin" Value="2,2,2,2"/>
     </Style>
 
+    <Style x:Key="ListingDataGridStyle" TargetType="DataGrid">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="RowBackground" Value="Transparent"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>       
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SelectionMode" Value="Extended"/>
+        <Setter Property="SelectionUnit" Value="FullRow"/>
+        <Setter Property="CanUserSortColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+        <Setter Property="CanUserResizeColumns" Value="False"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        
+    </Style>
 </ResourceDictionary>

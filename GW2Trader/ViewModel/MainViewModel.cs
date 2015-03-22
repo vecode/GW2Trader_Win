@@ -69,12 +69,12 @@ namespace GW2Trader.ViewModel
             {
                 _sharedItems = context.GameItems.ToList();
             }
-            Task.Run(() => _dataUpdater.UpdateCommerceDataParallel(_sharedItems));
+            Task.Run(() => _dataUpdater.UpdatePricesParallel(_sharedItems));
         }
 
         public void UpdateCommerceData()
         {
-            _dataUpdater.UpdateCommerceDataParallel(_sharedItems);
+            _dataUpdater.UpdatePricesParallel(_sharedItems);
         }
 
         private RelayCommand _updateCommerceDataCommand;

@@ -66,7 +66,7 @@ namespace GW2TraderTest.Test
             IApiDataUpdater updater = new ApiDataUpdater(wrapper);
 
             GameItemModel item = ValidGameItem();
-            updater.UpdateCommerceData(item);
+            updater.UpdatePrices(item);
 
             ItemListing updatedCommerceData = testDataFactory.ItemListings.Find(i => i.Id == item.ItemId);
 

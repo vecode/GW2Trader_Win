@@ -25,8 +25,7 @@
 
         <Grid Grid.Column="0" Margin="5,35,5,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" MaxHeight="500"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -42,9 +41,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <GridSplitter Grid.Row="1" Height="2" HorizontalAlignment="Stretch" Margin="2"/>
-
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -54,7 +51,7 @@
                          VerticalContentAlignment="Center" />
             </Grid>
 
-            <Grid Grid.Row="3" Margin="2">
+            <Grid Grid.Row="2" Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -87,7 +84,7 @@
                 <StaticResource ResourceKey="SupplyColumn"/>
                 <StaticResource ResourceKey="RoiColumn"/>
 
-                <DataGridTemplateColumn Header=" ">
+                <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button FontFamily="Webdings" Content="r" Background="Transparent" FontSize="20">
@@ -103,16 +100,17 @@
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
+                </DataGridTemplateColumn>                
             </control:CustomDataGrid.Columns>
-
 
             <control:CustomDataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Setter Property="Background"
                             Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}" />
                     <Setter Property="FontSize" Value="14"/>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent"/>
+                    </Style.Resources>
                 </Style>
             </control:CustomDataGrid.RowStyle>
         </control:CustomDataGrid>

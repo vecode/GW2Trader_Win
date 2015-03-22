@@ -12,3 +12,5 @@
 - [ ] add settings view + viewmodel
 - [ ] implement searching by multiple keywords
 - copy name to clipboard
+- implement functionality to only update currently shown items (via interface, command)
+- change style of selected datagrid row style to border instead of color

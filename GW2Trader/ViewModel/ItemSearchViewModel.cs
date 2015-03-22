@@ -49,7 +49,7 @@ namespace GW2Trader.ViewModel
             ViewModelName = "Search";
             _apiDataUpdater = apiDataUpdater;
             _watchlistViewModel = watchlistViewModel;
-            _items = items;
+            _items = new List<GameItemModel>(items);
 
             Items = new PaginatedObservableCollection<GameItemModel>(_items, 20);
 
@@ -310,23 +310,33 @@ namespace GW2Trader.ViewModel
 
         public RelayCommand AddItemsToWatchlistCommand
         {
-            get
-            {
-                return _addItemsToWatchlistCommand ?? (_addItemsToWatchlistCommand = new AddItemsToWatchlistCommand());
-            }
+            get { return _addItemsToWatchlistCommand ?? (_addItemsToWatchlistCommand = new AddItemsToWatchlistCommand()); }
             private set { _addItemsToWatchlistCommand = value; }
         }
+
+        private RelayCommand _updateListingsCommand;
+
+        public RelayCommand UpdateListingsCommand
+        {
+            get { return _updateListingsCommand ?? (_updateListingsCommand = new UpdateListingsCommand()); }
+        }
+
         #endregion
 
         public void UpdateCommerceData()
         {
-            _apiDataUpdater.UpdateCommerceDataParallel(_items);
+            _apiDataUpdater.UpdatePricesParallel(_items);
         }
 
         public void AddItemsToWatchlist(ItemWatchlistModel watchlist)
         {
             List<GameItemModel> itemsToAdd = SelectedItems.Cast<GameItemModel>().ToList();
             _watchlistViewModel.AddItemsToWatchlist(itemsToAdd, watchlist);
+        }
+
+        public void UpdateListings(GameItemModel item)
+        {
+            _apiDataUpdater.UpdateListingsParallel(item);
         }
 
         private Dictionary<string, List<string>> BuildSubtypeDictionary(List<GameItemModel> items)

@@ -114,6 +114,8 @@
     </ApplicationDefinition>
     <Compile Include="Command\DeleteWatchlistItemCommand.cs" />
     <Compile Include="Command\UpdateCommerceDataCommand.cs" />
+    <Compile Include="Command\UpdateListingsCommand.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\RarityModel.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Util\GoldVisibilityConverter.cs" />
@@ -121,11 +123,18 @@
     <Compile Include="Util\MoneyToGoldConverter.cs" />
     <Compile Include="Util\MoneyToSilverConverter.cs" />
     <Compile Include="Util\SilverVisibilityConverter.cs" />
-    <Compile Include="View\ListingView.xaml.cs">
-      <DependentUpon>ListingView.xaml</DependentUpon>
+    <Compile Include="Util\VisibilityToBooleanConverter.cs" />
+    <Compile Include="View\BuyListingView.xaml.cs">
+      <DependentUpon>BuyListingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ItemDetailsView.xaml.cs">
+      <DependentUpon>ItemDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MoneyView.xaml.cs">
       <DependentUpon>MoneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SellListingView.xaml.cs">
+      <DependentUpon>SellListingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WatchlistView.xaml.cs">
       <DependentUpon>WatchlistView.xaml</DependentUpon>
@@ -142,11 +151,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\BuyListingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ItemSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ListingView.xaml">
+    <Page Include="View\ItemDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +222,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SellListingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WatchlistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,6 +255,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -261,6 +283,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

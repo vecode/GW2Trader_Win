@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GW2TPApiWrapper.Entities;
@@ -13,11 +14,16 @@ namespace GW2Trader.Model
 {
     public class GameItemModel : ObservableObject
     {
-        [NotMapped] private int _buyPrice;
-        [NotMapped] private int _buyOrderQuantity;
-        [NotMapped] private DateTime _commerDataLastUpdated;
-        [NotMapped] private int _sellPrice;
-        [NotMapped] private int _sellListingQuantity;
+        [NotMapped]
+        private int _buyPrice;
+        [NotMapped]
+        private int _buyOrderQuantity;
+        [NotMapped]
+        private DateTime _commerDataLastUpdated;
+        [NotMapped]
+        private int _sellPrice;
+        [NotMapped]
+        private int _sellListingQuantity;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -48,7 +54,7 @@ namespace GW2Trader.Model
 
         [NotMapped]
         [Browsable(false)]
-        private ImageSource _iconImageSource { get; set; }
+        private ImageSource _iconImageSource;
 
         [NotMapped]
         [Browsable(false)]
@@ -69,8 +75,20 @@ namespace GW2Trader.Model
         }
 
         [NotMapped]
-        [Browsable(false)]
-        public ItemListing Listing { get; set; }
+        private ItemListing _listing;
+
+
+        [NotMapped]
+        //[Browsable(false)]
+        public ItemListing Listing
+        {
+            get { return _listing; }
+            set
+            {
+                _listing = value;
+                RaisePropertyChanged("Listing");
+            }
+        }
 
         [NotMapped]
         public int BuyPrice
@@ -81,6 +99,7 @@ namespace GW2Trader.Model
                 _buyPrice = value;
                 RaisePropertyChanged("BuyPrice");
                 RaisePropertyChanged("Margin");
+                RaisePropertyChanged("ROI");
             }
         }
 
@@ -104,6 +123,7 @@ namespace GW2Trader.Model
                 _sellPrice = value;
                 RaisePropertyChanged("SellPrice");
                 RaisePropertyChanged("Margin");
+                RaisePropertyChanged("ROI");
             }
         }
 
@@ -135,7 +155,7 @@ namespace GW2Trader.Model
             get
             {
                 // trading post has a 15% fee
-                return (int) Math.Round(SellPrice*0.85) - BuyPrice;
+                return (int)Math.Round(SellPrice * 0.85) - BuyPrice;
             }
         }
 
@@ -144,14 +164,24 @@ namespace GW2Trader.Model
         /// </summary>
         /// <returns>Returns the return of investment based on current prices</returns>
         ///
-        [NotMapped] 
+        [NotMapped]
         public int ROI
         {
             get
             {
-                var result = (1.0*Margin/BuyPrice)*100;
-                return (int) Math.Round(result);
+                var result = (1.0 * Margin / BuyPrice) * 100;
+                return (int)Math.Round(result);
             }
+        }
+
+        // TODO remove this later
+        public GameItemModel()
+        {
+            Listing = new ItemListing
+            {
+                Buys = new Listing[0],
+                Sells = new Listing[0]
+            };
         }
     }
 }

@@ -4,11 +4,13 @@ using System.Linq;
 using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Model;
 using System.Threading.Tasks;
+using GW2TPApiWrapper.Entities;
 
 namespace GW2Trader.Data
 {
     public class ApiDataUpdater : IApiDataUpdater
     {
+        private const int ItemsToProcessPerTask = 200;
         private readonly ITradingPostApiWrapper _tpApiWrapper;
 
         public ApiDataUpdater(ITradingPostApiWrapper wrapper)
@@ -26,44 +28,106 @@ namespace GW2Trader.Data
             item.Type = updatedData.Type;
         }
 
-        public void UpdateCommerceData(GameItemModel item)
+        public void UpdatePrices(GameItemModel item)
         {
-            var updatedData = _tpApiWrapper.Listings(item.ItemId);
-            item.Listing.Buys = updatedData.Buys;
-            item.Listing.Sells = updatedData.Sells;
-            item.CommerceDataLastUpdated = DateTime.Now;
+            throw new NotImplementedException();
         }
 
-        public void UpdateCommerceData(IList<GameItemModel> items)
+        public void UpdatePrices(IList<GameItemModel> items)
         {
             var ids = items.Select(i => i.ItemId).ToArray();
             var updatedPrices = _tpApiWrapper.Price(ids).ToList();
 
-            foreach (var gameItemModel in items)
+            foreach (var item in items)
             {
-                var respectivePrice = updatedPrices.Find(p => p.Id == gameItemModel.ItemId);
+                var respectivePrice = updatedPrices.SingleOrDefault(p => p.Id == item.ItemId);
                 if (respectivePrice != null)
                 {
-                    gameItemModel.SellPrice = respectivePrice.Sells.UnitPrice;
-                    gameItemModel.SellListingQuantity = respectivePrice.Sells.Quantity;
-                    gameItemModel.BuyPrice = respectivePrice.Buys.UnitPrice;
-                    gameItemModel.BuyOrderQuantity = respectivePrice.Buys.Quantity;
-                    gameItemModel.CommerceDataLastUpdated = DateTime.Now;
+                    item.SellPrice = respectivePrice.Sells.UnitPrice;
+                    item.SellListingQuantity = respectivePrice.Sells.Quantity;
+                    item.BuyPrice = respectivePrice.Buys.UnitPrice;
+                    item.BuyOrderQuantity = respectivePrice.Buys.Quantity;
+                    item.CommerceDataLastUpdated = DateTime.Now;
                 }
             }
         }
 
+        public void UpdateCommerceDataParallel(GameItemModel item)
+        {
+            Task.Run(() => UpdatePrices(item));
+            Task.Run(() => UpdateListings(item));
+        }
+
         public void UpdateCommerceDataParallel(IList<GameItemModel> items)
         {
-            const int itemsToProcessPerTask = 200;
-            int neededTasks = (int)Math.Ceiling(items.Count/ (itemsToProcessPerTask * 1.0f));
+            int neededTasks = (int)Math.Ceiling(items.Count / (ItemsToProcessPerTask * 1.0f));
 
-            foreach (int taskIndex in Enumerable.Range(0,neededTasks))
+            foreach (int taskIndex in Enumerable.Range(0, neededTasks))
             {
                 // divide items in smaller subsets and process each subset in parallel
-                var itemSubset = items.Skip(taskIndex * itemsToProcessPerTask)
-                    .Take(itemsToProcessPerTask).ToList();
-                Task.Run(() => UpdateCommerceData(itemSubset));
+                var itemSubset = items.Skip(taskIndex * ItemsToProcessPerTask)
+                    .Take(ItemsToProcessPerTask).ToList();
+                Task.Run(() => UpdatePrices(itemSubset));
+                Task.Run(() => UpdateListings(itemSubset));
+            }
+        }
+
+        public void UpdateListings(GameItemModel item)
+        {
+            var updatedData = _tpApiWrapper.Listings(item.ItemId);
+            item.Listing = new ItemListing
+            {
+                Id = item.ItemId,
+                Buys = updatedData.Buys,
+                Sells = updatedData.Sells
+            };
+            item.CommerceDataLastUpdated = DateTime.Now;
+        }
+
+        public void UpdateListings(IList<GameItemModel> items)
+        {
+            var ids = items.Select(i => i.ItemId).ToArray();
+            var updatedListings = _tpApiWrapper.Listings(ids).ToList();
+
+            foreach (var item in items)
+            {
+                var respectiveListing = updatedListings.SingleOrDefault(i => i.Id == item.ItemId);
+                if (respectiveListing != null)
+                {
+                    item.Listing = respectiveListing;
+                }
+            }
+        }
+
+        public void UpdateListingsParallel(GameItemModel item)
+        {
+            //Task.Run(() => UpdateListings(item));
+            UpdateListingsParallel(new List<GameItemModel> { item });
+        }
+
+        public void UpdatePricesParallel(IList<GameItemModel> items)
+        {
+            int neededTasks = (int)Math.Ceiling(items.Count / (ItemsToProcessPerTask * 1.0f));
+
+            foreach (int taskIndex in Enumerable.Range(0, neededTasks))
+            {
+                // divide items in smaller subsets and process each subset in parallel
+                var itemSubset = items.Skip(taskIndex * ItemsToProcessPerTask)
+                    .Take(ItemsToProcessPerTask).ToList();
+                Task.Run(() => UpdatePrices(itemSubset));
+            }
+        }
+
+        public void UpdateListingsParallel(IList<GameItemModel> items)
+        {
+            int neededTasks = (int)Math.Ceiling(items.Count / (ItemsToProcessPerTask * 1.0f));
+
+            foreach (int taskIndex in Enumerable.Range(0, neededTasks))
+            {
+                // divide items in smaller subsets and process each subset in parallel
+                var itemSubset = items.Skip(taskIndex * ItemsToProcessPerTask)
+                    .Take(ItemsToProcessPerTask).ToList();
+                Task.Run(() => UpdateListings(itemSubset));
             }
         }
     }

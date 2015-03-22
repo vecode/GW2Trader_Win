@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GW2Trader.View
 {
     /// <summary>
-    /// Interaction logic for ListingView.xaml
+    /// Interaction logic for BuyListingView.xaml
     /// </summary>
-    public partial class ListingView : UserControl
+    public partial class BuyListingView : UserControl
     {
-        public ListingView()
+        public BuyListingView()
         {
             InitializeComponent();
         }
