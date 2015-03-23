@@ -25,12 +25,61 @@
 
         <Grid Grid.Column="0" Margin="5,35,5,0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <ListBox Grid.Row="0" ItemsSource="{Binding Watchlists}" MinHeight="150" Margin="2" 
+            <Expander Grid.Row="0" Margin="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Height" Value="Auto"/>
+                            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                        </Style>
+                    </Grid.Resources>
+
+                    <Label Grid.Column="0" Grid.Row="0" Content="Name:"/>
+                    <TextBox Grid.Column="0" Grid.Row="1" Margin="2" Text="{Binding WatchlistName}" 
+                         VerticalContentAlignment="Center" />
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="Description:"/>
+                    <TextBox Grid.Column="0" Grid.Row="3" Margin="2" Text="{Binding WatchlistDescription}" 
+                         VerticalContentAlignment="Center" TextWrapping="Wrap"
+                         AcceptsReturn="True"/>
+
+                    <Grid Grid.Row="4" Margin="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=AddWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                        <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                        <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=DeleteWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                    </Grid>
+                </Grid>
+            </Expander>
+
+
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding Watchlists}" MinHeight="150" Margin="2" 
                      BorderThickness="1" BorderBrush="LightGray"
                      SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
 
@@ -40,31 +89,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Name:" Margin="2"/>
-                <TextBox Grid.Column="1" Margin="2" Text="{Binding WatchlistName}" 
-                         VerticalContentAlignment="Center" />
-            </Grid>
-
-            <Grid Grid.Row="2" Margin="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" Margin="2"
-                        Command="{Binding Path=AddWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
-                <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" Margin="2"
-                        Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{DynamicResource SquareButtonStyle}"/>
-                <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
-                        Command="{Binding Path=DeleteWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
-            </Grid>
         </Grid>
 
         <control:CustomDataGrid Grid.Column="1" CanUserAddRows="False" AutoGenerateColumns="False"
@@ -100,7 +124,7 @@
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>                
+                </DataGridTemplateColumn>
             </control:CustomDataGrid.Columns>
 
             <control:CustomDataGrid.RowStyle>

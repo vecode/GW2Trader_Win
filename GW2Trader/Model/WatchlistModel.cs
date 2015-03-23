@@ -22,8 +22,21 @@ namespace GW2Trader.Model
             get { return _name; }
             set
             {
-                _name = value; 
+                _name = value;
                 RaisePropertyChanged("Name");
+            }
+        }
+
+        [NotMapped]
+        private string _description;
+
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                _description = value;
+                RaisePropertyChanged("Description");
             }
         }
 

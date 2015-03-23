@@ -17,8 +17,8 @@ namespace GW2Trader.Util
             {
                 return null;
             }
-            int val = (int)value;
-            return (val > 99) ? Visibility.Visible : Visibility.Hidden;
+            int price = (int)value;
+            return (Math.Abs(price) > 99)? Visibility.Visible : Visibility.Hidden;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

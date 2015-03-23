@@ -115,6 +115,8 @@
     <Compile Include="Command\DeleteWatchlistItemCommand.cs" />
     <Compile Include="Command\UpdateCommerceDataCommand.cs" />
     <Compile Include="Command\UpdateListingsCommand.cs" />
+    <Compile Include="Migrations\201503231229027_Initial.cs" />
+    <Compile Include="Migrations\201503231229027_Initial.Designer.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\RarityModel.cs" />
     <Compile Include="Settings.cs" />
@@ -124,6 +126,7 @@
     <Compile Include="Util\MoneyToSilverConverter.cs" />
     <Compile Include="Util\SilverVisibilityConverter.cs" />
     <Compile Include="Util\VisibilityToBooleanConverter.cs" />
+    <Compile Include="ViewModel\IItemViewer.cs" />
     <Compile Include="View\BuyListingView.xaml.cs">
       <DependentUpon>BuyListingView.xaml</DependentUpon>
     </Compile>
@@ -184,7 +187,7 @@
     <Compile Include="Command\SearchCommand.cs" />
     <Compile Include="Command\SearchResetCommand.cs" />
     <Compile Include="Command\UpdatePriceCommand.cs" />
-    <Compile Include="Command\UpdateWatchlistNameCommand.cs" />
+    <Compile Include="Command\UpdateWatchlistCommand.cs" />
     <Compile Include="Control\CustomDataGrid.cs" />
     <Compile Include="Data\ApiDataUpdater.cs" />
     <Compile Include="Data\DbBuilder.cs" />
@@ -245,6 +248,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201503231229027_Initial.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -13,7 +13,7 @@ using GW2Trader.MVVM;
 
 namespace GW2Trader.ViewModel
 {
-    public class ItemSearchViewModel : BaseViewModel
+    public class ItemSearchViewModel : BaseViewModel, IItemViewer
     {
         private readonly IApiDataUpdater _apiDataUpdater;
         private readonly WatchlistViewModel _watchlistViewModel;
@@ -350,6 +350,11 @@ namespace GW2Trader.ViewModel
                 dictionary[type].Insert(0, "All");
             }
             return dictionary;
+        }
+
+        public IList<GameItemModel> ViewedItems
+        {
+            get { return Items; }
         }
     }
 }

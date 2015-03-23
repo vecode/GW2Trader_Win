@@ -8,7 +8,7 @@ using GW2Trader.Model;
 
 namespace GW2Trader.ViewModel
 {
-    public class WatchlistViewModel : BaseViewModel
+    public class WatchlistViewModel : BaseViewModel, IItemViewer
     {
         private readonly IGameDataContextProvider _contextProvider;
         private ItemWatchlistModel _selectedWatchlist;
@@ -65,6 +65,7 @@ namespace GW2Trader.ViewModel
                 _selectedWatchlist = value;
                 RaisePropertyChanged("SelectedWatchlist");
                 WatchlistName = _selectedWatchlist != null ? _selectedWatchlist.Name : null;
+                WatchlistDescription = _selectedWatchlist != null ? SelectedWatchlist.Description : null;
             }
         }
 
@@ -76,6 +77,18 @@ namespace GW2Trader.ViewModel
             {
                 _watchlistName = value;
                 RaisePropertyChanged("WatchlistName");
+            }
+        }
+
+        private string _watchlistDescription;
+
+        public string WatchlistDescription
+        {
+            get { return _watchlistDescription;}
+            set
+            {
+                _watchlistDescription = value;
+                RaisePropertyChanged("WatchlistDescription");
             }
         }
 
@@ -106,15 +119,17 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public void UpdateWatchlistName()
+        public void UpdateWatchlist()
         {
             using (var context = _contextProvider.GetContext())
             {
                 var watchlistToUpdate = context.ItemWatchlists.Single(wl => wl.Id == SelectedWatchlist.Id);
                 watchlistToUpdate.Name = WatchlistName;
+                watchlistToUpdate.Description = WatchlistDescription;
                 context.Save();
             }
             SelectedWatchlist.Name = WatchlistName;
+            SelectedWatchlist.Description = WatchlistDescription;
         }
 
         public void AddItemsToWatchlist(List<GameItemModel> itemsToAdd, ItemWatchlistModel watchlist)
@@ -166,7 +181,7 @@ namespace GW2Trader.ViewModel
         private RelayCommand _updateWatchlistNameCommand;
         public RelayCommand UpdateWatchlistNameCommand
         {
-            get { return _updateWatchlistNameCommand ?? (_updateWatchlistNameCommand = new UpdateWatchlistNameCommand()); }
+            get { return _updateWatchlistNameCommand ?? (_updateWatchlistNameCommand = new UpdateWatchlistCommand()); }
         }
 
         private RelayCommand _deleteWatchlistItemCommand;
@@ -176,5 +191,10 @@ namespace GW2Trader.ViewModel
         }
 
         #endregion
+
+        public IList<GameItemModel> ViewedItems
+        {
+            get { return SelectedWatchlist != null ? SelectedWatchlist.Items : null; }
+        }
     }
 }

@@ -7,7 +7,7 @@ using GW2Trader.ViewModel;
 
 namespace GW2Trader.Command
 {
-    public class UpdateWatchlistNameCommand : RelayCommand
+    public class UpdateWatchlistCommand : RelayCommand
     {
         public override bool CanExecute(object parameter)
         {
@@ -18,7 +18,7 @@ namespace GW2Trader.Command
         public override void Execute(object parameter)
         {
             WatchlistViewModel viewModel = parameter as WatchlistViewModel;
-            viewModel.UpdateWatchlistName();
+            viewModel.UpdateWatchlist();
         }
     }
 }

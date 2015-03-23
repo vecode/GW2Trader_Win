@@ -11,7 +11,13 @@ namespace GW2Trader.Util
             {
                 return null;
             }
-            return ((int)value) % 100;
+            int price = (int) value;
+
+            if (Math.Abs(price) >= 100)
+            {
+                price = Math.Abs(price);
+            }            
+            return (price) % 100;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

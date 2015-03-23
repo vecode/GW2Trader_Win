@@ -16,9 +16,16 @@ namespace GW2Trader.Util
             {
                 return null;
             }
-            int num = (int)value % 10000;
-            int val = num/100;
-            return val;
+            int price = (int) value;
+
+            if (Math.Abs(price) > 10000)
+            {
+                price = Math.Abs(price);
+            }
+
+            price = price % 10000;
+            price = price / 100;
+            return price;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -19,7 +19,7 @@ namespace GW2Trader.Model
         [NotMapped]
         private int _buyOrderQuantity;
         [NotMapped]
-        private DateTime _commerDataLastUpdated;
+        private DateTime _commerceDataLastUpdated;
         [NotMapped]
         private int _sellPrice;
         [NotMapped]
@@ -141,10 +141,10 @@ namespace GW2Trader.Model
         [NotMapped]
         public DateTime CommerceDataLastUpdated
         {
-            get { return _commerDataLastUpdated; }
+            get { return _commerceDataLastUpdated; }
             set
             {
-                _commerDataLastUpdated = value;
+                _commerceDataLastUpdated = value;
                 RaisePropertyChanged("CommerceDataLastUpdated");
             }
         }
@@ -155,7 +155,7 @@ namespace GW2Trader.Model
             get
             {
                 // trading post has a 15% fee
-                return (int)Math.Round(SellPrice * 0.85) - BuyPrice;
+                return (int)Math.Round((SellPrice * 0.85) - BuyPrice);
             }
         }
 

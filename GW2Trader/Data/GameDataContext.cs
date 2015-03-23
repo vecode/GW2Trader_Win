@@ -31,7 +31,7 @@ namespace GW2Trader.Data
             }
         }
 
-        private class DbInitializer : CreateDatabaseIfNotExists<GameDataContext>
+        private class DbInitializer : MigrateDatabaseToLatestVersion<GameDataContext, Migrations.Configuration>
         {
         }
 
