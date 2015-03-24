@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="GW2Trader.View.InvestmentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:view="clr-namespace:GW2Trader.View"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:control="clr-namespace:GW2Trader.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    
+    <UserControl.Resources>
+        <sys:Int32 x:Key="fixedValue">123456</sys:Int32>
+    </UserControl.Resources>
+        
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="205" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Expander Grid.Row="0" Margin="2" IsExpanded="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Content="Name:"/>
+                    <TextBox Grid.Column="0" Grid.Row="1" Margin="2" Text="{Binding WatchlistName}" 
+                         VerticalContentAlignment="Center" />
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="Description:"/>
+                    <TextBox Grid.Column="0" Grid.Row="3" Margin="2" Text="{Binding WatchlistDescription}" 
+                         VerticalContentAlignment="Center" TextWrapping="Wrap"
+                         AcceptsReturn="True"/>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" Margin="2"
+                                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                        Command="{Binding Path=AddInvestmentlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                        <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" Margin="2"
+                                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                        Command="{Binding Path=UpdateInvestmentListCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                        <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
+                                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                        Command="{Binding Path=DeleteInvestmentListCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                                                
+                    </Grid>
+                    
+                    <Button Content="Add Investment" Grid.Row="5" Style="{DynamicResource SquareButtonStyle}" Margin="2,2,2,0"
+                            BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"/>                    
+                </Grid>
+            </Expander>
+
+            <Border Grid.Row="1" Margin="2"  BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <RadioButton GroupName="InvestmentStatus" Content="All" IsChecked="True" Margin="4"/>
+                    <RadioButton GroupName="InvestmentStatus" Content="Current" IsChecked="False" Margin="4"/>
+                    <RadioButton GroupName="InvestmentStatus" Content="Past" IsChecked="False" Margin="4"/>
+                </StackPanel>
+
+                <control:MultiSelectListBox Grid.Row="1" Margin="0,1,0,1" 
+                         SelectedItem="{Binding SelectedWatchlist}" SelectionMode="Multiple"
+                         SelectedItemsList="{Binding SelectedWatchlists, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            </Border>
+            
+            <Expander Grid.Row="2" Margin="2" IsExpanded="True" ExpandDirection="Up">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Gold Invested"/>
+                    <view:MoneyView DataContext="{StaticResource ResourceKey=fixedValue}"/>
+                    <Label Content="Current Profit"/>
+                    <view:MoneyView DataContext="{StaticResource ResourceKey=fixedValue}"/>
+                    <Label Content="Total Worth"/>
+                    <view:MoneyView DataContext="{StaticResource ResourceKey=fixedValue}"/>
+                    <Label Content="Total Profit"/>
+                    <view:MoneyView DataContext="{StaticResource ResourceKey=fixedValue}"/>
+                </StackPanel>
+            </Expander>
+
+        </Grid>
+
+        <control:CustomDataGrid Grid.Column="1" Margin="2">
+            
+        </control:CustomDataGrid>
+        
+        <!--<Expander Grid.Row="0" Margin="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Height" Value="Auto"/>
+                        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Name:"/>
+                <TextBox Grid.Column="0" Grid.Row="1" Margin="2" Text="{Binding WatchlistName}" 
+                         VerticalContentAlignment="Center" />
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Description:"/>
+                <TextBox Grid.Column="0" Grid.Row="3" Margin="2" Text="{Binding WatchlistDescription}" 
+                         VerticalContentAlignment="Center" TextWrapping="Wrap"
+                         AcceptsReturn="True"/>
+
+                <Grid Grid.Row="4" Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=AddWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                    <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                    <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
+                        Command="{Binding Path=DeleteWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                </Grid>
+            </Grid>
+        </Expander>-->
+
+    </Grid>
+</UserControl>

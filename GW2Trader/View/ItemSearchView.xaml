@@ -137,11 +137,13 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" Content="Search"
-                Style="{StaticResource AccentedSquareButtonStyle}" Margin="2"
-                CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"/>
+                        Style="{StaticResource AccentedSquareButtonStyle}" Margin="2"
+                        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                        CommandParameter="{Binding}" Command="{Binding Path=SearchCommand}"/>
                 <Button Grid.Column="1" Content="Reset"
-                Style="{DynamicResource SquareButtonStyle}" Margin="2"
-                CommandParameter="{Binding}" Command="{Binding Path=SearchResetCommand}"/>
+                        Style="{DynamicResource SquareButtonStyle}" Margin="2"
+                        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                        CommandParameter="{Binding}" Command="{Binding Path=SearchResetCommand}"/>
             </Grid>
 
 
@@ -162,7 +164,7 @@
                 SelectionUnit="FullRow" SelectionMode="Extended"
                 Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
 
-                <control:CustomDataGrid.Columns>                   
+                <control:CustomDataGrid.Columns>
                     <StaticResource ResourceKey="RowDetailsButtonColumn"/>
                     <StaticResource ResourceKey="IconColumn"/>
                     <StaticResource ResourceKey="NameColumn"/>
@@ -237,8 +239,10 @@
 
                 <Button Grid.Column="0" Content="3" Style="{DynamicResource SquareButtonStyle}" FontFamily="Marlett"
                         Width="75" Height="25" CommandParameter="{Binding}" 
+                        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
                         Command="{Binding Path=MoveToPreviousPageCommand}"/>
                 <Button Grid.Column="1" Content="4" Style="{DynamicResource SquareButtonStyle}" FontFamily="Marlett"
+                        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
                         Width="75" Height="25" CommandParameter="{Binding}" 
                         Command="{Binding Path=MoveToNextPageCommand}"/>
             </Grid>

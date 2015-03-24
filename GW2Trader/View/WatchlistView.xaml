@@ -60,7 +60,7 @@
                          VerticalContentAlignment="Center" TextWrapping="Wrap"
                          AcceptsReturn="True"/>
 
-                    <Grid Grid.Row="4" Margin="2">
+                    <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
@@ -68,11 +68,14 @@
                         </Grid.ColumnDefinitions>
 
                         <Button Grid.Column="0" Content="Add" CommandParameter="{Binding}" Margin="2"
-                        Command="{Binding Path=AddWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                                Command="{Binding Path=AddWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
                         <Button Grid.Column="1" Content="Save" CommandParameter="{Binding}" Margin="2"
-                        Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                                Command="{Binding Path=UpdateWatchlistNameCommand}" Style="{DynamicResource SquareButtonStyle}"/>
                         <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
-                        Command="{Binding Path=DeleteWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
+                                BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                                Command="{Binding Path=DeleteWatchlistCommand}" Style="{DynamicResource SquareButtonStyle}"/>
                     </Grid>
                 </Grid>
             </Expander>
@@ -80,7 +83,7 @@
 
 
             <ListBox Grid.Row="1" ItemsSource="{Binding Watchlists}" MinHeight="150" Margin="2" 
-                     BorderThickness="1" BorderBrush="LightGray"
+                     BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}"
                      SelectedItem="{Binding SelectedWatchlist, UpdateSourceTrigger=PropertyChanged}">
 
                 <ListBox.ItemTemplate>
