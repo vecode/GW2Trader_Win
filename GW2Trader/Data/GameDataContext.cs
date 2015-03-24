@@ -31,14 +31,22 @@ namespace GW2Trader.Data
             }
         }
 
-        private class DbInitializer : MigrateDatabaseToLatestVersion<GameDataContext, Migrations.Configuration>
+        //private class DbInitializer : MigrateDatabaseToLatestVersion<GameDataContext, Migrations.Configuration>
+        //{
+        //}
+
+        private class  DbInitializer : DropCreateDatabaseIfModelChanges<GameDataContext>
         {
+             
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ItemWatchlistModel>()
                 .HasMany(wl => wl.Items).WithMany(i => i.Watchlists);
+
+            modelBuilder.Entity<InvestmentWatchlistModel>()
+                .HasMany(wl => wl.Items).WithMany(i => i.InvestmentLists);
         }
     }
 }

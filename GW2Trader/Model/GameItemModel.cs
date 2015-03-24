@@ -34,6 +34,10 @@ namespace GW2Trader.Model
         [Browsable(false)]
         public virtual ICollection<ItemWatchlistModel> Watchlists { get; set; }
 
+         // navigation property
+        [Browsable(false)]
+        public virtual ICollection<InvestmentModel> Investments { get; set; }
+
         [Required]
         public String Name { get; set; }
 

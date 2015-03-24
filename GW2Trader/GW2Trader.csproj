@@ -119,9 +119,6 @@
     <Compile Include="Command\UpdateInvestmentListCommand.cs" />
     <Compile Include="Command\UpdateListingsCommand.cs" />
     <Compile Include="Control\MultiSelectListBox.cs" />
-    <Compile Include="Migrations\201503231229027_Initial.cs" />
-    <Compile Include="Migrations\201503231229027_Initial.Designer.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\RarityModel.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Util\GoldVisibilityConverter.cs" />
@@ -259,7 +256,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201503231229027_Initial.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

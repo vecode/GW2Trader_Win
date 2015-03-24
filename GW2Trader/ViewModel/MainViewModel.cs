@@ -29,7 +29,7 @@ namespace GW2Trader.ViewModel
 
             var watchlistViewModel = new WatchlistViewModel(_contextProvider, _sharedItems);
             var searchViewModel = new ItemSearchViewModel(_sharedItems, _dataUpdater, watchlistViewModel);
-            var investmentViewModel = new InvestmentViewModel();
+            var investmentViewModel = new InvestmentViewModel(_contextProvider, _sharedItems);
 
             ChildViews = new ObservableCollection<BaseViewModel>
             {

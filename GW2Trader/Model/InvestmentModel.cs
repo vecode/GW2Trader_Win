@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,18 +8,8 @@ namespace GW2Trader.Model
 {
     public class InvestmentModel
     {
-        [NotMapped] private readonly float _salesCommission = 0.15f;
-
-        public InvestmentModel()
-        {
-            IsSold = false;
-        }
-
-        public InvestmentModel(int itemId)
-        {
-            ItemId = itemId;
-            IsSold = false;
-        }
+        [NotMapped]
+        private const float SalesCommission = 0.15f;
 
         [Key]
         public int Id { get; set; }
@@ -29,11 +21,6 @@ namespace GW2Trader.Model
         [DataType(DataType.Date)]
         private DateTime PurchaseDate { get; set; }
 
-        public int ItemId { get; set; }
-
-        [ForeignKey("ItemId")]
-        public virtual GameItemModel GameItem { get; set; }
-
         [Required]
         public int PurchasePrice { get; set; }
 
@@ -43,32 +30,50 @@ namespace GW2Trader.Model
         public int? DesiredSellPrice { get; set; }
         public int? SoldFor { get; set; }
 
-        public int PrognosedProfitPerUnit()
+        // navigation property
+        [Browsable(false)]
+        public virtual ICollection<InvestmentWatchlistModel> InvestmentLists { get; set; }
+
+        // navigation property
+        [Browsable(false)]
+        public virtual GameItemModel GameItem { get; set; }
+
+        [NotMapped]
+        public int PrognosedProfitPerUnit
         {
-            if (DesiredSellPrice != null)
+            get
             {
-                return (int) (DesiredSellPrice*(1 - _salesCommission)) - PurchasePrice;
+                if (DesiredSellPrice != null)
+                {
+                    return (int)(DesiredSellPrice * (1 - SalesCommission)) - PurchasePrice;
+                }
+                return 0;
             }
-            return 0;
         }
 
-        public int PrognosedTotalProfit()
+        [NotMapped]
+        public int PrognosedTotalProfit
         {
-            return PrognosedProfitPerUnit()*Count;
+            get { return PrognosedProfitPerUnit * Count; }
         }
 
-        public int ActualProfitPerUnit()
+        [NotMapped]
+        public int ActualProfitPerUnit
         {
-            if (SoldFor != null)
+            get
             {
-                return (int) (SoldFor*(1 - _salesCommission)) - PurchasePrice;
+                if (SoldFor != null)
+                {
+                    return (int)(SoldFor * (1 - SalesCommission)) - PurchasePrice;
+                }
+                return 0;
             }
-            return 0;
         }
 
-        public int ActualTotalProfit()
+        [NotMapped]
+        public int ActualTotalProfit
         {
-            return ActualProfitPerUnit()*Count;
+            get { return ActualProfitPerUnit * Count; }
         }
     }
 }
