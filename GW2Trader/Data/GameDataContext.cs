@@ -8,7 +8,7 @@ namespace GW2Trader.Data
     public class GameDataContext : DbContext, IGameDataContext
     {
         public GameDataContext()
-            : base("ItemDb.DbConnection")
+            //: base("ItemDb.DbConnection")
         {
             Database.SetInitializer(new DbInitializer());
         }
@@ -31,13 +31,8 @@ namespace GW2Trader.Data
             }
         }
 
-        //private class DbInitializer : MigrateDatabaseToLatestVersion<GameDataContext, Migrations.Configuration>
-        //{
-        //}
-
-        private class  DbInitializer : DropCreateDatabaseIfModelChanges<GameDataContext>
+        private class DbInitializer : MigrateDatabaseToLatestVersion<GameDataContext, Migrations.Configuration>
         {
-             
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
