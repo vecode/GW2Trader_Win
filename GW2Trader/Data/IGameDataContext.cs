@@ -11,6 +11,7 @@ namespace GW2Trader.Data
     public interface IGameDataContext : IDisposable
     {
         IDbSet<GameItemModel> GameItems { get; set; }
+        IDbSet<InvestmentModel> Investments { get; set; }
         IDbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; set; }
         IDbSet<ItemWatchlistModel> ItemWatchlists { get; set; }
 

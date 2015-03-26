@@ -14,6 +14,7 @@ namespace GW2Trader.Data
         }
 
         public IDbSet<GameItemModel> GameItems { get; set; }
+        public IDbSet<InvestmentModel> Investments { get; set; }
         public IDbSet<InvestmentWatchlistModel> InvestmentWatchlists { get; set; }
         public IDbSet<ItemWatchlistModel> ItemWatchlists { get; set; }
 
@@ -42,6 +43,9 @@ namespace GW2Trader.Data
 
             modelBuilder.Entity<InvestmentWatchlistModel>()
                 .HasMany(wl => wl.Items).WithMany(i => i.InvestmentLists);
+
+            modelBuilder.Entity<InvestmentModel>()
+                .HasRequired(inv => inv.GameItem).WithMany(item => item.Investments);
         }
     }
 }

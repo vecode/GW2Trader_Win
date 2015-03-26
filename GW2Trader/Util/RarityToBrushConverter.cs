@@ -9,6 +9,11 @@ namespace GW2Trader.Util
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+            {
+                return Brushes.White;
+            }
+
             var brush = new SolidColorBrush();
             string hexCode;
             switch (value.ToString())

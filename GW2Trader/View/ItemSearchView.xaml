@@ -189,7 +189,7 @@
                 </control:CustomDataGrid.RowStyle>
 
                 <control:CustomDataGrid.ContextMenu>
-                    <ContextMenu>
+                    <ContextMenu Style="{DynamicResource MetroContextMenu}">
                         <MenuItem Header="add to watchlist" ItemsSource="{Binding Watchlists}">
                             <MenuItem.ItemContainerStyle>
                                 <Style TargetType="{x:Type MenuItem}">
@@ -237,13 +237,16 @@
                     </Style>
                 </Grid.Resources>
 
-                <Button Grid.Column="0" Content="3" Style="{DynamicResource SquareButtonStyle}" FontFamily="Marlett"
-                        Width="75" Height="25" CommandParameter="{Binding}" 
+                <Button Grid.Column="0" Content="3" Style="{DynamicResource SquareButtonStyle}" 
+                        FontFamily="Marlett" Width="75" Height="25"
                         BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                        CommandParameter="{Binding Items}"
                         Command="{Binding Path=MoveToPreviousPageCommand}"/>
-                <Button Grid.Column="1" Content="4" Style="{DynamicResource SquareButtonStyle}" FontFamily="Marlett"
+
+                <Button Grid.Column="1" Content="4" Style="{DynamicResource SquareButtonStyle}" 
+                        FontFamily="Marlett" Width="75" Height="25"
                         BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
-                        Width="75" Height="25" CommandParameter="{Binding}" 
+                        CommandParameter="{Binding Items}"
                         Command="{Binding Path=MoveToNextPageCommand}"/>
             </Grid>
         </Grid>

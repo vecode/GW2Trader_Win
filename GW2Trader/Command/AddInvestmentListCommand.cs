@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GW2Trader.ViewModel;
 
 namespace GW2Trader.Command
 {
@@ -10,12 +11,19 @@ namespace GW2Trader.Command
     {
         public override bool CanExecute(object parameter)
         {
-            return true;
+            InvestmentViewModel viewModel = parameter as InvestmentViewModel;
+            if (viewModel.InvestmentListName == null)
+            {
+                return false;
+            }
+            string trimmedName = viewModel.InvestmentListName.Trim();
+            return !String.IsNullOrWhiteSpace(trimmedName);
         }
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            InvestmentViewModel viewModel = parameter as InvestmentViewModel;
+            viewModel.AddInvestmentList();
         }
     }
 }

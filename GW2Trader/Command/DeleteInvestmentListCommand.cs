@@ -17,7 +17,8 @@ namespace GW2Trader.Command
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            InvestmentViewModel viewModel = parameter as InvestmentViewModel;
+            viewModel.DeleteInvestmentList(viewModel.SelectedWatchlist);
         }
     }
 }

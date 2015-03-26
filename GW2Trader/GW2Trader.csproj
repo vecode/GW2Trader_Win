@@ -112,16 +112,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddInvestmentCommand.cs" />
     <Compile Include="Command\AddInvestmentListCommand.cs" />
     <Compile Include="Command\DeleteInvestmentListCommand.cs" />
     <Compile Include="Command\DeleteWatchlistItemCommand.cs" />
+    <Compile Include="Command\InvestmentSearchCommand.cs" />
     <Compile Include="Command\UpdateCommerceDataCommand.cs" />
     <Compile Include="Command\UpdateInvestmentListCommand.cs" />
     <Compile Include="Command\UpdateListingsCommand.cs" />
     <Compile Include="Control\MultiSelectListBox.cs" />
+    <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Migrations\201503250925484_Initial.cs" />
     <Compile Include="Migrations\201503250925484_Initial.Designer.cs">
       <DependentUpon>201503250925484_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503251259089_Investment Table added.cs" />
+    <Compile Include="Migrations\201503251259089_Investment Table added.Designer.cs">
+      <DependentUpon>201503251259089_Investment Table added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\RarityModel.cs" />
@@ -133,6 +140,7 @@
     <Compile Include="Util\SilverVisibilityConverter.cs" />
     <Compile Include="Util\VisibilityToBooleanConverter.cs" />
     <Compile Include="ViewModel\IItemViewer.cs" />
+    <Compile Include="ViewModel\NewInvestmentViewModel.cs" />
     <Compile Include="View\BuyListingView.xaml.cs">
       <DependentUpon>BuyListingView.xaml</DependentUpon>
     </Compile>
@@ -142,8 +150,14 @@
     <Compile Include="View\ItemDetailsView.xaml.cs">
       <DependentUpon>ItemDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MoneyInputView.xaml.cs">
+      <DependentUpon>MoneyInputView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MoneyView.xaml.cs">
       <DependentUpon>MoneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewInvestmentWindow.xaml.cs">
+      <DependentUpon>NewInvestmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SellListingView.xaml.cs">
       <DependentUpon>SellListingView.xaml</DependentUpon>
@@ -234,7 +248,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\MoneyInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MoneyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewInvestmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,6 +285,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201503250925484_Initial.resx">
       <DependentUpon>201503250925484_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503251259089_Investment Table added.resx">
+      <DependentUpon>201503251259089_Investment Table added.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

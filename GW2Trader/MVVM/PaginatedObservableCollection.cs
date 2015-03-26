@@ -129,14 +129,14 @@ namespace GW2Trader.MVVM
             RecalculatePage();
         }
 
-        public bool CanMoveToNextPage()
+        public bool CanMoveToNextPage
         {
-            return _currentPage < _pageCount - 1;
+            get { return _currentPage < _pageCount - 1; }
         }
 
-        public bool CanMoveToPreviousPage()
+        public bool CanMoveToPreviousPage
         {
-            return _currentPage > 0;
+            get { return _currentPage > 0; }
         }
 
         protected override void InsertItem(int index, T item)
@@ -153,7 +153,7 @@ namespace GW2Trader.MVVM
         {
             Clear();
 
-            var startIndex = _currentPage*_pageSize;
+            var startIndex = _currentPage * _pageSize;
 
             var filteredItems = _filter == null ? _originalCollection : _originalCollection.FindAll(_filter);
 
@@ -170,11 +170,11 @@ namespace GW2Trader.MVVM
         {
             if (_filter == null)
             {
-                PageCount = (int) Math.Ceiling(1.0 * _originalCollection.Count/_pageSize * 1.0f);
+                PageCount = (int)Math.Ceiling(1.0 * _originalCollection.Count / _pageSize * 1.0f);
             }
             else
             {
-                PageCount = (int) Math.Ceiling(1.0 * _originalCollection.FindAll(_filter).Count/_pageSize * 1.0f);
+                PageCount = (int)Math.Ceiling(1.0 * _originalCollection.FindAll(_filter).Count / _pageSize * 1.0f);
             }
         }
     }

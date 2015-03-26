@@ -13,7 +13,13 @@ namespace GW2Trader.Command
     {
         public override bool CanExecute(object parameter)
         {
-            return true;
+            WatchlistViewModel viewModel = parameter as WatchlistViewModel;
+            if (viewModel.WatchlistName == null)
+            {
+                return false;
+            }
+            string trimmedName = viewModel.WatchlistName.Trim();
+            return !String.IsNullOrWhiteSpace(trimmedName);
         }
 
         public override void Execute(object parameter)

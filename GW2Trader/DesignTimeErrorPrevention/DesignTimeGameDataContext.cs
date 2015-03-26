@@ -85,5 +85,18 @@ namespace GW2Trader.DesignTimeErrorPrevention
         {
 
         }
+
+
+        public IDbSet<InvestmentModel> Investments
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

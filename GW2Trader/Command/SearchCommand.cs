@@ -1,4 +1,6 @@
-﻿using GW2Trader.ViewModel;
+﻿using System.Linq;
+using GW2Trader.Extension;
+using GW2Trader.ViewModel;
 
 namespace GW2Trader.Command
 {
@@ -54,7 +56,7 @@ namespace GW2Trader.Command
                     }
                 }
 
-                if (!(string.IsNullOrWhiteSpace(viewModel.Keyword) || string.IsNullOrEmpty(viewModel.Keyword)))
+                if (!viewModel.Keyword.IsNullOrEmptyOrWhiteSpace())
                 {
                     if (!item.Name.ToLower().Contains(viewModel.Keyword.ToLower()))
                         return false;

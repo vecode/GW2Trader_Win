@@ -23,6 +23,14 @@
         </DataGridTemplateColumn.CellTemplate>
     </DataGridTemplateColumn>
 
+    <DataGridTemplateColumn x:Key="MaxWidthNameColumn" Header="Name" x:Shared="False" Width="*" MinWidth="100">
+        <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+                <TextBox Text="{Binding Name}" TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
+            </DataTemplate>
+        </DataGridTemplateColumn.CellTemplate>
+    </DataGridTemplateColumn>
+
     <DataGridTemplateColumn x:Key="RowDetailsButtonColumn">
         <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>

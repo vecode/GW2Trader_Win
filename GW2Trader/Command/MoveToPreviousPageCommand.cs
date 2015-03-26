@@ -1,4 +1,6 @@
-﻿using GW2Trader.ViewModel;
+﻿using GW2Trader.Model;
+using GW2Trader.MVVM;
+using GW2Trader.ViewModel;
 
 namespace GW2Trader.Command
 {
@@ -6,13 +8,13 @@ namespace GW2Trader.Command
     {
         public override bool CanExecute(object parameter)
         {
-            return (parameter as ItemSearchViewModel).Items.CanMoveToPreviousPage();
+            return (parameter as PaginatedObservableCollection<GameItemModel>).CanMoveToPreviousPage;
         }
 
         public override void Execute(object parameter)
         {
-            var viewModel = parameter as ItemSearchViewModel;
-            viewModel.Items.MoveToPreviousPage();
+            var paginatedCollection = parameter as PaginatedObservableCollection<GameItemModel>;
+            paginatedCollection.MoveToPreviousPage();
         }
     }
 }

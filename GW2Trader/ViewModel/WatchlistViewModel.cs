@@ -23,7 +23,7 @@ namespace GW2Trader.ViewModel
 
             BuildWatchlists();
 
-            if (Watchlists.Count != 0)
+            if (Watchlists.Any())
             {
                 SelectedWatchlist = Watchlists[0];
             }
@@ -94,7 +94,11 @@ namespace GW2Trader.ViewModel
 
         public void AddWatchlist()
         {
-            ItemWatchlistModel newWatchlist = new ItemWatchlistModel { Name = WatchlistName };
+            ItemWatchlistModel newWatchlist = new ItemWatchlistModel
+            {
+                Name = WatchlistName, 
+                Description = WatchlistDescription
+            };
             using (var context = _contextProvider.GetContext())
             {
                 context.ItemWatchlists.Add(newWatchlist);

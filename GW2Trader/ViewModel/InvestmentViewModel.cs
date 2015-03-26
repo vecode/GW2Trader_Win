@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Linq;
 using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
@@ -11,16 +13,15 @@ namespace GW2Trader.ViewModel
     {
         #region Observable Members
 
-        private string _name;
-        private string _description;
+        private string _investmentListName;
+        private string _investmentListDescription;
         private InvestmentWatchlistModel _selectedWatchlist;
         private List<InvestmentWatchlistModel> _selectedWatchlists;
-        private ObservableCollection<InvestmentWatchlistModel> _watchlists; 
+        private ObservableCollection<InvestmentWatchlistModel> _watchlists;
         #endregion
 
         private readonly IGameDataContextProvider _contextProvider;
-        private List<GameItemModel> _items; 
-
+        private List<GameItemModel> _items;
 
         public enum SelectionMode
         {
@@ -34,25 +35,32 @@ namespace GW2Trader.ViewModel
             ViewModelName = "Investments";
             _contextProvider = contextProvider;
             _items = items;
-        }
 
-        public string Name
-        {
-            get { return _name; }
-            set
+            BuildWatchlists();
+
+            if (Watchlists.Any())
             {
-                _name = value;
-                RaisePropertyChanged("Name");
+                SelectedWatchlist = Watchlists[0];
             }
         }
 
-        public string Description
+        public string InvestmentListName
         {
-            get { return _description; }
+            get { return _investmentListName; }
             set
             {
-                _description = value;
-                RaisePropertyChanged("Description");
+                _investmentListName = value;
+                RaisePropertyChanged("InvestmentListName");
+            }
+        }
+
+        public string InvestmentListDescription
+        {
+            get { return _investmentListDescription; }
+            set
+            {
+                _investmentListDescription = value;
+                RaisePropertyChanged("InvestmentListDescription");
             }
         }
 
@@ -63,6 +71,10 @@ namespace GW2Trader.ViewModel
             {
                 _selectedWatchlist = value;
                 RaisePropertyChanged("SelectedWatchlist");
+                InvestmentListName = _selectedWatchlist != null ?
+                                     _selectedWatchlist.Name : null;
+                InvestmentListDescription = _selectedWatchlist != null ?
+                    _selectedWatchlist.Description : null;
             }
         }
 
@@ -86,6 +98,86 @@ namespace GW2Trader.ViewModel
             }
         }
 
+        public List<GameItemModel> SharedItems
+        {
+            get { return _items; }
+        }
+
+        public void AddInvestmentList()
+        {
+            InvestmentWatchlistModel newWatchlist = new InvestmentWatchlistModel
+            {
+                Name = InvestmentListName,
+                Description = InvestmentListDescription
+            };
+            using (var context = _contextProvider.GetContext())
+            {
+                context.InvestmentWatchlists.Add(newWatchlist);
+                context.Save();
+                newWatchlist.Id = context.InvestmentWatchlists.ToList().Last().Id;
+            }
+            Watchlists.Add(newWatchlist);
+        }
+
+        public void UpdateInvestmentList()
+        {
+            using (var context = _contextProvider.GetContext())
+            {
+                var listToUpdate = context.InvestmentWatchlists.Single(l => l.Id == SelectedWatchlist.Id);
+                listToUpdate.Name = InvestmentListName;
+                listToUpdate.Description = InvestmentListDescription;
+                context.Save();
+            }
+            SelectedWatchlist.Name = InvestmentListName;
+            SelectedWatchlist.Description = InvestmentListDescription;
+        }
+
+        public void DeleteInvestmentList(InvestmentWatchlistModel watchlist)
+        {
+            using (var context = _contextProvider.GetContext())
+            {
+                var watchlistToDelete = context.InvestmentWatchlists.Single(wl => wl.Id == watchlist.Id);
+                context.InvestmentWatchlists.Remove(watchlistToDelete);
+                context.Save();
+            }
+            _watchlists.Remove(watchlist);
+            if (Watchlists.Any())
+            {
+                SelectedWatchlist = Watchlists.Last();
+            }
+        }
+
+        public void DeleteInvestment(InvestmentModel investment)
+        {
+            using (var context = _contextProvider.GetContext())
+            {
+                InvestmentWatchlistModel contextWatchlist =
+                    context.InvestmentWatchlists.Single(wl => wl.Id == SelectedWatchlist.Id);
+                InvestmentModel investmentToDelete = context.Investments.Single(inv => inv.Id == investment.Id);
+                contextWatchlist.Items.Remove(investmentToDelete);
+                context.Investments.Remove(investmentToDelete);
+                context.Save();
+            }
+            SelectedWatchlist.Items.Remove(investment);
+        }
+
+        public void AddInvestment(InvestmentModel investment)
+        {
+            
+        }
+
+        private void BuildWatchlists()
+        {
+            using (var context = _contextProvider.GetContext())
+            {
+                var watchlists = context.InvestmentWatchlists.Include(wl => wl.Items).ToList();
+                Watchlists = new ObservableCollection<InvestmentWatchlistModel>(watchlists);
+            }
+
+            // TODO
+
+        }
+
         #region Commands
 
         private RelayCommand _addInvestmentListCommand;
@@ -95,7 +187,7 @@ namespace GW2Trader.ViewModel
             get
             {
                 if (_addInvestmentListCommand == null)
-                    _addInvestmentListCommand = new AddWatchlistCommand();
+                    _addInvestmentListCommand = new AddInvestmentListCommand();
                 return _addInvestmentListCommand;
             }
         }
@@ -120,7 +212,19 @@ namespace GW2Trader.ViewModel
             {
                 if (_updateInvestmentListCommand == null)
                     _updateInvestmentListCommand = new UpdateInvestmentListCommand();
-                return _updateInvestmentListCommand;                
+                return _updateInvestmentListCommand;
+            }
+        }
+
+        private RelayCommand _addInvestmentCommand;
+
+        public RelayCommand AddInvestmentCommand
+        {
+            get
+            {
+                if (_addInvestmentCommand == null)
+                    _addInvestmentCommand = new AddInvestmentCommand();
+                return _addInvestmentCommand;
             }
         }
 
