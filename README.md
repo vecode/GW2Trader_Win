@@ -8,7 +8,7 @@ Beware that GW2Trader is still in development and not ready for personal use (ye
 
 ### Screenshots
 
-### Future features
+### Future Features
 
 - crafting recipes 
 - custom recipes
