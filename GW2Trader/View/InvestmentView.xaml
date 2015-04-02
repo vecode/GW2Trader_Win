@@ -6,11 +6,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:control="clr-namespace:GW2Trader.Control"
+             xmlns:util="clr-namespace:GW2Trader.Util"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
 
     <UserControl.Resources>
         <sys:Int32 x:Key="fixedValue">123456</sys:Int32>
+        <util:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
     </UserControl.Resources>
 
     <Grid>
@@ -66,19 +68,9 @@
 
                     </Grid>
 
-                    <Button Content="Add Investment" Grid.Row="5" Style="{DynamicResource SquareButtonStyle}" Margin="2,2,2,0"
-                            BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
-
-                        <Button.CommandParameter>
-                            <!--<MultiBinding Converter="{StaticResource MultiValueConverter}">-->
-                            <Binding />
-                            <!--<Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type gw2Trader:MainWindow}}"/>-->
-                            <!--</MultiBinding>-->
-                        </Button.CommandParameter>
-                        <Button.Command>
-                            <Binding Path="AddInvestmentCommand"/>
-                        </Button.Command>
-                    </Button>
+                    <Button Content="New Investment" Grid.Row="5" Style="{DynamicResource SquareButtonStyle}" Margin="2,2,2,0"
+                            BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+                            CommandParameter="{Binding}" Command="{Binding NewInvestmentDialogCommand}"/>
                 </Grid>
             </Expander>
 
@@ -125,6 +117,38 @@
             </Expander>
         </Grid>
 
-        <control:CustomDataGrid Grid.Column="1" Margin="2"/>
+        <control:CustomDataGrid Grid.Column="1" Margin="2" 
+            ItemsSource="{Binding SelectedWatchlist.Items}"
+            AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+            HorizontalContentAlignment="Center" VerticalContentAlignment="Center"                                
+            CellStyle="{StaticResource ItemDataGridCellStyle}"
+            SelectionUnit="FullRow" SelectionMode="Extended"                   
+            Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
+
+            <control:CustomDataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Background"
+                            Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent"/>
+                    </Style.Resources>
+                </Style>
+            </control:CustomDataGrid.RowStyle>
+
+            <control:CustomDataGrid.Columns>
+                <!--<StaticResource ResourceKey="RowDetailsButtonColumn"/>-->
+                <StaticResource ResourceKey="IconColumn"/>
+                <StaticResource ResourceKey="NameColumn"/>
+                <StaticResource ResourceKey="BuyPriceColumn"/>
+                <StaticResource ResourceKey="SellPriceColumn"/>
+                <!--<StaticResource ResourceKey="MarginColumn"/>-->
+                <StaticResource ResourceKey="DemandColumn"/>
+                <StaticResource ResourceKey="SupplyColumn"/>
+                <!--<StaticResource ResourceKey="RoiColumn"/>-->
+                <!--<StaticResource ResourceKey="PlaceholderColumn"/>-->
+            </control:CustomDataGrid.Columns>
+
+        </control:CustomDataGrid>
     </Grid>
 </UserControl>

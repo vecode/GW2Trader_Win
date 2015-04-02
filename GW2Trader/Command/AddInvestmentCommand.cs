@@ -1,14 +1,10 @@
-﻿using System;
+﻿using GW2Trader.View;
+using GW2Trader.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using EntityFramework.MappingAPI.Exceptions;
-using GW2Trader.View;
-using GW2Trader.ViewModel;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 
 namespace GW2Trader.Command
 {
@@ -16,23 +12,32 @@ namespace GW2Trader.Command
     {
         public override bool CanExecute(object parameter)
         {
-            InvestmentViewModel viewModel = parameter as InvestmentViewModel;
-            return viewModel.SelectedWatchlist != null;
+            NewInvestmentViewModel viewModel = (NewInvestmentViewModel)(parameter as NewInvestmentWindow).DataContext;
+
+            if (viewModel.SelectedItem == null)
+            {
+                return false;
+            }
+
+            if (viewModel.BuyPrice.Value == 0)
+            {
+                return false;
+            }
+
+            if (viewModel.Quantity == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         public override void Execute(object parameter)
         {
-            //object[] parameters = parameter as object[];
-            //MetroWindow mainWindow = parameters[1] as MetroWindow;
-            InvestmentViewModel viewModel = parameter as InvestmentViewModel;
-            
-            NewInvestmentViewModel newInvestmentViewModel = new NewInvestmentViewModel(viewModel.SharedItems);
+            NewInvestmentWindow window = parameter as NewInvestmentWindow;
+            NewInvestmentViewModel viewModel = (NewInvestmentViewModel)window.DataContext;
 
-            NewInvestmentWindow newInvestmentWindow = new NewInvestmentWindow
-            {
-                DataContext = newInvestmentViewModel
-            };
-            newInvestmentWindow.ShowDialog();
+            viewModel.FinalizeResult();
+            window.Close();
         }
     }
 }

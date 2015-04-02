@@ -18,7 +18,7 @@
     <DataGridTemplateColumn x:Key="NameColumn" Header="Name" x:Shared="False">
         <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
-                <TextBox Text="{Binding Name}" TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
+                <TextBox Text="{Binding Name, Mode=OneWay}" TextWrapping="Wrap" IsReadOnly="True" BorderThickness="0" Background="Transparent"/>
             </DataTemplate>
         </DataGridTemplateColumn.CellTemplate>
     </DataGridTemplateColumn>
@@ -40,7 +40,7 @@
 
                     <ToggleButton.CommandParameter>
                         <MultiBinding Converter="{StaticResource MultiValueConverter}">
-                            <Binding></Binding>
+                            <Binding/>
                             <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=control:CustomDataGrid}" Path="DataContext" />
                         </MultiBinding>
                     </ToggleButton.CommandParameter>

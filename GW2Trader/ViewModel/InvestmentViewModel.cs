@@ -6,6 +6,7 @@ using System.Linq;
 using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
+using GW2Trader.Decorator;
 
 namespace GW2Trader.ViewModel
 {
@@ -15,9 +16,9 @@ namespace GW2Trader.ViewModel
 
         private string _investmentListName;
         private string _investmentListDescription;
-        private InvestmentWatchlistModel _selectedWatchlist;
-        private List<InvestmentWatchlistModel> _selectedWatchlists;
-        private ObservableCollection<InvestmentWatchlistModel> _watchlists;
+        private InvestmentWatchlistDecorator _selectedWatchlist;
+        private List<InvestmentWatchlistDecorator> _selectedWatchlists;
+        private ObservableCollection<InvestmentWatchlistDecorator> _watchlists;
         #endregion
 
         private readonly IGameDataContextProvider _contextProvider;
@@ -38,7 +39,7 @@ namespace GW2Trader.ViewModel
 
             BuildWatchlists();
 
-            if (Watchlists.Any())
+            if (Watchlists != null && Watchlists.Any())
             {
                 SelectedWatchlist = Watchlists[0];
             }
@@ -64,7 +65,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public InvestmentWatchlistModel SelectedWatchlist
+        public InvestmentWatchlistDecorator SelectedWatchlist
         {
             get { return _selectedWatchlist; }
             set
@@ -78,7 +79,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public List<InvestmentWatchlistModel> SelectedWatchlists
+        public List<InvestmentWatchlistDecorator> SelectedWatchlists
         {
             get { return _selectedWatchlists; }
             set
@@ -88,7 +89,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public ObservableCollection<InvestmentWatchlistModel> Watchlists
+        public ObservableCollection<InvestmentWatchlistDecorator> Watchlists
         {
             get { return _watchlists; }
             set
@@ -116,7 +117,7 @@ namespace GW2Trader.ViewModel
                 context.Save();
                 newWatchlist.Id = context.InvestmentWatchlists.ToList().Last().Id;
             }
-            Watchlists.Add(newWatchlist);
+            Watchlists.Add(InvestmentWatchlistDecorator.Decorate(newWatchlist));
         }
 
         public void UpdateInvestmentList()
@@ -132,7 +133,7 @@ namespace GW2Trader.ViewModel
             SelectedWatchlist.Description = InvestmentListDescription;
         }
 
-        public void DeleteInvestmentList(InvestmentWatchlistModel watchlist)
+        public void DeleteInvestmentList(InvestmentWatchlistDecorator watchlist)
         {
             using (var context = _contextProvider.GetContext())
             {
@@ -147,7 +148,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public void DeleteInvestment(InvestmentModel investment)
+        public void DeleteInvestment(InvestmentDecorator investment)
         {
             using (var context = _contextProvider.GetContext())
             {
@@ -163,19 +164,25 @@ namespace GW2Trader.ViewModel
 
         public void AddInvestment(InvestmentModel investment)
         {
-            
+            using (var context = _contextProvider.GetContext())
+            {
+                var contextWatchlists = context.InvestmentWatchlists.Single(wl => wl.Id == SelectedWatchlist.Id);
+                context.GameItems.Attach(investment.GameItem);
+                contextWatchlists.Items.Add(investment);
+                context.Save();
+            }
+            SelectedWatchlist.Items.Add(InvestmentDecorator.Decorate(investment));
         }
 
         private void BuildWatchlists()
         {
             using (var context = _contextProvider.GetContext())
             {
-                var watchlists = context.InvestmentWatchlists.Include(wl => wl.Items).ToList();
-                Watchlists = new ObservableCollection<InvestmentWatchlistModel>(watchlists);
+                var watchlists = context.InvestmentWatchlists.Include(wl => wl.Items.Select(i => i.GameItem)).ToList();
+                watchlists.ForEach(wl => wl.Items.ToList()
+                    .ForEach(i => i.GameItem = _items.Single(item => item.ItemId == i.GameItem.ItemId)));
+                Watchlists = new ObservableCollection<InvestmentWatchlistDecorator>(InvestmentWatchlistDecorator.Decorate(watchlists));
             }
-
-            // TODO
-
         }
 
         #region Commands
@@ -216,15 +223,15 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        private RelayCommand _addInvestmentCommand;
+        private RelayCommand _newInvestmentDialogCommand;
 
-        public RelayCommand AddInvestmentCommand
+        public RelayCommand NewInvestmentDialogCommand
         {
             get
             {
-                if (_addInvestmentCommand == null)
-                    _addInvestmentCommand = new AddInvestmentCommand();
-                return _addInvestmentCommand;
+                if (_newInvestmentDialogCommand == null)
+                    _newInvestmentDialogCommand = new OpenNewInvestmentDialogCommand();
+                return _newInvestmentDialogCommand;
             }
         }
 
