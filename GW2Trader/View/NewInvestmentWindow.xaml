@@ -6,7 +6,7 @@
         xmlns:view="clr-namespace:GW2Trader.View"
         xmlns:util="clr-namespace:GW2Trader.Util"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="New Investment" Height="500" Width="Auto">
+        Title="New Investment" Height="500" ResizeMode="NoResize" Width="605">
 
     <controls:MetroWindow.Resources>
         <util:RarityToBrushConverter x:Key="RarityToBrushConverter"/>
@@ -15,8 +15,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="300" Width="300"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition MinWidth="300" MaxWidth="300"/>
+            <ColumnDefinition MinWidth="300" MaxWidth="300"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
@@ -99,8 +99,9 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Column="0" Grid.Row="1" Source="{Binding SelectedItem.IconImageSource}" Width="50"/>
-                    <Label Grid.Column="1" Grid.Row="1" Content="{Binding SelectedItem.Name}" FontSize="14"
-                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SelectedItem.Name}" FontSize="14"
+                           FontWeight="Bold" TextWrapping="Wrap" 
+                           />
                 </Grid>
             </Border>
 
@@ -139,7 +140,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    
+
                     <Label Grid.Column="0" Grid.Row="0" Content="Quantity"/>
                     <controls:NumericUpDown Grid.Column="1" Grid.Row="0" Width="125" Margin="1" 
                                             Value="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"
@@ -147,26 +148,75 @@
                                             Minimum="1"/>
 
                     <Label Grid.Column="0" Grid.Row="1" Content="Bought for"/>
-                    <view:MoneyInputView Grid.Column="1" Grid.Row="1" DataContext="{Binding Investment.PurchasePrice}"
+                    <view:MoneyInputView Grid.Column="1" Grid.Row="1" DataContext="{Binding BuyPrice}"
                                     HorizontalAlignment="Right"/>
 
                     <Label Grid.Column="0" Grid.Row="2" Content="Target Sell Price"/>
-                    <view:MoneyView Grid.Column="1" Grid.Row="2"  DataContext="{StaticResource fixedValue}"
+                    <view:MoneyInputView Grid.Column="1" Grid.Row="2" DataContext="{Binding TargetSellPrice}"
                                     HorizontalAlignment="Right"/>
 
                     <Label Grid.Column="0" Grid.Row="3" Content="Sold For"/>
-                    <view:MoneyView Grid.Column="1" Grid.Row="3" DataContext="{StaticResource fixedValue}"
+                    <view:MoneyInputView Grid.Column="1" Grid.Row="3" DataContext="{Binding SellPrice}"
                                     HorizontalAlignment="Right"/>
 
                     <Label Grid.Column="0" Grid.Row="4" Content="Is Sold"/>
-                    <CheckBox Grid.Column="1" Grid.Row="4" IsChecked="{Binding Investment.IsSold}" 
+                    <CheckBox Grid.Column="1" Grid.Row="4" IsChecked="{Binding IsSold}" 
                               HorizontalAlignment="Right"/>
 
                 </Grid>
             </Border>
 
+            <Border Grid.Row="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
+                    <Label Grid.Column="0" Grid.Row="0" Content="Gold invested"/>
+                    <view:MoneyView Grid.Column="1" Grid.Row="0" DataContext="{Binding GoldInvested}"
+                                    HorizontalAlignment="Right"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" Content="Current Profit per Unit"/>
+                    <view:MoneyView Grid.Column="1" Grid.Row="1" DataContext="{Binding CurrentProfitPerUnit}"
+                                    HorizontalAlignment="Right"/>
+
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="Expected Profit per Unit"/>
+                    <view:MoneyView Grid.Column="1" Grid.Row="2" DataContext="{Binding ExpectedProfitPerUnit}"
+                                    HorizontalAlignment="Right"/>
+
+
+                    <Label Grid.Column="0" Grid.Row="3" Content="Current Total Profit"/>
+                    <view:MoneyView Grid.Column="1" Grid.Row="3" DataContext="{Binding CurrentTotalProfit}"
+                                    HorizontalAlignment="Right"/>
+
+
+                    <Label Grid.Column="0" Grid.Row="4" Content="Expected Total Profit"/>
+                    <view:MoneyView Grid.Column="1" Grid.Row="4" DataContext="{Binding ExpectedTotalProfit}"
+                                    HorizontalAlignment="Right"/>
+
+                </Grid>
+            </Border>
+
+            <Button Grid.Row="4" Content="Add Investment" Width="120" 
+                    Style="{DynamicResource SquareButtonStyle}" Margin="2"
+                    BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
+
+                <Button.CommandParameter>
+                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:MetroWindow}}"/>
+                </Button.CommandParameter>
+                <Button.Command>
+                    <Binding Path="AddInvestmentCommand"/>
+                </Button.Command>
+            </Button>
         </Grid>
-
     </Grid>
 </controls:MetroWindow>
