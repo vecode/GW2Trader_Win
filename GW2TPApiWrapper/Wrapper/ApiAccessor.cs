@@ -11,9 +11,9 @@ namespace GW2TPApiWrapper.Wrapper
 {
     public class ApiAccessor : IApiAccessor
     {
-        private const string ItemsApiUrl = @"https://api.guildwars2.com/v2/items/";
-        private const string ListingsApiUrl = @"https://api.guildwars2.com/v2/commerce/listings/";
-        private const string PricesApiUrl = @"https://api.guildwars2.com/v2/commerce/prices/";
+        private const string ItemsApiUrl = @"https://api.guildwars2.com/v2/items";
+        private const string ListingsApiUrl = @"https://api.guildwars2.com/v2/commerce/listings";
+        private const string PricesApiUrl = @"https://api.guildwars2.com/v2/commerce/prices";
 
         public ApiAccessor()
         {
@@ -26,19 +26,59 @@ namespace GW2TPApiWrapper.Wrapper
             return new WebClient().OpenRead(ListingsApiUrl);
         }
 
+        public bool TryGetItemIds(out Stream val)
+        {
+            try
+            {
+                val = ItemIds();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                val = null;
+                return false;
+            }
+        }
+
         public Stream ItemDetails(int id)
         {
             return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(ItemsApiUrl, id));
         }
 
+        public bool TryGetItemDetails(int id, out Stream val)
+        {
+            try
+            {
+                val = ItemDetails(id);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                val = null;
+                return false;
+            }
+        }
+
         public Stream ItemDetails(int[] ids)
         {
-            // TODO setting headers needed?
             WebClient webClient = new WebClient();
             webClient.Headers["Content-Type"] = "application/json;charset=UTF-8";
             webClient.Headers.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)");
-            //webClient.Headers.Add("Accept-Language", " en-US");
             return webClient.OpenRead(ApiUrlFormatter.FormatUrl(ItemsApiUrl, ids));
+        }
+
+        public bool TryGetItemDetails(int[] ids, out Stream val)
+        {
+            try
+            {
+                val = ItemDetails(ids);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                val = null;
+                return false;
+            }
         }
 
         public Stream Listings(int id)
@@ -46,9 +86,37 @@ namespace GW2TPApiWrapper.Wrapper
             return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(ListingsApiUrl, id));
         }
 
+        public bool TryGetListings(int id, out Stream val)
+        {
+            try
+            {
+                val = Listings(id);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                val = null;
+                return false;
+            }
+        }
+
         public Stream Listings(int[] ids)
         {
             return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(ListingsApiUrl, ids));
+        }
+
+        public bool TryGetListings(int[] ids, out Stream val)
+        {
+            try
+            {
+                val = Listings(ids);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                val = null;
+                return false;
+            }
         }
 
         public Stream Prices(int[] ids)
@@ -56,5 +124,20 @@ namespace GW2TPApiWrapper.Wrapper
             WebClient webClient = new WebClient();
             return webClient.OpenRead(ApiUrlFormatter.FormatUrl(PricesApiUrl, ids));
         }
+
+        public bool TryGetPrices(int[] ids, out Stream val)
+        {
+            try
+            {
+                val = Prices(ids);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                val = null;
+                return false;
+            }
+        }
+
     }
 }

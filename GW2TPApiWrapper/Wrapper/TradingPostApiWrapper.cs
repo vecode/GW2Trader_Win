@@ -7,12 +7,14 @@ using Newtonsoft.Json;
 using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Util;
 using System.IO;
+using Shared.Util;
 
 namespace GW2TPApiWrapper.Wrapper
 {
     public class TradingPostApiWrapper : ITradingPostApiWrapper
     {
         private readonly IApiAccessor _apiAccessor;
+        private readonly IInternetConnectionChecker _connectionChecker;
 
         private const int MaxRequestSize = 200;
 
@@ -31,9 +33,10 @@ namespace GW2TPApiWrapper.Wrapper
             }
         }
 
-        public TradingPostApiWrapper(IApiAccessor apiAccessor)
+        public TradingPostApiWrapper(IApiAccessor apiAccessor, IInternetConnectionChecker connectionChecker)
         {
             _apiAccessor = apiAccessor;
+            _connectionChecker = connectionChecker;
         }
 
         public int[] ItemIds()
@@ -70,7 +73,7 @@ namespace GW2TPApiWrapper.Wrapper
             return ApiRequest<Item>(ids);
         }
 
-        private IList<T> ApiRequest<T>(int[] ids)
+        private IList<T> ApiRequest<T>(int[] ids) where T : GW2TPApiResponse
         {
             Func<int[], Stream> entityRetrievalMethod;
 

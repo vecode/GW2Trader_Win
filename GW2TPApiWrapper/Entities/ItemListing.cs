@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GW2TPApiWrapper.Entities
 {
-    public class ItemListing
+    public class ItemListing : GW2TPApiResponse
     {
         public int Id { get; set; }
         public Listing[] Buys { get; set; }

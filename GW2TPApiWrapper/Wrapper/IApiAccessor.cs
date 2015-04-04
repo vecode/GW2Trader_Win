@@ -15,6 +15,7 @@ namespace GW2TPApiWrapper.Wrapper
         /// </summary>
         /// <returns>Returns a stream containing an array of ids of all avaible items on the trading post formatted as json</returns>
         Stream ItemIds();
+        bool TryGetItemIds(out Stream val);
 
         /// <summary>
         /// Makes an api call and returns the json result stream containing the details
@@ -25,6 +26,8 @@ namespace GW2TPApiWrapper.Wrapper
         Stream ItemDetails(int id);
         Stream ItemDetails(int[] ids);
 
+        bool TryGetItemDetails(int id, out Stream val);
+        bool TryGetItemDetails(int[] ids, out Stream val);
 
         /// <summary>
         /// Makes an api call and returns the json result stream containing buy and sell
@@ -35,6 +38,10 @@ namespace GW2TPApiWrapper.Wrapper
         Stream Listings(int id);
         Stream Listings(int[] ids);
 
+        bool TryGetListings(int id, out Stream val);
+        bool TryGetListings(int[] ids, out Stream val);
+
         Stream Prices(int[] ids);
+        bool TryGetPrices(int[] ids, out Stream val);
       }
 }

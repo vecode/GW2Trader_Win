@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GW2TPApiWrapper.Entities
 {
-    public class Listing
+    public class Listing : GW2TPApiResponse
     {
         public int Quantity{ get; set; }
 

@@ -10,6 +10,7 @@ using GW2Trader.DesignTimeErrorPrevention;
 using GW2Trader.Model;
 using System.Threading.Tasks;
 using GW2Trader.Command;
+using Shared.Util;
 
 namespace GW2Trader.ViewModel
 {
@@ -61,7 +62,7 @@ namespace GW2Trader.ViewModel
                 _contextProvider = new GameDataContextProvider();
             }
 
-            _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessor());
+            _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessor(), new InternetConnectionChecker());
             _dataUpdater = new ApiDataUpdater(_tpApiWrapper);
 
             DbBuilder dbBuilder = new DbBuilder(_tpApiWrapper, _contextProvider);
