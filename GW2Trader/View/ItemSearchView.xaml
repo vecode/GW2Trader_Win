@@ -26,7 +26,7 @@
             </Style>
         </Grid.Resources>
 
-        <Grid HorizontalAlignment="Stretch" Margin="5,35,5,0">
+        <Grid HorizontalAlignment="Stretch" Margin="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

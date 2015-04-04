@@ -23,7 +23,7 @@
             </Style>
         </Grid.Resources>
 
-        <Grid Grid.Column="0" Margin="5,35,5,0">
+        <Grid Grid.Column="0" Margin="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

@@ -81,13 +81,18 @@ namespace GW2Trader.Decorator
         {
             get 
             { 
-                return (int)Math.Round(_investment.PurchasePrice * 0.85 - _investment.GameItem.BuyPrice); 
+                return (int)Math.Round(_investment.GameItem.SellPrice * 0.85f - _investment.PurchasePrice); 
             }
         }
 
         public int CurrentTotalProfit
         {
             get { return CurrentProfitPerUnit * _investment.Count; }
+        }
+
+        public int PurchasePrice
+        {
+            get { return _investment.PurchasePrice; }
         }
 
         public static InvestmentDecorator Decorate(InvestmentModel investment)

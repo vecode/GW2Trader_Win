@@ -110,10 +110,36 @@
         </DataGridTemplateColumn.CellTemplate>
     </DataGridTemplateColumn>
 
-    <DataGridTemplateColumn Header="Suply" x:Key="SellListingCountColumn" x:Shared="False" Width="Auto">
+    <DataGridTemplateColumn Header="Supply" x:Key="SellListingCountColumn" x:Shared="False" Width="Auto">
         <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
                 <Label Content="{Binding Path=Quantity}" VerticalAlignment="Center" 
+                       HorizontalAlignment="Center" VerticalContentAlignment="Center" 
+                       HorizontalContentAlignment="Center"/>
+            </DataTemplate>
+        </DataGridTemplateColumn.CellTemplate>
+    </DataGridTemplateColumn>
+
+    <DataGridTemplateColumn Header="PurchasePrice" x:Key="PurchasePriceColumn" x:Shared="False">
+        <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+                <view:MoneyView DataContext="{Binding Path=PurchasePrice}"/>
+            </DataTemplate>
+        </DataGridTemplateColumn.CellTemplate>
+    </DataGridTemplateColumn>
+
+    <DataGridTemplateColumn Header="CurrentProfitPerUnit" x:Key="CurrentProfitPerUnitColumn" x:Shared="False">
+        <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+                <view:MoneyView DataContext="{Binding Path=CurrentProfitPerUnit}"/>
+            </DataTemplate>
+        </DataGridTemplateColumn.CellTemplate>
+    </DataGridTemplateColumn>
+
+    <DataGridTemplateColumn Header="Quantity" x:Key="QuantityColumn" x:Shared="False" Width="Auto">
+        <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+                <Label Content="{Binding Path=Count}" VerticalAlignment="Center" 
                        HorizontalAlignment="Center" VerticalContentAlignment="Center" 
                        HorizontalContentAlignment="Center"/>
             </DataTemplate>

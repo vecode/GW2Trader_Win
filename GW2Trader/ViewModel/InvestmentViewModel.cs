@@ -7,6 +7,7 @@ using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
 using GW2Trader.Decorator;
+using System;
 
 namespace GW2Trader.ViewModel
 {
@@ -72,6 +73,9 @@ namespace GW2Trader.ViewModel
             {
                 _selectedWatchlist = value;
                 RaisePropertyChanged("SelectedWatchlist");
+                RaisePropertyChanged("GoldInvested");
+                RaisePropertyChanged("CurrentProfit");
+                RaisePropertyChanged("TotalWorth");
                 InvestmentListName = _selectedWatchlist != null ?
                                      _selectedWatchlist.Name : null;
                 InvestmentListDescription = _selectedWatchlist != null ?
@@ -96,6 +100,42 @@ namespace GW2Trader.ViewModel
             {
                 _watchlists = value;
                 RaisePropertyChanged("Watchlists");
+            }
+        }
+
+        public int GoldInvested
+        {
+            get
+            {
+                if (SelectedWatchlist != null)
+                {
+                    return SelectedWatchlist.Items.Sum(inv => inv.Count * inv.PurchasePrice);
+                }
+                return 0;
+            }  
+        }
+
+        public int CurrentProfit
+        {
+            get
+            {
+                if (SelectedWatchlist != null)
+                {
+                    return SelectedWatchlist.Items.Sum(inv => inv.CurrentTotalProfit);
+                }
+                return 0;
+            }
+        }
+
+        public int TotalWorth
+        {
+            get
+            {
+                if (SelectedWatchlist != null)
+                {
+                    return (int)Math.Round(SelectedWatchlist.Items.Sum(inv => inv.SellPrice * 0.85f * inv.Count));
+                }
+                return 0;
             }
         }
 
