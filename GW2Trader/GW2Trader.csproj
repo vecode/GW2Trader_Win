@@ -314,6 +314,10 @@
       <Project>{a37ca4f0-b48c-43d0-95b9-1f955e450fa1}</Project>
       <Name>GW2TPApiWrapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{7eb8f0ca-d428-4cbc-832a-5421e57d75e1}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Gold_coin.png">

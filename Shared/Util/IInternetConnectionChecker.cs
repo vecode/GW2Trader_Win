@@ -8,6 +8,6 @@ namespace Shared.Util
 {
     public interface IInternetConnectionChecker
     {
-        static bool CheckForInternetConnection();
+        bool CheckForInternetConnection();
     }
 }

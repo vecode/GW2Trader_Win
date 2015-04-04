@@ -9,7 +9,7 @@ namespace Shared.Util
 {
     public class InternetConnectionChecker : IInternetConnectionChecker
     {
-        public static bool CheckForInternetConnection()
+        public bool CheckForInternetConnection()
         {
             try
             {

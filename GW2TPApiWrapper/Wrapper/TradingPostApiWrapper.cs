@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using GW2TPApiWrapper.Entities;
-using GW2TPApiWrapper.Util;
 using System.IO;
 using Shared.Util;
+using GW2TPApiWrapper.Util;
 
 namespace GW2TPApiWrapper.Wrapper
 {
@@ -27,9 +27,7 @@ namespace GW2TPApiWrapper.Wrapper
             get { return _requestSize; }
             set
             {
-                if (value < 1) return;
-                else if (value > MaxRequestSize) _requestSize = MaxRequestSize;
-                else _requestSize = value;
+                _requestSize = value > 1 ? Math.Min(MaxRequestSize, value) : _requestSize;
             }
         }
 

@@ -7,8 +7,7 @@ using Newtonsoft.Json;
 using GW2TPApiWrapper.Entities;
 using System.IO;
 using Newtonsoft.Json.Linq;
-
-namespace GW2TPApiWrapper.Wrapper
+namespace GW2TPApiWrapper.Util
 {
     public class ApiResponseConverter
     {
@@ -17,10 +16,8 @@ namespace GW2TPApiWrapper.Wrapper
             StreamReader sr = new StreamReader(stream);
             JsonReader reader = new JsonTextReader(sr);
             JsonSerializer serializer = new JsonSerializer();
-
             T obj = serializer.Deserialize<T>(reader);
             stream.Close();
-
             return obj;
         }
     }
