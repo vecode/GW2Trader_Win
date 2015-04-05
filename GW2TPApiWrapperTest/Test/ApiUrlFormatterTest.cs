@@ -11,10 +11,10 @@ namespace GW2TPApiWrapperTest.Test
         public void UrlWithSingleIdShouldBeValid()
         {
             int id = 1;
-            string url = @"http://url_to_api/items/?ids=";
+            string url = @"http://url_to_api/items";
             string formattedUrl = ApiUrlFormatter.FormatUrl(url, id);
 
-            Assert.AreEqual(@"http://url_to_api/items/?ids=1", formattedUrl);
+            Assert.AreEqual(@"http://url_to_api/items/1", formattedUrl);
         }
 
         [TestMethod]

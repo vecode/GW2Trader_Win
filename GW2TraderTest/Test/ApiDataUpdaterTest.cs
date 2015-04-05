@@ -20,8 +20,8 @@ namespace GW2TraderTest.Test
                 IconUrl = "oldUrl",
                 Name = "oldName",
                 RestrictionLevel = 0,
-                Type = ItemType.Type.Armor,
-                Rarity = ItemRarity.Rarity.Basic,
+                Type = ItemType.Type.Armor.ToString(),
+                Rarity = ItemRarity.Rarity.Basic.ToString(),
                 Listing = new ItemListing
                 {
                     Id = 1,

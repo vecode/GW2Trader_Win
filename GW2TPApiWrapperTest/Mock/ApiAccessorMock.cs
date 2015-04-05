@@ -302,5 +302,36 @@ namespace GW2TPApiWrapperTest.Mock
         {
             return StringToStream(_validMultiplePricesAsJson);
         }
+
+
+        public bool TryGetItemIds(out Stream val)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetItemDetails(int id, out Stream val)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetItemDetails(int[] ids, out Stream val)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetListings(int id, out Stream val)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetListings(int[] ids, out Stream val)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool TryGetPrices(int[] ids, out Stream val)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

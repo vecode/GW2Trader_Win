@@ -7,6 +7,7 @@ using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Enum;
 using System.Collections.Generic;
 using System.Linq;
+using GW2TPApiWrapper.Util;
 
 namespace GW2TPApiWrapperTest.Test
 {

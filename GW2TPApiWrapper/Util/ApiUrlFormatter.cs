@@ -15,7 +15,7 @@ namespace GW2TPApiWrapper.Util
         }
         public static string FormatUrl(string apiUrl, int id)
         {
-            return apiUrl + id;
+            return apiUrl + '/' + id;
         }
         public static string FormatUrl(string apiurl, int[] ids)
         {

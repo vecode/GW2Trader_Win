@@ -17,8 +17,8 @@ namespace GW2TPApiWrapperTest
                 Id = 1,
                 Description = "this is item 1",
                 Level = 10,
-                Rarity = ItemRarity.Rarity.Basic,
-                Type = ItemType.Type.Armor,
+                Rarity = ItemRarity.Rarity.Basic.ToString(),
+                Type = ItemType.Type.Armor.ToString(),
                 VendorValue = 3, 
                 Name = "item 1",
                 IconUrl = "http://item_icon.png"
@@ -28,8 +28,8 @@ namespace GW2TPApiWrapperTest
                 Id = 2,
                 Description = "this is item 2",
                 Level = 20,
-                Rarity = ItemRarity.Rarity.Basic,
-                Type = ItemType.Type.Armor,
+                Rarity = ItemRarity.Rarity.Basic.ToString(),
+                Type = ItemType.Type.Armor.ToString(),
                 VendorValue = 6, 
                 Name = "item 2",
                 IconUrl = "http://item_icon.png"
@@ -39,8 +39,8 @@ namespace GW2TPApiWrapperTest
                 Id = 3,
                 Description = "this is item 3",
                 Level = 30,
-                Rarity = ItemRarity.Rarity.Basic,
-                Type = ItemType.Type.Armor,
+                Rarity = ItemRarity.Rarity.Basic.ToString(),
+                Type = ItemType.Type.Armor.ToString(),
                 VendorValue = 9, 
                 Name = "item 3",
                 IconUrl = "http://item_icon.png"

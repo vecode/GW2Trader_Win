@@ -8,6 +8,7 @@ using GW2Trader.Data;
 using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Enum;
 using GW2TPApiWrapper.Entities;
+using System.Collections.ObjectModel;
 
 namespace GW2TraderTest
 {
@@ -22,9 +23,9 @@ namespace GW2TraderTest
                     ItemId = 123456,
                     IconUrl = @"http://icon_file_1.png",
                     Name = "Test Item 1",
-                    Rarity = ItemRarity.Rarity.Basic,
+                    Rarity = ItemRarity.Rarity.Basic.ToString(),
                     RestrictionLevel = 10,
-                    Type = ItemType.Type.Weapon,
+                    Type = ItemType.Type.Weapon.ToString(),
                     Listing = new ItemListing 
                     {
                         Id = 3,
@@ -46,9 +47,9 @@ namespace GW2TraderTest
                     ItemId = 2,
                     IconUrl = @"http://icon_file_2.png",
                     Name = "Test Item 2",
-                    Rarity = ItemRarity.Rarity.Fine,
+                    Rarity = ItemRarity.Rarity.Fine.ToString(),
                     RestrictionLevel = 20,
-                    Type = ItemType.Type.Armor,
+                    Type = ItemType.Type.Armor.ToString(),
                     Listing = new ItemListing 
                     {
                         Id = 3,
@@ -70,9 +71,9 @@ namespace GW2TraderTest
                     ItemId = 3,
                     IconUrl = @"http://icon_file_3.png",
                     Name = "Test Item 3",
-                    Rarity = ItemRarity.Rarity.Fine,
+                    Rarity = ItemRarity.Rarity.Fine.ToString(),
                     RestrictionLevel = 30,
-                    Type = ItemType.Type.Armor,
+                    Type = ItemType.Type.Armor.ToString(),
                     Listing = new ItemListing 
                     {
                         Id = 3,
@@ -93,34 +94,34 @@ namespace GW2TraderTest
             return items;
         }
 
-        public IEnumerable<ItemIdWatchlistModel> GetTestItemIdWatchlists()
-        {
-            List<ItemIdWatchlistModel> watchlists = new List<ItemIdWatchlistModel>()
-            {
-                new ItemIdWatchlistModel()
-                { 
-                    Id = 0,
-                    Description = "some really special items", 
-                    Name = "some items",
-                    Items = new List<int> { 2, 3, 123456 }
-                },
-                new ItemIdWatchlistModel()
-                { 
-                    Id = 1,
-                    Description = "some basic items", 
-                    Name = "basic items",
-                    Items = new List<int> { 2, 3 }
-                },
-                new ItemIdWatchlistModel()
-                { 
-                    Id = 2,
-                    Description = "some really special items", 
-                    Name = "some items",
-                    Items = new List<int>()
-                }
-            };
-            return watchlists;
-        }
+        //public IEnumerable<ItemIdWatchlistModel> GetTestItemIdWatchlists()
+        //{
+        //    List<ItemIdWatchlistModel> watchlists = new List<ItemIdWatchlistModel>()
+        //    {
+        //        new ItemIdWatchlistModel()
+        //        { 
+        //            Id = 0,
+        //            Description = "some really special items", 
+        //            Name = "some items",
+        //            Items = new List<int> { 2, 3, 123456 }
+        //        },
+        //        new ItemIdWatchlistModel()
+        //        { 
+        //            Id = 1,
+        //            Description = "some basic items", 
+        //            Name = "basic items",
+        //            Items = new List<int> { 2, 3 }
+        //        },
+        //        new ItemIdWatchlistModel()
+        //        { 
+        //            Id = 2,
+        //            Description = "some really special items", 
+        //            Name = "some items",
+        //            Items = new List<int>()
+        //        }
+        //    };
+        //    return watchlists;
+        //}
 
         public IEnumerable<InvestmentWatchlistModel> GetTestInvestmentWatchlists()
         {
@@ -131,11 +132,10 @@ namespace GW2TraderTest
                     Id = 0,
                     Description = "some investments in rare weapons",
                     Name = "rare weapons",
-                    Items = new List<InvestmentModel>
+                    Items = new ObservableCollection<InvestmentModel>
                     {
                         new InvestmentModel 
                         {
-                            ItemId = 2,
                             Count = 5,
                             PurchasePrice = 12345,
                             DesiredSellPrice = 99999,
@@ -144,7 +144,6 @@ namespace GW2TraderTest
                         },
                         new InvestmentModel 
                         {
-                            ItemId = 3,
                             Count = 8,
                             PurchasePrice = 1254,
                             DesiredSellPrice = 7188,
@@ -158,7 +157,7 @@ namespace GW2TraderTest
                     Id = 0,
                     Description = "some investments in rare weapons",
                     Name = "rare weapons",
-                    Items = new List<InvestmentModel>()
+                    Items = new ObservableCollection<InvestmentModel>()
                 }
             };
             return watchlists;

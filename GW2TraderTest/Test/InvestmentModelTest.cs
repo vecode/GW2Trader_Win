@@ -25,11 +25,11 @@ namespace GW2TraderTest
             InvestmentModel ivm = InvestmentModel();
             int expectedProfitPerUnit = (int)(1000 * 0.85) - 500;
 
-            Assert.AreEqual(expectedProfitPerUnit, ivm.PrognosedProfitPerUnit());
-            Assert.AreEqual(expectedProfitPerUnit * 5, ivm.PrognosedTotalProfit());
+            Assert.AreEqual(expectedProfitPerUnit, ivm.PrognosedProfitPerUnit);
+            Assert.AreEqual(expectedProfitPerUnit * 5, ivm.PrognosedTotalProfit);
 
             ivm.DesiredSellPrice = null;
-            Assert.AreEqual(0, ivm.PrognosedProfitPerUnit());
+            Assert.AreEqual(0, ivm.PrognosedProfitPerUnit);
         }
 
         [TestMethod]
@@ -38,11 +38,11 @@ namespace GW2TraderTest
             InvestmentModel ivm = InvestmentModel();
             int expectedActualProfitPerUnit = (int)(900 * 0.85) - 500;
 
-            Assert.AreEqual(expectedActualProfitPerUnit, ivm.ActualProfitPerUnit());
-            Assert.AreEqual(expectedActualProfitPerUnit * 5, ivm.ActualTotalProfit());
+            Assert.AreEqual(expectedActualProfitPerUnit, ivm.ActualProfitPerUnit);
+            Assert.AreEqual(expectedActualProfitPerUnit * 5, ivm.ActualTotalProfit);
 
             ivm.SoldFor = null;
-            Assert.AreEqual(0, ivm.ActualProfitPerUnit());
+            Assert.AreEqual(0, ivm.ActualProfitPerUnit);
         }
     }
 }

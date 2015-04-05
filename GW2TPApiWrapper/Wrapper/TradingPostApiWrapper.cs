@@ -14,7 +14,6 @@ namespace GW2TPApiWrapper.Wrapper
     public class TradingPostApiWrapper : ITradingPostApiWrapper
     {
         private readonly IApiAccessor _apiAccessor;
-        private readonly IInternetConnectionChecker _connectionChecker;
 
         private const int MaxRequestSize = 200;
 
@@ -31,10 +30,9 @@ namespace GW2TPApiWrapper.Wrapper
             }
         }
 
-        public TradingPostApiWrapper(IApiAccessor apiAccessor, IInternetConnectionChecker connectionChecker)
+        public TradingPostApiWrapper(IApiAccessor apiAccessor)
         {
             _apiAccessor = apiAccessor;
-            _connectionChecker = connectionChecker;
         }
 
         public int[] ItemIds()
