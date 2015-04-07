@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapper", "GW2TPApiWrapper\GW2TPApiWrapper.csproj", "{A37CA4F0-B48C-43D0-95B9-1F955E450FA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapperTest", "GW2TPApiWrapperTest\GW2TPApiWrapperTest.csproj", "{6541B7FD-8996-4E20-926E-22A09EEEA469}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader", "GW2Trader\GW2Trader.csproj", "{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A37CA4F0-B48C-43D0-95B9-1F955E450FA1} = {A37CA4F0-B48C-43D0-95B9-1F955E450FA1}
@@ -40,16 +38,6 @@ Global
 		{A37CA4F0-B48C-43D0-95B9-1F955E450FA1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A37CA4F0-B48C-43D0-95B9-1F955E450FA1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A37CA4F0-B48C-43D0-95B9-1F955E450FA1}.Release|x86.ActiveCfg = Release|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6541B7FD-8996-4E20-926E-22A09EEEA469}.Release|x86.ActiveCfg = Release|Any CPU
 		{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86

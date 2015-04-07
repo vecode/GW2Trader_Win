@@ -70,10 +70,6 @@
     <Compile Include="Test\ApiDataUpdaterTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2TPApiWrapperTest\GW2TPApiWrapperTest.csproj">
-      <Project>{6541b7fd-8996-4e20-926e-22a09eeea469}</Project>
-      <Name>GW2TPApiWrapperTest</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
       <Project>{a37ca4f0-b48c-43d0-95b9-1f955e450fa1}</Project>
       <Name>GW2TPApiWrapper</Name>
