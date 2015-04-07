@@ -13,8 +13,8 @@ Beware that GW2Trader is still in development and not ready for personal use (ye
 
 ### Requirements
 
-To run GW2Trader both .Net Framework 4.5 and Microsoft SQL Server Compact 4.0 need to be installed on your system.
-At release, an installer will allow you install missing dependencies.
+To run GW2Trader both .Net Framework 4.5 and Microsoft SQL Server Compact 4.0 need to be installed.
+At release, an installer will take care of missing dependencies.
 
 ### Future Features
 
