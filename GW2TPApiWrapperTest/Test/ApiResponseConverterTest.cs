@@ -15,7 +15,7 @@ namespace GW2TPApiWrapperTest.Test
     public class ApiResponseConverterTest
     {
         #region valid api responses (long)
-        private static readonly string _validSingleItemResponse = @"
+        private const string ValidSingleItemResponse = @"
             {
                 'name':'Eternity',
                 'type':'Weapon',
@@ -62,7 +62,7 @@ namespace GW2TPApiWrapperTest.Test
                 }
             }";
 
-        private static readonly string _validMultipleItemResponse = @"
+        private const string ValidMultipleItemResponse = @"
             [
                 {
                     'name':'Eternity',
@@ -163,7 +163,7 @@ namespace GW2TPApiWrapperTest.Test
         [TestMethod]
         public void ValidSignleItemResponseShouldBeConvertable()
         {
-            byte[] byteArray = Encoding.UTF8.GetBytes(_validSingleItemResponse);
+            byte[] byteArray = Encoding.UTF8.GetBytes(ValidSingleItemResponse);
             MemoryStream stream = new MemoryStream(byteArray);
 
             Item item = ApiResponseConverter.DeserializeStream<Item>(stream);
@@ -177,9 +177,9 @@ namespace GW2TPApiWrapperTest.Test
         }
 
         [TestMethod]
-        public void ValidMultipleResponseShouldBeConvertable()
+        public void ValidMultipleItemResponseShouldBeConvertable()
         {
-            byte[] byteArray = Encoding.UTF8.GetBytes(_validMultipleItemResponse);
+            byte[] byteArray = Encoding.UTF8.GetBytes(ValidMultipleItemResponse);
             MemoryStream stream = new MemoryStream(byteArray);
 
             Item[] items = ApiResponseConverter.DeserializeStream<Item[]>(stream);

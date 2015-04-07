@@ -26,37 +26,9 @@ namespace GW2TPApiWrapper.Wrapper
             return new WebClient().OpenRead(ListingsApiUrl);
         }
 
-        public bool TryGetItemIds(out Stream val)
-        {
-            try
-            {
-                val = ItemIds();
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                val = null;
-                return false;
-            }
-        }
-
         public Stream ItemDetails(int id)
         {
             return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(ItemsApiUrl, id));
-        }
-
-        public bool TryGetItemDetails(int id, out Stream val)
-        {
-            try
-            {
-                val = ItemDetails(id);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                val = null;
-                return false;
-            }
         }
 
         public Stream ItemDetails(int[] ids)
@@ -65,37 +37,9 @@ namespace GW2TPApiWrapper.Wrapper
             return webClient.OpenRead(ApiUrlFormatter.FormatUrl(ItemsApiUrl, ids));
         }
 
-        public bool TryGetItemDetails(int[] ids, out Stream val)
-        {
-            try
-            {
-                val = ItemDetails(ids);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                val = null;
-                return false;
-            }
-        }
-
         public Stream Listings(int id)
         {
             return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(ListingsApiUrl, id));
-        }
-
-        public bool TryGetListings(int id, out Stream val)
-        {
-            try
-            {
-                val = Listings(id);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                val = null;
-                return false;
-            }
         }
 
         public Stream Listings(int[] ids)
@@ -103,39 +47,10 @@ namespace GW2TPApiWrapper.Wrapper
             return new WebClient().OpenRead(ApiUrlFormatter.FormatUrl(ListingsApiUrl, ids));
         }
 
-        public bool TryGetListings(int[] ids, out Stream val)
-        {
-            try
-            {
-                val = Listings(ids);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                val = null;
-                return false;
-            }
-        }
-
         public Stream Prices(int[] ids)
         {
             WebClient webClient = new WebClient();
             return webClient.OpenRead(ApiUrlFormatter.FormatUrl(PricesApiUrl, ids));
         }
-
-        public bool TryGetPrices(int[] ids, out Stream val)
-        {
-            try
-            {
-                val = Prices(ids);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                val = null;
-                return false;
-            }
-        }
-
     }
 }

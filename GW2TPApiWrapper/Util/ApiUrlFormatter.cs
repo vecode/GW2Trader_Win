@@ -8,26 +8,21 @@ namespace GW2TPApiWrapper.Util
 {
     public static class ApiUrlFormatter
     {
-        private static readonly char _seperator;
-        static ApiUrlFormatter()
-        {
-            _seperator = ',';
-        }
+        private const char Seperator = ',';
+
         public static string FormatUrl(string apiUrl, int id)
         {
             return apiUrl + '/' + id;
         }
         public static string FormatUrl(string apiurl, int[] ids)
         {
-            string formattedUrl = new String(apiurl.ToArray());
-            formattedUrl += "?ids=";
-            foreach (int id in ids)
-            {
-                formattedUrl += id;
-                if (id != ids.Last())
-                    formattedUrl += _seperator;
-            }
-            return formattedUrl;
+            StringBuilder formattedUrl = new StringBuilder(apiurl);
+            formattedUrl.Append("?ids=");
+
+            string idsToAppend = string.Join(Seperator.ToString(), ids.Select(x => x.ToString()).ToArray());
+            formattedUrl.Append(idsToAppend);
+
+            return formattedUrl.ToString();
         }
     }
 }

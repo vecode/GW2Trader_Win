@@ -11,11 +11,10 @@ namespace GW2TPApiWrapperTest.Test
     [TestClass]
     public class TradingPostApiWrapperTest
     {
-        private TradingPostApiWrapper _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessorMock());
-        private int _invalidId = -1;
+        private readonly TradingPostApiWrapper _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessorMock());
 
         // valid id from https://api.guildwars2.com/v2/commerce/listings
-        private int _validId = 30689;
+        private const int ValidId = 30689;
 
         [TestMethod]
         public void ItemIdsShouldBeValid()
@@ -37,19 +36,19 @@ namespace GW2TPApiWrapperTest.Test
             Assert.IsNotNull(item);
             Assert.AreEqual(30689, item.Id);
             Assert.AreEqual(item.Name, "Eternity");
-            Assert.AreEqual(item.Type.ToString(), "Weapon");
-            Assert.AreEqual(item.Rarity.ToString(), "Legendary");
+            Assert.AreEqual(item.Type, "Weapon");
+            Assert.AreEqual(item.Rarity, "Legendary");
         }
 
         [TestMethod]
         public void ItemListingsShouldBeValid()
         {
             // check for invalid item id
-            ItemListing listing = _tpApiWrapper.Listings(_invalidId);
+            ItemListing listing = _tpApiWrapper.Listings(-1);
             Assert.IsNull(listing);
 
             // check for valid id
-            listing = _tpApiWrapper.Listings(_validId);
+            listing = _tpApiWrapper.Listings(ValidId);
             Assert.AreEqual(listing.Buys.Length, 2);
             Assert.AreEqual(listing.Buys[0].Quantity, 49);
             Assert.AreEqual(listing.Buys[0].UnitPrice, 4);

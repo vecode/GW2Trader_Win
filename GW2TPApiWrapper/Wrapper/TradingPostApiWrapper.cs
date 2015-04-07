@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace GW2TPApiWrapper.Wrapper
 
         private const int MaxRequestSize = 200;
 
+        private readonly Dictionary<Type, Func<int[], Stream>> _apiCalllingMethodDictionary;
+
         /// <summary>
         /// Number of ids per request (limited by API)
         /// </summary>
@@ -33,6 +36,11 @@ namespace GW2TPApiWrapper.Wrapper
         public TradingPostApiWrapper(IApiAccessor apiAccessor)
         {
             _apiAccessor = apiAccessor;
+
+            _apiCalllingMethodDictionary = new Dictionary<Type, Func<int[], Stream>>();
+            _apiCalllingMethodDictionary[typeof(Item)] = _apiAccessor.ItemDetails;
+            _apiCalllingMethodDictionary[typeof(ItemListing)] = _apiAccessor.Listings;
+            _apiCalllingMethodDictionary[typeof(ItemPrice)] = _apiAccessor.Prices;
         }
 
         public int[] ItemIds()
@@ -46,22 +54,19 @@ namespace GW2TPApiWrapper.Wrapper
         {
             Stream responseStream = _apiAccessor.ItemDetails(id);
             if (responseStream == null) return null;
-            else
-            {
-                Item item = ApiResponseConverter.DeserializeStream<Item>(responseStream);
-                return item;
-            }
+
+            Item item = ApiResponseConverter.DeserializeStream<Item>(responseStream);
+            return item;
         }
 
         public ItemListing Listings(int id)
         {
             Stream responseStream = _apiAccessor.Listings(id);
             if (responseStream == null) return null;
-            else
-            {
-                ItemListing listing = ApiResponseConverter.DeserializeStream<ItemListing>(responseStream);
-                return listing;
-            }
+
+            ItemListing listing = ApiResponseConverter.DeserializeStream<ItemListing>(responseStream);
+            return listing;
+
         }
 
         public IList<Item> ItemDetails(int[] ids)
@@ -71,21 +76,9 @@ namespace GW2TPApiWrapper.Wrapper
 
         private IList<T> ApiRequest<T>(int[] ids) where T : GW2TPApiResponse
         {
-            Func<int[], Stream> entityRetrievalMethod;
+            Func<int[], Stream> apiCallingMethod;
 
-            if (typeof(T) == typeof(Item))
-            {
-                entityRetrievalMethod = (i) => _apiAccessor.ItemDetails(i);
-            }
-            else if (typeof(T) == typeof(ItemListing))
-            {
-                entityRetrievalMethod = (i) => _apiAccessor.Listings(i);
-            }
-            else if (typeof(T) == typeof(ItemPrice))
-            {
-                entityRetrievalMethod = (i) => _apiAccessor.Prices(i);
-            }
-            else
+            if (!_apiCalllingMethodDictionary.TryGetValue(typeof(T), out apiCallingMethod))
             {
                 throw new NotSupportedException("Type " + typeof(T) + " is not supported");
             }
@@ -96,7 +89,7 @@ namespace GW2TPApiWrapper.Wrapper
             for (int i = 0; i < needRequests; i++)
             {
                 var idSubset = ids.Skip(i * RequestSize).Take(RequestSize).ToArray();
-                var responseStream = entityRetrievalMethod(idSubset);
+                var responseStream = apiCallingMethod(idSubset);
 
                 if (responseStream == null)
                 {
@@ -112,11 +105,6 @@ namespace GW2TPApiWrapper.Wrapper
         public IList<ItemListing> Listings(int[] ids)
         {
             return ApiRequest<ItemListing>(ids);
-        }
-
-        public ItemPrice Price(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public IList<ItemPrice> Price(int[] ids)

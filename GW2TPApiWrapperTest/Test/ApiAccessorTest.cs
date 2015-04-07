@@ -7,8 +7,7 @@ using System.IO;
 
 namespace GW2TPApiWrapperTest.Test
 {
-    // TODO redo test cases for ApiAccessorTest
-    /// Internet connection needed to perform these tests.
+    /// Internet connection needed to perform these tests
     [TestClass]
     public class ApiAccessorTest
     {
@@ -41,34 +40,14 @@ namespace GW2TPApiWrapperTest.Test
             Assert.IsTrue(itemArray.IsValid(schema));
         }
 
-        //        [TestMethod]
-        //        public void ListingsShouldBeValidJson()
-        //        {
-        //            JsonSchema schema = JsonSchema.Parse(JsonResultSchema.ItemListingSchema);
-        //            JObject itemListings = JObject.Parse(_apiAccessor.Listings(_validItemId));
+        [TestMethod]
+        public void ListingsShouldBeValidJson()
+        {
+            JsonSchema schema = JsonSchema.Parse(JsonResultSchema.ItemListingSchema);
+            JObject itemListings = JObject.Parse(StreamToString(_apiAccessor.Listings(ValidItemId)));
 
-        //            Assert.IsTrue(itemListings.IsValid(schema));
-        //        }
-
-        //        [TestMethod]
-        //        public void IdNotFoundResponseShouldBeRecognized()
-        //        {
-        //            String validIdNotFoundResponse = @"{""text"":""no such id""}";
-        //            Assert.IsTrue(_apiAccessor.IsIdNotFoundResponse(validIdNotFoundResponse));
-
-        //            String invalidIdNotFoundResponse = @"
-        //                {
-        //                    'type' : 'object',
-        //                    'properties': {
-        //                        'id': {
-        //                            'id' : 'id',
-        //                            'type' : 'integer',
-        //                            'required' : 'true'
-        //                        }
-        //                    }
-        //                }";
-        //            Assert.IsFalse(_apiAccessor.IsIdNotFoundResponse(invalidIdNotFoundResponse));
-        //        }
+            Assert.IsTrue(itemListings.IsValid(schema));
+        }
 
         private string StreamToString(Stream stream)
         {

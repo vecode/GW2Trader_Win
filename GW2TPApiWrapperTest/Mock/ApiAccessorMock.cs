@@ -13,10 +13,9 @@ namespace GW2TPApiWrapperTest.Mock
         private IApiAccessor _apiAccessor = new ApiAccessor();
 
         #region test data
-        private int _validTestId = 30689;
-        private int[] _validTestIds = { 1, 2 };
+        private const int ValidTestId = 30689;
 
-        private string _validItemAsJson = @"
+        private const string ValidItemAsJson = @"
             {
                 'name':'Eternity',
                 'type':'Weapon',
@@ -63,78 +62,76 @@ namespace GW2TPApiWrapperTest.Mock
                 }
             }";
 
-        private string _validItemArrayAsJson = @"
-        [
-            {
-            'name':'MONSTER ONLY Moa Unarmed Pet',
-            'type':'Weapon',
-            'level':0,
-            'rarity':'Fine',
-            'vendor_value':0,
-            'default_skin':3265,
-            'game_types':[
-	            'Activity',
-	            'Dungeon',
-	            'Pve',
-	            'Wvw'
-            ],
-            'flags':[
-	            'NoSell',
-	            'SoulbindOnAcquire',
-	            'SoulBindOnUse'
-            ],
-            'restrictions':[
+        private const string ValidItemArrayAsJson = @"
+            [
+                {
+                'name':'MONSTER ONLY Moa Unarmed Pet',
+                'type':'Weapon',
+                'level':0,
+                'rarity':'Fine',
+                'vendor_value':0,
+                'default_skin':3265,
+                'game_types':[
+	                'Activity',
+	                'Dungeon',
+	                'Pve',
+	                'Wvw'
+                ],
+                'flags':[
+	                'NoSell',
+	                'SoulbindOnAcquire',
+	                'SoulBindOnUse'
+                ],
+                'restrictions':[
 
-            ],
-            'id':1,
-            'icon':'https://render.guildwars2.com/file/4AECE5EA59CA057F4C53E1EDFE95E0E3E61DE37F/60980.png',
-            'details':{
-	            'type':'Staff',
-	            'damage_type':'Physical',
-	            'min_power':146,
-	            'max_power':165,
-	            'defense':0,
-	            'infusion_slots':[
+                ],
+                'id':1,
+                'icon':'https://render.guildwars2.com/file/4AECE5EA59CA057F4C53E1EDFE95E0E3E61DE37F/60980.png',
+                'details':{
+	                'type':'Staff',
+	                'damage_type':'Physical',
+	                'min_power':146,
+	                'max_power':165,
+	                'defense':0,
+	                'infusion_slots':[
 
-	            ],
-	            'infix_upgrade':{
-	            'attributes':[
+	                ],
+	                'infix_upgrade':{
+	                'attributes':[
 
-	            ]
-	            },
-	            'secondary_suffix_item_id':''
-            }
-            },
-            {
-            'name':'Assassin Pill',
-            'description':'Take this pill to participate in the next round of Assassin',
-            'type':'Consumable',
-            'level':0,
-            'rarity':'Basic',
-            'vendor_value':0,
-            'game_types':[
-	            'Dungeon',
-	            'Pve',
-	            'Wvw'
-            ],
-            'flags':[
-	            'NoSell',
-	            'SoulbindOnAcquire',
-	            'SoulBindOnUse'
-            ],
-            'restrictions':[
+	                ]
+	                },
+	                'secondary_suffix_item_id':''
+                }
+                },
+                {
+                'name':'Assassin Pill',
+                'description':'Take this pill to participate in the next round of Assassin',
+                'type':'Consumable',
+                'level':0,
+                'rarity':'Basic',
+                'vendor_value':0,
+                'game_types':[
+	                'Dungeon',
+	                'Pve',
+	                'Wvw'
+                ],
+                'flags':[
+	                'NoSell',
+	                'SoulbindOnAcquire',
+	                'SoulBindOnUse'
+                ],
+                'restrictions':[
 
-            ],
-            'id':2,
-            'icon':'https://render.guildwars2.com/file/ED903431B97968C79AEC7FB21535FC015DBB0BBA/60981.png',
-            'details':{
-	            'type':'Food'
-            }
-            }
-        ]";
-    
+                ],
+                'id':2,
+                'icon':'https://render.guildwars2.com/file/ED903431B97968C79AEC7FB21535FC015DBB0BBA/60981.png',
+                'details':{
+	                'type':'Food'
+                }
+            }]";
 
-        private string _validItemListingsAsJson = @"
+        private const string ValidItemListingsAsJson = @"
             {
                 'id':30689,
                 'buys':[
@@ -163,7 +160,7 @@ namespace GW2TPApiWrapperTest.Mock
                 ]
             }";
 
-        private string _validItemListingsArrayAsJson = @"
+        private const string ValidItemListingsArrayAsJson = @"
             [
                 {
                     'id':24,
@@ -221,7 +218,7 @@ namespace GW2TPApiWrapperTest.Mock
                 }
             ]";
 
-        private string _validMultiplePricesAsJson = @"
+        private const string ValidMultiplePricesAsJson = @"
             [
                 {
                     'id':24,
@@ -268,70 +265,37 @@ namespace GW2TPApiWrapperTest.Mock
 
         public Stream ItemDetails(int id)
         {
-            return _validTestId == id ? StringToStream(_validItemAsJson) : null;
+            return ValidTestId == id ? StringToStream(ValidItemAsJson) : null;
         }
 
         public Stream Listings(int id)
         {
-            return id == _validTestId ? StringToStream(_validItemListingsAsJson) : null;
+            return id == ValidTestId ? StringToStream(ValidItemListingsAsJson) : null;
         }
 
         public Stream ItemDetails(int[] ids)
         {
             if (ids[0] == 1 && ids[1] == 2)
-                return StringToStream(_validItemArrayAsJson);
-            else
-                return null;
+                return StringToStream(ValidItemArrayAsJson);
+            return null;
         }
 
         private Stream StringToStream(String str)
         {
-            byte[] byteArray = Encoding.UTF8.GetBytes(str);            
+            byte[] byteArray = Encoding.UTF8.GetBytes(str);
             return new MemoryStream(byteArray);
         }
 
         public Stream Listings(int[] ids)
         {
             if (ids[0] == 24 && ids[1] == 68)
-                return StringToStream(_validItemListingsArrayAsJson);
-            else
-                return null;
+                return StringToStream(ValidItemListingsArrayAsJson);
+            return null;
         }
 
         public Stream Prices(int[] ids)
         {
-            return StringToStream(_validMultiplePricesAsJson);
-        }
-
-
-        public bool TryGetItemIds(out Stream val)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetItemDetails(int id, out Stream val)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetItemDetails(int[] ids, out Stream val)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetListings(int id, out Stream val)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetListings(int[] ids, out Stream val)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryGetPrices(int[] ids, out Stream val)
-        {
-            throw new NotImplementedException();
+            return StringToStream(ValidMultiplePricesAsJson);
         }
     }
 }
