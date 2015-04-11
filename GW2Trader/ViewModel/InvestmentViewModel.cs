@@ -6,8 +6,8 @@ using System.Linq;
 using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
-using GW2Trader.Decorator;
 using System;
+using System.Security.Cryptography;
 
 namespace GW2Trader.ViewModel
 {
@@ -17,13 +17,14 @@ namespace GW2Trader.ViewModel
 
         private string _investmentListName;
         private string _investmentListDescription;
-        private InvestmentWatchlistDecorator _selectedWatchlist;
-        private List<InvestmentWatchlistDecorator> _selectedWatchlists;
-        private ObservableCollection<InvestmentWatchlistDecorator> _watchlists;
+        private InvestmentWatchlistModel _selectedWatchlist;
+        private List<InvestmentWatchlistModel> _selectedWatchlists;        
+        private ObservableCollection<InvestmentWatchlistModel> _watchlists;
+
         #endregion
 
         private readonly IGameDataContextProvider _contextProvider;
-        private List<GameItemModel> _items;
+        private readonly List<GameItemModel> _items;
 
         public enum SelectionMode
         {
@@ -66,7 +67,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public InvestmentWatchlistDecorator SelectedWatchlist
+        public InvestmentWatchlistModel SelectedWatchlist
         {
             get { return _selectedWatchlist; }
             set
@@ -83,7 +84,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public List<InvestmentWatchlistDecorator> SelectedWatchlists
+        public List<InvestmentWatchlistModel> SelectedWatchlists
         {
             get { return _selectedWatchlists; }
             set
@@ -93,7 +94,7 @@ namespace GW2Trader.ViewModel
             }
         }
 
-        public ObservableCollection<InvestmentWatchlistDecorator> Watchlists
+        public ObservableCollection<InvestmentWatchlistModel> Watchlists
         {
             get { return _watchlists; }
             set
@@ -112,7 +113,7 @@ namespace GW2Trader.ViewModel
                     return SelectedWatchlist.Items.Sum(inv => inv.Count * inv.PurchasePrice);
                 }
                 return 0;
-            }  
+            }
         }
 
         public int CurrentProfit
@@ -133,7 +134,7 @@ namespace GW2Trader.ViewModel
             {
                 if (SelectedWatchlist != null)
                 {
-                    return (int)Math.Round(SelectedWatchlist.Items.Sum(inv => inv.SellPrice * 0.85f * inv.Count));
+                    return (int)Math.Round(SelectedWatchlist.Items.Sum(inv => inv.GameItem.SellPrice * 0.85f * inv.Count));
                 }
                 return 0;
             }
@@ -157,7 +158,7 @@ namespace GW2Trader.ViewModel
                 context.Save();
                 newWatchlist.Id = context.InvestmentWatchlists.ToList().Last().Id;
             }
-            Watchlists.Add(InvestmentWatchlistDecorator.Decorate(newWatchlist));
+            Watchlists.Add(newWatchlist);
         }
 
         public void UpdateInvestmentList()
@@ -173,7 +174,7 @@ namespace GW2Trader.ViewModel
             SelectedWatchlist.Description = InvestmentListDescription;
         }
 
-        public void DeleteInvestmentList(InvestmentWatchlistDecorator watchlist)
+        public void DeleteInvestmentList(InvestmentWatchlistModel watchlist)
         {
             using (var context = _contextProvider.GetContext())
             {
@@ -181,14 +182,14 @@ namespace GW2Trader.ViewModel
                 context.InvestmentWatchlists.Remove(watchlistToDelete);
                 context.Save();
             }
-            _watchlists.Remove(watchlist);
+            Watchlists.Remove(watchlist);
             if (Watchlists.Any())
             {
                 SelectedWatchlist = Watchlists.Last();
             }
         }
 
-        public void DeleteInvestment(InvestmentDecorator investment)
+        public void DeleteInvestment(InvestmentModel investment)
         {
             using (var context = _contextProvider.GetContext())
             {
@@ -211,7 +212,7 @@ namespace GW2Trader.ViewModel
                 contextWatchlists.Items.Add(investment);
                 context.Save();
             }
-            SelectedWatchlist.Items.Add(InvestmentDecorator.Decorate(investment));
+            SelectedWatchlist.Items.Add(investment);
         }
 
         private void BuildWatchlists()
@@ -221,7 +222,8 @@ namespace GW2Trader.ViewModel
                 var watchlists = context.InvestmentWatchlists.Include(wl => wl.Items.Select(i => i.GameItem)).ToList();
                 watchlists.ForEach(wl => wl.Items.ToList()
                     .ForEach(i => i.GameItem = _items.Single(item => item.ItemId == i.GameItem.ItemId)));
-                Watchlists = new ObservableCollection<InvestmentWatchlistDecorator>(InvestmentWatchlistDecorator.Decorate(watchlists));
+
+                Watchlists = new ObservableCollection<InvestmentWatchlistModel>(watchlists);
             }
         }
 

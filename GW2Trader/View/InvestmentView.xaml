@@ -65,7 +65,6 @@
                         <Button Grid.Column="2" Content="Delete" CommandParameter="{Binding}" Margin="2"
                                 BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
                         Command="{Binding DeleteInvestmentListCommand}" Style="{DynamicResource SquareButtonStyle}"/>
-
                     </Grid>
 
                     <Button Content="New Investment" Grid.Row="5" Style="{DynamicResource SquareButtonStyle}" Margin="2,2,2,0"
@@ -97,8 +96,6 @@
                                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Stretch"/>
                             </DataTemplate>
                         </control:MultiSelectListBox.ItemTemplate>
-
-
                     </control:MultiSelectListBox>
                 </Grid>
             </Border>
@@ -111,8 +108,8 @@
                     <view:MoneyView DataContext="{Binding CurrentProfit}"/>
                     <Label Content="Total Worth"/>
                     <view:MoneyView DataContext="{Binding TotalWorth}"/>
-                    <Label Content="Total Profit"/>
-                    <view:MoneyView DataContext="{StaticResource ResourceKey=fixedValue}"/>
+                    <!--<Label Content="Total Profit"/>-->
+                    <!--<view:MoneyView DataContext="{StaticResource ResourceKey=fixedValue}"/>-->
                 </StackPanel>
             </Expander>
         </Grid>
@@ -128,7 +125,7 @@
             <control:CustomDataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Setter Property="Background"
-                            Value="{Binding Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
+                            Value="{Binding GameItem.Rarity, Converter={StaticResource RarityToBrushConverter}}"/>
                     <Setter Property="FontSize" Value="14"/>
                     <Style.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent"/>
@@ -138,12 +135,12 @@
 
             <control:CustomDataGrid.Columns>
                 <!--<StaticResource ResourceKey="RowDetailsButtonColumn"/>-->
-                <StaticResource ResourceKey="IconColumn"/>
-                <StaticResource ResourceKey="NameColumn"/>
-                <StaticResource ResourceKey="BuyPriceColumn"/>
-                <StaticResource ResourceKey="SellPriceColumn"/>              
-                <StaticResource ResourceKey="DemandColumn"/>
-                <StaticResource ResourceKey="SupplyColumn"/>
+                <StaticResource ResourceKey="InvestmentIconColumn"/>
+                <StaticResource ResourceKey="InvestmentNameColumn"/>
+                <StaticResource ResourceKey="InvestmentBuyPriceColumn"/>
+                <StaticResource ResourceKey="InvestmentSellPriceColumn"/>
+                <StaticResource ResourceKey="InvestmentDemandColumn"/>
+                <StaticResource ResourceKey="InvestmentSupplyColumn"/>
                 <StaticResource ResourceKey="PurchasePriceColumn"/>
                 <StaticResource ResourceKey="CurrentProfitPerUnitColumn"/>
                 <StaticResource ResourceKey="QuantityColumn"/>

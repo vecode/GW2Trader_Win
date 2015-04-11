@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Forms.VisualStyles;
+using GW2Trader.MVVM;
 
 namespace GW2Trader.Model
 {
-    public class InvestmentModel
+    public class InvestmentModel : ObservableObject
     {
         [NotMapped]
         private const float SalesCommission = 0.15f;
@@ -74,6 +76,25 @@ namespace GW2Trader.Model
         public int ActualTotalProfit
         {
             get { return ActualProfitPerUnit * Count; }
+        }
+
+        [NotMapped]
+        public int CurrentProfitPerUnit
+        {
+            get
+            {
+                if (GameItem == null)
+                {
+                    return 0;
+                }
+                return (int) ((GameItem.SellPrice*0.85) - PurchasePrice);
+            }
+        }
+
+        [NotMapped]
+        public int CurrentTotalProfit
+        {
+            get { return CurrentProfitPerUnit * Count; }
         }
     }
 }

@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ResourceDictionary/ControlStyles.xaml" />
                 <ResourceDictionary Source="ResourceDictionary/DataGridColumns.xaml"/>
+                <ResourceDictionary Source="ResourceDictionary/InvestmentDataGridColumns.xaml"/>
                 <ResourceDictionary Source="ResourceDictionary/ImageResources.xaml"/>
                 <ResourceDictionary Source="/Resources/Icons.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml"/>

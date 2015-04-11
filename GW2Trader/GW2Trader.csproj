@@ -122,8 +122,6 @@
     <Compile Include="Command\UpdateInvestmentListCommand.cs" />
     <Compile Include="Command\UpdateListingsCommand.cs" />
     <Compile Include="Control\MultiSelectListBox.cs" />
-    <Compile Include="Decorator\InvestmentDecorator.cs" />
-    <Compile Include="Decorator\InvestmentWatchlistDecorator.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Migrations\201503250925484_Initial.cs" />
     <Compile Include="Migrations\201503250925484_Initial.Designer.cs">
@@ -177,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionary\ImageResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary\InvestmentDataGridColumns.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
