@@ -19,7 +19,7 @@ namespace GW2TPApiWrapperTest.Test
         [TestMethod]
         public void ItemIdsShouldBeValid()
         {
-            int[] ids = _tpApiWrapper.ItemIds();
+            int[] ids = _tpApiWrapper.ItemIds().ToArray();
             // MockApiAccessor returns 3 ids
             Assert.AreEqual(ids.Length, 3);
 
@@ -60,7 +60,7 @@ namespace GW2TPApiWrapperTest.Test
         {
             int[] ids = { 24, 68, 69 };
 
-            List<ItemPrice> prices = _tpApiWrapper.Price(ids).ToList();
+            List<ItemPrice> prices = _tpApiWrapper.Prices(ids).ToList();
 
             Assert.AreEqual(24, prices[0].Id);
             Assert.AreEqual(68, prices[1].Id);

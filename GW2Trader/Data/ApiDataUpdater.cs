@@ -36,7 +36,7 @@ namespace GW2Trader.Data
         public void UpdatePrices(IList<GameItemModel> items)
         {
             var ids = items.Select(i => i.ItemId).ToArray();
-            var updatedPrices = _tpApiWrapper.Price(ids).ToList();
+            var updatedPrices = _tpApiWrapper.Prices(ids).ToList();
 
             foreach (var item in items)
             {

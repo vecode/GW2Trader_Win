@@ -13,7 +13,7 @@ namespace GW2TPApiWrapper.Wrapper
         /// <summary>
         /// </summary>
         /// <returns>Returns an array of ids of all avaible items on the trading post.</returns>
-        int[] ItemIds();
+        IEnumerable<int> ItemIds();
 
         /// <summary>
         /// </summary>
@@ -25,7 +25,7 @@ namespace GW2TPApiWrapper.Wrapper
         /// </summary>
         /// <param name="ids">Ids of the items</param>
         /// <returns>Returns a list of ItemDetails</returns>
-        IList<Item> ItemDetails(int[] ids);
+        IEnumerable<Item> ItemDetails(IEnumerable<int> ids);
 
         /// <summary>
         /// </summary>
@@ -41,8 +41,8 @@ namespace GW2TPApiWrapper.Wrapper
         /// <returns>
         /// Returns a list of ItemListing containing all buy orders and sell offers.
         /// </returns>
-        IList<ItemListing> Listings(int[] ids);
+        IEnumerable<ItemListing> Listings(IEnumerable<int> ids);
 
-        IList<ItemPrice> Price(int[] ids);
+        IEnumerable<ItemPrice> Prices(IEnumerable<int> ids);
     }
 }

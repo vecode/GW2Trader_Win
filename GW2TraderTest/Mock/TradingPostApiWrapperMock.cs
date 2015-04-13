@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Entities;
-using GW2TraderTest;
+using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapperTest;
 
-namespace GW2TraderTest
+namespace GW2TraderTest.Mock
 {
     public class TradingPostApiWrapperMock : ITradingPostApiWrapper
     {
-        private ApiTestDataFactory _testDataFactory;
+        private readonly ApiTestDataFactory _testDataFactory;
 
         public TradingPostApiWrapperMock(ApiTestDataFactory testDataFactory)
         {
             _testDataFactory = testDataFactory;
         }
 
-        public int[] ItemIds()
+        public IEnumerable<int> ItemIds()
         {
             return _testDataFactory
                 .Items
@@ -31,9 +28,7 @@ namespace GW2TraderTest
         public Item ItemDetails(int id)
         {
             return _testDataFactory
-                .Items
-                .Where(item => item.Id == id)
-                .FirstOrDefault();
+                .Items.FirstOrDefault(item => item.Id == id);
         }
 
         public ItemPrice ItemPrice(int id)
@@ -48,22 +43,20 @@ namespace GW2TraderTest
         public ItemListing Listings(int id)
         {
             return _testDataFactory
-                .ItemListings
-                .Where(listing => listing.Id == id)
-                .FirstOrDefault();              
+                .ItemListings.FirstOrDefault(listing => listing.Id == id);              
         }
 
-        public IList<Item> ItemDetails(int[] ids)
+        public IEnumerable<Item> ItemDetails(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }
 
-        public IList<ItemListing> Listings(int[] ids)
+        public IEnumerable<ItemListing> Listings(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }
 
-        public IList<ItemPrice> Price(int[] ids)
+        public IEnumerable<ItemPrice> Prices(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }

@@ -6,6 +6,7 @@ using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Data;
 using GW2TPApiWrapperTest;
+using GW2TraderTest.Mock;
 
 namespace GW2TraderTest.Test
 {

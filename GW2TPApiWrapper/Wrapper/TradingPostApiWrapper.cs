@@ -43,7 +43,7 @@ namespace GW2TPApiWrapper.Wrapper
             _apiCalllingMethodDictionary[typeof(ItemPrice)] = _apiAccessor.Prices;
         }
 
-        public int[] ItemIds()
+        public IEnumerable<int> ItemIds()
         {
             Stream responseStream = _apiAccessor.ItemIds();
             int[] ids = ApiResponseConverter.DeserializeStream<int[]>(responseStream);
@@ -69,12 +69,12 @@ namespace GW2TPApiWrapper.Wrapper
 
         }
 
-        public IList<Item> ItemDetails(int[] ids)
+        public IEnumerable<Item> ItemDetails(IEnumerable<int> ids)
         {
             return ApiRequest<Item>(ids);
         }
 
-        private IList<T> ApiRequest<T>(int[] ids) where T : GW2TPApiResponse
+        private IEnumerable<T> ApiRequest<T>(IEnumerable<int> ids) where T : GW2TPApiResponse
         {
             Func<int[], Stream> apiCallingMethod;
 
@@ -83,8 +83,8 @@ namespace GW2TPApiWrapper.Wrapper
                 throw new NotSupportedException("Type " + typeof(T) + " is not supported");
             }
 
-            List<T> entites = new List<T>(ids.Length);
-            int needRequests = (int)Math.Ceiling((double)ids.Length / RequestSize);
+            List<T> entites = new List<T>(ids.Count());
+            int needRequests = (int)Math.Ceiling((double)ids.Count() / RequestSize);
 
             for (int i = 0; i < needRequests; i++)
             {
@@ -102,12 +102,12 @@ namespace GW2TPApiWrapper.Wrapper
             return entites;
         }
 
-        public IList<ItemListing> Listings(int[] ids)
+        public IEnumerable<ItemListing> Listings(IEnumerable<int> ids)
         {
             return ApiRequest<ItemListing>(ids);
         }
 
-        public IList<ItemPrice> Price(int[] ids)
+        public IEnumerable<ItemPrice> Prices(IEnumerable<int> ids)
         {
             return ApiRequest<ItemPrice>(ids);
         }
