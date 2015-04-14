@@ -75,20 +75,42 @@ namespace GW2Trader.ViewModel
             Task.Run(() => _dataUpdater.UpdatePricesParallel(_sharedItems));
         }
 
-        public void UpdateCommerceData()
+        public void UpdateCommerceDataOfAllItems()
         {
             _dataUpdater.UpdatePricesParallel(_sharedItems);
         }
 
-        private RelayCommand _updateCommerceDataCommand;
+        public void UpdateCommerceDataOfShownItems()
+        {
+            BaseViewModel currentViewModel = ChildViews[SelectedTabIndex];
+            IItemViewer model = currentViewModel as IItemViewer;
+            if (model != null)
+            {
+                _dataUpdater.UpdatePricesParallel(model.ShownItems);
+            }
+        }
 
-        public RelayCommand UpdateCommerceDataCommand
+        private RelayCommand _updateAllItemsCommand;
+
+        public RelayCommand UpdateAllItemsCommand
         {
             get
             {
-                if(_updateCommerceDataCommand == null) 
-                    _updateCommerceDataCommand = new UpdateCommerceDataCommand();
-                return _updateCommerceDataCommand;
+                if (_updateAllItemsCommand == null)
+                    _updateAllItemsCommand = new UpdateAllItemsCommand();
+                return _updateAllItemsCommand;
+            }
+        }
+
+        private RelayCommand _updateCurrentItemsCommand;
+
+        public RelayCommand UpdateCurrentItemsCommand
+        {
+            get
+            {
+                if (_updateCurrentItemsCommand == null)
+                    _updateCurrentItemsCommand = new UpdateCurrentItemsCommand();
+                return _updateCurrentItemsCommand;
             }
         }
     }

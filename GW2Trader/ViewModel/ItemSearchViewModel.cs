@@ -352,7 +352,7 @@ namespace GW2Trader.ViewModel
             return dictionary;
         }
 
-        public IList<GameItemModel> ViewedItems
+        public IList<GameItemModel> ShownItems
         {
             get { return Items; }
         }

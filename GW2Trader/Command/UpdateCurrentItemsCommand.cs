@@ -7,17 +7,18 @@ using GW2Trader.ViewModel;
 
 namespace GW2Trader.Command
 {
-    public class UpdateCommerceDataCommand : RelayCommand
+    public class UpdateCurrentItemsCommand : RelayCommand
     {
         public override bool CanExecute(object parameter)
         {
-            return true;
+            MainViewModel viewModel = parameter as MainViewModel;
+            return viewModel != null && viewModel.ChildViews[viewModel.SelectedTabIndex] is IItemViewer;
         }
 
         public override void Execute(object parameter)
         {
             MainViewModel viewModel = parameter as MainViewModel;
-            viewModel.UpdateCommerceData();
+            viewModel.UpdateCommerceDataOfShownItems();
         }
     }
 }

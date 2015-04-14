@@ -122,7 +122,8 @@
     <Compile Include="Command\DeleteWatchlistItemCommand.cs" />
     <Compile Include="Command\InvestmentSearchCommand.cs" />
     <Compile Include="Command\OpenNewInvestmentDialogCommand.cs" />
-    <Compile Include="Command\UpdateCommerceDataCommand.cs" />
+    <Compile Include="Command\UpdateAllItemsCommand.cs" />
+    <Compile Include="Command\UpdateCurrentItemsCommand.cs" />
     <Compile Include="Command\UpdateInvestmentListCommand.cs" />
     <Compile Include="Command\UpdateListingsCommand.cs" />
     <Compile Include="Control\MultiSelectListBox.cs" />

@@ -9,6 +9,6 @@ namespace GW2Trader.ViewModel
 {
     public interface IItemViewer
     {
-        IList<GameItemModel> ViewedItems { get; }
+        IList<GameItemModel> ShownItems { get; }
     }
 }

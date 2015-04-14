@@ -196,7 +196,7 @@ namespace GW2Trader.ViewModel
 
         #endregion
 
-        public IList<GameItemModel> ViewedItems
+        public IList<GameItemModel> ShownItems
         {
             get { return SelectedWatchlist != null ? SelectedWatchlist.Items : null; }
         }

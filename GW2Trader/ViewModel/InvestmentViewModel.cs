@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 
 namespace GW2Trader.ViewModel
 {
-    public class InvestmentViewModel : BaseViewModel
+    public class InvestmentViewModel : BaseViewModel, IItemViewer
     {
         #region Observable Members
 
@@ -278,5 +278,14 @@ namespace GW2Trader.ViewModel
         }
 
         #endregion
+
+        public IList<GameItemModel> ShownItems
+        {
+            get
+            {
+                if (SelectedWatchlist != null) return SelectedWatchlist.Items.Select(inv => inv.GameItem).ToList();
+                return null;
+            }
+        }
     }
 }

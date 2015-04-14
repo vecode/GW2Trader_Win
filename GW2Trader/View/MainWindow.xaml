@@ -33,7 +33,11 @@
         <Controls:WindowCommands>
             <Button Content="Update Items" 
                     CommandParameter="{Binding Source={StaticResource MainViewModel}}"
-                    Command="{Binding Source={StaticResource MainViewModel}, Path=UpdateCommerceDataCommand}"/>
-        </Controls:WindowCommands>
+                    Command="{Binding Source={StaticResource MainViewModel}, Path=UpdateCurrentItemsCommand}"/>
+            <Button Content="Update All Items" 
+                    CommandParameter="{Binding Source={StaticResource MainViewModel}}"
+                    Command="{Binding Source={StaticResource MainViewModel}, Path=UpdateAllItemsCommand}"/>
+        </Controls:WindowCommands>        
     </Controls:MetroWindow.RightWindowCommands>
+
 </Controls:MetroWindow>
