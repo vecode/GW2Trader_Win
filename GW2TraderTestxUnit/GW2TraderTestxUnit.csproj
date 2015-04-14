@@ -60,7 +60,6 @@
     <Compile Include="Mock\NotifyServiceMock.cs" />
     <Compile Include="Mock\TradingPostApiWrapperMock.cs" />
     <Compile Include="ServiceTest\CommerceServiceTest.cs" />
-    <Compile Include="ServiceTest\DataServiceTest.cs" />
     <Compile Include="TestData\ITestDataFactory.cs" />
     <Compile Include="TestData\TestDataFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

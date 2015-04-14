@@ -138,9 +138,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\RarityModel.cs" />
     <Compile Include="Service\CommerceService.cs" />
-    <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\ICommerceService.cs" />
-    <Compile Include="Service\IDataService.cs" />
     <Compile Include="Service\INotifyService.cs" />
     <Compile Include="Service\NotifyService.cs" />
     <Compile Include="Settings.cs" />
