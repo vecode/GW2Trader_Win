@@ -30,7 +30,7 @@ namespace GW2TraderTestxUnit.Mock
             ExceptionToThrow = TestException.None;
         }
 
-        public GW2TPApiWrapper.Entities.ItemListing Listings(int id)
+        public ItemListing Listings(int id)
         {
             CheckForException();
             return _listingToReturn;
@@ -52,7 +52,7 @@ namespace GW2TraderTestxUnit.Mock
         //    return listings;
         //}
 
-        public IEnumerable<GW2TPApiWrapper.Entities.ItemPrice> Prices(IEnumerable<int> ids)
+        public IEnumerable<ItemPrice> Prices(IEnumerable<int> ids)
         {
             CheckForException();
 
@@ -73,12 +73,12 @@ namespace GW2TraderTestxUnit.Mock
             throw new NotImplementedException();
         }
 
-        public GW2TPApiWrapper.Entities.Item ItemDetails(int id)
+        public Item ItemDetails(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GW2TPApiWrapper.Entities.Item> ItemDetails(IEnumerable<int> ids)
+        public IEnumerable<Item> ItemDetails(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }

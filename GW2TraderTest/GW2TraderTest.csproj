@@ -70,15 +70,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Mock\GameDataContextMock.cs" />
-    <Compile Include="Test\GameDataRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\InvestmentModelTest.cs" />
-    <Compile Include="Test\GameItemModelTest.cs" />
     <Compile Include="TestDataFactory\ApiTestDataFactory.cs" />
     <Compile Include="TestDataFactory\TestGameDataFactory.cs" />
     <Compile Include="Mock\TradingPostApiWrapperMock.cs" />
-    <Compile Include="Test\ApiDataUpdaterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GW2TPApiWrapperTest\GW2TPApiWrapperTest.csproj">
