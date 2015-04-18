@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -19,6 +20,7 @@ namespace GW2Trader.ViewModel
         private int _selectedTabIndex;
         private IGameDataContextProvider _contextProvider = new GameDataContextProvider();
         private List<GameItemModel> _sharedItems;
+        private Dictionary<int, GameItemModel> _sharedItemDictionary;
         private ITradingPostApiWrapper _tpApiWrapper;
         private IApiDataUpdater _dataUpdater;
 
@@ -30,7 +32,7 @@ namespace GW2Trader.ViewModel
 
             var watchlistViewModel = new WatchlistViewModel(_contextProvider, _sharedItems);
             var searchViewModel = new ItemSearchViewModel(_sharedItems, _dataUpdater, watchlistViewModel);
-            var investmentViewModel = new InvestmentViewModel(_contextProvider, _sharedItems);
+            var investmentViewModel = new InvestmentViewModel(_contextProvider, _sharedItems, _sharedItemDictionary);
 
             ChildViews = new ObservableCollection<BaseViewModel>
             {
@@ -72,6 +74,7 @@ namespace GW2Trader.ViewModel
             {
                 _sharedItems = context.GameItems.ToList();
             }
+            _sharedItemDictionary = _sharedItems.ToDictionary(item => item.ItemId, item => item);
             Task.Run(() => _dataUpdater.UpdatePricesParallel(_sharedItems));
         }
 

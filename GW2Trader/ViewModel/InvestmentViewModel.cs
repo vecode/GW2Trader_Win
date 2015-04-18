@@ -25,6 +25,7 @@ namespace GW2Trader.ViewModel
 
         private readonly IGameDataContextProvider _contextProvider;
         private readonly List<GameItemModel> _items;
+        private readonly Dictionary<int, GameItemModel> _itemDictionary;
 
         public enum SelectionMode
         {
@@ -33,11 +34,12 @@ namespace GW2Trader.ViewModel
             Past
         };
 
-        public InvestmentViewModel(IGameDataContextProvider contextProvider, List<GameItemModel> items)
+        public InvestmentViewModel(IGameDataContextProvider contextProvider, List<GameItemModel> items, Dictionary<int, GameItemModel> itemDictionary)
         {
             ViewModelName = "Investments";
             _contextProvider = contextProvider;
             _items = items;
+            _itemDictionary = itemDictionary;
 
             BuildWatchlists();
 
@@ -221,7 +223,7 @@ namespace GW2Trader.ViewModel
             {
                 var watchlists = context.InvestmentWatchlists.Include(wl => wl.Items.Select(i => i.GameItem)).ToList();
                 watchlists.ForEach(wl => wl.Items.ToList()
-                    .ForEach(i => i.GameItem = _items.Single(item => item.ItemId == i.GameItem.ItemId)));
+                    .ForEach(i => i.GameItem = _itemDictionary[i.GameItem.ItemId]));
 
                 Watchlists = new ObservableCollection<InvestmentWatchlistModel>(watchlists);
             }
