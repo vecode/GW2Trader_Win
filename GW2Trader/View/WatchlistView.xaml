@@ -101,6 +101,12 @@
                                 SelectionUnit="FullRow" SelectionMode="Single"
                                 Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
 
+            <control:CustomDataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </control:CustomDataGrid.ColumnHeaderStyle>
+
             <control:CustomDataGrid.Columns>
                 <StaticResource ResourceKey="IconColumn"/>
                 <StaticResource ResourceKey="NameColumn"/>

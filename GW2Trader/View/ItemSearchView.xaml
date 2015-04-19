@@ -162,7 +162,13 @@
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                 CellStyle="{StaticResource ItemDataGridCellStyle}"
                 SelectionUnit="FullRow" SelectionMode="Extended"
-                Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
+                Style="{StaticResource MetroDataGrid}" RowMargin="0,1,0,1">
+                
+                <control:CustomDataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    </Style>
+                </control:CustomDataGrid.ColumnHeaderStyle>
 
                 <control:CustomDataGrid.Columns>
                     <StaticResource ResourceKey="RowDetailsButtonColumn"/>

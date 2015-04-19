@@ -122,6 +122,12 @@
             SelectionUnit="FullRow" SelectionMode="Extended"                   
             Style="{StaticResource AzureDataGrid}" RowMargin="0,1,0,1">
 
+            <control:CustomDataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MetroDataGridColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </control:CustomDataGrid.ColumnHeaderStyle>
+
             <control:CustomDataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Setter Property="Background"
