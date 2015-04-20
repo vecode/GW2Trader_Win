@@ -4,10 +4,10 @@ using System.Linq;
 using System.Net;
 using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Wrapper;
-using GW2TraderTestxUnit.TestData;
+using GW2TraderTest.TestData;
 using Newtonsoft.Json;
 
-namespace GW2TraderTestxUnit.Mock
+namespace GW2TraderTest.Mock
 {
     internal class TradingPostApiWrapperMock : ITradingPostApiWrapper
     {
@@ -35,22 +35,6 @@ namespace GW2TraderTestxUnit.Mock
             CheckForException();
             return _listingToReturn;
         }
-
-        //public IEnumerable<GW2TPApiWrapper.Entities.ItemListing> Listings(IEnumerable<int> ids)
-        //{
-        //    CheckForException();
-
-        //    List<ItemListing> listings = new List<ItemListing>(ids.Count());
-
-        //    // add an ItemListing foreach specified id
-        //    listings.AddRange(ids.Select(id => new ItemListing
-        //    {
-        //        Id = id,
-        //        Buys = _listingToReturn.Buys,
-        //        Sells = _listingToReturn.Sells
-        //    }));
-        //    return listings;
-        //}
 
         public IEnumerable<ItemPrice> Prices(IEnumerable<int> ids)
         {

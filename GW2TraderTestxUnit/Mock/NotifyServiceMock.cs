@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GW2Trader.Service;
 
-namespace GW2TraderTestxUnit.Mock
+namespace GW2TraderTest.Mock
 {
     internal class NotifyServiceMock : INotifyService
     {

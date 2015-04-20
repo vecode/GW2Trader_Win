@@ -6,10 +6,10 @@ using GW2TPApiWrapper.Wrapper;
 using GW2Trader.Model;
 using Xunit;
 using GW2Trader.Service;
-using GW2TraderTestxUnit.Mock;
-using GW2TraderTestxUnit.TestData;
+using GW2TraderTest.Mock;
+using GW2TraderTest.TestData;
 
-namespace GW2TraderTestxUnit.ServiceTest
+namespace GW2TraderTest.ServiceTest
 {
     public class CommerceServiceTest
     {

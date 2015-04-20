@@ -7,7 +7,7 @@
     <ProjectGuid>{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GW2TraderTestxUnit</RootNamespace>
+    <RootNamespace>GW2TraderTest</RootNamespace>
     <AssemblyName>GW2TraderTestxUnit</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -60,6 +60,7 @@
     <Compile Include="Mock\NotifyServiceMock.cs" />
     <Compile Include="Mock\TradingPostApiWrapperMock.cs" />
     <Compile Include="ModelTest\GameItemModelTest.cs" />
+    <Compile Include="ModelTest\InvestmentModelTest.cs" />
     <Compile Include="ServiceTest\CommerceServiceTest.cs" />
     <Compile Include="TestData\ITestDataFactory.cs" />
     <Compile Include="TestData\TestDataFactory.cs" />
