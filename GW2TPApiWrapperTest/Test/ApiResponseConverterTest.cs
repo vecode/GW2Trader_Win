@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using System.IO;
 using GW2TPApiWrapper.Wrapper;
@@ -8,10 +7,10 @@ using GW2TPApiWrapper.Enum;
 using System.Collections.Generic;
 using System.Linq;
 using GW2TPApiWrapper.Util;
+using Xunit;
 
 namespace GW2TPApiWrapperTest.Test
 {
-    [TestClass]
     public class ApiResponseConverterTest
     {
         #region valid api responses (long)
@@ -160,7 +159,7 @@ namespace GW2TPApiWrapperTest.Test
 
         #endregion
 
-        [TestMethod]
+        [Fact]
         public void ValidSignleItemResponseShouldBeConvertable()
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(ValidSingleItemResponse);
@@ -168,15 +167,15 @@ namespace GW2TPApiWrapperTest.Test
 
             Item item = ApiResponseConverter.DeserializeStream<Item>(stream);
 
-            Assert.IsNotNull(item);
-            Assert.AreEqual("Eternity", item.Name);
-            Assert.AreEqual(30689, item.Id);
-            Assert.AreEqual("Legendary", item.Rarity);
-            Assert.AreEqual("Weapon", item.Type);
-            Assert.AreEqual("Greatsword", item.Details.Type);
+            Assert.NotNull(item);
+            Assert.Equal("Eternity", item.Name);
+            Assert.Equal(30689, item.Id);
+            Assert.Equal("Legendary", item.Rarity);
+            Assert.Equal("Weapon", item.Type);
+            Assert.Equal("Greatsword", item.Details.Type);
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidMultipleItemResponseShouldBeConvertable()
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(ValidMultipleItemResponse);
@@ -184,9 +183,9 @@ namespace GW2TPApiWrapperTest.Test
 
             Item[] items = ApiResponseConverter.DeserializeStream<Item[]>(stream);
 
-            Assert.AreEqual(2, items.Count());
-            Assert.AreEqual(30689, items[0].Id);
-            Assert.AreEqual(30703, items[1].Id);
+            Assert.Equal(2, items.Count());
+            Assert.Equal(30689, items[0].Id);
+            Assert.Equal(30703, items[1].Id);
         }
     }
 }
