@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40302.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapper", "GW2TPApiWrapper\GW2TPApiWrapper.csproj", "{A37CA4F0-B48C-43D0-95B9-1F955E450FA1}"
 EndProject
@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader", "GW2Trader\GW2T
 		{A37CA4F0-B48C-43D0-95B9-1F955E450FA1} = {A37CA4F0-B48C-43D0-95B9-1F955E450FA1}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TraderTest", "GW2TraderTest\GW2TraderTest.csproj", "{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EA24FA9-2978-4DDC-8BAD-13D3830EBDA5}"
 	ProjectSection(SolutionItems) = preProject
 		TODO.txt = TODO.txt
@@ -21,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{7EB8F0CA-D428-4CBC-832A-5421E57D75E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TraderTestxUnit", "GW2TraderTestxUnit\GW2TraderTestxUnit.csproj", "{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TraderTest", "GW2TraderTestxUnit\GW2TraderTest.csproj", "{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,17 +65,6 @@ Global
 		{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}.Release|Mixed Platforms.Build.0 = Release|x86
 		{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}.Release|x86.ActiveCfg = Release|x86
 		{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}.Release|x86.Build.0 = Release|x86
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Debug|x86.Build.0 = Debug|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{3C40F109-1C3C-4435-87C8-4DB3EC2F4593}.Release|x86.ActiveCfg = Release|Any CPU
 		{7EB8F0CA-D428-4CBC-832A-5421E57D75E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7EB8F0CA-D428-4CBC-832A-5421E57D75E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EB8F0CA-D428-4CBC-832A-5421E57D75E1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

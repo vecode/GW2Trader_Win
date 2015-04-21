@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GW2Trader.Model;
 
-namespace GW2TraderTestxUnit.TestData
+namespace GW2TraderTest.TestData
 {
     internal interface ITestDataFactory
     {

@@ -71,7 +71,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\InvestmentModelTest.cs" />
     <Compile Include="TestDataFactory\ApiTestDataFactory.cs" />
     <Compile Include="TestDataFactory\TestGameDataFactory.cs" />
     <Compile Include="Mock\TradingPostApiWrapperMock.cs" />
@@ -96,6 +95,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

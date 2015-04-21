@@ -3,7 +3,7 @@ using GW2Trader.Model;
 using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Enum;
 
-namespace GW2TraderTestxUnit.TestData
+namespace GW2TraderTest.TestData
 {
     internal class TestDataFactory : ITestDataFactory
     {
