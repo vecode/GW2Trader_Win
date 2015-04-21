@@ -7,6 +7,7 @@ using GW2Trader.Command;
 using GW2Trader.Data;
 using GW2Trader.Model;
 using System;
+using System.ComponentModel;
 using System.Security.Cryptography;
 
 namespace GW2Trader.ViewModel
@@ -49,6 +50,23 @@ namespace GW2Trader.ViewModel
             }
         }
 
+        private void AddItemNotification(GameItemModel item)
+        {
+            item.PropertyChanged += new PropertyChangedEventHandler(item_PropertyChanged);
+        }
+
+        private void item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            NotifyInvestmentStatisticsChanged();
+        }
+
+        private void NotifyInvestmentStatisticsChanged()
+        {
+            RaisePropertyChanged("GoldInvested");
+            RaisePropertyChanged("CurrentProfit");
+            RaisePropertyChanged("TotalWorth");
+        }
+
         public string InvestmentListName
         {
             get { return _investmentListName; }
@@ -76,9 +94,7 @@ namespace GW2Trader.ViewModel
             {
                 _selectedWatchlist = value;
                 RaisePropertyChanged("SelectedWatchlist");
-                RaisePropertyChanged("GoldInvested");
-                RaisePropertyChanged("CurrentProfit");
-                RaisePropertyChanged("TotalWorth");
+                NotifyInvestmentStatisticsChanged();
                 InvestmentListName = _selectedWatchlist != null ?
                                      _selectedWatchlist.Name : null;
                 InvestmentListDescription = _selectedWatchlist != null ?
@@ -224,6 +240,11 @@ namespace GW2Trader.ViewModel
                 var watchlists = context.InvestmentWatchlists.Include(wl => wl.Items.Select(i => i.GameItem)).ToList();
                 watchlists.ForEach(wl => wl.Items.ToList()
                     .ForEach(i => i.GameItem = _itemDictionary[i.GameItem.ItemId]));
+
+                foreach (InvestmentWatchlistModel watchlist in watchlists)
+                {
+                    watchlist.Items.ToList().ForEach(inv => AddItemNotification(inv.GameItem));
+                }
 
                 Watchlists = new ObservableCollection<InvestmentWatchlistModel>(watchlists);
             }
