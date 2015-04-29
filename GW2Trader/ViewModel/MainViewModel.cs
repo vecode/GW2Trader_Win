@@ -23,7 +23,6 @@ namespace GW2Trader.ViewModel
         private Dictionary<int, GameItemModel> _sharedItemDictionary;
         private ITradingPostApiWrapper _tpApiWrapper;
         private IApiDataUpdater _dataUpdater;
-        private IDbBuilder _dbBuilder;
 
         public ObservableCollection<BaseViewModel> ChildViews { get; private set; }
 
@@ -34,14 +33,12 @@ namespace GW2Trader.ViewModel
             var watchlistViewModel = new WatchlistViewModel(_contextProvider, _sharedItems);
             var searchViewModel = new ItemSearchViewModel(_sharedItems, _dataUpdater, watchlistViewModel);
             var investmentViewModel = new InvestmentViewModel(_contextProvider, _sharedItems, _sharedItemDictionary);
-            var settingsViewModel = new SettingsViewModel(_dbBuilder);
 
             ChildViews = new ObservableCollection<BaseViewModel>
             {
                 searchViewModel,
                 watchlistViewModel,
-                investmentViewModel,
-                settingsViewModel
+                investmentViewModel
             };
         }
 
@@ -70,8 +67,8 @@ namespace GW2Trader.ViewModel
             _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessor());
             _dataUpdater = new ApiDataUpdater(_tpApiWrapper);
 
-            _dbBuilder = new DbBuilder(_tpApiWrapper, _contextProvider);
-            _dbBuilder.BuildDatabase();
+            DbBuilder dbBuilder = new DbBuilder(_tpApiWrapper, _contextProvider);
+            dbBuilder.BuildDatabase();
             
             using (var context = _contextProvider.GetContext())
             {

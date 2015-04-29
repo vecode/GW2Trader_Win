@@ -124,11 +124,9 @@
     <Compile Include="Command\OpenNewInvestmentDialogCommand.cs" />
     <Compile Include="Command\UpdateAllItemsCommand.cs" />
     <Compile Include="Command\UpdateCurrentItemsCommand.cs" />
-    <Compile Include="Command\UpdateDatabaseCommand.cs" />
     <Compile Include="Command\UpdateInvestmentListCommand.cs" />
     <Compile Include="Command\UpdateListingsCommand.cs" />
     <Compile Include="Control\MultiSelectListBox.cs" />
-    <Compile Include="Data\IDbBuilder.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Migrations\201503250925484_Initial.cs" />
     <Compile Include="Migrations\201503250925484_Initial.Designer.cs">
@@ -153,7 +151,6 @@
     <Compile Include="Util\VisibilityToBooleanConverter.cs" />
     <Compile Include="ViewModel\IItemViewer.cs" />
     <Compile Include="ViewModel\NewInvestmentViewModel.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="View\BuyListingView.xaml.cs">
       <DependentUpon>BuyListingView.xaml</DependentUpon>
     </Compile>
@@ -174,9 +171,6 @@
     </Compile>
     <Compile Include="View\SellListingView.xaml.cs">
       <DependentUpon>SellListingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WatchlistView.xaml.cs">
       <DependentUpon>WatchlistView.xaml</DependentUpon>
@@ -281,10 +275,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SellListingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
