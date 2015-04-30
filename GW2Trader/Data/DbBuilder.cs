@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Wrapper;
@@ -6,7 +7,7 @@ using GW2Trader.Model;
 
 namespace GW2Trader.Data
 {
-    public class DbBuilder
+    public class DbBuilder : IDbBuilder
     {
         private readonly IGameDataContextProvider _contextProvider;
         private readonly ITradingPostApiWrapper _wrapper;
@@ -17,11 +18,11 @@ namespace GW2Trader.Data
             _contextProvider = contextProvider;
         }
 
-        public void BuildDatabase(bool dropOldDb = false)
+        public void BuildDatabase()
         {
             using (var context = _contextProvider.GetContext())
             {
-                if (!context.GameItems.Any() || dropOldDb)
+                if (!context.GameItems.Any())
                 {
                     var ids = _wrapper.ItemIds().ToArray();
                     var items = _wrapper.ItemDetails(ids).ToList();
@@ -42,10 +43,33 @@ namespace GW2Trader.Data
                 Rarity = item.Rarity,
                 RestrictionLevel = item.Level,
                 Type = item.Type,
-                SubType = item.Details != null? item.Details.Type : null,
+                SubType = item.Details != null ? item.Details.Type : null,
                 CommerceDataLastUpdated = DateTime.Now
             };
             return itemModel;
+        }
+
+
+        public void RebuildDatabase()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateDatabase()
+        {
+            int[] currentIds = _wrapper.ItemIds().ToArray();
+
+            using (var context = _contextProvider.GetContext())
+            {
+                HashSet<int> localIds = new HashSet<int>(context.GameItems.Select(item => item.ItemId));
+
+                List<int> missingIds = currentIds.Where(id => !localIds.Contains(id)).ToList();
+
+                List<GameItemModel> missingItems =
+                    _wrapper.ItemDetails(missingIds).Select(ConvertToGameItem).ToList();
+
+                context.BulkInsert(missingItems);
+            }
         }
     }
 }

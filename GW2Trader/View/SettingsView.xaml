@@ -4,24 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
-    <Grid Width="Auto" Height="Auto">
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Content="Update Database" BorderBrush="{DynamicResource AccentColorBrush}" 
-                    Style="{DynamicResource SquareButtonStyle}" BorderThickness="1" Margin="2"
-                    CommandParameter="{Binding}" Command="{Binding Path=UpdateDatabaseCommand}"/>
-            <Button Content="Rebuild Database" BorderBrush="{DynamicResource AccentColorBrush}" 
-                    Style="{DynamicResource SquareButtonStyle}" BorderThickness="1" Margin="2"
+            <Button Content="Update Database" CommandParameter="{Binding}" 
+                    Command="{Binding Path=UpdateDatabaseCommand}" Style="{DynamicResource SquareButtonStyle}"
+                    Margin="2" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"/>
+            <Button Content="Rebuild Database" CommandParameter="{Binding}" 
+                    Command="{Binding Path=RebuildDatabaseCommand}" Style="{DynamicResource SquareButtonStyle}"
+                    Margin="2" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
                     IsEnabled="False"/>
         </StackPanel>
-        
+
+
+
     </Grid>
 </UserControl>

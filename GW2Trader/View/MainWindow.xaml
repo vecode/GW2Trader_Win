@@ -25,6 +25,10 @@
             <TabItem DataContext="{Binding ChildViews[2]}" Header="{Binding ViewModelName}">
                 <view:InvestmentView DataContext="{Binding}"/>
             </TabItem>
+
+            <TabItem DataContext="{Binding ChildViews[3]}" Header="{Binding ViewModelName}">
+                <view:SettingsView DataContext="{Binding}"/>
+            </TabItem>
         </TabControl>
     </Grid>
 

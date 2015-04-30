@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using GW2TPApiWrapper.Util;
 
@@ -34,7 +29,14 @@ namespace GW2TPApiWrapper.Wrapper
         public Stream ItemDetails(int[] ids)
         {
             WebClient webClient = new WebClient();
-            return webClient.OpenRead(ApiUrlFormatter.FormatUrl(ItemsApiUrl, ids));
+            try
+            {
+                return webClient.OpenRead(ApiUrlFormatter.FormatUrl(ItemsApiUrl, ids));
+            }
+            catch (WebException)
+            {
+                return null;
+            }
         }
 
         public Stream Listings(int id)
