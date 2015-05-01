@@ -164,9 +164,9 @@ namespace GW2Trader.Model
         }
 
         /// <summary>
-        ///     Calculates the return of investment as percentage based on current prices.
+        ///     Calculates the return on investment as percentage based on current prices.
         /// </summary>
-        /// <returns>Returns the return of investment based on current prices</returns>
+        /// <returns>Returns the return on investment based on current prices</returns>
         ///
         [NotMapped]
         public int ROI
