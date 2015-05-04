@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using GW2TPApiWrapper.Entities;
 using System.IO;
-using Shared.Util;
 using GW2TPApiWrapper.Util;
 
 namespace GW2TPApiWrapper.Wrapper
