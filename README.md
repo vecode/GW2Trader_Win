@@ -4,7 +4,7 @@
 
 GW2Trader is a trading tool for the popular MMORPG Guild Wars 2. It allows you to search for flippable items, to group them in watchlists for easier access and to keep track of your investments. 
 
-Beware that GW2Trader is still in development and is not ready for personal use (yet).
+Beware that GW2Trader is still in development and not ready for personal use (yet).
 
 ### Screenshots
 <img src="https://github.com/vecode/GW2Trader/blob/screenshots/Screenshots/search.png" alt="search" width=300>
