@@ -1,47 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GW2Trader.Command;
 using GW2Trader.Model;
 using GW2Trader.MVVM;
-using GW2Trader.Util;
 
 namespace GW2Trader.ViewModel
 {
     public class NewInvestmentViewModel : BaseViewModel
     {
-        private List<GameItemModel> _items;
-        private delegate void NotifyMethod();
-
         #region Observable Members
 
         private string _keyword;
-        private GameItemModel _selectedItem;
-        private int _quantity;
-        private bool _isSold;
-
-        public Money BuyPrice { get; private set; }
-        public Money TargetSellPrice { get; private set; }
-        public Money SellPrice { get; private set; }
-
-        #endregion
-
-        public InvestmentModel Investment { get; private set; }
-
-        public NewInvestmentViewModel(IList<GameItemModel> items)
-        {
-            _items = items.ToList();
-            Items = new PaginatedObservableCollection<GameItemModel>(_items);
-            Keyword = String.Empty;
-            BuyPrice = new Money(UpdateProfitInformation);
-            TargetSellPrice = new Money(UpdateProfitInformation);
-            SellPrice = new Money(UpdateProfitInformation);
-            Quantity = 1;
-        }
-
-        public PaginatedObservableCollection<GameItemModel> Items { get; private set; }
 
         public string Keyword
         {
@@ -53,6 +23,8 @@ namespace GW2Trader.ViewModel
             }
         }
 
+        private GameItemModel _selectedItem;
+
         public GameItemModel SelectedItem
         {
             get { return _selectedItem; }
@@ -60,9 +32,12 @@ namespace GW2Trader.ViewModel
             {
                 _selectedItem = value;
                 RaisePropertyChanged("SelectedItem");
+                BuyPrice = new Money(SelectedItem.SellPrice);
                 UpdateProfitInformation();
             }
         }
+
+        private int _quantity;
 
         public int Quantity
         {
@@ -75,6 +50,8 @@ namespace GW2Trader.ViewModel
             }
         }
 
+        private bool _isSold;
+
         public bool IsSold
         {
             get { return _isSold; }
@@ -84,6 +61,64 @@ namespace GW2Trader.ViewModel
                 RaisePropertyChanged("IsSold");
             }
         }
+
+        private Money _buyPrice;
+
+        public Money BuyPrice
+        {
+            get { return _buyPrice; }
+            private set
+            {
+                _buyPrice = value;
+                RaisePropertyChanged("BuyPrice");
+                UpdateProfitInformation();
+            }
+        }
+
+        private Money _targetSellPrice;
+
+        public Money TargetSellPrice
+        {
+            get { return _targetSellPrice; }
+            private set
+            {
+                _targetSellPrice = value;
+                RaisePropertyChanged("TargetSellPrice");
+                UpdateProfitInformation();
+            }
+        }
+
+        private Money _sellPrice;
+
+        public Money SellPrice
+        {
+            get
+            {
+                return _sellPrice;
+            }
+            private set
+            {
+                _sellPrice = value;
+                RaisePropertyChanged("SellPrice");
+                UpdateProfitInformation();
+            }
+        }
+
+        #endregion
+
+        public InvestmentModel Investment { get; private set; }
+
+        public NewInvestmentViewModel(IList<GameItemModel> items)
+        {
+            Items = new PaginatedObservableCollection<GameItemModel>(items);
+            Keyword = String.Empty;
+            BuyPrice = new Money();
+            TargetSellPrice = new Money();
+            SellPrice = new Money();
+            Quantity = 1;
+        }
+
+        public PaginatedObservableCollection<GameItemModel> Items { get; private set; }
 
         public int GoldInvested
         {
@@ -181,13 +216,15 @@ namespace GW2Trader.ViewModel
 
         public void FinalizeResult()
         {
-            Investment = new InvestmentModel();
-            Investment.Count = Quantity;
-            Investment.GameItem = SelectedItem;
-            Investment.IsSold = IsSold;
-            Investment.DesiredSellPrice = TargetSellPrice.Value;
-            Investment.PurchasePrice = BuyPrice.Value;
-            Investment.SoldFor = SellPrice.Value;
+            Investment = new InvestmentModel
+            {
+                Count = Quantity,
+                GameItem = SelectedItem,
+                IsSold = IsSold,
+                DesiredSellPrice = TargetSellPrice.Value,
+                PurchasePrice = BuyPrice.Value,
+                SoldFor = SellPrice.Value
+            };
         }
     }
 
@@ -196,14 +233,19 @@ namespace GW2Trader.ViewModel
         private int _gold;
         private int _silver;
         private int _copper;
-        Action _notifyMethod;
 
-        public Money(Action notifyMethod)
+        public Money()
         {
-            _notifyMethod = notifyMethod;
             Gold = 0;
             Silver = 0;
             Copper = 0;
+        }
+
+        public Money(int val)
+        {
+            Gold = val / 10000;
+            Silver = (val % 10000) / 100;
+            Copper = (val % 100);
         }
 
         public int Value
@@ -218,7 +260,6 @@ namespace GW2Trader.ViewModel
             {
                 _gold = value;
                 RaisePropertyChanged("Gold");
-                _notifyMethod();
             }
         }
 
@@ -229,7 +270,6 @@ namespace GW2Trader.ViewModel
             {
                 _silver = Math.Min(value, 99);
                 RaisePropertyChanged("Silver");
-                _notifyMethod();
             }
         }
 
@@ -240,7 +280,17 @@ namespace GW2Trader.ViewModel
             {
                 _copper = Math.Min(value, 99);
                 RaisePropertyChanged("Copper");
-                _notifyMethod();
+            }
+        }
+
+        public int RawValue
+        {
+            get
+            {
+                int val = Copper;
+                val += Silver * 100;
+                val += Gold * 10000;
+                return val;
             }
         }
     }
