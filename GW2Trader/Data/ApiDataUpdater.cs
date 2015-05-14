@@ -35,18 +35,18 @@ namespace GW2Trader.Data
 
         public void UpdatePrices(IList<GameItemModel> items)
         {
-            var ids = items.Select(i => i.ItemId).ToArray();
-            var updatedPrices = _tpApiWrapper.Prices(ids).ToList();
+            int[] ids = items.Select(i => i.ItemId).ToArray();
+            var updatedPrices = _tpApiWrapper.Prices(ids).ToDictionary(item => item.Id, item => item);
 
-            foreach (var item in items)
-            {
-                var respectivePrice = updatedPrices.SingleOrDefault(p => p.Id == item.ItemId);
-                if (respectivePrice != null)
+            foreach (GameItemModel item in items)
+            {                
+                ItemPrice price;
+                if (updatedPrices.TryGetValue(item.ItemId, out price))
                 {
-                    item.SellPrice = respectivePrice.Sells.UnitPrice;
-                    item.SellListingQuantity = respectivePrice.Sells.Quantity;
-                    item.BuyPrice = respectivePrice.Buys.UnitPrice;
-                    item.BuyOrderQuantity = respectivePrice.Buys.Quantity;
+                    item.SellPrice = price.Sells.UnitPrice;                    
+                    item.SellListingQuantity = price.Sells.Quantity;
+                    item.BuyPrice = price.Buys.UnitPrice;
+                    item.BuyOrderQuantity = price.Buys.Quantity;
                     item.CommerceDataLastUpdated = DateTime.Now;
                 }
             }
@@ -101,7 +101,6 @@ namespace GW2Trader.Data
 
         public void UpdateListingsParallel(GameItemModel item)
         {
-            //Task.Run(() => UpdateListings(item));
             UpdateListingsParallel(new List<GameItemModel> { item });
         }
 
