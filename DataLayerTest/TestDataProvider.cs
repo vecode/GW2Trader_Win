@@ -27,5 +27,12 @@ namespace DataLayerTest
             };
 
         }
+
+        public static Item GetItemWithIcon()
+        {
+            Item item = GetItem();
+            item.Icon = GetIcon();
+            return item;
+        }
     }
 }

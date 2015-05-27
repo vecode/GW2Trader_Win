@@ -23,7 +23,7 @@ namespace DataLayer.Repository
                     db.InsertWithChildren(item);
                 }
 
-                if (item.Id != 0)
+                if (db.Find<Item>(item.Id) != null)
                 {
                     db.UpdateWithChildren(item);
                     return item.Id;
@@ -37,9 +37,12 @@ namespace DataLayer.Repository
             using (Database db = _dbProvider.GetDatabase())
             {
                 Item item = db.Find<Item>(id);
-                if (item.IconId != 0)
+                if (item != null)
                 {
-                    item.Icon = db.Find<Icon>(item.IconId);
+                    if (item.Icon != null && item.IconId != 0)
+                    {
+                        item.Icon = db.Find<Icon>(item.IconId);
+                    }
                 }
                 return item;
             }
