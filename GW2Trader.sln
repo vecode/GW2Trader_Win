@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapper", "GW2TPApi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapperTest", "GW2TPApiWrapperTest\GW2TPApiWrapperTest.csproj", "{6541B7FD-8996-4E20-926E-22A09EEEA469}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader", "GW2Trader\GW2Trader.csproj", "{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader_Windows", "GW2Trader_Windows\GW2Trader_Windows.csproj", "{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A37CA4F0-B48C-43D0-95B9-1F955E450FA1} = {A37CA4F0-B48C-43D0-95B9-1F955E450FA1}
 	EndProjectSection
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TraderTest", "GW2TraderTest\GW2TraderTest.csproj", "{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader_WindowsTest", "GW2Trader_WindowsTest\GW2Trader_WindowsTest.csproj", "{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
