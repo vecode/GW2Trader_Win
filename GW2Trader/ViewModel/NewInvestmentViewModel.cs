@@ -32,7 +32,7 @@ namespace GW2Trader.ViewModel
             {
                 _selectedItem = value;
                 RaisePropertyChanged("SelectedItem");
-                BuyPrice = new Money(SelectedItem.SellPrice);
+                if (SelectedItem != null) { BuyPrice = new Money(SelectedItem.SellPrice); }
                 UpdateProfitInformation();
             }
         }
