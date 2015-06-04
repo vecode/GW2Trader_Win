@@ -1,4 +1,5 @@
-﻿using DataLayer.Model;
+﻿using System;
+using DataLayer.Model;
 
 namespace DataLayerTest
 {
@@ -15,24 +16,19 @@ namespace DataLayerTest
                 Level = 0,
                 Id = 1
             };
-
         }
 
-        public static Icon GetIcon()
+        public static Investment GetInvestment()
         {
-            return new Icon
+            return new Investment
             {
-                FilePath = "path/to/icon",
-                Url = "iconurl.com"
+                Item = GetItem(),
+                BuyPrice = 100,
+                SellPrice = 200,
+                Count = 5,
+                PurchaseDate = DateTime.Today,
+                IsSold = false
             };
-
-        }
-
-        public static Item GetItemWithIcon()
-        {
-            Item item = GetItem();
-            item.Icon = GetIcon();
-            return item;
         }
     }
 }

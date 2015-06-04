@@ -10,7 +10,6 @@ namespace DataLayer.Db
             : base(platform, path, true)
         {
             CreateTable<Item>();
-            CreateTable<Icon>();
             CreateTable<Investment>();
             CreateTable<InvestmentList>();
             CreateTable<Watchlist>();

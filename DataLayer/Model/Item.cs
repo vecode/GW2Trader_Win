@@ -1,6 +1,5 @@
 ﻿using System;
 using SQLite.Net.Attributes;
-using SQLiteNetExtensions.Attributes;
 
 namespace DataLayer.Model
 {
@@ -24,11 +23,8 @@ namespace DataLayer.Model
 
         public int Level { get; set; }
 
-        [ForeignKey(typeof(Icon))]
-        public int IconId { get; set; }
-
-        [ManyToOne]
-        public Icon Icon { get; set; }
+        [MaxLength(120)]
+        public string IconUrl { get; set; }
 
         public int BuyPrice { get; set; }
 
@@ -37,6 +33,14 @@ namespace DataLayer.Model
         public int Demand { get; set; }
 
         public int Supply { get; set; }
+
+        public int PreviousBuyPrice { get; set; }
+
+        public int PreviousSellPrice { get; set; }
+
+        public int PreviousDemand { get; set; }
+
+        public int PreviousSupply { get; set; }
 
         public DateTime CommerceDataLastUpdated { get; set; }
     }

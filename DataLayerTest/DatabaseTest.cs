@@ -1,4 +1,6 @@
-﻿using DataLayer.Db;
+﻿using System;
+using System.Linq;
+using DataLayer.Db;
 using DataLayer.Model;
 using SQLite.Net.Platform.Win32;
 using SQLiteNetExtensions.Extensions;
@@ -50,52 +52,32 @@ namespace DataLayerTest
         }
 
         [Fact]
-        public void InsertIconTest()
-        {
-            DeleteDatabase();
-
-            // add icon to database
-            Icon icon = TestDataProvider.GetIcon();
-            using (Database db = GetDatabase())
-            {
-                db.Insert(icon);
-            }
-
-            // test if database contains icon
-            using (Database db = GetDatabase())
-            {
-                Icon dbIcon = db.Table<Icon>().First();
-
-                Assert.Equal(icon.FilePath, dbIcon.FilePath);
-                Assert.Equal(icon.Url, dbIcon.Url);
-                Assert.Equal(1, dbIcon.Id);
-            }
-        }
-
-        [Fact]
-        public void AddIconToItemTest()
+        public void InsertInvestmentTest()
         {
             DeleteDatabase();
 
             Item item = TestDataProvider.GetItem();
-            Icon icon = TestDataProvider.GetIcon();
-
-            item.Icon = icon;
+            Investment investment = TestDataProvider.GetInvestment();
+            
 
             using (Database db = GetDatabase())
-            {
-                db.Insert(icon);
-                db.InsertWithChildren(item);
+            {               
+                db.Insert(item);
+                db.InsertWithChildren(investment);
             }
 
             using (Database db = GetDatabase())
             {
-                Item dbItem = db.GetWithChildren<Item>(item.Id);
+                Investment dbInvestment = db.GetWithChildren<Investment>(1);
 
-                Assert.Equal(item.Icon.FilePath, dbItem.Icon.FilePath);
-                Assert.Equal(item.Icon.Url, dbItem.Icon.Url);
+                Assert.Equal(investment.BuyPrice, dbInvestment.BuyPrice);
+                Assert.Equal(investment.Count, dbInvestment.Count);
+                Assert.Equal(investment.SellPrice, dbInvestment.SellPrice);
+                Assert.Equal(investment.IsSold, dbInvestment.IsSold);
+
+                Assert.NotNull(investment.Item);
             }
+            
         }
     }
-
 }

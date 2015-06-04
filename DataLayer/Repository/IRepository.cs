@@ -7,7 +7,7 @@ namespace DataLayer.Repository
     {
         IEnumerable<T> GetAll();
         T Get(int id);
-        int Save(T item);
-        int Delete(T item);
+        void Save(T item);
+        void Delete(T item);
     }
 }

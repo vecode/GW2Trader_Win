@@ -37,15 +37,13 @@
     <Compile Include="Db\Database.cs" />
     <Compile Include="Db\DatabaseProvider.cs" />
     <Compile Include="Db\IDatabaseProvider.cs" />
-    <Compile Include="Model\Icon.cs" />
-    <Compile Include="Repository\IconRepository.cs" />
     <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\Investment.cs" />
     <Compile Include="Model\InvestmentList.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Watchlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\InvestmentListRepository.cs" />
     <Compile Include="Repository\InvestmentRepository.cs" />
     <Compile Include="Repository\ItemRepository.cs" />

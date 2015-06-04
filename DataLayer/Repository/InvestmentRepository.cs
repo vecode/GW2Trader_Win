@@ -3,7 +3,7 @@ using DataLayer.Model;
 
 namespace DataLayer.Repository
 {
-    public class InvestmentRepository : GenericRepository<Investment>
+    public class InvestmentRepository : Repository<Investment>
     {
         public InvestmentRepository(IDatabaseProvider dbProvider)
             : base(dbProvider) { }

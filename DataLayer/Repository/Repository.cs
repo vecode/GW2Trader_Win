@@ -2,14 +2,15 @@
 using System.Linq;
 using DataLayer.Db;
 using DataLayer.Model;
+using SQLiteNetExtensions.Extensions;
 
 namespace DataLayer.Repository
 {
-    public abstract class GenericRepository<T> : IRepository<T> where T : class, IEntity
+    public abstract class Repository<T> : IRepository<T> where T : class, IEntity
     {
         protected readonly IDatabaseProvider _dbProvider;
 
-        protected GenericRepository(IDatabaseProvider dbProvider)
+        protected Repository(IDatabaseProvider dbProvider)
         {
             _dbProvider = dbProvider;
         }
@@ -26,28 +27,23 @@ namespace DataLayer.Repository
         {
             using (Database db = _dbProvider.GetDatabase())
             {
-                return db.Table<T>().FirstOrDefault(x => x.Id == id);
+                return db.GetWithChildren<T>(id);
             }
         }
 
-        public virtual int Save(T item)
+        public virtual void Save(T item)
         {
             using (Database db = _dbProvider.GetDatabase())
             {
-                if (item.Id != 0)
-                {
-                    db.Update(item);
-                    return item.Id;
-                }
-                return db.Insert(item);
+                db.InsertOrReplaceWithChildren(item);
             }
         }
 
-        public virtual int Delete(T item)
+        public virtual void Delete(T item)
         {
             using (Database db = _dbProvider.GetDatabase())
             {
-                return db.Delete(item);
+                db.Delete(item);
             }
         }
     }

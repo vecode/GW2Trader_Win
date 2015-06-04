@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
 
@@ -23,9 +22,10 @@ namespace DataLayer.Model
 
         public int Count { get; set; }
 
-        public int TargetSellPrice { get; set; }
+        [ForeignKey(typeof(Item))]
+        public int ItemId { get; set; }
 
-        [OneToMany]
-        public List<Item> Items { get; set; }
+        [OneToOne]
+        public Item Item { get; set; }
     }
 }
