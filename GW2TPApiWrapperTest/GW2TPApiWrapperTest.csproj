@@ -60,14 +60,16 @@
     <Compile Include="Test\ApiAccessorTest.cs" />
     <Compile Include="Test\ApiResponseConverterTest.cs" />
     <Compile Include="Test\ApiUrlFormatterTest.cs" />
+    <Compile Include="Util\TestWebClient.cs" />
+    <Compile Include="Util\TestWebClientProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
-      <Project>{a37ca4f0-b48c-43d0-95b9-1f955e450fa1}</Project>
-      <Name>GW2TPApiWrapper</Name>
+    <ProjectReference Include="..\GW2TPApiWrapper_PCL\GW2TPApiWrapper_PCL.csproj">
+      <Project>{5aa97c29-8589-441d-a865-d8c111303493}</Project>
+      <Name>GW2TPApiWrapper_PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

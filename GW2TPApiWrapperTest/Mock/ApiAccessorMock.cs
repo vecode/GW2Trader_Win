@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using GW2TPApiWrapperTest.Util;
 
 namespace GW2TPApiWrapperTest.Mock
 {
     public class ApiAccessorMock : IApiAccessor
     {
-        private IApiAccessor _apiAccessor = new ApiAccessor();
+        private IApiAccessor _apiAccessor = new ApiAccessor(new TestWebClientProvider());
 
         #region test data
         private const int ValidTestId = 30689;

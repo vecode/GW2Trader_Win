@@ -4,13 +4,14 @@ using GW2TPApiWrapper.Wrapper;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using Xunit;
+using GW2TPApiWrapperTest.Util;
 
 namespace GW2TPApiWrapperTest.Test
 {
     /// Internet connection needed to perform these tests    
     public class ApiAccessorTest
     {
-        private readonly IApiAccessor _apiAccessor = new ApiAccessor();
+        private readonly IApiAccessor _apiAccessor = new ApiAccessor(new TestWebClientProvider());
         private const int ValidItemId = 19684;
 
         [Fact]

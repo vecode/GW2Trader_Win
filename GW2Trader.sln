@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{0788A3BA-BE3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TraderTest", "GW2TraderTest\GW2TraderTest.csproj", "{AA94DC18-9E7F-4D27-8D71-75E1081FB935}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapper_PCL", "GW2TPApiWrapper_PCL\GW2TPApiWrapper_PCL.csproj", "{5AA97C29-8589-441D-A865-D8C111303493}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,20 @@ Global
 		{AA94DC18-9E7F-4D27-8D71-75E1081FB935}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AA94DC18-9E7F-4D27-8D71-75E1081FB935}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AA94DC18-9E7F-4D27-8D71-75E1081FB935}.Release|x86.ActiveCfg = Release|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5AA97C29-8589-441D-A865-D8C111303493}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,5 +206,6 @@ Global
 		{2E3DF5C2-8A38-4A03-86D7-8D463C917E47} = {7F365517-B2E0-4A20-A241-3FC40FCBBB3A}
 		{9DA81360-F3BF-43D1-87AC-9E948E5F1940} = {2B6647D4-0D3C-4460-9582-B0654DB857F9}
 		{7A6F33F6-5FC7-43F4-A518-59CD662B8C41} = {2B6647D4-0D3C-4460-9582-B0654DB857F9}
+		{5AA97C29-8589-441D-A865-D8C111303493} = {0788A3BA-BE38-4ACB-BF69-742D0CC959CC}
 	EndGlobalSection
 EndGlobal
