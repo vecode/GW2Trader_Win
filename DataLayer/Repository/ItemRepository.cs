@@ -18,6 +18,14 @@ namespace DataLayer.Repository
             }
         }
 
+        public void Save(IEnumerable<Item> items)
+        {
+            using (Database db = _dbProvider.GetDatabase())
+            {
+                db.InsertOrReplaceAllWithChildren(items);
+            }
+        }
+
         public override Item Get(int id)
         {
             using (Database db = _dbProvider.GetDatabase())

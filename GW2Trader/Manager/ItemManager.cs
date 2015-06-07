@@ -13,9 +13,10 @@ namespace GW2Trader.Manager
         private ItemRepository _repository;
         private ITradingPostApiWrapper _apiWrapper;
 
-        public ItemManager(ItemRepository repository)
+        public ItemManager(ItemRepository repository, ITradingPostApiWrapper apiWrapper)
         {
             _repository = repository;
+            _apiWrapper = apiWrapper;
         }
 
         public List<Model.Item> Search(
@@ -35,6 +36,10 @@ namespace GW2Trader.Manager
         public void BuildItemDb()
         {
             List<int> missingItemids = MissingItemIds();
+
+            List<Item> missingItems = _apiWrapper.ItemDetails(missingItemids).Select(ConvertToItem).ToList();
+
+            _repository.Save(missingItems);
         }
 
         public List<int> MissingItemIds()
@@ -46,7 +51,7 @@ namespace GW2Trader.Manager
             return currentItemIds;
         }
 
-        private static Item ConvertToGameItem(ApiItem item)
+        private static Item ConvertToItem(ApiItem item)
         {
             return new Item
             {
