@@ -1,5 +1,7 @@
 ﻿using DataLayer.Model;
 using DataLayer.Repository;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace DataLayerTest

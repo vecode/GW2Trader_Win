@@ -25,6 +25,7 @@ namespace GW2TraderTest
         [Fact]
         public void MissingItemIdsTest()
         {
+            TestDatabaseProvider.DeleteDb();
             ItemManager itemManager = GetManager();
             List<int> missingItems = itemManager.MissingItemIds();
 
