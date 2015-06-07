@@ -71,6 +71,9 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f050003
 			public const int SettingsButton = 2131034115;
 			
+			// aapt resource value: 0x7f05000a
+			public const int UpdateDbButton = 2131034122;
+			
 			// aapt resource value: 0x7f050001
 			public const int WatchlistButton = 2131034113;
 			

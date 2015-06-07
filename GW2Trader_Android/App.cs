@@ -26,15 +26,14 @@ namespace GW2Trader_Android
         public static void Initialize()
         {
             var container = TinyIoCContainer.Current;
-
+            
             container.Register<IWebClientProvider, WebClientProvider>();
             container.Register<IApiAccessor, ApiAccessor>();
-            container.Register<ITradingPostApiWrapper, TradingPostApiWrapper>();
+            container.Register<ITradingPostApiWrapper, TradingPostApiWrapper>();          
 
+            container.Register<IDatabaseProvider, DbProvider>();            
+            container.Register <ItemRepository>();
 
-            container.Register<IDatabaseProvider, DbProvider>();
-            container.Register <Repository<Item>>();
-            
             container.Register<IItemManager, ItemManager>();
         }
     }

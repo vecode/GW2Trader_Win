@@ -17,13 +17,23 @@ namespace GW2Trader_Android.Activities
     [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity
     {
+        private IItemManager _itemManager;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Settings);
 
             var container = TinyIoCContainer.Current;
-            var itemManager = container.Resolve<IItemManager>();
+            _itemManager = container.Resolve<IItemManager>();
+
+            Button updateDbButton = FindViewById<Button>(Resource.Id.UpdateDbButton);
+            updateDbButton.Click += OnUpdateDbButtonClick;
+        }
+
+        private void OnUpdateDbButtonClick(object sender, EventArgs e)
+        {
+            _itemManager.BuildItemDb();
         }
     }
 }
