@@ -22,7 +22,7 @@ namespace DataLayer.Repository
         {
             using (Database db = _dbProvider.GetDatabase())
             {
-                db.InsertOrReplaceAllWithChildren(items);
+                db.InsertAll(items);
             }
         }
 
