@@ -17,7 +17,7 @@ namespace GW2TPApiWrapper.Util
             JsonReader reader = new JsonTextReader(sr);
             JsonSerializer serializer = new JsonSerializer();
             T obj = serializer.Deserialize<T>(reader);
-            stream.Close();
+            stream.Dispose();
             return obj;
         }
     }

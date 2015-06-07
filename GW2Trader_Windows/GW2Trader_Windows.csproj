@@ -151,6 +151,8 @@
     <Compile Include="Util\MoneyToSilverConverter.cs" />
     <Compile Include="Util\SilverVisibilityConverter.cs" />
     <Compile Include="Util\VisibilityToBooleanConverter.cs" />
+    <Compile Include="Util\WebClientProvider.cs" />
+    <Compile Include="Util\WinWebClient.cs" />
     <Compile Include="ViewModel\IItemViewer.cs" />
     <Compile Include="ViewModel\NewInvestmentViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
@@ -331,12 +333,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
-      <Project>{a37ca4f0-b48c-43d0-95b9-1f955e450fa1}</Project>
-      <Name>GW2TPApiWrapper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resource\Gold_coin.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -357,6 +353,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
+      <Project>{5aa97c29-8589-441d-a865-d8c111303493}</Project>
+      <Name>GW2TPApiWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

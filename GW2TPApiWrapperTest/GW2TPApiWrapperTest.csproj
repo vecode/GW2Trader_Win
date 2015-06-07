@@ -67,9 +67,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2TPApiWrapper_PCL\GW2TPApiWrapper_PCL.csproj">
+    <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
       <Project>{5aa97c29-8589-441d-a865-d8c111303493}</Project>
-      <Name>GW2TPApiWrapper_PCL</Name>
+      <Name>GW2TPApiWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

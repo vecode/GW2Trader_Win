@@ -8,6 +8,7 @@ using GW2Trader_Windows.DesignTimeErrorPrevention;
 using GW2Trader_Windows.Model;
 using System.Threading.Tasks;
 using GW2Trader_Windows.Command;
+using GW2Trader_Windows.Util;
 
 namespace GW2Trader_Windows.ViewModel
 {
@@ -63,7 +64,7 @@ namespace GW2Trader_Windows.ViewModel
                 _contextProvider = new GameDataContextProvider();
             }
 
-            _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessor());
+            _tpApiWrapper = new TradingPostApiWrapper(new ApiAccessor(new WebClientProvider()));
             _dataUpdater = new ApiDataUpdater(_tpApiWrapper);
 
             _dbBuilder = new DbBuilder(_tpApiWrapper, _contextProvider);
