@@ -13,7 +13,7 @@ namespace GW2TPApiWrapper.Entities
     /// </summary>
     /// api documentation is avaible at http://wiki.guildwars2.com/wiki/API:2/items
  
-    public class Item : GW2TPApiResponse
+    public class ApiItem : GW2TPApiResponse
     {
         // [JsonProperty("item_id")]
         public int Id { get; set; }

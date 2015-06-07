@@ -20,5 +20,7 @@ namespace GW2Trader.Manager
             int page = 0 );
 
         void UpdatePrices(List<Item> items);
+
+        void BuildItemDb();
     }
 }

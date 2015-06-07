@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using DataLayer.Repository;
+using System.Linq;
+using GW2TPApiWrapper.Wrapper;
+using GW2Trader.Model;
+using GW2TPApiWrapper.Entities;
 
 namespace GW2Trader.Manager
 {
     public class ItemManager : IItemManager
     {
         private ItemRepository _repository;
+        private ITradingPostApiWrapper _apiWrapper;
 
         public ItemManager(ItemRepository repository)
         {
@@ -25,6 +30,34 @@ namespace GW2Trader.Manager
         public void UpdatePrices(List<Model.Item> items)
         {
             throw new NotImplementedException();
+        }
+
+        public void BuildItemDb()
+        {
+            List<int> missingItemids = MissingItemIds();
+        }
+
+        public List<int> MissingItemIds()
+        {
+            List<int> currentItemIds = _apiWrapper.ItemIds().ToList();
+            var localItemIds = new HashSet<int>(_repository.GetAll().Select(x => x.Id));
+
+            currentItemIds.RemoveAll(id => localItemIds.Contains(id));
+            return currentItemIds;
+        }
+
+        private static Item ConvertToGameItem(ApiItem item)
+        {
+            return new Item
+            {
+                Id = item.Id,
+                IconUrl = item.IconUrl,
+                Name = item.Name,
+                Rarity = item.Rarity,
+                Level = item.Level,
+                Type = item.Type,
+                SubType = item.Details != null ? item.Details.Type : null        
+            };
         }
     }
 }

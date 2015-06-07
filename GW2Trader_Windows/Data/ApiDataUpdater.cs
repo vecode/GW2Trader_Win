@@ -40,7 +40,7 @@ namespace GW2Trader_Windows.Data
 
             foreach (GameItemModel item in items)
             {                
-                ItemPrice price;
+                ApiItemPrice price;
                 if (updatedPrices.TryGetValue(item.ItemId, out price))
                 {
                     item.SellPrice = price.Sells.UnitPrice;                    
@@ -75,7 +75,7 @@ namespace GW2Trader_Windows.Data
         public void UpdateListings(GameItemModel item)
         {
             var updatedData = _tpApiWrapper.Listings(item.ItemId);
-            item.Listing = new ItemListing
+            item.Listing = new ApiItemListing
             {
                 Id = item.ItemId,
                 Buys = updatedData.Buys,

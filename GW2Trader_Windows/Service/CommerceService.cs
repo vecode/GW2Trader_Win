@@ -32,10 +32,10 @@ namespace GW2Trader_Windows.Service
             try
             {
                 var gameItemModels = items as GameItemModel[] ?? items.ToArray();
-                List<ItemPrice> updatedPrices = _tpWrapper.Prices(gameItemModels.Select(item => item.ItemId)).ToList();
+                List<ApiItemPrice> updatedPrices = _tpWrapper.Prices(gameItemModels.Select(item => item.ItemId)).ToList();
                 foreach (GameItemModel item in gameItemModels)
                 {
-                    ItemPrice respectivePrice = updatedPrices.SingleOrDefault(p => p.Id == item.ItemId);
+                    ApiItemPrice respectivePrice = updatedPrices.SingleOrDefault(p => p.Id == item.ItemId);
                     if (respectivePrice != null)
                     {
                         item.SellPrice = respectivePrice.Sells.UnitPrice;
@@ -61,7 +61,7 @@ namespace GW2Trader_Windows.Service
             try
             {
                 var updatedData = _tpWrapper.Listings(item.ItemId);
-                item.Listing = new ItemListing
+                item.Listing = new ApiItemListing
                 {
                     Id = item.ItemId,
                     Buys = updatedData.Buys,

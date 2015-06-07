@@ -19,13 +19,13 @@ namespace GW2TPApiWrapper.Wrapper
         /// </summary>
         /// <param name="id">Id of the item</param>
         /// <returns>Returns an instance of Item</returns>
-        Item ItemDetails(int id);
+        ApiItem ItemDetails(int id);
 
         /// <summary>
         /// </summary>
         /// <param name="ids">Ids of the items</param>
         /// <returns>Returns a list of ItemDetails</returns>
-        IEnumerable<Item> ItemDetails(IEnumerable<int> ids);
+        IEnumerable<ApiItem> ItemDetails(IEnumerable<int> ids);
 
         /// <summary>
         /// </summary>
@@ -33,7 +33,7 @@ namespace GW2TPApiWrapper.Wrapper
         /// <returns>
         /// Returns an instance of ItemListing containing all buy orders and sell offers.2
         /// </returns>
-        ItemListing Listings(int id);
+        ApiItemListing Listings(int id);
 
         /// <summary>
         /// </summary>
@@ -41,8 +41,8 @@ namespace GW2TPApiWrapper.Wrapper
         /// <returns>
         /// Returns a list of ItemListing containing all buy orders and sell offers.
         /// </returns>
-        IEnumerable<ItemListing> Listings(IEnumerable<int> ids);
+        IEnumerable<ApiItemListing> Listings(IEnumerable<int> ids);
 
-        IEnumerable<ItemPrice> Prices(IEnumerable<int> ids);
+        IEnumerable<ApiItemPrice> Prices(IEnumerable<int> ids);
     }
 }

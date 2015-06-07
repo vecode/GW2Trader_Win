@@ -43,7 +43,7 @@ namespace GW2TPApiWrapperTest.Test
         public void ItemListingsShouldBeValid()
         {
             // check for invalid item id
-            ItemListing listing = _tpApiWrapper.Listings(-1);
+            ApiItemListing listing = _tpApiWrapper.Listings(-1);
             Assert.Null(listing);
 
             // check for valid id
@@ -59,7 +59,7 @@ namespace GW2TPApiWrapperTest.Test
         {
             int[] ids = { 24, 68, 69 };
 
-            List<ItemPrice> prices = _tpApiWrapper.Prices(ids).ToList();
+            List<ApiItemPrice> prices = _tpApiWrapper.Prices(ids).ToList();
 
             Assert.Equal(24, prices[0].Id);
             Assert.Equal(68, prices[1].Id);

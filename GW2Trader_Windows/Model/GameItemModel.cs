@@ -79,12 +79,12 @@ namespace GW2Trader_Windows.Model
         }
 
         [NotMapped]
-        private ItemListing _listing;
+        private ApiItemListing _listing;
 
 
         [NotMapped]
         //[Browsable(false)]
-        public ItemListing Listing
+        public ApiItemListing Listing
         {
             get { return _listing; }
             set
@@ -181,10 +181,10 @@ namespace GW2Trader_Windows.Model
         // TODO remove this later
         public GameItemModel()
         {
-            Listing = new ItemListing
+            Listing = new ApiItemListing
             {
-                Buys = new Listing[0],
-                Sells = new Listing[0]
+                Buys = new ApiListing[0],
+                Sells = new ApiListing[0]
             };
         }
     }

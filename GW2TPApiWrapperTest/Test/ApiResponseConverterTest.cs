@@ -165,7 +165,7 @@ namespace GW2TPApiWrapperTest.Test
             byte[] byteArray = Encoding.UTF8.GetBytes(ValidSingleItemResponse);
             MemoryStream stream = new MemoryStream(byteArray);
 
-            Item item = ApiResponseConverter.DeserializeStream<Item>(stream);
+            ApiItem item = ApiResponseConverter.DeserializeStream<ApiItem>(stream);
 
             Assert.NotNull(item);
             Assert.Equal("Eternity", item.Name);
@@ -181,7 +181,7 @@ namespace GW2TPApiWrapperTest.Test
             byte[] byteArray = Encoding.UTF8.GetBytes(ValidMultipleItemResponse);
             MemoryStream stream = new MemoryStream(byteArray);
 
-            Item[] items = ApiResponseConverter.DeserializeStream<Item[]>(stream);
+            ApiItem[] items = ApiResponseConverter.DeserializeStream<ApiItem[]>(stream);
 
             Assert.Equal(2, items.Count());
             Assert.Equal(30689, items[0].Id);

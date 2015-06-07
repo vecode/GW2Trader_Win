@@ -39,6 +39,10 @@
       <Project>{9da81360-f3bf-43d1-87ac-9e948e5f1940}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2TPApiWrapper\GW2TPApiWrapper.csproj">
+      <Project>{5aa97c29-8589-441d-a865-d8c111303493}</Project>
+      <Name>GW2TPApiWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{703526ca-f79c-4cca-b4e9-4ead98275f94}</Project>
       <Name>Shared</Name>

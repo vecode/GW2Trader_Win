@@ -37,9 +37,9 @@ namespace GW2TPApiWrapper.Wrapper
             _apiAccessor = apiAccessor;
 
             _apiCalllingMethodDictionary = new Dictionary<Type, Func<int[], Stream>>();
-            _apiCalllingMethodDictionary[typeof(Item)] = _apiAccessor.ItemDetails;
-            _apiCalllingMethodDictionary[typeof(ItemListing)] = _apiAccessor.Listings;
-            _apiCalllingMethodDictionary[typeof(ItemPrice)] = _apiAccessor.Prices;
+            _apiCalllingMethodDictionary[typeof(ApiItem)] = _apiAccessor.ItemDetails;
+            _apiCalllingMethodDictionary[typeof(ApiItemListing)] = _apiAccessor.Listings;
+            _apiCalllingMethodDictionary[typeof(ApiItemPrice)] = _apiAccessor.Prices;
         }
 
         public IEnumerable<int> ItemIds()
@@ -49,28 +49,28 @@ namespace GW2TPApiWrapper.Wrapper
             return ids;
         }
 
-        public Item ItemDetails(int id)
+        public ApiItem ItemDetails(int id)
         {
             Stream responseStream = _apiAccessor.ItemDetails(id);
             if (responseStream == null) return null;
 
-            Item item = ApiResponseConverter.DeserializeStream<Item>(responseStream);
+            ApiItem item = ApiResponseConverter.DeserializeStream<ApiItem>(responseStream);
             return item;
         }
 
-        public ItemListing Listings(int id)
+        public ApiItemListing Listings(int id)
         {
             Stream responseStream = _apiAccessor.Listings(id);
             if (responseStream == null) return null;
 
-            ItemListing listing = ApiResponseConverter.DeserializeStream<ItemListing>(responseStream);
+            ApiItemListing listing = ApiResponseConverter.DeserializeStream<ApiItemListing>(responseStream);
             return listing;
 
         }
 
-        public IEnumerable<Item> ItemDetails(IEnumerable<int> ids)
+        public IEnumerable<ApiItem> ItemDetails(IEnumerable<int> ids)
         {
-            return ApiRequest<Item>(ids);
+            return ApiRequest<ApiItem>(ids);
         }
 
         private IEnumerable<T> ApiRequest<T>(IEnumerable<int> ids) where T : GW2TPApiResponse
@@ -101,14 +101,14 @@ namespace GW2TPApiWrapper.Wrapper
             return entites;
         }
 
-        public IEnumerable<ItemListing> Listings(IEnumerable<int> ids)
+        public IEnumerable<ApiItemListing> Listings(IEnumerable<int> ids)
         {
-            return ApiRequest<ItemListing>(ids);
+            return ApiRequest<ApiItemListing>(ids);
         }
 
-        public IEnumerable<ItemPrice> Prices(IEnumerable<int> ids)
+        public IEnumerable<ApiItemPrice> Prices(IEnumerable<int> ids)
         {
-            return ApiRequest<ItemPrice>(ids);
+            return ApiRequest<ApiItemPrice>(ids);
         }
     }
 }

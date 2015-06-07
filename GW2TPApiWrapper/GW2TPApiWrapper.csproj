@@ -35,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\ApiResponseEntity.cs" />
-    <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\ItemListing.cs" />
-    <Compile Include="Entities\ItemPrice.cs" />
-    <Compile Include="Entities\Listing.cs" />
+    <Compile Include="Entities\ApiItem.cs" />
+    <Compile Include="Entities\ApiItemListing.cs" />
+    <Compile Include="Entities\ApiItemPrice.cs" />
+    <Compile Include="Entities\ApiListing.cs" />
     <Compile Include="Enum\Armor.cs" />
     <Compile Include="Enum\ItemRarity.cs" />
     <Compile Include="Enum\ItemType.cs" />

@@ -33,7 +33,7 @@ namespace GW2Trader_Windows.Data
             }
         }
 
-        private static GameItemModel ConvertToGameItem(Item item)
+        private static GameItemModel ConvertToGameItem(ApiItem item)
         {
             var itemModel = new GameItemModel
             {
