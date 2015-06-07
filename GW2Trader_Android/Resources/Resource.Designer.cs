@@ -26,6 +26,8 @@ namespace GW2Trader_Android
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::GW2Trader_Android.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::GW2Trader_Android.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -72,6 +74,24 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f050001
 			public const int WatchlistButton = 2131034113;
 			
+			// aapt resource value: 0x7f050009
+			public const int button1 = 2131034121;
+			
+			// aapt resource value: 0x7f050006
+			public const int editText2 = 2131034118;
+			
+			// aapt resource value: 0x7f050007
+			public const int editText3 = 2131034119;
+			
+			// aapt resource value: 0x7f050005
+			public const int linearLayout1 = 2131034117;
+			
+			// aapt resource value: 0x7f050004
+			public const int searchView1 = 2131034116;
+			
+			// aapt resource value: 0x7f050008
+			public const int space1 = 2131034120;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -91,6 +111,9 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f030001
 			public const int Search = 2130903041;
 			
+			// aapt resource value: 0x7f030002
+			public const int Settings = 2130903042;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -107,6 +130,9 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f040004
 			public const int ApplicationName = 2130968580;
 			
+			// aapt resource value: 0x7f040006
+			public const int Hello = 2130968582;
+			
 			// aapt resource value: 0x7f040002
 			public const int Investments = 2130968578;
 			
@@ -115,6 +141,9 @@ namespace GW2Trader_Android
 			
 			// aapt resource value: 0x7f040003
 			public const int Settings = 2130968579;
+			
+			// aapt resource value: 0x7f040005
+			public const int UpdateDatabase = 2130968581;
 			
 			// aapt resource value: 0x7f040001
 			public const int Watchlists = 2130968577;

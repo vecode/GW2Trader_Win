@@ -5,4 +5,5 @@
   <string name="Investments">Investments</string>
   <string name="Settings">Settings</string>
   <string name="ApplicationName">GW2Trader</string>
+  <string name="UpdateDatabase">Update Database</string>
 </resources>

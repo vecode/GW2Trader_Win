@@ -6,7 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace GW2Trader_Android
+namespace GW2Trader_Android.Activities
 {
     [Activity(Label = "GW2Trader", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
@@ -15,16 +15,19 @@ namespace GW2Trader_Android
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            App.Initialize();
 
-            // Set our view from the "main" layout resource
+            base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.SearchButton);
+            Button button = FindViewById<Button>(Resource.Id.SettingsButton);
+            button.Click += OnSettingsButtonClicked;
+        }
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+        private void OnSettingsButtonClicked(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(SettingsActivity));
+            StartActivity(intent);
         }
     }
 }

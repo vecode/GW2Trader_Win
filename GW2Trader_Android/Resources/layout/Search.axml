@@ -5,34 +5,51 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     tools:actionBarNavMode="list">
-    <EditText
+    <SearchView
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText1"
-        android:inputType="text"
-        android:editable="true"
-        android:enabled="true"
-        android:hint="keyword" />
+        android:id="@+id/searchView1" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout1">
         <EditText
-            android:layout_width="100"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText1"
-            android:inputType="text"
-            android:editable="true"
-            android:enabled="true"
-            android:hint="keyword" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/editText2"
+            android:text="Level"
+            android:textIsSelectable="false"
+            android:editable="false" />
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText1"
-            android:inputType="text"
-            android:editable="true"
-            android:enabled="true"
-            android:hint="keyword" />
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/editText3"
+            android:text="0" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/editText2"
+            android:text="-"
+            android:textIsSelectable="false"
+            android:editable="false" />
+        <EditText
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/editText3"
+            android:text="80" />
     </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/space1" />
+    <Button
+        android:text="@string/Search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
 </LinearLayout>
