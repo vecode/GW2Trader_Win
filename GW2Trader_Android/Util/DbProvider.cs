@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using Android.App;
 using Android.Content;
@@ -17,7 +18,14 @@ namespace GW2Trader_Android.Util
     {
         public Database GetDatabase()
         {
-            return new Database(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), "");
+            string folder = Android.OS.Environment.ExternalStorageDirectory.ToString();
+            string appFolder = "GW2Trader";
+            string databaseFile = "db.sqlite";
+            string dbPath = Path.Combine(folder, appFolder, databaseFile);
+
+            Directory.CreateDirectory(Path.Combine(folder, appFolder));
+         
+            return new Database(new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid(), dbPath);
         }
     }
 }

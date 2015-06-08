@@ -18,12 +18,13 @@ using GW2Trader.Manager;
 using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Util;
 using GW2Trader.Util;
+using GW2Trader_Android.Util.OfflineTest;
 
-namespace GW2Trader_Android
+namespace GW2Trader_Android.Util
 {
-    public static class App
+    public class AppConfig : IAppConfig
     {
-        public static void Initialize()
+        public void Initialize()
         {
             var container = TinyIoCContainer.Current;
             

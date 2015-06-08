@@ -5,17 +5,21 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using GW2Trader_Android.Util;
+using GW2Trader_Android.Util.OfflineTest;
+using System.IO;
 
 namespace GW2Trader_Android.Activities
 {
     [Activity(Label = "GW2Trader", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle bundle)
         {
-            App.Initialize();
+            IAppConfig appConfig = new AppConfig();
+            //IAppConfig appConfig = new OfflineAppConfig();
+
+            appConfig.Initialize();
 
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);

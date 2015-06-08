@@ -38,7 +38,7 @@ namespace DataLayer.Repository
         {
             using (Database db = _dbProvider.GetDatabase())
             {
-                return db.Table<Item>();
+                return db.GetAllWithChildren<Item>();
             }
         }
     }
