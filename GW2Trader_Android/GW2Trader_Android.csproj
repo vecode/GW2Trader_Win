@@ -79,7 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\SearchActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Activities\WatchlistActivity.cs" />
+    <Compile Include="Adapter\ItemsAdapter.cs" />
     <Compile Include="Util\AppConfig.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,6 +118,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\drawable\placeholder.png" />
+    <AndroidResource Include="Resources\layout\SearchResultListViewItem.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

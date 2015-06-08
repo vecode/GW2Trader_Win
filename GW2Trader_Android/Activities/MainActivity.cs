@@ -24,13 +24,22 @@ namespace GW2Trader_Android.Activities
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
-            Button button = FindViewById<Button>(Resource.Id.SettingsButton);
-            button.Click += OnSettingsButtonClicked;
+            Button settingsButton = FindViewById<Button>(Resource.Id.SettingsButton);
+            settingsButton.Click += OnSettingsButtonClicked;
+
+            Button searchButton = FindViewById<Button>(Resource.Id.SearchButton);
+            searchButton.Click += OnSearchButtonClicked;
         }
 
         private void OnSettingsButtonClicked(object sender, EventArgs e)
         {
             var intent = new Intent(this, typeof(SettingsActivity));
+            StartActivity(intent);
+        }
+
+        private void OnSearchButtonClicked(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(SearchActivity));
             StartActivity(intent);
         }
     }

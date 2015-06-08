@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -10,39 +10,33 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchView1" />
-    <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/SearchView" />
+    <TextView
+        android:layout_below="@id/SearchView"
+        android:text="@string/SearchFilterText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/SearchFilterText" />
+    <Button
+        android:layout_below="@id/SearchView"
+        android:layout_alignParentRight="true"
+        android_layout_alignTop="@id/SearchFilterText"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/FilterToggleButton"
+        android:text="@string/ExpandFilter" />
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1">
-        <EditText
+        android:id="@+id/FilterLayout">
+        <Button
+            android:text="Button"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/editText2"
-            android:text="Level"
-            android:textIsSelectable="false"
-            android:editable="false" />
-        <EditText
-            android:inputType="number"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/editText3"
-            android:text="0" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/editText2"
-            android:text="-"
-            android:textIsSelectable="false"
-            android:editable="false" />
-        <EditText
-            android:inputType="number"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/editText3"
-            android:text="80" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:id="@+id/button1" />
+    </RelativeLayout>
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,5 +45,11 @@
         android:text="@string/Search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1" />
-</LinearLayout>
+        android:id="@+id/ExecuteSearchButton" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/SearchResultListView" />
+</RelativeLayout>
