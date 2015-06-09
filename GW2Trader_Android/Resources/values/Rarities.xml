@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="raritiy_array">
+    <item>All</item>
+    <item>Junk</item>
+    <item>Basic</item>
+    <item>Fine</item>
+    <item>Masterwork</item>
+    <item>Rare</item>
+    <item>Exotic</item>
+    <item>Ascended</item>
+    <item>Legendary</item>
+  </string-array>
+</resources>

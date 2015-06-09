@@ -83,6 +83,7 @@
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\WatchlistActivity.cs" />
     <Compile Include="Adapter\ItemsAdapter.cs" />
+    <Compile Include="Filter\RangeInputFilter.cs" />
     <Compile Include="Util\AppConfig.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +121,8 @@
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\drawable\placeholder.png" />
     <AndroidResource Include="Resources\layout\SearchResultListViewItem.xml" />
+    <AndroidResource Include="Resources\values\Rarities.xml" />
+    <AndroidResource Include="Resources\values\Types.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

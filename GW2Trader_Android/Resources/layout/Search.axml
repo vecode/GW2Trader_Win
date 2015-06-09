@@ -1,55 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:minWidth="25px"
+    android:minHeight="25px"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:actionBarNavMode="list">
-    <SearchView
+    android:layout_height="wrap_content"
+    android:id="@+id/relativeLayout1">
+    <ScrollView
+        android:layout_alignParentTop="true"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SearchView" />
-    <TextView
-        android:layout_below="@id/SearchView"
-        android:text="@string/SearchFilterText"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/SearchFilterText" />
-    <Button
-        android:layout_below="@id/SearchView"
-        android:layout_alignParentRight="true"
-        android_layout_alignTop="@id/SearchFilterText"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/FilterToggleButton"
-        android:text="@string/ExpandFilter" />
-    <RelativeLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/FilterLayout">
-        <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button1" />
-    </RelativeLayout>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/space1" />
+        android:id="@+id/scrollView1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout1">
+            <SearchView
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SearchView" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout2">
+                <TextView
+                    android:text="Level"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/SearchView"
+                    android:id="@+id/LevelTextView"
+                    android:layout_marginRight="4dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="Min"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/MinLevelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp" />
+                <EditText
+                    android:inputType="numberSigned"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/MinLevel"
+                    android:digits="0123456789"
+                    android:text="0" />
+                <TextView
+                    android:text="Max"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/MaxLevelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="4dp" />
+                <EditText
+                    android:inputType="numberSigned"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/MaxLevel"
+                    android:digits="0123456789"
+                    android:text="80"
+                    android:numeric="integer" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout3">
+                <TextView
+                    android:text="Rarity"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/RaritySpinner" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout4">
+                <TextView
+                    android:text="Type"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/TypeSpinner" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
     <Button
         android:text="@string/Search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ExecuteSearchButton" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/SearchResultListView" />
+        android:id="@+id/ExecuteSearchButton"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
