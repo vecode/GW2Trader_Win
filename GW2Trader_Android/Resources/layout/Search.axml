@@ -96,7 +96,7 @@
                     android:layout_weight="1" />
                 <Spinner
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/RaritySpinner" />
             </LinearLayout>
             <LinearLayout
@@ -118,7 +118,7 @@
                     android:layout_weight="1" />
                 <Spinner
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/TypeSpinner" />
             </LinearLayout>
         </LinearLayout>

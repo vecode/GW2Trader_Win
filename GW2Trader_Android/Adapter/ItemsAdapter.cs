@@ -47,8 +47,8 @@ namespace GW2Trader_Android.Adapter
             View view = convertView;
             if (view == null) // no view to re-use, create new
                 view = _activity.LayoutInflater.Inflate(Resource.Layout.SearchResultListViewItem, null);
-            view.FindViewById<TextView>(Resource.Id.ItemName).Text = item.Name;
-            view.FindViewById<TextView>(Resource.Id.Rarity).Text = item.Rarity;
+
+            view.FindViewById<TextView>(Resource.Id.Name).Text = item.Name;
             view.FindViewById<ImageView>(Resource.Id.Icon).SetImageResource(Resource.Drawable.placeholder);
             return view;
         }

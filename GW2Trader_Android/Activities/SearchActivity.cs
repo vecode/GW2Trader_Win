@@ -9,11 +9,14 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Text;
+
 using GW2Trader.Manager;
-using TinyIoC;
 using GW2Trader.Model;
 using GW2Trader_Android.Adapter;
 using GW2Trader_Android.Filter;
+
+using TinyIoC;
 
 namespace GW2Trader_Android.Activities
 {
@@ -45,10 +48,10 @@ namespace GW2Trader_Android.Activities
             _searchView = FindViewById<SearchView>(Resource.Id.SearchView);
 
             EditText minLvl = FindViewById<EditText>(Resource.Id.MinLevel);
-            minLvl.SetFilters(new Android.Text.IInputFilter[] { new RangeInputFilter(0, 80) });
+            minLvl.SetFilters(new Android.Text.IInputFilter[] { new RangeInputFilter(0, 80), new InputFilterLengthFilter(2) });
 
             EditText maxLvl = FindViewById<EditText>(Resource.Id.MaxLevel);
-            maxLvl.SetFilters(new Android.Text.IInputFilter[] { new RangeInputFilter(0, 80) });
+            maxLvl.SetFilters(new Android.Text.IInputFilter[] { new RangeInputFilter(0, 80), new InputFilterLengthFilter(2)});
 
             Spinner raritySpinner = FindViewById<Spinner>(Resource.Id.RaritySpinner);
             var rarityAdapter = ArrayAdapter.CreateFromResource(
@@ -67,16 +70,24 @@ namespace GW2Trader_Android.Activities
         {
             string query = _searchView.Query;
 
-            List<Item> items = new List<Item> 
-            { 
-                new Item { Name = query, Level = 12, Rarity = "Exotic" },
-                new Item { Name = query, Level = 12, Rarity = "Exotic" }
-            };
+            //List<Item> items = new List<Item> 
+            //{ 
+            //    new Item { Name = query, Level = 12, Rarity = "Exotic" },
+            //    new Item { Name = query, Level = 12, Rarity = "Exotic" }
+            //};
 
-            //var items = new string[] {query, query+"2", query+"3"};
+            ////var items = new string[] {query, query+"2", query+"3"};
 
             //var adapter = new ItemsAdapter(this, items);
-            //_resultListView.Adapter = adapter;
+
+
+            var intent = new Intent(this, typeof(SearchResultActivity));
+            intent.PutExtra("Query", _searchView.Query);
+            intent.PutExtra("MinLevel", FindViewById<EditText>(Resource.Id.MinLevel).Text);
+            intent.PutExtra("MaxLevel", FindViewById<EditText>(Resource.Id.MaxLevel).Text);
+            intent.PutExtra("Rarity", FindViewById<Spinner>(Resource.Id.RaritySpinner).SelectedItem.ToString());
+
+            StartActivity(intent);
         }
     }
 }

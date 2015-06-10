@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SearchActivity.cs" />
+    <Compile Include="Activities\SearchResultActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\WatchlistActivity.cs" />
     <Compile Include="Adapter\ItemsAdapter.cs" />
@@ -103,6 +104,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Settings.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\SearchResult.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
