@@ -14,16 +14,23 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout1">
         <Button
-            android:text="Button"
+            android:text="prev"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/button1" />
+            android:id="@+id/PreviousButton" />
+        <Button
+            android:text="next"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/NextButton" />
     </LinearLayout>
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
+        android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:id="@+id/SearchResultListView" />
+        android:layout_above="@id/linearLayout1"
+        android:id="@+id/SearchResultListView"
+        android:layout_weight="1" />
 </RelativeLayout>

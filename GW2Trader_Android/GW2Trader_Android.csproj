@@ -83,7 +83,9 @@
     <Compile Include="Activities\SearchResultActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\WatchlistActivity.cs" />
+    <Compile Include="Adapter\GameItemAdapter.cs" />
     <Compile Include="Adapter\ItemsAdapter.cs" />
+    <Compile Include="Adapter\PaginatedListAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
     <Compile Include="Util\AppConfig.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

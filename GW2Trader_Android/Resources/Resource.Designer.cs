@@ -87,8 +87,8 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f060012
 			public const int ExecuteSearchButton = 2131099666;
 			
-			// aapt resource value: 0x7f060015
-			public const int Icon = 2131099669;
+			// aapt resource value: 0x7f060016
+			public const int Icon = 2131099670;
 			
 			// aapt resource value: 0x7f060002
 			public const int InvestmentButton = 2131099650;
@@ -108,8 +108,14 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f06000a
 			public const int MinLevelTextView = 2131099658;
 			
-			// aapt resource value: 0x7f060016
-			public const int Name = 2131099670;
+			// aapt resource value: 0x7f060017
+			public const int Name = 2131099671;
+			
+			// aapt resource value: 0x7f060014
+			public const int NextButton = 2131099668;
+			
+			// aapt resource value: 0x7f060013
+			public const int PreviousButton = 2131099667;
 			
 			// aapt resource value: 0x7f06000f
 			public const int RaritySpinner = 2131099663;
@@ -117,8 +123,8 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f060000
 			public const int SearchButton = 2131099648;
 			
-			// aapt resource value: 0x7f060014
-			public const int SearchResultListView = 2131099668;
+			// aapt resource value: 0x7f060015
+			public const int SearchResultListView = 2131099669;
 			
 			// aapt resource value: 0x7f060007
 			public const int SearchView = 2131099655;
@@ -129,14 +135,11 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f060011
 			public const int TypeSpinner = 2131099665;
 			
-			// aapt resource value: 0x7f060017
-			public const int UpdateDbButton = 2131099671;
+			// aapt resource value: 0x7f060018
+			public const int UpdateDbButton = 2131099672;
 			
 			// aapt resource value: 0x7f060001
 			public const int WatchlistButton = 2131099649;
-			
-			// aapt resource value: 0x7f060013
-			public const int button1 = 2131099667;
 			
 			// aapt resource value: 0x7f060006
 			public const int linearLayout1 = 2131099654;

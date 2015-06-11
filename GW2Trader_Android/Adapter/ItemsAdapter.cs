@@ -52,5 +52,10 @@ namespace GW2Trader_Android.Adapter
             view.FindViewById<ImageView>(Resource.Id.Icon).SetImageResource(Resource.Drawable.placeholder);
             return view;
         }
+
+        public List<Item> Items
+        {
+            get { return _items; }
+        }
     }
 }
