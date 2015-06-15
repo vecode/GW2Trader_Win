@@ -21,11 +21,12 @@ namespace GW2Trader.Manager
 
         public List<Model.Item> Search(
             string keyword, string rarity = null, string type = null, 
-            string subType = null, int minLevel = 0, int maxLevel = 100, 
+            string subType = null, int minLevel = 0, int maxLevel = 80, 
             int minMargin = 0, int maxMargin = 0, int minRoi = 0, 
             int maxRoi = 0, int pageSize = 10, int page = 0)
         {
-            throw new NotImplementedException();
+            var items = _repository.Search(keyword, rarity, type, subType, minLevel, maxLevel, minMargin, maxMargin, minRoi, maxRoi, pageSize, page);
+            return items.Select(x => new Item(x)).ToList();
         }
 
         public void UpdatePrices(List<Model.Item> items)
@@ -35,7 +36,7 @@ namespace GW2Trader.Manager
 
         public void BuildItemDb()
         {
-            List<int> missingItemids = MissingItemIds();
+            List<int> missingItemids = MissingItemIds().Take(100).ToList();
 
             List<Item> missingItems = _apiWrapper.ItemDetails(missingItemids).Select(ConvertToItem).ToList();
 

@@ -33,11 +33,11 @@ namespace GW2Trader_Android
 		public partial class Array
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int raritiy_array = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int raritiy_array = 2131034112;
 			
-			// aapt resource value: 0x7f040001
-			public const int type_array = 2130968577;
+			// aapt resource value: 0x7f050001
+			public const int type_array = 2131034113;
 			
 			static Array()
 			{
@@ -84,11 +84,14 @@ namespace GW2Trader_Android
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f060014
+			public const int CurrentItemsIndexTextView = 2131099668;
+			
 			// aapt resource value: 0x7f060012
 			public const int ExecuteSearchButton = 2131099666;
 			
-			// aapt resource value: 0x7f060016
-			public const int Icon = 2131099670;
+			// aapt resource value: 0x7f060017
+			public const int Icon = 2131099671;
 			
 			// aapt resource value: 0x7f060002
 			public const int InvestmentButton = 2131099650;
@@ -108,11 +111,11 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f06000a
 			public const int MinLevelTextView = 2131099658;
 			
-			// aapt resource value: 0x7f060017
-			public const int Name = 2131099671;
+			// aapt resource value: 0x7f060018
+			public const int Name = 2131099672;
 			
-			// aapt resource value: 0x7f060014
-			public const int NextButton = 2131099668;
+			// aapt resource value: 0x7f060015
+			public const int NextButton = 2131099669;
 			
 			// aapt resource value: 0x7f060013
 			public const int PreviousButton = 2131099667;
@@ -123,8 +126,8 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f060000
 			public const int SearchButton = 2131099648;
 			
-			// aapt resource value: 0x7f060015
-			public const int SearchResultListView = 2131099669;
+			// aapt resource value: 0x7f060016
+			public const int SearchResultListView = 2131099670;
 			
 			// aapt resource value: 0x7f060007
 			public const int SearchView = 2131099655;
@@ -135,8 +138,8 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f060011
 			public const int TypeSpinner = 2131099665;
 			
-			// aapt resource value: 0x7f060018
-			public const int UpdateDbButton = 2131099672;
+			// aapt resource value: 0x7f060019
+			public const int UpdateDbButton = 2131099673;
 			
 			// aapt resource value: 0x7f060001
 			public const int WatchlistButton = 2131099649;
@@ -200,35 +203,35 @@ namespace GW2Trader_Android
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050004
-			public const int ApplicationName = 2131034116;
+			// aapt resource value: 0x7f040001
+			public const int ApplicationName = 2130968577;
 			
-			// aapt resource value: 0x7f050007
-			public const int ExpandFilter = 2131034119;
+			// aapt resource value: 0x7f040008
+			public const int ExpandFilter = 2130968584;
 			
-			// aapt resource value: 0x7f050009
-			public const int Hello = 2131034121;
+			// aapt resource value: 0x7f040000
+			public const int Hello = 2130968576;
 			
-			// aapt resource value: 0x7f050008
-			public const int HideFilter = 2131034120;
+			// aapt resource value: 0x7f040009
+			public const int HideFilter = 2130968585;
 			
-			// aapt resource value: 0x7f050002
-			public const int Investments = 2131034114;
+			// aapt resource value: 0x7f040004
+			public const int Investments = 2130968580;
 			
-			// aapt resource value: 0x7f050000
-			public const int Search = 2131034112;
+			// aapt resource value: 0x7f040002
+			public const int Search = 2130968578;
 			
-			// aapt resource value: 0x7f050006
-			public const int SearchFilterText = 2131034118;
+			// aapt resource value: 0x7f040007
+			public const int SearchFilterText = 2130968583;
 			
-			// aapt resource value: 0x7f050003
-			public const int Settings = 2131034115;
+			// aapt resource value: 0x7f040005
+			public const int Settings = 2130968581;
 			
-			// aapt resource value: 0x7f050005
-			public const int UpdateDatabase = 2131034117;
+			// aapt resource value: 0x7f040006
+			public const int UpdateDatabase = 2130968582;
 			
-			// aapt resource value: 0x7f050001
-			public const int Watchlists = 2131034113;
+			// aapt resource value: 0x7f040003
+			public const int Watchlists = 2130968579;
 			
 			static String()
 			{

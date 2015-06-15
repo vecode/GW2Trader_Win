@@ -6,6 +6,27 @@ namespace GW2Trader.Model
     {
         private const float CommissionFee = 0.15f;
 
+        public Item() { }
+
+        public Item(DataLayer.Model.Item item)
+        {
+            BuyPrice = item.BuyPrice;
+            SellPrice = item.SellPrice;
+            Name = item.Name;
+            Rarity = item.Name;
+            CommerceDataLastUpdated = item.CommerceDataLastUpdated;
+            Demand = item.Demand;
+            IconUrl = item.IconUrl;
+            Id = item.Id;
+            Level = item.Level;
+            PreviousBuyPrice = item.PreviousBuyPrice;
+            PreviousDemand = item.PreviousDemand;
+            PreviousSellPrice = item.PreviousSellPrice;
+            PreviousSupply = item.PreviousSupply;
+            SubType = item.SubType;
+            Supply = item.Supply;
+        }        
+
         public int Margin
         {
             get { return (int)Math.Round((SellPrice * CommissionFee) - BuyPrice); }

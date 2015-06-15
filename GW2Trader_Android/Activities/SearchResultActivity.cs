@@ -16,12 +16,17 @@ using GW2Trader_Android.Adapter;
 
 namespace GW2Trader_Android.Activities
 {
-    [Activity(Label = "SearchResultActivity")]
+    [Activity(Label = "search result")]
     public class SearchResultActivity : Activity
     {
-        private PaginatedListAdapter<Item> _itemsAdapter;
+        private const int PageSize = 10;
+        private int _currentPage = 0;
+
+        private IItemManager _itemManager;
+        private List<Item> _items;
+        private ItemAdapter _itemsAdapter;
         private ListView _listView;
-        private List<Item> _displayedItems;
+        private TextView _currentIndexTextView;
 
         private Button _nextPageButton;
         private Button _previousPageButton;
@@ -29,21 +34,13 @@ namespace GW2Trader_Android.Activities
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            InitUI();            
-
-            string query = Intent.GetStringExtra("Query");
-            string rarity = Intent.GetStringExtra("Rarity");
-            string type = Intent.GetStringExtra("Type");
-
-            int minLvl;
-            Int32.TryParse(Intent.GetStringExtra("minLevel"), out minLvl);
-
-            int maxLvl;
-            Int32.TryParse(Intent.GetStringExtra("maxLevel"), out maxLvl);
 
             var container = TinyIoCContainer.Current;
-            
-            var itemManager = container.Resolve<IItemManager>();
+            _itemManager = container.Resolve<IItemManager>();
+
+            _items = Search();
+
+            InitUI();
         }
 
         private void InitUI()
@@ -51,8 +48,7 @@ namespace GW2Trader_Android.Activities
             SetContentView(Resource.Layout.SearchResult);
             _listView = FindViewById<ListView>(Resource.Id.SearchResultListView);
 
-            var _items = Enumerable.Range(1, 34).Select(x => new Item { Name = "name" + x }).ToList();
-            _itemsAdapter = new GameItemAdapter(this, _items);
+            _itemsAdapter = new ItemAdapter(this, _items);
             _listView.Adapter = _itemsAdapter;
 
             _previousPageButton = FindViewById<Button>(Resource.Id.PreviousButton);
@@ -64,24 +60,61 @@ namespace GW2Trader_Android.Activities
 
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
-            if (_itemsAdapter.CanMoveForward)
+            _currentPage++;
+            List<Item> nextItems = Search();
+
+            if (nextItems.Any())
             {
-                _itemsAdapter.MoveToNextPage();
+                _itemsAdapter.GetItems().Clear();
+                _itemsAdapter.GetItems().AddRange(nextItems);
+                _itemsAdapter.NotifyDataSetChanged();
+            }
+            else
+            {
+                _nextPageButton.Clickable = false;
+                _currentPage--;
             }
 
-            _nextPageButton.Clickable = _itemsAdapter.CanMoveForward;
-            _previousPageButton.Clickable = _itemsAdapter.CanMoveBack;
+            if (_currentPage > 0)
+            {
+                _previousPageButton.Clickable = true;
+            }
         }
 
         private void OnPreviousButtonClicked(object sender, EventArgs e)
         {
-            if (_itemsAdapter.CanMoveBack)
+            if (_currentPage > 0)
             {
-                _itemsAdapter.MoveToPreviousPage();
-            }
+                _currentPage--;
 
-            _nextPageButton.Clickable = _itemsAdapter.CanMoveForward;
-            _previousPageButton.Clickable = _itemsAdapter.CanMoveBack;
+                List<Item> previousItems = Search();
+                if (previousItems.Any())
+                {
+                    _itemsAdapter.GetItems().Clear();
+                    _itemsAdapter.GetItems().AddRange(previousItems);
+                    _itemsAdapter.NotifyDataSetChanged();
+                }
+                _nextPageButton.Clickable = true;
+            }
+        }
+
+        private List<Item> Search()
+        {
+            string query = Intent.GetStringExtra("Query");
+
+            string rarity = Intent.GetStringExtra("Rarity");
+            if (rarity.ToLower().Equals("all")) { rarity = ""; }
+
+            string type = Intent.GetStringExtra("Type");
+            if (type.ToLower().Equals("all")) { type = ""; }
+
+            int minLvl;
+            Int32.TryParse(Intent.GetStringExtra("minLevel"), out minLvl);
+
+            int maxLvl;
+            Int32.TryParse(Intent.GetStringExtra("maxLevel"), out maxLvl);
+
+            return _itemManager.Search(query, rarity: rarity, type: type, pageSize: PageSize, page: _currentPage);
         }
     }
 }

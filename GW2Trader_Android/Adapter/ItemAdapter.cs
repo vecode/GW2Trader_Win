@@ -10,17 +10,15 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using GW2Trader.Model;
-using Android.Content.Res;
 
 namespace GW2Trader_Android.Adapter
 {
-    public class ItemsAdapter : BaseAdapter<Item>
+    public class ItemAdapter : BaseAdapter<Item>
     {
         private Activity _activity;
         private List<Item> _items;
 
-        public ItemsAdapter(Activity activity, List<Item> items)
-            : base()
+        public ItemAdapter(Activity activity, List<Item> items)
         {
             _activity = activity;
             _items = items;
@@ -47,15 +45,14 @@ namespace GW2Trader_Android.Adapter
             View view = convertView;
             if (view == null) // no view to re-use, create new
                 view = _activity.LayoutInflater.Inflate(Resource.Layout.SearchResultListViewItem, null);
-
             view.FindViewById<TextView>(Resource.Id.Name).Text = item.Name;
             view.FindViewById<ImageView>(Resource.Id.Icon).SetImageResource(Resource.Drawable.placeholder);
             return view;
         }
 
-        public List<Item> Items
+        public List<Item> GetItems()
         {
-            get { return _items; }
+            return _items;
         }
     }
 }

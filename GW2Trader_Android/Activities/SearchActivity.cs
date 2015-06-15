@@ -24,7 +24,6 @@ namespace GW2Trader_Android.Activities
     public class SearchActivity : Activity
     {
         private Button _searchButton;
-        private SearchView _searchView;
         private ListView _resultListView;
 
         private IItemManager _itemManager;
@@ -33,7 +32,6 @@ namespace GW2Trader_Android.Activities
         {
             base.OnCreate(bundle);
             InitUI();
-
 
             _itemManager = TinyIoCContainer.Current.Resolve<IItemManager>();
         }
@@ -44,8 +42,6 @@ namespace GW2Trader_Android.Activities
 
             _searchButton = FindViewById<Button>(Resource.Id.ExecuteSearchButton);
             _searchButton.Click += OnSearchButtonClicked;
-
-            _searchView = FindViewById<SearchView>(Resource.Id.SearchView);
 
             EditText minLvl = FindViewById<EditText>(Resource.Id.MinLevel);
             minLvl.SetFilters(new Android.Text.IInputFilter[] { new RangeInputFilter(0, 80), new InputFilterLengthFilter(2) });
@@ -68,24 +64,12 @@ namespace GW2Trader_Android.Activities
 
         private void OnSearchButtonClicked(object sender, EventArgs e)
         {
-            string query = _searchView.Query;
-
-            //List<Item> items = new List<Item> 
-            //{ 
-            //    new Item { Name = query, Level = 12, Rarity = "Exotic" },
-            //    new Item { Name = query, Level = 12, Rarity = "Exotic" }
-            //};
-
-            ////var items = new string[] {query, query+"2", query+"3"};
-
-            //var adapter = new ItemsAdapter(this, items);
-
-
             var intent = new Intent(this, typeof(SearchResultActivity));
-            intent.PutExtra("Query", _searchView.Query);
+            intent.PutExtra("Query", FindViewById<SearchView>(Resource.Id.SearchView).Query);
             intent.PutExtra("MinLevel", FindViewById<EditText>(Resource.Id.MinLevel).Text);
             intent.PutExtra("MaxLevel", FindViewById<EditText>(Resource.Id.MaxLevel).Text);
             intent.PutExtra("Rarity", FindViewById<Spinner>(Resource.Id.RaritySpinner).SelectedItem.ToString());
+            intent.PutExtra("Type", FindViewById<Spinner>(Resource.Id.TypeSpinner).SelectedItem.ToString());
 
             StartActivity(intent);
         }

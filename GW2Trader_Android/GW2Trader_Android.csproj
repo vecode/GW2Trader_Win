@@ -29,6 +29,16 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkSkip />
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
+    <Debugger>Xamarin</Debugger>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -83,14 +93,12 @@
     <Compile Include="Activities\SearchResultActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\WatchlistActivity.cs" />
-    <Compile Include="Adapter\GameItemAdapter.cs" />
-    <Compile Include="Adapter\ItemsAdapter.cs" />
-    <Compile Include="Adapter\PaginatedListAdapter.cs" />
+    <Compile Include="Adapter\ItemAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
+    <Compile Include="TinyIoC.cs" />
     <Compile Include="Util\AppConfig.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TinyIoC.cs" />
     <Compile Include="Util\AndroidWebClient.cs" />
     <Compile Include="Util\DbProvider.cs" />
     <Compile Include="Util\IAppConfig.cs" />
