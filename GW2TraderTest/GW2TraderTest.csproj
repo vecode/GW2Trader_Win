@@ -76,6 +76,7 @@
     <Compile Include="IconStoreTest.cs" />
     <Compile Include="ItemManagerTest.cs" />
     <Compile Include="Mock\ApiWrapperMock.cs" />
+    <Compile Include="MoneyHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDatabaseProvider.cs" />
   </ItemGroup>
