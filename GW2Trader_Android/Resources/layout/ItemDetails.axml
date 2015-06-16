@@ -19,7 +19,7 @@
             android:text="Text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="left|center"
+            android:gravity="center"
             android:layout_marginLeft="5dp"
             android:id="@+id/Name"
             android:textSize="16dp" />
@@ -69,7 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
         <TextView
             android:text="Rarity"
             android:layout_width="wrap_content"
@@ -84,6 +85,112 @@
             android:layout_height="wrap_content"
             android:id="@+id/Rarity" />
     </LinearLayout>
+<!-- seperator-->
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+<!-- market data-->
+<!-- sellprice -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <include
+            layout="@layout/Money"
+            android:id="@+id/SellPrice" />
+    </LinearLayout>
+<!-- buyprice -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <include
+            layout="@layout/Money"
+            android:id="@+id/BuyPrice" />
+    </LinearLayout>
+<!-- margin -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <include
+            layout="@layout/Money"
+            android:id="@+id/Margin" />
+    </LinearLayout>
+<!-- supply-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Supply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Supply" />
+    </LinearLayout>
+<!-- demand-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Demand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Demand" />
+    </LinearLayout>
+<!-- action buttons-->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

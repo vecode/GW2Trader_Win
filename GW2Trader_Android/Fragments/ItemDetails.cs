@@ -49,6 +49,16 @@ namespace GW2Trader_Android.Fragments
             var rarity = view.FindViewById<TextView>(Resource.Id.Rarity);
             rarity.Text = _item.Rarity;
 
+            var sellLayout = view.FindViewById<LinearLayout>(Resource.Id.SellPrice);
+            sellLayout.FindViewById<TextView>(Resource.Id.Gold).Text = "--";
+            sellLayout.FindViewById<TextView>(Resource.Id.Silver).Text = "--";
+            sellLayout.FindViewById<TextView>(Resource.Id.Copper).Text = "--";
+
+            var buyLayout = view.FindViewById<LinearLayout>(Resource.Id.BuyPrice);
+            buyLayout.FindViewById<TextView>(Resource.Id.Gold).Text = "--";
+            buyLayout.FindViewById<TextView>(Resource.Id.Silver).Text = "--";
+            buyLayout.FindViewById<TextView>(Resource.Id.Copper).Text = "--";
+
             return view;
         }
     }

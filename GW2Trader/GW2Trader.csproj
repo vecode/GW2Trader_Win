@@ -67,6 +67,7 @@
     <Compile Include="Util\DbBuilder.cs" />
     <Compile Include="Util\DbDownloader.cs" />
     <Compile Include="Util\IDbBuilder.cs" />
+    <Compile Include="Util\MoneyHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

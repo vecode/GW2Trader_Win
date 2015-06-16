@@ -66,10 +66,19 @@ namespace GW2Trader_Android
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int Copper_coin = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int placeholder = 2130837505;
+			public const int Gold_coin = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Icon = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int placeholder = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int Silver_coin = 2130837508;
 			
 			static Drawable()
 			{
@@ -84,104 +93,134 @@ namespace GW2Trader_Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f06001d
-			public const int CurrentItemsIndexTextView = 2131099677;
+			// aapt resource value: 0x7f060006
+			public const int BuyPrice = 2131099654;
 			
-			// aapt resource value: 0x7f06001b
-			public const int ExecuteSearchButton = 2131099675;
+			// aapt resource value: 0x7f060016
+			public const int Copper = 2131099670;
+			
+			// aapt resource value: 0x7f060017
+			public const int CopperIcon = 2131099671;
+			
+			// aapt resource value: 0x7f060027
+			public const int CurrentItemsIndexTextView = 2131099687;
+			
+			// aapt resource value: 0x7f060008
+			public const int Demand = 2131099656;
+			
+			// aapt resource value: 0x7f060025
+			public const int ExecuteSearchButton = 2131099685;
+			
+			// aapt resource value: 0x7f060012
+			public const int Gold = 2131099666;
+			
+			// aapt resource value: 0x7f060013
+			public const int GoldIcon = 2131099667;
 			
 			// aapt resource value: 0x7f060000
 			public const int Icon = 2131099648;
 			
-			// aapt resource value: 0x7f060007
-			public const int Invest = 2131099655;
+			// aapt resource value: 0x7f06000b
+			public const int Invest = 2131099659;
+			
+			// aapt resource value: 0x7f060010
+			public const int InvestmentButton = 2131099664;
 			
 			// aapt resource value: 0x7f06000c
-			public const int InvestmentButton = 2131099660;
+			public const int ItemDetailsFragmentContainer = 2131099660;
 			
-			// aapt resource value: 0x7f060008
-			public const int ItemDetailsFragmentContainer = 2131099656;
+			// aapt resource value: 0x7f06001c
+			public const int LevelTextView = 2131099676;
 			
-			// aapt resource value: 0x7f060012
-			public const int LevelTextView = 2131099666;
+			// aapt resource value: 0x7f060020
+			public const int MaxLevel = 2131099680;
 			
-			// aapt resource value: 0x7f060016
-			public const int MaxLevel = 2131099670;
+			// aapt resource value: 0x7f06001f
+			public const int MaxLevelTextView = 2131099679;
 			
-			// aapt resource value: 0x7f060015
-			public const int MaxLevelTextView = 2131099669;
+			// aapt resource value: 0x7f06001e
+			public const int MinLevel = 2131099678;
 			
-			// aapt resource value: 0x7f060014
-			public const int MinLevel = 2131099668;
-			
-			// aapt resource value: 0x7f060013
-			public const int MinLevelTextView = 2131099667;
+			// aapt resource value: 0x7f06001d
+			public const int MinLevelTextView = 2131099677;
 			
 			// aapt resource value: 0x7f060001
 			public const int Name = 2131099649;
 			
-			// aapt resource value: 0x7f06001e
-			public const int NextButton = 2131099678;
+			// aapt resource value: 0x7f060028
+			public const int NextButton = 2131099688;
 			
-			// aapt resource value: 0x7f06001c
-			public const int PreviousButton = 2131099676;
+			// aapt resource value: 0x7f060026
+			public const int PreviousButton = 2131099686;
 			
 			// aapt resource value: 0x7f060004
 			public const int Rarity = 2131099652;
 			
-			// aapt resource value: 0x7f060018
-			public const int RaritySpinner = 2131099672;
+			// aapt resource value: 0x7f060022
+			public const int RaritySpinner = 2131099682;
 			
-			// aapt resource value: 0x7f06000a
-			public const int SearchButton = 2131099658;
+			// aapt resource value: 0x7f06000e
+			public const int SearchButton = 2131099662;
 			
-			// aapt resource value: 0x7f06001f
-			public const int SearchResultListView = 2131099679;
+			// aapt resource value: 0x7f060029
+			public const int SearchResultListView = 2131099689;
 			
-			// aapt resource value: 0x7f060010
-			public const int SearchView = 2131099664;
+			// aapt resource value: 0x7f06001a
+			public const int SearchView = 2131099674;
 			
-			// aapt resource value: 0x7f06000d
-			public const int SettingsButton = 2131099661;
+			// aapt resource value: 0x7f060005
+			public const int SellPrice = 2131099653;
+			
+			// aapt resource value: 0x7f060011
+			public const int SettingsButton = 2131099665;
+			
+			// aapt resource value: 0x7f060014
+			public const int Silver = 2131099668;
+			
+			// aapt resource value: 0x7f060015
+			public const int SilverIcon = 2131099669;
 			
 			// aapt resource value: 0x7f060003
 			public const int SubType = 2131099651;
 			
+			// aapt resource value: 0x7f060007
+			public const int Supply = 2131099655;
+			
 			// aapt resource value: 0x7f060002
 			public const int Type = 2131099650;
 			
-			// aapt resource value: 0x7f06001a
-			public const int TypeSpinner = 2131099674;
+			// aapt resource value: 0x7f060024
+			public const int TypeSpinner = 2131099684;
 			
-			// aapt resource value: 0x7f060020
-			public const int UpdateDbButton = 2131099680;
+			// aapt resource value: 0x7f06002a
+			public const int UpdateDbButton = 2131099690;
 			
-			// aapt resource value: 0x7f060006
-			public const int Watch = 2131099654;
-			
-			// aapt resource value: 0x7f06000b
-			public const int WatchlistButton = 2131099659;
-			
-			// aapt resource value: 0x7f060009
-			public const int button1 = 2131099657;
-			
-			// aapt resource value: 0x7f060005
-			public const int linearLayout1 = 2131099653;
-			
-			// aapt resource value: 0x7f060011
-			public const int linearLayout2 = 2131099665;
-			
-			// aapt resource value: 0x7f060017
-			public const int linearLayout3 = 2131099671;
-			
-			// aapt resource value: 0x7f060019
-			public const int linearLayout4 = 2131099673;
-			
-			// aapt resource value: 0x7f06000e
-			public const int relativeLayout1 = 2131099662;
+			// aapt resource value: 0x7f06000a
+			public const int Watch = 2131099658;
 			
 			// aapt resource value: 0x7f06000f
-			public const int scrollView1 = 2131099663;
+			public const int WatchlistButton = 2131099663;
+			
+			// aapt resource value: 0x7f06000d
+			public const int button1 = 2131099661;
+			
+			// aapt resource value: 0x7f060009
+			public const int linearLayout1 = 2131099657;
+			
+			// aapt resource value: 0x7f06001b
+			public const int linearLayout2 = 2131099675;
+			
+			// aapt resource value: 0x7f060021
+			public const int linearLayout3 = 2131099681;
+			
+			// aapt resource value: 0x7f060023
+			public const int linearLayout4 = 2131099683;
+			
+			// aapt resource value: 0x7f060018
+			public const int relativeLayout1 = 2131099672;
+			
+			// aapt resource value: 0x7f060019
+			public const int scrollView1 = 2131099673;
 			
 			static Id()
 			{
@@ -209,16 +248,19 @@ namespace GW2Trader_Android
 			public const int Main = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int Search = 2130903044;
+			public const int Money = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int SearchResult = 2130903045;
+			public const int Search = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int SearchResultListViewItem = 2130903046;
+			public const int SearchResult = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int Settings = 2130903047;
+			public const int SearchResultListViewItem = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int Settings = 2130903048;
 			
 			static Layout()
 			{
