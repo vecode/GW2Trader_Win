@@ -13,7 +13,7 @@ namespace GW2Trader.Model
             BuyPrice = item.BuyPrice;
             SellPrice = item.SellPrice;
             Name = item.Name;
-            Rarity = item.Name;
+            Rarity = item.Rarity;
             CommerceDataLastUpdated = item.CommerceDataLastUpdated;
             Demand = item.Demand;
             IconUrl = item.IconUrl;
@@ -23,6 +23,7 @@ namespace GW2Trader.Model
             PreviousDemand = item.PreviousDemand;
             PreviousSellPrice = item.PreviousSellPrice;
             PreviousSupply = item.PreviousSupply;
+            Type = item.Type;
             SubType = item.SubType;
             Supply = item.Supply;
         }        

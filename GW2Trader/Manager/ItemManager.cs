@@ -65,5 +65,10 @@ namespace GW2Trader.Manager
                 SubType = item.Details != null ? item.Details.Type : null        
             };
         }
+
+        public Item GetItem(int id)
+        {
+            return new Item(_repository.Get(id));
+        }
     }
 }

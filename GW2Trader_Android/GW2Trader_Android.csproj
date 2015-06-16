@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\ItemDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SearchActivity.cs" />
     <Compile Include="Activities\SearchResultActivity.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="Activities\WatchlistActivity.cs" />
     <Compile Include="Adapter\ItemAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
+    <Compile Include="Fragments\ItemDetails.cs" />
+    <Compile Include="Fragments\MarketData.cs" />
     <Compile Include="TinyIoC.cs" />
     <Compile Include="Util\AppConfig.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -119,6 +122,15 @@
     <AndroidResource Include="Resources\layout\SearchResult.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\ItemDetailsFragmentContainer.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ItemMarketDataLayout.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ItemDetails.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -132,7 +144,9 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\AndroidManifest.xml" />
+    <Content Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <AndroidResource Include="Resources\drawable\placeholder.png" />
     <AndroidResource Include="Resources\layout\SearchResultListViewItem.xml" />
     <AndroidResource Include="Resources\values\Rarities.xml" />

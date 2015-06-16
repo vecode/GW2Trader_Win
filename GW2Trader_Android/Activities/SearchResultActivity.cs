@@ -35,8 +35,7 @@ namespace GW2Trader_Android.Activities
         {
             base.OnCreate(bundle);
 
-            var container = TinyIoCContainer.Current;
-            _itemManager = container.Resolve<IItemManager>();
+            _itemManager = TinyIoCContainer.Current.Resolve<IItemManager>();
 
             _items = Search();
 
@@ -46,10 +45,12 @@ namespace GW2Trader_Android.Activities
         private void InitUI()
         {
             SetContentView(Resource.Layout.SearchResult);
+
             _listView = FindViewById<ListView>(Resource.Id.SearchResultListView);
 
             _itemsAdapter = new ItemAdapter(this, _items);
             _listView.Adapter = _itemsAdapter;
+            _listView.ItemClick += OnItemClick;
 
             _previousPageButton = FindViewById<Button>(Resource.Id.PreviousButton);
             _previousPageButton.Click += OnPreviousButtonClicked;
@@ -115,6 +116,14 @@ namespace GW2Trader_Android.Activities
             Int32.TryParse(Intent.GetStringExtra("maxLevel"), out maxLvl);
 
             return _itemManager.Search(query, rarity: rarity, type: type, pageSize: PageSize, page: _currentPage);
+        }
+
+        private void OnItemClick(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
+        {
+            var intent = new Intent(this, typeof(ItemDetailsActivity));
+            intent.PutExtra("ItemId", e.Id);            
+
+            StartActivity(intent);
         }
     }
 }
