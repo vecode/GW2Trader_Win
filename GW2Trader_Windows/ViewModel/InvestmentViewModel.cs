@@ -246,7 +246,7 @@ namespace GW2Trader_Windows.ViewModel
                     watchlist.Items.ToList().ForEach(inv => AddItemNotification(inv.GameItem));
                 }
 
-                Watchlists = new ObservableCollection<InvestmentWatchlistModel>(watchlists);
+                Watchlists = new ObservableCollection<InvestmentWatchlistModel>(watchlists.OrderBy(wl => wl.Name));
             }
         }
 

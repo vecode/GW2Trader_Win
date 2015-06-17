@@ -34,7 +34,7 @@ namespace GW2Trader_Windows.ViewModel
             using (var context = _contextProvider.GetContext())
             {
                 var watchlists = context.ItemWatchlists.Include(wl => wl.Items).ToList();
-                Watchlists = new ObservableCollection<ItemWatchlistModel>(watchlists);
+                Watchlists = new ObservableCollection<ItemWatchlistModel>(watchlists.OrderBy(wl => wl.Name)d);
             }
 
             foreach (ItemWatchlistModel watchlist in Watchlists)
