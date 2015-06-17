@@ -91,6 +91,48 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
 <!-- market data-->
+<!-- supply-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Supply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Supply" />
+    </LinearLayout>
+<!-- demand-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Demand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Demand" />
+    </LinearLayout>
 <!-- sellprice -->
     <LinearLayout
         android:orientation="horizontal"
@@ -148,7 +190,7 @@
             layout="@layout/Money"
             android:id="@+id/Margin" />
     </LinearLayout>
-<!-- supply-->
+<!-- Return on Investment-->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -156,7 +198,7 @@
         android:gravity="center_vertical"
         android:layout_marginTop="10dp">
         <TextView
-            android:text="Supply"
+            android:text="ROI"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <View
@@ -167,9 +209,9 @@
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Supply" />
+            android:id="@+id/Roi" />
     </LinearLayout>
-<!-- demand-->
+<!-- last update -->
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -177,7 +219,7 @@
         android:gravity="center_vertical"
         android:layout_marginTop="10dp">
         <TextView
-            android:text="Demand"
+            android:text="Last update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <View
@@ -188,7 +230,7 @@
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Demand" />
+            android:id="@+id/LastUpdate" />
     </LinearLayout>
 <!-- action buttons-->
     <LinearLayout

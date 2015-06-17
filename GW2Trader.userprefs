@@ -1,0 +1,22 @@
+﻿<Properties StartupItem="DataLayer\DataLayer.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GW2Trader_Android\Fragments\ItemDetails.cs">
+    <Files>
+      <File FileName="GW2Trader_Android\Activities\ItemDetailsActivity.cs" Line="35" Column="1" />
+      <File FileName="GW2Trader_Android\Fragments\ItemDetails.cs" Line="70" Column="1" />
+      <File FileName="c:\Users\Marvin\Source\Repos\GW2Trader\GW2Trader_Android\TinyIoC.cs" Line="1686" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Marvin\Source\Repos\GW2Trader\GW2Trader_Android\Fragments\ItemDetails.cs" line="45" column="1" />
+      <Breakpoint file="C:\Users\Marvin\Source\Repos\GW2Trader\GW2Trader_Android\Fragments\ItemDetails.cs" line="71" column="1" />
+      <Breakpoint file="C:\Users\Marvin\Source\Repos\GW2Trader\GW2Trader_Android\Fragments\ItemDetails.cs" line="72" column="1" />
+      <Breakpoint file="C:\Users\Marvin\Source\Repos\GW2Trader\GW2Trader_Android\Activities\ItemDetailsActivity.cs" line="39" column="1" />
+      <Breakpoint file="C:\Users\Marvin\Source\Repos\GW2Trader\GW2Trader_Android\Activities\ItemDetailsActivity.cs" line="27" column="1" />
+      <Breakpoint file="C:\Users\Marvin\Source\Repos\GW2Trader\GW2Trader_Android\Fragments\ItemDetails.cs" line="60" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.GUI.GW2Trader__Android AndroidDesignerPreferredDevice="Nexus 4" />
+</Properties>

@@ -18,6 +18,17 @@ namespace GW2Trader_Android.Fragments
     {
         private Item _item;
 
+        private ImageView _icon;
+        private TextView _nameTextView;
+        private TextView _rarityTextView;
+        private TextView _typeTextView;
+        private TextView _subtypeTextView;
+        private TextView _roiTextView;
+
+        private LinearLayout _sellLayout;
+        private LinearLayout _buyLayout;
+        private LinearLayout _marginLayout;
+
         public ItemDetails(Item item)
             :base()
         {
@@ -34,32 +45,53 @@ namespace GW2Trader_Android.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = inflater.Inflate(Resource.Layout.ItemDetails, container, false);
-            var icon = view.FindViewById<ImageView>(Resource.Id.Icon);
-            icon.SetImageResource(Resource.Drawable.placeholder);
 
-            var name = view.FindViewById<TextView>(Resource.Id.Name);
-            name.Text = _item.Name;
+            _icon = view.FindViewById<ImageView>(Resource.Id.Icon);
+            _nameTextView = view.FindViewById<TextView>(Resource.Id.Name);
+            _typeTextView = view.FindViewById<TextView>(Resource.Id.Type);
+            _subtypeTextView = view.FindViewById<TextView>(Resource.Id.SubType);
+            _rarityTextView = view.FindViewById<TextView>(Resource.Id.Rarity);
 
-            var type = view.FindViewById<TextView>(Resource.Id.Type);
-            type.Text = _item.Type;
+            _roiTextView = view.FindViewById<TextView>(Resource.Id.Roi);
 
-            var subType = view.FindViewById<TextView>(Resource.Id.SubType);
-            subType.Text = _item.SubType;
+            _sellLayout = view.FindViewById<LinearLayout>(Resource.Id.SellPrice);
+            _buyLayout = view.FindViewById<LinearLayout>(Resource.Id.BuyPrice);
+            _marginLayout = view.FindViewById<LinearLayout>(Resource.Id.Margin);
 
-            var rarity = view.FindViewById<TextView>(Resource.Id.Rarity);
-            rarity.Text = _item.Rarity;
+            SetItemDetails(_item);
 
-            var sellLayout = view.FindViewById<LinearLayout>(Resource.Id.SellPrice);
-            sellLayout.FindViewById<TextView>(Resource.Id.Gold).Text = "--";
-            sellLayout.FindViewById<TextView>(Resource.Id.Silver).Text = "--";
-            sellLayout.FindViewById<TextView>(Resource.Id.Copper).Text = "--";
-
-            var buyLayout = view.FindViewById<LinearLayout>(Resource.Id.BuyPrice);
-            buyLayout.FindViewById<TextView>(Resource.Id.Gold).Text = "--";
-            buyLayout.FindViewById<TextView>(Resource.Id.Silver).Text = "--";
-            buyLayout.FindViewById<TextView>(Resource.Id.Copper).Text = "--";
+            var watchButton = view.FindViewById<Button>(Resource.Id.Watch);
+            watchButton.Click += OnWatchButtonClicked;
 
             return view;
+        }
+
+        private void SetItemDetails(Item item)
+        {
+            _icon.SetImageResource(Resource.Drawable.placeholder);
+            _nameTextView.Text = item.Name;
+            _typeTextView.Text = item.Type;
+            _subtypeTextView.Text = item.SubType;
+            _rarityTextView.Text = item.Rarity;
+            _roiTextView.Text = "";
+
+            SetMoneyView(_sellLayout, _item.SellPrice);
+            SetMoneyView(_buyLayout, _item.BuyPrice);
+            SetMoneyView(_marginLayout, _item.Margin);            
+        }
+
+        private void SetMoneyView(LinearLayout layout, int value)
+        {
+            layout.FindViewById<TextView>(Resource.Id.Gold).Text = "--";
+            layout.FindViewById<TextView>(Resource.Id.Silver).Text = "--";
+            layout.FindViewById<TextView>(Resource.Id.Copper).Text = "--";
+        }
+
+        private void OnWatchButtonClicked(object sender, EventArgs e)
+        {
+            var transaction = FragmentManager.BeginTransaction();
+            var watchlistSelectDialog = new WatchlistSelect();
+            watchlistSelectDialog.Show(transaction, "test");
         }
     }
 }

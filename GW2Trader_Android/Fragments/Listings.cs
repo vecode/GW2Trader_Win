@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace GW2Trader_Android.Fragments
 {
-    public class MarketData : Fragment
+    public class Listings : Fragment
     {
         public override void OnCreate(Bundle savedInstanceState)
         {

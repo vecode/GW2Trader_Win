@@ -31,7 +31,7 @@ namespace GW2Trader_Android.Activities
             int itemId = (int)Intent.GetLongExtra("ItemId", 0);
             _item = _itemManager.GetItem(itemId);
 
-            CreateTabs();
+            CreateTabs();            
         }
 
         private void CreateTabs()
@@ -40,7 +40,8 @@ namespace GW2Trader_Android.Activities
             SetContentView(Resource.Layout.ItemDetailsFragmentContainer);
 
             AddTab("General", 0, new ItemDetails(_item));
-            AddTab("Market", 0, new MarketData());      
+            AddTab("Buy Orders", 0, new Listings());
+            AddTab("Sell Orders", 0, new Listings());      
         }
 
         private void AddTab(string name, int iconResourceId, Fragment view)
@@ -65,6 +66,6 @@ namespace GW2Trader_Android.Activities
             };
 
             ActionBar.AddTab(tab);
-        }
+        }        
     }
 }
