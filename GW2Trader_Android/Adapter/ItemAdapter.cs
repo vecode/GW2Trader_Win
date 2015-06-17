@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using GW2Trader.Model;
+using TinyIoC;
 
 namespace GW2Trader_Android.Adapter
 {
@@ -17,9 +18,11 @@ namespace GW2Trader_Android.Adapter
     {
         private Activity _activity;
         private List<Item> _items;
+        private Util.IIconStore _iconStore;
 
         public ItemAdapter(Activity activity, List<Item> items)
         {
+            _iconStore = TinyIoCContainer.Current.Resolve<Util.IIconStore>();
             _activity = activity;
             _items = items;
         }

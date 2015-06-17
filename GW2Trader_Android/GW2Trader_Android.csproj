@@ -95,6 +95,8 @@
     <Compile Include="Util\AndroidWebClient.cs" />
     <Compile Include="Util\DbProvider.cs" />
     <Compile Include="Util\IAppConfig.cs" />
+    <Compile Include="Util\IconStore.cs" />
+    <Compile Include="Util\IIconStore.cs" />
     <Compile Include="Util\OfflineTest\OfflineAppConfig.cs" />
     <Compile Include="Util\OfflineTest\OfflineTPWrapperMock.cs" />
     <Compile Include="Util\WebClientProvider.cs" />

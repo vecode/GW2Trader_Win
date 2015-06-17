@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
         <ImageView
-            android:src="@android:drawable/ic_menu_gallery"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_alignParentLeft="true"

@@ -36,6 +36,9 @@ namespace GW2Trader_Android.Util
             container.Register <ItemRepository>();
 
             container.Register<IItemManager, ItemManager>();
+
+            string iconDirectory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+            container.Register<Util.IIconStore>(new Util.IconStore(iconDirectory));
         }
     }
 }
