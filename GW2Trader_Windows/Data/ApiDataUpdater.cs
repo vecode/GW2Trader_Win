@@ -35,21 +35,38 @@ namespace GW2Trader_Windows.Data
 
         public void UpdatePrices(IList<GameItemModel> items)
         {
-            int[] ids = items.Select(i => i.ItemId).ToArray();
-            var updatedPrices = _tpApiWrapper.Prices(ids).ToDictionary(item => item.Id, item => item);
+            //int[] ids = items.Select(i => i.ItemId).ToArray();
+            //var updatedPrices = _tpApiWrapper.Prices(ids).ToDictionary(item => item.Id, item => item);
 
-            foreach (GameItemModel item in items)
-            {                
-                ApiItemPrice price;
-                if (updatedPrices.TryGetValue(item.ItemId, out price))
-                {
-                    item.SellPrice = price.Sells.UnitPrice;                    
-                    item.SellListingQuantity = price.Sells.Quantity;
-                    item.BuyPrice = price.Buys.UnitPrice;
-                    item.BuyOrderQuantity = price.Buys.Quantity;
-                    item.CommerceDataLastUpdated = DateTime.Now;
-                }
+            //foreach (GameItemModel item in items)
+            //{                
+            //    ApiItemPrice price;
+            //    if (updatedPrices.TryGetValue(item.ItemId, out price))
+            //    {
+            //        item.SellPrice = price.Sells.UnitPrice;                    
+            //        item.SellListingQuantity = price.Sells.Quantity;
+            //        item.BuyPrice = price.Buys.UnitPrice;
+            //        item.BuyOrderQuantity = price.Buys.Quantity;
+            //        item.CommerceDataLastUpdated = DateTime.Now;
+            //    }
+            //}
+            Random rnd = new Random();
+            foreach (var item in items)
+            {
+                item.SellPrice = rnd.Next(1000, 100000);
+                item.BuyPrice = (int)(item.SellPrice * 0.65);
+                item.BuyOrderQuantity = rnd.Next(1000, 5000);
+                item.SellListingQuantity = (int)(item.BuyOrderQuantity * rnd.NextDouble());
             }
+        }
+
+        private void SetRandomPriceData(GameItemModel item)
+        {
+            Random rnd = new Random();
+            item.SellPrice = rnd.Next(1000, 100000);
+            item.BuyPrice = (int)(item.SellPrice * 0.65);
+            item.BuyOrderQuantity = rnd.Next(1000, 5000);
+            item.SellListingQuantity = (int)(item.BuyOrderQuantity * rnd.NextDouble());
         }
 
         public void UpdateCommerceDataParallel(GameItemModel item)
