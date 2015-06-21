@@ -24,9 +24,7 @@ namespace GW2Trader_Android.Util
 
             string iconDirectory = System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "GW2Trader", "Icons");
 			System.IO.Directory.CreateDirectory (iconDirectory);
-            //container.Register<Util.IIconStore>(new Util.IconStore2(iconDirectory));
             container.Register<Util.IIconStore>(new Util.IconStore(iconDirectory));
-            //container.Register<Util.IIconStoreBetter>(new Util.IconStore3(iconDirectory));
         }
     }
 }

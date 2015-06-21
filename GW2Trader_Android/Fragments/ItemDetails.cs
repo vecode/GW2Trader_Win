@@ -6,17 +6,19 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using GW2Trader.Model;
-using TinyIoC;
-using GW2Trader.Manager;
 using Android.Graphics;
+
+using TinyIoC;
+
+using GW2Trader.Model;
+using GW2Trader.Util;
+using GW2Trader.Manager;
 
 namespace GW2Trader_Android.Fragments
 {
     public class ItemDetails : Fragment
     {
         private IItemManager _itemManager;
-        //private Util.IIconStore _iconStore;
         private Util.IIconStore _iconStore;
         private readonly Item _item;
 
@@ -42,7 +44,6 @@ namespace GW2Trader_Android.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             _itemManager = TinyIoCContainer.Current.Resolve<IItemManager>();
-            //_iconStore = TinyIoCContainer.Current.Resolve<Util.IIconStore>();
             _iconStore = TinyIoCContainer.Current.Resolve<Util.IIconStore>();
             base.OnCreate(savedInstanceState);
         }
@@ -66,7 +67,7 @@ namespace GW2Trader_Android.Fragments
             {
                 _itemManager.UpdatePrices(_item);
                 if (Activity != null)
-                Activity.RunOnUiThread(() => SetItemDetails(_item));
+                    Activity.RunOnUiThread(() => SetItemDetails(_item));
             });
 
             var watchButton = view.FindViewById<Button>(Resource.Id.Watch);
@@ -112,9 +113,12 @@ namespace GW2Trader_Android.Fragments
 
         private void SetMoneyView(LinearLayout layout, int value)
         {
-            layout.FindViewById<TextView>(Resource.Id.Gold).Text = "--";
-            layout.FindViewById<TextView>(Resource.Id.Silver).Text = "--";
-            layout.FindViewById<TextView>(Resource.Id.Copper).Text = "--";
+            string goldShare = value < 0 ? "-" : string.Empty;
+            goldShare += MoneyHelper.ExtractGoldShare(value).ToString();
+            layout.FindViewById<TextView>(Resource.Id.Gold).Text = goldShare;
+
+            layout.FindViewById<TextView>(Resource.Id.Silver).Text = MoneyHelper.ExtractSilverShare(value).ToString();
+            layout.FindViewById<TextView>(Resource.Id.Copper).Text = MoneyHelper.ExtractCopperShare(value).ToString();
         }
 
         private void OnWatchButtonClicked(object sender, EventArgs e)
@@ -126,25 +130,6 @@ namespace GW2Trader_Android.Fragments
 
         private void SetIcon(Item item)
         {
-            //if (_iconImageView.Drawable != null) { return; }
-
-            //if (!_iconStore.HasIconForItem(item))
-            //{
-            //    _iconStore.DownloadIcon(item);
-            //}
-            //Bitmap icon = _iconStore.GetIcon(item);
-
-            //// may happen when user closes activity before is displayed
-            //if (Activity == null) { return; }
-
-            //Activity.RunOnUiThread(() => 
-            //{
-            //    if (_iconImageView != null)
-            //    {
-            //        _iconImageView.SetImageBitmap(icon);
-            //        System.Diagnostics.Debug.WriteLine("##############-- SET IMAGE --###############");
-            //    } 
-            //});
             _iconStore.SetIcon(item, _iconImageView, Activity);
         }
     }

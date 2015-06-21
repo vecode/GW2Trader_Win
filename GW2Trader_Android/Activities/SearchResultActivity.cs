@@ -42,6 +42,12 @@ namespace GW2Trader_Android.Activities
             InitUI();
         }
 
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            Finish();
+        }
+
         private void InitUI()
         {
             SetContentView(Resource.Layout.SearchResult);

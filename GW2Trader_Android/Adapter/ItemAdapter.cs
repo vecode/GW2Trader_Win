@@ -55,7 +55,6 @@ namespace GW2Trader_Android.Adapter
 
             ImageView iconView = view.FindViewById<ImageView>(Resource.Id.Icon);
 
-            //ThreadPool.QueueUserWorkItem(x => DisplayIcon(icon, item));
             ThreadPool.QueueUserWorkItem(x => _iconStore.SetIcon(item, iconView, _activity));
 
             return view;
@@ -65,17 +64,5 @@ namespace GW2Trader_Android.Adapter
         {
             return _items;
         }
-
-        //public void DisplayIcon(ImageView imageView, Item item)
-        //{
-        //    Bitmap icon = _iconStore.GetIcon(item);
-        //    if (_activity != null)
-        //    {                
-        //        _activity.RunOnUiThread(() =>
-        //        {                    
-        //            imageView.SetImageBitmap(_iconStore.GetIcon(item));
-        //        });
-        //    }
-        //}
     }
 }

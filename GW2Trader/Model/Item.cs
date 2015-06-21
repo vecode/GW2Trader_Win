@@ -30,7 +30,7 @@ namespace GW2Trader.Model
 
         public int Margin
         {
-            get { return (int)Math.Round((SellPrice * CommissionFee) - BuyPrice); }
+            get { return (int)Math.Round((SellPrice * (1 - CommissionFee)) - BuyPrice); }
         }
 
         public int ReturnOnInvestment

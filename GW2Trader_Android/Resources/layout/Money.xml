@@ -11,6 +11,8 @@
       android:layout_height="wrap_content"
       android:id="@+id/linearLayout1">
     <TextView
+        android:gravity="right"
+        android:minWidth="18sp"
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -23,6 +25,8 @@
         android:layout_height="match_parent"
         android:id="@+id/GoldIcon" />
     <TextView
+        android:gravity="right"
+        android:minWidth="18sp"
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -35,6 +39,8 @@
         android:layout_height="match_parent"
         android:id="@+id/SilverIcon" />
     <TextView
+        android:gravity="right"
+        android:minWidth="18sp"
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
