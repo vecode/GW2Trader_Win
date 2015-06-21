@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -11,6 +12,8 @@ using Android.Views;
 using Android.Widget;
 using GW2Trader.Model;
 using TinyIoC;
+using System.Threading;
+using Android.Graphics;
 
 namespace GW2Trader_Android.Adapter
 {
@@ -49,7 +52,12 @@ namespace GW2Trader_Android.Adapter
             if (view == null) // no view to re-use, create new
                 view = _activity.LayoutInflater.Inflate(Resource.Layout.SearchResultListViewItem, null);
             view.FindViewById<TextView>(Resource.Id.Name).Text = item.Name;
-            view.FindViewById<ImageView>(Resource.Id.Icon).SetImageResource(Resource.Drawable.placeholder);
+
+            ImageView iconView = view.FindViewById<ImageView>(Resource.Id.Icon);
+
+            //ThreadPool.QueueUserWorkItem(x => DisplayIcon(icon, item));
+            ThreadPool.QueueUserWorkItem(x => _iconStore.SetIcon(item, iconView, _activity));
+
             return view;
         }
 
@@ -57,5 +65,17 @@ namespace GW2Trader_Android.Adapter
         {
             return _items;
         }
+
+        //public void DisplayIcon(ImageView imageView, Item item)
+        //{
+        //    Bitmap icon = _iconStore.GetIcon(item);
+        //    if (_activity != null)
+        //    {                
+        //        _activity.RunOnUiThread(() =>
+        //        {                    
+        //            imageView.SetImageBitmap(_iconStore.GetIcon(item));
+        //        });
+        //    }
+        //}
     }
 }

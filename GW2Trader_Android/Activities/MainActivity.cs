@@ -29,6 +29,15 @@ namespace GW2Trader_Android.Activities
 
             Button searchButton = FindViewById<Button>(Resource.Id.SearchButton);
             searchButton.Click += OnSearchButtonClicked;
+
+            Button debugButton = FindViewById<Button>(Resource.Id.DebugButton);
+            debugButton.Click += OnDebugButtonClicked;
+        }
+
+        private void OnDebugButtonClicked(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof(DebugActivity));
+            StartActivity(intent);
         }
 
         private void OnSettingsButtonClicked(object sender, EventArgs e)

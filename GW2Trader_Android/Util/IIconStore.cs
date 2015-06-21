@@ -1,13 +1,12 @@
+using Android.App;
 using Android.Graphics;
+using Android.Widget;
 using GW2Trader.Model;
 
 namespace GW2Trader_Android.Util
 {
     public interface IIconStore
     {
-        void AddIconForItem(Item item, Bitmap icon);
-        Bitmap GetIcon(Item item);
-        bool HasIconForItem(Item item);
-        void DownloadIcon(Item item);
+        void SetIcon(Item item, ImageView view, Activity activity);
     }
 }

@@ -52,11 +52,18 @@ namespace GW2Trader.Manager
 
         public void BuildItemDb()
         {
-            List<int> missingItemids = MissingItemIds().Take(100).ToList();
+            List<int> missingItemIds = MissingItemIds().ToList();
 
-            List<Item> missingItems = _apiWrapper.ItemDetails(missingItemids).Select(ConvertToItem).ToList();
+            //List<Item> missingItems = _apiWrapper.ItemDetails(missingItemids).Select(ConvertToItem).ToList();
 
-            _repository.Save(missingItems);
+            int subsetSize = 200;
+
+            foreach (int subsetIdx in Enumerable.Range(0, (int)Math.Ceiling(missingItemIds.Count/200 * 1.0)))
+            {
+                List<int> itemIdSubset = missingItemIds.Skip(subsetIdx*subsetSize).Take(subsetSize).ToList();
+                List<Item> missingItemSubset = _apiWrapper.ItemDetails(itemIdSubset).Select(ConvertToItem).ToList();
+                _repository.Save(missingItemSubset);
+            }
         }
 
         public List<int> MissingItemIds()

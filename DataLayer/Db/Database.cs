@@ -1,4 +1,5 @@
-﻿using DataLayer.Model;
+﻿using System;
+using DataLayer.Model;
 using SQLite.Net;
 using SQLite.Net.Interop;
 
@@ -13,6 +14,7 @@ namespace DataLayer.Db
             CreateTable<Investment>();
             CreateTable<InvestmentList>();
             CreateTable<Watchlist>();
+            BusyTimeout = new TimeSpan(0,0,0,2);
         }
     }
 }

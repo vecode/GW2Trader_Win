@@ -19,7 +19,7 @@ namespace GW2Trader_Android.Activities
     [Activity(Label = "search result")]
     public class SearchResultActivity : Activity
     {
-        private const int PageSize = 10;
+        private const int PageSize = 25;
         private int _currentPage = 0;
 
         private IItemManager _itemManager;
@@ -69,6 +69,7 @@ namespace GW2Trader_Android.Activities
                 _itemsAdapter.GetItems().Clear();
                 _itemsAdapter.GetItems().AddRange(nextItems);
                 _itemsAdapter.NotifyDataSetChanged();
+                _listView.SetSelectionAfterHeaderView();
             }
             else
             {
@@ -94,6 +95,7 @@ namespace GW2Trader_Android.Activities
                     _itemsAdapter.GetItems().Clear();
                     _itemsAdapter.GetItems().AddRange(previousItems);
                     _itemsAdapter.NotifyDataSetChanged();
+                    _listView.SetSelectionAfterHeaderView();
                 }
                 _nextPageButton.Clickable = true;
             }
@@ -124,6 +126,6 @@ namespace GW2Trader_Android.Activities
             intent.PutExtra("ItemId", e.Id);            
 
             StartActivity(intent);
-        }
+        }       
     }
 }

@@ -1,20 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Threading;
 
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using GW2Trader.Model;
 using TinyIoC;
 using GW2Trader.Manager;
-using System.Net;
 using Android.Graphics;
 
 namespace GW2Trader_Android.Fragments
@@ -22,8 +16,9 @@ namespace GW2Trader_Android.Fragments
     public class ItemDetails : Fragment
     {
         private IItemManager _itemManager;
+        //private Util.IIconStore _iconStore;
         private Util.IIconStore _iconStore;
-        private Item _item;
+        private readonly Item _item;
 
         private ImageView _iconImageView;
         private TextView _nameTextView;
@@ -40,7 +35,6 @@ namespace GW2Trader_Android.Fragments
         private LinearLayout _marginLayout;
 
         public ItemDetails(Item item)
-            : base()
         {
             _item = item;
         }
@@ -48,6 +42,7 @@ namespace GW2Trader_Android.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             _itemManager = TinyIoCContainer.Current.Resolve<IItemManager>();
+            //_iconStore = TinyIoCContainer.Current.Resolve<Util.IIconStore>();
             _iconStore = TinyIoCContainer.Current.Resolve<Util.IIconStore>();
             base.OnCreate(savedInstanceState);
         }
@@ -70,6 +65,7 @@ namespace GW2Trader_Android.Fragments
             ThreadPool.QueueUserWorkItem(x =>
             {
                 _itemManager.UpdatePrices(_item);
+                if (Activity != null)
                 Activity.RunOnUiThread(() => SetItemDetails(_item));
             });
 
@@ -130,16 +126,26 @@ namespace GW2Trader_Android.Fragments
 
         private void SetIcon(Item item)
         {
-            if (_iconImageView.Drawable != null) { return; }
+            //if (_iconImageView.Drawable != null) { return; }
 
-            Bitmap icon;
-            if (!_iconStore.HasIconForItem(item))
-            {
-                _iconStore.DownloadIcon(item);
-            }
-            icon = _iconStore.GetIcon(item);
-            
-            Activity.RunOnUiThread(() => _iconImageView.SetImageBitmap(icon));
+            //if (!_iconStore.HasIconForItem(item))
+            //{
+            //    _iconStore.DownloadIcon(item);
+            //}
+            //Bitmap icon = _iconStore.GetIcon(item);
+
+            //// may happen when user closes activity before is displayed
+            //if (Activity == null) { return; }
+
+            //Activity.RunOnUiThread(() => 
+            //{
+            //    if (_iconImageView != null)
+            //    {
+            //        _iconImageView.SetImageBitmap(icon);
+            //        System.Diagnostics.Debug.WriteLine("##############-- SET IMAGE --###############");
+            //    } 
+            //});
+            _iconStore.SetIcon(item, _iconImageView, Activity);
         }
     }
 }

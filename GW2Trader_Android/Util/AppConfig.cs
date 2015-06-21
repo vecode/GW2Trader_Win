@@ -1,24 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using TinyIoC;
 using DataLayer.Db;
-using GW2Trader_Android.Util;
-using DataLayer.Model;
 using DataLayer.Repository;
 using GW2Trader.Manager;
 using GW2TPApiWrapper.Wrapper;
 using GW2TPApiWrapper.Util;
-using GW2Trader.Util;
-using GW2Trader_Android.Util.OfflineTest;
 
 namespace GW2Trader_Android.Util
 {
@@ -37,8 +22,11 @@ namespace GW2Trader_Android.Util
 
             container.Register<IItemManager, ItemManager>();
 
-            string iconDirectory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+            string iconDirectory = System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "GW2Trader", "Icons");
+			System.IO.Directory.CreateDirectory (iconDirectory);
+            //container.Register<Util.IIconStore>(new Util.IconStore2(iconDirectory));
             container.Register<Util.IIconStore>(new Util.IconStore(iconDirectory));
+            //container.Register<Util.IIconStoreBetter>(new Util.IconStore3(iconDirectory));
         }
     }
 }

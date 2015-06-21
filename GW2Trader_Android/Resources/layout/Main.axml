@@ -23,4 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SettingsButton" />
+    <Button
+        android:text="Debug"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DebugButton" />
 </LinearLayout>

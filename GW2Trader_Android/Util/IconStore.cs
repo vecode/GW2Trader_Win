@@ -12,63 +12,106 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using GW2Trader.Model;
-using Android.Content.Res;
 using System.Net;
+using System.Diagnostics;
+using System.Collections.Concurrent;
+using System.ComponentModel;
 
 namespace GW2Trader_Android.Util
 {
     public class IconStore : IIconStore
     {
-        private Dictionary<string, Bitmap> _icons;
-        private string _localDirectory;
+        private string _iconDirectory;
+        private Queue<IconToLoad> _iconsToLoad = new Queue<IconToLoad>();
+        private BackgroundWorker _backgroundWorker = new BackgroundWorker();
 
-        public IconStore(string localDirectory)
+        public IconStore(string iconDirectory)
         {
-            _localDirectory = localDirectory;
-            _icons = new Dictionary<string, Bitmap>();
+            _iconDirectory = iconDirectory;
+            _backgroundWorker.DoWork += ProcessQueue;
         }
 
-        public Bitmap GetIcon(Item item)
+        private void ProcessQueue(object sender, DoWorkEventArgs e)
         {
-            Bitmap icon;
-            _icons.TryGetValue(item.IconUrl, out icon);
-            return icon;
-        }
-
-        public bool HasIconForItem(Item item)
-        {
-            return _icons.ContainsKey(item.IconUrl);
-        }
-
-        public void AddIconForItem(Item item, Bitmap icon)
-        {
-            if (!_icons.ContainsKey(item.IconUrl))
+            while (_iconsToLoad.Count > 0)
             {
-                _icons.Add(item.IconUrl, icon);
+                LoadNext();
             }
         }
 
-
-        public void DownloadIcon(Item item)
+        public void SetIcon(Item item, ImageView view, Activity activity)
         {
-            string path = System.IO.Path.Combine(_localDirectory, System.IO.Path.GetFileName(item.IconUrl));
-
-            using (var webClient = new WebClient())
+            string path = GetIconPath(item);
+            if (File.Exists(path))
             {
-                webClient.DownloadFile(item.IconUrl, path);
-            }
+                Bitmap icon = BitmapFactory.DecodeFile(path);
 
-            Bitmap bitmap = BitmapFactory.DecodeFile(path);
-            _icons.Add(item.IconUrl, bitmap);
+                if (view != null & activity != null)
+                {
+                    activity.RunOnUiThread(
+                        () => view.SetImageBitmap(BitmapFactory.DecodeFile(path)));
+                }
+                return;
+            }
+            else
+            {
+                _iconsToLoad.Enqueue
+                (
+                    new IconToLoad 
+                    { 
+                        Item = item, 
+                        ImageView = view,
+                        Activity = activity
+                    }
+                );
+
+                lock (_backgroundWorker)
+                {
+                    if (!_backgroundWorker.IsBusy)
+                    {
+                        _backgroundWorker.RunWorkerAsync();
+                    }
+                }                
+            }
         }
 
-        private Bitmap GetImageFromUrl(string url)
+        private void LoadNext()
         {
-            using (var webClient = new WebClient())
+            IconToLoad next = _iconsToLoad.Dequeue();
+            if (next != null)
             {
-                byte[] iconByteArray = webClient.DownloadData(url);
-                return BitmapFactory.DecodeByteArray(iconByteArray, 0, iconByteArray.Length);
+                string path = GetIconPath(next.Item);
+                string tmpFilePath = path + ".tmp";
+
+                Directory.CreateDirectory(_iconDirectory);
+                if (!File.Exists(path))
+                {
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile(next.Item.IconUrl, tmpFilePath);
+                        File.Move(tmpFilePath, path);
+                    }
+                }
+                //if (next.ImageView != null & next.Activity != null)
+                //{
+                //    next.Activity.RunOnUiThread(
+                //        () => next.ImageView.SetImageBitmap(BitmapFactory.DecodeFile(path)));
+                //}
+                SetIcon(next.Item, next.ImageView, next.Activity);
+                //next.ImageView.SetImageBitmap(BitmapFactory.DecodeFile(path));
             }
+        }
+
+        private string GetIconPath(Item item)
+        {
+            return System.IO.Path.Combine(_iconDirectory, System.IO.Path.GetFileName(item.IconUrl));
+        }
+
+        private class IconToLoad
+        {
+            public Item Item { get; set; }
+            public ImageView ImageView { get; set; }
+            public Activity Activity { get; set; }
         }
     }
 }
