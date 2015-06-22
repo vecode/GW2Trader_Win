@@ -216,11 +216,14 @@ namespace GW2Trader_Android
 			// aapt resource value: 0x7f060014
 			public const int WatchlistButton = 2131099668;
 			
-			// aapt resource value: 0x7f060012
-			public const int button1 = 2131099666;
+			// aapt resource value: 0x7f060031
+			public const int WatchlistCreateButton = 2131099697;
 			
 			// aapt resource value: 0x7f060030
-			public const int button2 = 2131099696;
+			public const int WatchlistListView = 2131099696;
+			
+			// aapt resource value: 0x7f060012
+			public const int button1 = 2131099666;
 			
 			// aapt resource value: 0x7f06000e
 			public const int linearLayout1 = 2131099662;
@@ -285,6 +288,9 @@ namespace GW2Trader_Android
 			
 			// aapt resource value: 0x7f03000a
 			public const int WatchlistSelect = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int WatchlistViewItem = 2130903051;
 			
 			static Layout()
 			{

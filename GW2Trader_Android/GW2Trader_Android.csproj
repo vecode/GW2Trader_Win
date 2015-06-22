@@ -85,6 +85,7 @@
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\WatchlistActivity.cs" />
     <Compile Include="Adapter\ItemAdapter.cs" />
+    <Compile Include="Adapter\WatchlistAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
     <Compile Include="Fragments\ItemDetails.cs" />
     <Compile Include="Fragments\Listings.cs" />
@@ -156,6 +157,9 @@
     <AndroidResource Include="Resources\drawable\Silver_coin.png" />
     <AndroidResource Include="Resources\drawable\Gold_coin.png" />
     <AndroidResource Include="Resources\drawable\Copper_coin.png" />
+    <AndroidResource Include="Resources\layout\WatchlistViewItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
