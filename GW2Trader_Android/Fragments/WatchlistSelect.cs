@@ -29,11 +29,9 @@ namespace GW2Trader_Android.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.WatchlistSelect, container);
-
+            Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
             ListView watchlistListView = view.FindViewById<ListView>(Resource.Id.WatchlistListView);
-
             watchlistListView.Adapter = new WatchlistAdapter(Activity, _watchlists);
-
             return view;
         }
     }
