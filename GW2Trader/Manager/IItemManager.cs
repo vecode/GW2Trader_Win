@@ -23,6 +23,10 @@ namespace GW2Trader.Manager
 
         void UpdatePrices(List<Item> items);
 
+        void UpdatePriceListings(Item item);
+
+        void UpdatePriceListings(List<Item> items);
+
         void BuildItemDb();
 
         Item GetItem(int id);

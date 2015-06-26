@@ -13,40 +13,42 @@ using GW2Trader.Model;
 
 namespace GW2Trader_Android.Adapter
 {
-    public class WatchlistAdapter : BaseAdapter<Watchlist>
+    public class PriceListingAdapter : BaseAdapter<PriceListing>
     {
-        private List<Watchlist> _watchlists;
         private Activity _activity;
+        private List<PriceListing> _priceListings;
 
-        public WatchlistAdapter(Activity activity, List<Watchlist> watchlists)
+        public PriceListingAdapter(Activity activity, List<PriceListing> priceListings)
         {
             _activity = activity;
-            _watchlists = watchlists;
+            _priceListings = priceListings;
         }
 
-        public override Watchlist this[int position]
+        public override PriceListing this[int position]
         {
-            get { return _watchlists[position]; }
+            get { return _priceListings[position]; }
         }
 
         public override int Count
         {
-            get { return _watchlists.Count; }
+            get { return _priceListings.Count; }
         }
 
         public override long GetItemId(int position)
         {
-            return _watchlists[position].Id;
+            return position;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            Watchlist watchlist = _watchlists[position];
+            PriceListing listing = _priceListings[position];
+
             View view = convertView;
             if (view == null)
-                view = _activity.LayoutInflater.Inflate(Resource.Layout.WatchlistListViewItem, null);
+                view = _activity.LayoutInflater.Inflate(Resource.Layout.PriceListingListViewItem, null);
 
-            view.FindViewById<TextView>(Resource.Id.Name).Text = watchlist.Name;
+            view.FindViewById<TextView>(Resource.Id.Quantity).Text = listing.Quantity.ToString();
+
             return view;
         }
     }

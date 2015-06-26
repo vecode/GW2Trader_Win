@@ -16,7 +16,7 @@ using GW2Trader.Manager;
 
 namespace GW2Trader_Android.Fragments
 {
-    public class ItemDetails : Fragment
+    public class ItemDetailsFragment : Fragment
     {
         private IItemManager _itemManager;
         private Util.IIconStore _iconStore;
@@ -36,7 +36,7 @@ namespace GW2Trader_Android.Fragments
         private LinearLayout _buyLayout;
         private LinearLayout _marginLayout;
 
-        public ItemDetails(Item item)
+        public ItemDetailsFragment(Item item)
         {
             _item = item;
         }
@@ -124,7 +124,7 @@ namespace GW2Trader_Android.Fragments
         private void OnWatchButtonClicked(object sender, EventArgs e)
         {
             var transaction = FragmentManager.BeginTransaction();
-            var watchlistSelectDialog = new WatchlistSelect();
+            var watchlistSelectDialog = new WatchlistSelectFragment();
             watchlistSelectDialog.Show(transaction, "test");
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GW2Trader.Model
 {
@@ -41,5 +42,9 @@ namespace GW2Trader.Model
                 return (int)Math.Round(roi);
             }
         }
+
+        public List<PriceListing> SellOrders { get; set; }
+
+        public List<PriceListing> BuyOrders { get; set; }
     }
 }

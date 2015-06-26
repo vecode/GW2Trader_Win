@@ -6,7 +6,5 @@
   <string name="Settings">Settings</string>
   <string name="ApplicationName">GW2Trader</string>
   <string name="UpdateDatabase">Update Database</string>
-  <string name="SearchFilterText">Filter</string>
-  <string name="ExpandFilter">+</string>
-  <string name="HideFilter">-</string>
+  <string name="AddToNewWatchlist">Add to new Watchlist</string>
 </resources>

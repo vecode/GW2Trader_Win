@@ -85,11 +85,12 @@
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\WatchlistActivity.cs" />
     <Compile Include="Adapter\ItemAdapter.cs" />
+    <Compile Include="Adapter\PriceListingAdapter.cs" />
     <Compile Include="Adapter\WatchlistAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
-    <Compile Include="Fragments\ItemDetails.cs" />
-    <Compile Include="Fragments\Listings.cs" />
-    <Compile Include="Fragments\WatchlistSelect.cs" />
+    <Compile Include="Fragments\ItemDetailsFragment.cs" />
+    <Compile Include="Fragments\PriceListingFragment.cs" />
+    <Compile Include="Fragments\WatchlistSelectFragment.cs" />
     <Compile Include="TinyIoC.cs" />
     <Compile Include="Util\AppConfig.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -119,7 +120,7 @@
     <AndroidResource Include="Resources\layout\ItemDetailsFragmentContainer.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ItemMarketDataLayout.axml">
+    <AndroidResource Include="Resources\layout\PriceListing.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ItemDetails.axml">
@@ -157,9 +158,10 @@
     <AndroidResource Include="Resources\drawable\Silver_coin.png" />
     <AndroidResource Include="Resources\drawable\Gold_coin.png" />
     <AndroidResource Include="Resources\drawable\Copper_coin.png" />
-    <AndroidResource Include="Resources\layout\WatchlistViewItem.xml">
+    <AndroidResource Include="Resources\layout\WatchlistListViewItem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\PriceListingListViewItem.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

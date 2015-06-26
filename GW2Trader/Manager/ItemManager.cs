@@ -42,7 +42,7 @@ namespace GW2Trader.Manager
             item.Supply = updatedPrices.Sells.Quantity;
             item.CommerceDataLastUpdated = DateTime.Now;
 
-            _repository.Save(item);
+            _repository.Save(ConvertToBase(item));
         }
 
         public void UpdatePrices(List<Model.Item> items)
@@ -58,9 +58,9 @@ namespace GW2Trader.Manager
 
             int subsetSize = 200;
 
-            foreach (int subsetIdx in Enumerable.Range(0, (int)Math.Ceiling(missingItemIds.Count/200 * 1.0)))
+            foreach (int subsetIdx in Enumerable.Range(0, (int)Math.Ceiling(missingItemIds.Count / 200 * 1.0)))
             {
-                List<int> itemIdSubset = missingItemIds.Skip(subsetIdx*subsetSize).Take(subsetSize).ToList();
+                List<int> itemIdSubset = missingItemIds.Skip(subsetIdx * subsetSize).Take(subsetSize).ToList();
                 List<Item> missingItemSubset = _apiWrapper.ItemDetails(itemIdSubset).Select(ConvertToItem).ToList();
                 _repository.Save(missingItemSubset);
             }
@@ -89,9 +89,46 @@ namespace GW2Trader.Manager
             };
         }
 
+        private static DataLayer.Model.Item ConvertToBase(Item item)
+        {
+            return new DataLayer.Model.Item
+            {
+                BuyPrice = item.BuyPrice,
+                CommerceDataLastUpdated = item.CommerceDataLastUpdated,
+                Demand = item.Demand,
+                IconUrl = item.IconUrl,
+                Id = item.Id,
+                Level = item.Level,
+                Name = item.Name,
+                PreviousBuyPrice = item.PreviousBuyPrice,
+                PreviousDemand = item.PreviousDemand,
+                PreviousSellPrice = item.PreviousSellPrice,
+                PreviousSupply = item.PreviousSupply,
+                Rarity = item.Rarity,
+                SellPrice = item.SellPrice,
+                SubType = item.SubType,
+                Supply = item.Supply,
+                Type = item.Type
+            };
+        }
+
         public Item GetItem(int id)
         {
             return new Item(_repository.Get(id));
+        }
+
+
+        public void UpdatePriceListings(Item item)
+        {
+            var updateListings = _apiWrapper.Listings(item.Id);
+            item.SellOrders = updateListings.Sells.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity });
+
+            item.BuyOrders = updateListings.Buys.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity });
+        }
+
+        public void UpdatePriceListings(List<Item> items)
+        {
+            throw new NotImplementedException();
         }
     }
 }

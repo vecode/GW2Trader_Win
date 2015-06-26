@@ -15,7 +15,7 @@ using GW2Trader.Model;
 
 namespace GW2Trader_Android.Fragments
 {
-    public class WatchlistSelect : DialogFragment
+    public class WatchlistSelectFragment : DialogFragment
     {
         List<Watchlist> _watchlists =
             new List<Watchlist>

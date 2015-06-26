@@ -41,9 +41,9 @@ namespace GW2Trader_Android.Activities
             ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             SetContentView(Resource.Layout.ItemDetailsFragmentContainer);
 
-            AddTab("General", 0, new ItemDetails(_item));
-            AddTab("Buy Orders", 0, new Listings());
-            AddTab("Sell Orders", 0, new Listings());      
+            AddTab("General", 0, new ItemDetailsFragment(_item));
+            AddTab("Buy Orders", 0, new PriceListingFragment(_item, "Buy", "Demand"));
+            AddTab("Sell Orders", 0, new PriceListingFragment(_item, "Sell", "Supply"));      
         }
 
         private void AddTab(string name, int iconResourceId, Fragment view)
