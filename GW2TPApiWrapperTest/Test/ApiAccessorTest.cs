@@ -1,10 +1,13 @@
 ﻿using System;
-using Newtonsoft.Json.Schema;
-using GW2TPApiWrapper.Wrapper;
-using Newtonsoft.Json.Linq;
 using System.IO;
+
+using Newtonsoft.Json.Schema;
+using Newtonsoft.Json.Linq;
+
 using Xunit;
+
 using GW2TPApiWrapperTest.Util;
+using GW2Trader.ApiWrapper.Wrapper;
 
 namespace GW2TPApiWrapperTest.Test
 {

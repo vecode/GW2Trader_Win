@@ -1,6 +1,6 @@
 ﻿using Shared;
 
-namespace DataLayer.Db
+namespace GW2Trader.Data.Db
 {
     public class DatabaseProvider : IDatabaseProvider
     {

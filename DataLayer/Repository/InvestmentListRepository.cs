@@ -1,5 +1,5 @@
-﻿using DataLayer.Db;
-using DataLayer.Model;
+﻿using DataLayer.Model;
+using GW2Trader.Data.Db;
 
 namespace DataLayer.Repository
 {

@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapperTest", "GW2TPApiWrapperTest\GW2TPApiWrapperTest.csproj", "{6541B7FD-8996-4E20-926E-22A09EEEA469}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader_Windows", "GW2Trader_Windows\GW2Trader_Windows.csproj", "{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader.Windows", "GW2Trader.Windows\GW2Trader.Windows.csproj", "{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EA24FA9-2978-4DDC-8BAD-13D3830EBDA5}"
 	ProjectSection(SolutionItems) = preProject
@@ -31,6 +31,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TraderTest", "GW2TraderTest\GW2TraderTest.csproj", "{AA94DC18-9E7F-4D27-8D71-75E1081FB935}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapper", "GW2TPApiWrapper\GW2TPApiWrapper.csproj", "{5AA97C29-8589-441D-A865-D8C111303493}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader.Android", "GW2Trader.Android\GW2Trader.Android.csproj", "{6DD15712-C096-429A-873C-2BA95E9BD54F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +173,26 @@ Global
 		{5AA97C29-8589-441D-A865-D8C111303493}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5AA97C29-8589-441D-A865-D8C111303493}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5AA97C29-8589-441D-A865-D8C111303493}.Release|x86.ActiveCfg = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Debug|x86.Build.0 = Debug|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|x86.ActiveCfg = Release|Any CPU
+		{6DD15712-C096-429A-873C-2BA95E9BD54F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -182,5 +204,6 @@ Global
 		{9DA81360-F3BF-43D1-87AC-9E948E5F1940} = {2B6647D4-0D3C-4460-9582-B0654DB857F9}
 		{7A6F33F6-5FC7-43F4-A518-59CD662B8C41} = {2B6647D4-0D3C-4460-9582-B0654DB857F9}
 		{5AA97C29-8589-441D-A865-D8C111303493} = {0788A3BA-BE38-4ACB-BF69-742D0CC959CC}
+		{6DD15712-C096-429A-873C-2BA95E9BD54F} = {7F365517-B2E0-4A20-A241-3FC40FCBBB3A}
 	EndGlobalSection
 EndGlobal

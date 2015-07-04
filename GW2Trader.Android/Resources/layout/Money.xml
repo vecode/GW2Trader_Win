@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:minWidth="25px"
+              android:minHeight="25px">
+  <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout1">
+    <TextView
+      android:gravity="right"
+      android:minWidth="18sp"
+      android:text="0"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="2dp"
+      android:id="@+id/Gold" />
+    <ImageView
+      android:src="@drawable/Gold_coin"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:id="@+id/GoldIcon" />
+    <TextView
+      android:gravity="right"
+      android:minWidth="18sp"
+      android:text="0"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="2dp"
+      android:id="@+id/Silver" />
+    <ImageView
+      android:src="@drawable/Silver_coin"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:id="@+id/SilverIcon" />
+    <TextView
+      android:gravity="right"
+      android:minWidth="18sp"
+      android:text="0"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="2dp"
+      android:id="@+id/Copper" />
+    <ImageView
+      android:src="@drawable/Copper_coin"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:id="@+id/CopperIcon" />
+  </LinearLayout>
+</LinearLayout>

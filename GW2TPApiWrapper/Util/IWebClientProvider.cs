@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GW2TPApiWrapper.Util
+﻿namespace GW2Trader.ApiWrapper.Util
 {
     public interface IWebClientProvider
     {

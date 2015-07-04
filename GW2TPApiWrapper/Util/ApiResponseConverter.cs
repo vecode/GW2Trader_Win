@@ -1,13 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using GW2TPApiWrapper.Entities;
-using System.IO;
 using Newtonsoft.Json.Linq;
-namespace GW2TPApiWrapper.Util
+using GW2Trader.ApiWrapper.Entities;
+
+namespace GW2Trader.ApiWrapper.Util
 {
     public class ApiResponseConverter
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GW2TPApiWrapper.Entities
+namespace GW2Trader.ApiWrapper.Entities
 {
     public class ApiItemListing : GW2TPApiResponse
     {

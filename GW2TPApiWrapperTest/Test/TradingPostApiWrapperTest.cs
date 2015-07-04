@@ -1,9 +1,11 @@
 ﻿using System;
-using GW2TPApiWrapper.Wrapper;
-using GW2TPApiWrapper.Entities;
-using System.Collections.Generic;
 using System.Linq;
+
+using GW2Trader.ApiWrapper.Wrapper;
+using GW2Trader.ApiWrapper.Entities;
+using System.Collections.Generic;
 using GW2TPApiWrapperTest.Mock;
+
 using Xunit;
 
 namespace GW2TPApiWrapperTest.Test

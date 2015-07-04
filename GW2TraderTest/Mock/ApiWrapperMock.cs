@@ -1,10 +1,11 @@
-﻿using GW2TPApiWrapper.Entities;
-using GW2TPApiWrapper.Wrapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using GW2Trader.ApiWrapper.Entities;
+using GW2Trader.ApiWrapper.Wrapper;
 
 namespace GW2TraderTest.Mock
 {
@@ -15,27 +16,27 @@ namespace GW2TraderTest.Mock
             return Enumerable.Range(0, 10);
         }
 
-        public GW2TPApiWrapper.Entities.ApiItem ItemDetails(int id)
+        public ApiItem ItemDetails(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GW2TPApiWrapper.Entities.ApiItem> ItemDetails(IEnumerable<int> ids)
+        public IEnumerable<ApiItem> ItemDetails(IEnumerable<int> ids)
         {
             return ids.Select(x => new ApiItem { Id = x });
         }
 
-        public GW2TPApiWrapper.Entities.ApiItemListing Listings(int id)
+        public ApiItemListing Listings(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GW2TPApiWrapper.Entities.ApiItemListing> Listings(IEnumerable<int> ids)
+        public IEnumerable<ApiItemListing> Listings(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GW2TPApiWrapper.Entities.ApiItemPrice> Prices(IEnumerable<int> ids)
+        public IEnumerable<ApiItemPrice> Prices(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }

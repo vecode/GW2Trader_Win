@@ -1,11 +1,9 @@
-﻿using DataLayer.Db;
+﻿using System.Collections.Generic;
+using System.Linq;
 using DataLayer.Repository;
-using GW2TPApiWrapper.Wrapper;
+using GW2Trader.ApiWrapper.Wrapper;
 using GW2Trader.Manager;
 using GW2TraderTest.Mock;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace GW2TraderTest

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GW2TPApiWrapper.Wrapper
+namespace GW2Trader.ApiWrapper.Wrapper
 {
     public interface IApiAccessor
     {

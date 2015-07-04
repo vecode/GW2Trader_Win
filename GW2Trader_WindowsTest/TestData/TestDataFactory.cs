@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using GW2Trader_Windows.Model;
 using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Enum;
+using GW2Trader.Desktop.Model;
 
 namespace GW2Trader_WindowsTest.TestData
 {

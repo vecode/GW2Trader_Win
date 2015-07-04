@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
-using DataLayer.Db;
-using DataLayer.Model;
+
 using SQLite.Net.Platform.Win32;
 using SQLiteNetExtensions.Extensions;
 using Xunit;
+
+using GW2Trader.Data.Db;
+using DataLayer.Model;
 
 namespace DataLayerTest
 {

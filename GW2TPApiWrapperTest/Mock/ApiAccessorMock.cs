@@ -1,10 +1,11 @@
-﻿using GW2TPApiWrapper.Wrapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+
+using GW2Trader.ApiWrapper.Wrapper;
 using GW2TPApiWrapperTest.Util;
 
 namespace GW2TPApiWrapperTest.Mock
