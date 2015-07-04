@@ -6,8 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using GW2TPApiWrapper.Entities;
-using GW2TPApiWrapper.Enum;
+
+using GW2Trader.ApiWrapper.Entities;
+using GW2Trader.ApiWrapper.Enum;
 using GW2Trader_Windows.MVVM;
 
 namespace GW2Trader_Windows.Model

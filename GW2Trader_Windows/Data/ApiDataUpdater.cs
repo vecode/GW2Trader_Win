@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GW2TPApiWrapper.Wrapper;
-using GW2Trader_Windows.Model;
 using System.Threading.Tasks;
-using GW2TPApiWrapper.Entities;
+
+using GW2Trader.ApiWrapper.Wrapper;
+using GW2Trader_Windows.Model;
+using GW2Trader.ApiWrapper.Entities;
 
 namespace GW2Trader_Windows.Data
 {

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GW2TPApiWrapper.Entities;
+using GW2Trader.ApiWrapper.Entities;
 
-
-namespace GW2TPApiWrapper.Wrapper
+namespace GW2Trader.ApiWrapper.Wrapper
 {
     public interface ITradingPostApiWrapper
     {

@@ -33,11 +33,11 @@ namespace GW2Trader_Android
 		public partial class Array
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int raritiy_array = 2131034112;
+			// aapt resource value: 0x7f040000
+			public const int raritiy_array = 2130968576;
 			
-			// aapt resource value: 0x7f050001
-			public const int type_array = 2131034113;
+			// aapt resource value: 0x7f040001
+			public const int type_array = 2130968577;
 			
 			static Array()
 			{
@@ -323,29 +323,29 @@ namespace GW2Trader_Android
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040007
-			public const int AddToNewWatchlist = 2130968583;
+			// aapt resource value: 0x7f050006
+			public const int AddToNewWatchlist = 2131034118;
 			
-			// aapt resource value: 0x7f040001
-			public const int ApplicationName = 2130968577;
+			// aapt resource value: 0x7f050004
+			public const int ApplicationName = 2131034116;
 			
-			// aapt resource value: 0x7f040000
-			public const int Hello = 2130968576;
+			// aapt resource value: 0x7f050007
+			public const int Hello = 2131034119;
 			
-			// aapt resource value: 0x7f040004
-			public const int Investments = 2130968580;
+			// aapt resource value: 0x7f050002
+			public const int Investments = 2131034114;
 			
-			// aapt resource value: 0x7f040002
-			public const int Search = 2130968578;
+			// aapt resource value: 0x7f050000
+			public const int Search = 2131034112;
 			
-			// aapt resource value: 0x7f040005
-			public const int Settings = 2130968581;
+			// aapt resource value: 0x7f050003
+			public const int Settings = 2131034115;
 			
-			// aapt resource value: 0x7f040006
-			public const int UpdateDatabase = 2130968582;
+			// aapt resource value: 0x7f050005
+			public const int UpdateDatabase = 2131034117;
 			
-			// aapt resource value: 0x7f040003
-			public const int Watchlists = 2130968579;
+			// aapt resource value: 0x7f050001
+			public const int Watchlists = 2131034113;
 			
 			static String()
 			{

@@ -2,11 +2,13 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using GW2TPApiWrapper.Wrapper;
+using System.Threading.Tasks;
+
+using GW2Trader.ApiWrapper.Wrapper;
 using GW2Trader_Windows.Data;
 using GW2Trader_Windows.DesignTimeErrorPrevention;
 using GW2Trader_Windows.Model;
-using System.Threading.Tasks;
+
 using GW2Trader_Windows.Command;
 using GW2Trader_Windows.Util;
 

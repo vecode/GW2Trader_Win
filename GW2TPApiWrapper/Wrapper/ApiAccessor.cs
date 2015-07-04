@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Net;
-using GW2TPApiWrapper.Util;
+using GW2Trader.ApiWrapper.Util;
 
-namespace GW2TPApiWrapper.Wrapper
+namespace GW2Trader.ApiWrapper.Wrapper
 {
     public class ApiAccessor : IApiAccessor
     {

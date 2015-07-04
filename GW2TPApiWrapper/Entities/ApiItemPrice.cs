@@ -1,11 +1,12 @@
-﻿using GW2TPApiWrapper.Wrapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GW2TPApiWrapper.Entities
+using GW2Trader.ApiWrapper;
+
+namespace GW2Trader.ApiWrapper.Entities
 {
     /// <summary>
     /// Represents the result of an api call to https://api.guildwars2.com/v2/commerce/prices/id .

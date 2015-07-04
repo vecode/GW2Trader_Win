@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GW2TPApiWrapper.Entities
+﻿namespace GW2Trader.ApiWrapper.Entities
 {
-    public class GW2TPApiResponse
+    public abstract class GW2TPApiResponse
     {
     }
 }

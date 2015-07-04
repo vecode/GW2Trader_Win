@@ -13,6 +13,7 @@ using Android.Widget;
 using GW2Trader.Model;
 using GW2Trader.Manager;
 using GW2Trader_Android.Adapter;
+using TinyIoC;
 
 namespace GW2Trader_Android.Fragments
 {
@@ -40,8 +41,8 @@ namespace GW2Trader_Android.Fragments
 
             var view = inflater.Inflate(Resource.Layout.PriceListing, container, false);
 
-            _listingListView = view.FindViewById(Resource.Id.PriceListingListView);
-            _listingListView.Adapter = new PriceListingAdapter(Activity.LayoutInflater, _item.)
+            _listingListView = view.FindViewById<ListView>(Resource.Id.PriceListingListView);
+            _listingListView.Adapter = new PriceListingAdapter(Activity, _item.BuyOrders);
 
             var listingKind = view.FindViewById<TextView>(Resource.Id.ListingKind);
             listingKind.Text = _kind;

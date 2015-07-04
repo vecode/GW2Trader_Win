@@ -1,5 +1,7 @@
 ﻿using System;
-using GW2TPApiWrapper.Util;
+
+using GW2Trader.ApiWrapper.Util;
+
 using Xunit;
 
 namespace GW2TPApiWrapperTest.Test

@@ -1,9 +1,10 @@
-﻿using DataLayer.Db;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using GW2Trader.Data.Db;
 
 namespace GW2TraderTest
 {

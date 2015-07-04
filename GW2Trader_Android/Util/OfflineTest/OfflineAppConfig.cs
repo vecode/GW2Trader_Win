@@ -10,10 +10,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using TinyIoC;
-using GW2TPApiWrapper.Wrapper;
-using DataLayer.Db;
+
 using DataLayer.Repository;
+
+using GW2Trader.ApiWrapper.Wrapper;
 using GW2Trader.Manager;
+using GW2Trader.Data.Db;
 
 namespace GW2Trader_Android.Util.OfflineTest
 {

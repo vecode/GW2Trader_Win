@@ -1,12 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GW2TPApiWrapper.Enum;
 
-namespace GW2TPApiWrapper.Entities
+using Newtonsoft.Json;
+
+using GW2Trader.ApiWrapper.Enum;
+
+namespace GW2Trader.ApiWrapper.Entities
 {
     /// <summary>
     /// Represents the result of an api call to https://api.guildwars2.com/v2/items/id

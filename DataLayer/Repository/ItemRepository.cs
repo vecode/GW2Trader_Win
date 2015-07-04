@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using DataLayer.Db;
-using DataLayer.Model;
-using SQLiteNetExtensions.Extensions;
 using System.Text;
+using SQLiteNetExtensions.Extensions;
+using GW2Trader.Data.Db;
+using DataLayer.Model;
 
 namespace DataLayer.Repository
 {

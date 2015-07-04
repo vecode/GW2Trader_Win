@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using DataLayer.Repository;
 using System.Linq;
-using GW2TPApiWrapper.Wrapper;
+
+using DataLayer.Repository;
+using GW2Trader.ApiWrapper.Wrapper;
 using GW2Trader.Model;
-using GW2TPApiWrapper.Entities;
+using GW2Trader.ApiWrapper.Entities;
 
 namespace GW2Trader.Manager
 {
@@ -121,9 +122,9 @@ namespace GW2Trader.Manager
         public void UpdatePriceListings(Item item)
         {
             var updateListings = _apiWrapper.Listings(item.Id);
-            item.SellOrders = updateListings.Sells.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity });
+            item.SellOrders = updateListings.Sells.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity }).ToList();
 
-            item.BuyOrders = updateListings.Buys.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity });
+            item.BuyOrders = updateListings.Buys.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity }).ToList();
         }
 
         public void UpdatePriceListings(List<Item> items)

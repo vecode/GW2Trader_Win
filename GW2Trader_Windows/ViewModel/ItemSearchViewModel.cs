@@ -5,7 +5,8 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
-using GW2TPApiWrapper.Wrapper;
+
+using GW2Trader.ApiWrapper.Wrapper;
 using GW2Trader_Windows.Command;
 using GW2Trader_Windows.Data;
 using GW2Trader_Windows.Model;

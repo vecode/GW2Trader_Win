@@ -1,9 +1,9 @@
 using TinyIoC;
-using DataLayer.Db;
 using DataLayer.Repository;
 using GW2Trader.Manager;
-using GW2TPApiWrapper.Wrapper;
-using GW2TPApiWrapper.Util;
+using GW2Trader.ApiWrapper.Wrapper;
+using GW2Trader.ApiWrapper.Util;
+using GW2Trader.Data.Db;
 
 namespace GW2Trader_Android.Util
 {

@@ -9,7 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using GW2TPApiWrapper.Wrapper;
+
+using GW2Trader.ApiWrapper.Wrapper;
+using GW2Trader.ApiWrapper.Entities;
 
 namespace GW2Trader_Android.Util.OfflineTest
 {
@@ -20,9 +22,9 @@ namespace GW2Trader_Android.Util.OfflineTest
             return Enumerable.Range(1, 10);
         }
 
-        public GW2TPApiWrapper.Entities.ApiItem ItemDetails(int id)
+        public ApiItem ItemDetails(int id)
         {
-            return new GW2TPApiWrapper.Entities.ApiItem
+            return new ApiItem
             {
                 Id = id,
                 Description ="Test Item " + id,
@@ -33,22 +35,22 @@ namespace GW2Trader_Android.Util.OfflineTest
             };
         }
 
-        public IEnumerable<GW2TPApiWrapper.Entities.ApiItem> ItemDetails(IEnumerable<int> ids)
+        public IEnumerable<ApiItem> ItemDetails(IEnumerable<int> ids)
         {
             return ids.Select(ItemDetails);
         }
 
-        public GW2TPApiWrapper.Entities.ApiItemListing Listings(int id)
+        public ApiItemListing Listings(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GW2TPApiWrapper.Entities.ApiItemListing> Listings(IEnumerable<int> ids)
+        public IEnumerable<ApiItemListing> Listings(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<GW2TPApiWrapper.Entities.ApiItemPrice> Prices(IEnumerable<int> ids)
+        public IEnumerable<ApiItemPrice> Prices(IEnumerable<int> ids)
         {
             throw new NotImplementedException();
         }

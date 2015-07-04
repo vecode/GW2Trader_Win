@@ -1,15 +1,15 @@
 ﻿using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using GW2TPApiWrapper.Entities;
-using System.IO;
-using GW2TPApiWrapper.Util;
+using GW2Trader.ApiWrapper.Entities;
+using GW2Trader.ApiWrapper.Util;
 
-namespace GW2TPApiWrapper.Wrapper
+namespace GW2Trader.ApiWrapper.Wrapper
 {
     public class TradingPostApiWrapper : ITradingPostApiWrapper
     {

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using GW2TPApiWrapper.Entities;
-using GW2TPApiWrapper.Wrapper;
+
+using GW2Trader.ApiWrapper.Entities;
+using GW2Trader.ApiWrapper.Wrapper;
 using GW2Trader_Windows.Data;
 using GW2Trader_Windows.Model;
+
 using Newtonsoft.Json;
 
 namespace GW2Trader_Windows.Service

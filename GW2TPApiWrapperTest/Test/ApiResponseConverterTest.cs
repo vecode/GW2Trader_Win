@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Text;
 using System.IO;
-using GW2TPApiWrapper.Wrapper;
-using GW2TPApiWrapper.Entities;
-using GW2TPApiWrapper.Enum;
 using System.Collections.Generic;
 using System.Linq;
-using GW2TPApiWrapper.Util;
+
+using GW2Trader.ApiWrapper.Wrapper;
+using GW2Trader.ApiWrapper.Entities;
+using GW2Trader.ApiWrapper.Enum;
+using GW2Trader.ApiWrapper.Util;
+
 using Xunit;
 
 namespace GW2TPApiWrapperTest.Test

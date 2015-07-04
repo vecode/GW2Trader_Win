@@ -1,5 +1,6 @@
 using System.IO;
-using DataLayer.Db;
+
+using GW2Trader.Data.Db;
 
 namespace GW2Trader_Android.Util
 {
