@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-
 using DataLayer.Repository;
-
 using GW2Trader.ApiWrapper.Wrapper;
 using GW2Trader.Manager;
 using GW2TraderTest.Mock;
-
 using Xunit;
 
 namespace GW2TraderTest

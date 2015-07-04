@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using DataLayer.Model;
 using SQLiteNetExtensions.Extensions;
 using GW2Trader.Data.Db;

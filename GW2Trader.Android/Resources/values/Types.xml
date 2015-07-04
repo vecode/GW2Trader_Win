@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string-array name="type_array">
+    <item>All</item>
+    <item>Armor</item>
+    <item>Weapon</item>
+    <item>Consumable</item>
+    <item>Container</item>
+    <item>Material</item>
+    <item>Trinket</item>
+    <item>Upgrade Component</item>
+    <item>Back</item>
+    <item>Minipet</item>
+  </string-array>
+</resources>

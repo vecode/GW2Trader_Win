@@ -116,9 +116,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2Trader_Windows\GW2Trader_Windows.csproj">
+    <ProjectReference Include="..\GW2Trader.Windows\GW2Trader.Windows.csproj">
       <Project>{ed8d17b1-18df-444b-9471-58db1ea79e4b}</Project>
-      <Name>GW2Trader_Windows</Name>
+      <Name>GW2Trader.Windows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

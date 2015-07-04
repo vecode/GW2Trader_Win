@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using GW2TPApiWrapper.Entities;
 using GW2TPApiWrapper.Wrapper;
-using GW2Trader_Windows.Model;
+using GW2Trader.Desktop.Model;
+using GW2Trader.Desktop.Service;
 using Xunit;
-using GW2Trader_Windows.Service;
 using GW2Trader_WindowsTest.Mock;
 using GW2Trader_WindowsTest.TestData;
 

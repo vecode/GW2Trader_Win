@@ -43,10 +43,6 @@
       <Project>{5aa97c29-8589-441d-a865-d8c111303493}</Project>
       <Name>GW2TPApiWrapper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{703526ca-f79c-4cca-b4e9-4ead98275f94}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IFileAccess.cs" />

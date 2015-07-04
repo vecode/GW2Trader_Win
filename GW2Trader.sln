@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapperTest", "GW2TPApiWrapperTest\GW2TPApiWrapperTest.csproj", "{6541B7FD-8996-4E20-926E-22A09EEEA469}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader_Windows", "GW2Trader_Windows\GW2Trader_Windows.csproj", "{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader.Windows", "GW2Trader.Windows\GW2Trader.Windows.csproj", "{ED8D17B1-18DF-444B-9471-58DB1EA79E4B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EA24FA9-2978-4DDC-8BAD-13D3830EBDA5}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,7 +32,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TraderTest", "GW2TraderT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2TPApiWrapper", "GW2TPApiWrapper\GW2TPApiWrapper.csproj", "{5AA97C29-8589-441D-A865-D8C111303493}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader_Android", "GW2Trader_Android\GW2Trader_Android.csproj", "{6DD15712-C096-429A-873C-2BA95E9BD54F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2Trader.Android", "GW2Trader.Android\GW2Trader.Android.csproj", "{6DD15712-C096-429A-873C-2BA95E9BD54F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
