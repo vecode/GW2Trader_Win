@@ -63,7 +63,7 @@ namespace GW2Trader.Manager
             {
                 List<int> itemIdSubset = missingItemIds.Skip(subsetIdx * subsetSize).Take(subsetSize).ToList();
                 List<Item> missingItemSubset = _apiWrapper.ItemDetails(itemIdSubset).Select(ConvertToItem).ToList();
-                _repository.Save(missingItemSubset);
+                _repository.Save(missingItemSubset.Select(ConvertToBase));
             }
         }
 
