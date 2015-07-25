@@ -9,12 +9,12 @@ using TinyIoC;
 
 namespace GW2Trader.Android.Fragments
 {
-    public class PriceListingFragment : Fragment
+    public class PriceListingFragment : Fragment, IRefreshable
+
     {
         private readonly Item _item;
         private readonly string _kind;
         private readonly string _qtyName;
-        private IItemManager _itemManager;
         private ListView _listingListView;
 
         public PriceListingFragment(Item item, string kind, string qtyName)
@@ -22,8 +22,6 @@ namespace GW2Trader.Android.Fragments
             _item = item;
             _kind = kind;
             _qtyName = qtyName;
-
-            _itemManager = TinyIoCContainer.Current.Resolve<IItemManager>();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -35,7 +33,7 @@ namespace GW2Trader.Android.Fragments
             _listingListView = view.FindViewById<ListView>(Resource.Id.PriceListingListView);
             _listingListView.Adapter = new PriceListingAdapter(Activity, _item.BuyOrders);
 
-            var listingKind = view.FindViewById<TextView>(Resource.Id.ListingKind);
+            var listingKind = view.FindViewById<TextView>(Resource.Id.ListingText);
             listingKind.Text = _kind;
 
             var listingQuantity = view.FindViewById<TextView>(Resource.Id.ListingQuantity);
@@ -44,8 +42,9 @@ namespace GW2Trader.Android.Fragments
             return view;
         }
 
-        private void SetPriceListings(Item item)
+        public void Refresh()
         {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,5 +1,7 @@
+using System;
 using Android.App;
 using Android.OS;
+using Android.Views;
 using GW2Trader.Android.Fragments;
 using GW2Trader.Manager;
 using GW2Trader.Model;
@@ -12,6 +14,7 @@ namespace GW2Trader.Android.Activities
     {
         private Item _item;
         private IItemManager _itemManager;
+        private IMenu _menu;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -55,6 +58,35 @@ namespace GW2Trader.Android.Activities
                 delegate(object sender, ActionBar.TabEventArgs e) { e.FragmentTransaction.Remove(view); };
 
             ActionBar.AddTab(tab);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            _menu = menu;
+            MenuInflater inflater = MenuInflater;
+            inflater.Inflate(Resource.Menu.ItemDetailsMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.Itemdetails_Refresh:
+                    UpdatePriceData();
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
+        }
+
+        private void UpdatePriceData()
+        {
+            _itemManager.UpdatePrices(_item);
+            _itemManager.UpdatePriceListings(_item);            
+            //FragmentManager.FindFragmentById()
+            //Fragment tab = (Fragment)ActionBar.SelectedTab.CustomView;
+            
         }
     }
 }

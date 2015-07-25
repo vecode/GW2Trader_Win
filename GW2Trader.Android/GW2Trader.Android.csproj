@@ -84,6 +84,7 @@
     <Compile Include="Adapter\PriceListingAdapter.cs" />
     <Compile Include="Adapter\WatchlistAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
+    <Compile Include="Fragments\IRefreshable.cs" />
     <Compile Include="Fragments\ItemDetailsFragment.cs" />
     <Compile Include="Fragments\PriceListingFragment.cs" />
     <Compile Include="Fragments\WatchlistSelectFragment.cs" />
@@ -96,8 +97,7 @@
     <Compile Include="Util\IAppConfig.cs" />
     <Compile Include="Util\IconStore.cs" />
     <Compile Include="Util\IIconStore.cs" />
-    <Compile Include="Util\OfflineTest\OfflineAppConfig.cs" />
-    <Compile Include="Util\OfflineTest\OfflineTPWrapperMock.cs" />
+    <Compile Include="Util\UI\MoneyViewSetter.cs" />
     <Compile Include="Util\WebClientProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +162,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PriceListingListViewItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Menu\ItemDetailsMenu.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

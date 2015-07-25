@@ -14,7 +14,8 @@ namespace GW2Trader.Android.Util
     {
         private readonly BackgroundWorker _backgroundWorker = new BackgroundWorker();
         private readonly string _iconDirectory;
-        private readonly Queue<IconToLoad> _iconsToLoad = new Queue<IconToLoad>();
+        private readonly Queue<IconDownload> _iconsToLoad = new Queue<IconDownload>();
+        private readonly Dictionary<ImageView, int> _viewCounter = new Dictionary<ImageView, int>();
 
         public IconStore(string iconDirectory)
         {
@@ -37,13 +38,25 @@ namespace GW2Trader.Android.Util
             }
             _iconsToLoad.Enqueue
                 (
-                    new IconToLoad
+                    new IconDownload
                     {
                         Item = item,
                         ImageView = view,
                         Activity = activity
                     }
                 );
+
+            lock (_viewCounter)
+            {
+                if (_viewCounter.ContainsKey(view))
+                {
+                    _viewCounter[view]++;
+                }
+                else
+                {
+                    _viewCounter.Add(view, 1);
+                }
+            }
 
             lock (_backgroundWorker)
             {
@@ -84,8 +97,19 @@ namespace GW2Trader.Android.Util
                 //    next.Activity.RunOnUiThread(
                 //        () => next.ImageView.SetImageBitmap(BitmapFactory.DecodeFile(path)));
                 //}
-                SetIcon(next.Item, next.ImageView, next.Activity);
+                //SetIcon(next.Item, next.ImageView, next.Activity);
                 //next.ImageView.SetImageBitmap(BitmapFactory.DecodeFile(path));
+
+                // don't update the ImageView if its going to be updated again
+                lock (_viewCounter)
+                {
+                    if (!_viewCounter.ContainsKey(next.ImageView))
+                    {
+                        SetIcon(next.Item, next.ImageView, next.Activity);
+                    }
+                }
+              
+
             }
         }
 
@@ -94,7 +118,7 @@ namespace GW2Trader.Android.Util
             return Path.Combine(_iconDirectory, Path.GetFileName(item.IconUrl));
         }
 
-        private class IconToLoad
+        private class IconDownload
         {
             public Item Item { get; set; }
             public ImageView ImageView { get; set; }

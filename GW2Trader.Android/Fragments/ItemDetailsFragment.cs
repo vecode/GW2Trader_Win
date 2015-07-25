@@ -4,31 +4,33 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using GW2Trader.Android.Util.UI;
 using GW2Trader.Manager;
 using GW2Trader.Model;
-using GW2Trader.Util;
 using TinyIoC;
 using IIconStore = GW2Trader.Android.Util.IIconStore;
 
 namespace GW2Trader.Android.Fragments
 {
-    public class ItemDetailsFragment : Fragment
+    public class ItemDetailsFragment : Fragment, IRefreshable
     {
         private readonly Item _item;
-        private LinearLayout _buyLayout;
-        private TextView _demandTextView;
-        private ImageView _iconImageView;
-        private IIconStore _iconStore;
-        private IItemManager _itemManager;
-        private TextView _lastUpdateTextView;
+        private LinearLayout _buyPriceLayout;
+        private LinearLayout _sellPriceLayout;
         private LinearLayout _marginLayout;
+        private TextView _demandTextView;
+        private TextView _supplyTextView;
+
+        private TextView _lastUpdateTextView;
         private TextView _nameTextView;
         private TextView _rarityTextView;
         private TextView _roiTextView;
-        private LinearLayout _sellLayout;
-        private TextView _subtypeTextView;
-        private TextView _supplyTextView;
         private TextView _typeTextView;
+        private TextView _subtypeTextView;
+        private ImageView _iconImageView;
+
+        private IIconStore _iconStore;
+        private IItemManager _itemManager;                       
 
         public ItemDetailsFragment(Item item)
         {
@@ -57,14 +59,18 @@ namespace GW2Trader.Android.Fragments
             ThreadPool.QueueUserWorkItem(x =>
             {
                 _itemManager.UpdatePrices(_item);
-                if (Activity != null)
-                    Activity.RunOnUiThread(() => SetItemDetails(_item));
+                Activity?.RunOnUiThread(() => SetItemDetails(_item));
             });
 
             var watchButton = view.FindViewById<Button>(Resource.Id.Watch);
             watchButton.Click += OnWatchButtonClicked;
 
             return view;
+        }
+
+        public void Refresh()
+        {
+            SetItemDetails(_item);
         }
 
         private void FindViews(View view)
@@ -80,8 +86,8 @@ namespace GW2Trader.Android.Fragments
 
             _roiTextView = view.FindViewById<TextView>(Resource.Id.Roi);
 
-            _sellLayout = view.FindViewById<LinearLayout>(Resource.Id.SellPrice);
-            _buyLayout = view.FindViewById<LinearLayout>(Resource.Id.BuyPrice);
+            _sellPriceLayout = view.FindViewById<LinearLayout>(Resource.Id.SellPrice);
+            _buyPriceLayout = view.FindViewById<LinearLayout>(Resource.Id.BuyPrice);
             _marginLayout = view.FindViewById<LinearLayout>(Resource.Id.Margin);
         }
 
@@ -97,20 +103,10 @@ namespace GW2Trader.Android.Fragments
             _supplyTextView.Text = item.Supply.ToString();
             _lastUpdateTextView.Text = item.CommerceDataLastUpdated.ToString();
 
-            SetMoneyView(_sellLayout, _item.SellPrice);
-            SetMoneyView(_buyLayout, _item.BuyPrice);
-            SetMoneyView(_marginLayout, _item.Margin);
-        }
-
-        private void SetMoneyView(LinearLayout layout, int value)
-        {
-            var goldShare = value < 0 ? "-" : string.Empty;
-            goldShare += MoneyHelper.ExtractGoldShare(value).ToString();
-            layout.FindViewById<TextView>(Resource.Id.Gold).Text = goldShare;
-
-            layout.FindViewById<TextView>(Resource.Id.Silver).Text = MoneyHelper.ExtractSilverShare(value).ToString();
-            layout.FindViewById<TextView>(Resource.Id.Copper).Text = MoneyHelper.ExtractCopperShare(value).ToString();
-        }
+            MoneyViewSetter.SetMoneyView(_sellPriceLayout, _item.SellPrice);
+            MoneyViewSetter.SetMoneyView(_buyPriceLayout, _item.BuyPrice);
+            MoneyViewSetter.SetMoneyView(_marginLayout, _item.Margin);
+        }        
 
         private void OnWatchButtonClicked(object sender, EventArgs e)
         {

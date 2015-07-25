@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Android.App;
 using Android.Views;
 using Android.Widget;
+using GW2Trader.Android.Util.UI;
 using GW2Trader.Model;
 
 namespace GW2Trader.Android.Adapter
@@ -17,15 +18,9 @@ namespace GW2Trader.Android.Adapter
             _priceListings = priceListings;
         }
 
-        public override PriceListing this[int position]
-        {
-            get { return _priceListings[position]; }
-        }
+        public override PriceListing this[int position] => _priceListings[position];
 
-        public override int Count
-        {
-            get { return _priceListings.Count; }
-        }
+        public override int Count => _priceListings?.Count ?? 0;
 
         public override long GetItemId(int position)
         {
@@ -36,12 +31,12 @@ namespace GW2Trader.Android.Adapter
         {
             var listing = _priceListings[position];
 
-            var view = convertView;
-            if (view == null)
-                view = _activity.LayoutInflater.Inflate(Resource.Layout.PriceListingListViewItem, null);
+            var view = convertView ?? _activity.LayoutInflater
+                .Inflate(Resource.Layout.PriceListingListViewItem, null);
 
             view.FindViewById<TextView>(Resource.Id.Quantity).Text = listing.Quantity.ToString();
-
+            LinearLayout priceLayout = view.FindViewById<LinearLayout>(Resource.Id.Price);
+            MoneyViewSetter.SetMoneyView(priceLayout, listing.Price);
             return view;
         }
     }
