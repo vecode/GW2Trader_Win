@@ -37,7 +37,7 @@ namespace GW2Trader.Android.Activities
             _fragmentAdapter = new ItemDetailsFragmentAdapter(SupportFragmentManager, _item);
 
             _viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
-            //_viewPager.OffscreenPageLimit = 0;
+            _viewPager.OffscreenPageLimit = 2;
             _viewPager.Adapter = _fragmentAdapter;
             _viewPager.AddOnPageChangeListener(new PageListener(_fragmentAdapter));
 
@@ -57,7 +57,7 @@ namespace GW2Trader.Android.Activities
             {
                 case Resource.Id.Itemdetails_Refresh:
                     UpdatePriceData();
-                    //_fragmentAdapter.RefreshFragment(_viewPager.CurrentItem);
+                    _fragmentAdapter.RefreshFragment(_viewPager.CurrentItem);
                     return true;
                 default:
                     return base.OnOptionsItemSelected(item);
@@ -73,7 +73,7 @@ namespace GW2Trader.Android.Activities
 
     class PageListener : ViewPager.SimpleOnPageChangeListener
     {
-        private ItemDetailsFragmentAdapter _fragmentAdapter;
+        private readonly ItemDetailsFragmentAdapter _fragmentAdapter;
 
         public PageListener(ItemDetailsFragmentAdapter fragmentAdapter)
         {
@@ -82,7 +82,9 @@ namespace GW2Trader.Android.Activities
 
         public override void OnPageSelected(int position)
         {
-            _fragmentAdapter.NotifyDataSetChanged();          
+            Fragment fragment = _fragmentAdapter.Fragment(position);
+            _fragmentAdapter.NotifyDataSetChanged();
+            fragment?.OnResume();
         }
     }
 }

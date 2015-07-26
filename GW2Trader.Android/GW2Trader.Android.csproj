@@ -79,7 +79,6 @@
   <ItemGroup>
     <Compile Include="Activities\DebugActivity.cs" />
     <Compile Include="Activities\ItemDetailsActivity.cs" />
-    <Compile Include="Activities\ItemDetailsViewPagerActivity 2.cs" />
     <Compile Include="Activities\ItemDetailsViewPagerActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SearchActivity.cs" />
@@ -88,7 +87,6 @@
     <Compile Include="Activities\WatchlistActivity.cs" />
     <Compile Include="Adapter\ItemAdapter.cs" />
     <Compile Include="Adapter\ItemDetailsFragmentAdapter.cs" />
-    <Compile Include="Adapter\ItemDetailsFragmentAdapter2.cs" />
     <Compile Include="Adapter\PriceListingAdapter.cs" />
     <Compile Include="Adapter\WatchlistAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
