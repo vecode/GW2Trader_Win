@@ -8,6 +8,7 @@ using GW2Trader.Android.Util.UI;
 using GW2Trader.Manager;
 using GW2Trader.Model;
 using TinyIoC;
+using Fragment = Android.Support.V4.App.Fragment;
 using IIconStore = GW2Trader.Android.Util.IIconStore;
 
 namespace GW2Trader.Android.Fragments
@@ -20,6 +21,9 @@ namespace GW2Trader.Android.Fragments
         private LinearLayout _marginLayout;
         private TextView _demandTextView;
         private TextView _supplyTextView;
+
+        // TODO remove?
+        private View _view;
 
         private TextView _lastUpdateTextView;
         private TextView _nameTextView;
@@ -48,23 +52,23 @@ namespace GW2Trader.Android.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            var view = inflater.Inflate(Resource.Layout.ItemDetails, container, false);
-
+            View view = inflater.Inflate(Resource.Layout.ItemDetails, container, false);
+            _view = view;
             FindViews(view);
 
             SetItemDetails(_item);
 
             ThreadPool.QueueUserWorkItem(x => { SetIcon(_item); });
 
-            ThreadPool.QueueUserWorkItem(x =>
-            {
-                _itemManager.UpdatePrices(_item);
-                Activity?.RunOnUiThread(() => SetItemDetails(_item));
-            });
+            //ThreadPool.QueueUserWorkItem(x =>
+            //{
+            //    _itemManager.UpdatePrices(_item);
+            //    Activity?.RunOnUiThread(() => SetItemDetails(_item));
+            //});
 
             var watchButton = view.FindViewById<Button>(Resource.Id.Watch);
             watchButton.Click += OnWatchButtonClicked;
-
+            Console.WriteLine("view created");
             return view;
         }
 
@@ -93,6 +97,9 @@ namespace GW2Trader.Android.Fragments
 
         private void SetItemDetails(Item item)
         {
+            if (_nameTextView == null)
+            {
+                return;}
             _nameTextView.Text = item.Name;
             _typeTextView.Text = item.Type;
             _subtypeTextView.Text = item.SubType;
@@ -112,12 +119,17 @@ namespace GW2Trader.Android.Fragments
         {
             var transaction = FragmentManager.BeginTransaction();
             var watchlistSelectDialog = new WatchlistSelectFragment();
-            watchlistSelectDialog.Show(transaction, "test");
+            //watchlistSelectDialog.Show(transaction, "test");
         }
 
         private void SetIcon(Item item)
         {
             _iconStore.SetIcon(item, _iconImageView, Activity);
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
         }
     }
 }

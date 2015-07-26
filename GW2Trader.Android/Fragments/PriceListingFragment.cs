@@ -1,27 +1,35 @@
-using Android.App;
+using System.Collections.Generic;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using GW2Trader.Android.Adapter;
-using GW2Trader.Manager;
 using GW2Trader.Model;
-using TinyIoC;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace GW2Trader.Android.Fragments
 {
     public class PriceListingFragment : Fragment, IRefreshable
-
     {
-        private readonly Item _item;
+        private List<PriceListing> _priceListings; 
         private readonly string _kind;
         private readonly string _qtyName;
         private ListView _listingListView;
+        private PriceListingAdapter _listingAdapter;
 
-        public PriceListingFragment(Item item, string kind, string qtyName)
+        public PriceListingFragment(List<PriceListing> priceListings, string kind, string qtyName)
         {
-            _item = item;
+            _priceListings = priceListings;
             _kind = kind;
             _qtyName = qtyName;
+        }
+
+        public List<PriceListing> PriceListings
+        {
+            set
+            {
+                _priceListings = value;
+                _listingAdapter?.NotifyDataSetChanged();
+            }
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -31,7 +39,8 @@ namespace GW2Trader.Android.Fragments
             View view = inflater.Inflate(Resource.Layout.PriceListing, container, false);
 
             _listingListView = view.FindViewById<ListView>(Resource.Id.PriceListingListView);
-            _listingListView.Adapter = new PriceListingAdapter(Activity, _item.BuyOrders);
+            _listingAdapter = new PriceListingAdapter(Activity, _priceListings);
+            _listingListView.Adapter = _listingAdapter;
 
             var listingKind = view.FindViewById<TextView>(Resource.Id.ListingText);
             listingKind.Text = _kind;
@@ -42,9 +51,17 @@ namespace GW2Trader.Android.Fragments
             return view;
         }
 
-        public void Refresh()
+        public override void OnResume()
         {
-            throw new System.NotImplementedException();
+            base.OnResume();
+        }
+
+        public void Refresh()
+        {            
+            if (_priceListings != null)
+            {
+                _listingAdapter?.NotifyDataSetChanged();
+            }
         }
     }
 }

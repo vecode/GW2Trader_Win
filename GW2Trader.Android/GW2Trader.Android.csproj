@@ -71,16 +71,24 @@
     <Reference Include="SQLiteNetExtensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\SQLiteNetExtensions.1.3.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLiteNetExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.22.2.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\DebugActivity.cs" />
     <Compile Include="Activities\ItemDetailsActivity.cs" />
+    <Compile Include="Activities\ItemDetailsViewPagerActivity 2.cs" />
+    <Compile Include="Activities\ItemDetailsViewPagerActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SearchActivity.cs" />
     <Compile Include="Activities\SearchResultActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\WatchlistActivity.cs" />
     <Compile Include="Adapter\ItemAdapter.cs" />
+    <Compile Include="Adapter\ItemDetailsFragmentAdapter.cs" />
+    <Compile Include="Adapter\ItemDetailsFragmentAdapter2.cs" />
     <Compile Include="Adapter\PriceListingAdapter.cs" />
     <Compile Include="Adapter\WatchlistAdapter.cs" />
     <Compile Include="Filter\RangeInputFilter.cs" />
@@ -126,6 +134,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\DebugLayout.axml" />
+    <AndroidResource Include="Resources\layout\ItemDetailsViewPager.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

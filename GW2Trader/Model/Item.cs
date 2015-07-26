@@ -7,7 +7,11 @@ namespace GW2Trader.Model
     {
         private const float CommissionFee = 0.15f;
 
-        public Item() { }
+        public Item()
+        {
+            SellOrders = new List<PriceListing>();
+            BuyOrders = new List<PriceListing>();
+        }
 
         public Item(DataLayer.Model.Item item)
         {
@@ -27,6 +31,9 @@ namespace GW2Trader.Model
             Type = item.Type;
             SubType = item.SubType;
             Supply = item.Supply;
+
+            SellOrders = new List<PriceListing>();
+            BuyOrders = new List<PriceListing>();
         }        
 
         public int Margin

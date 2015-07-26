@@ -127,9 +127,8 @@ namespace GW2Trader.Android.Activities
 
         private void OnItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            var intent = new Intent(this, typeof (ItemDetailsActivity));
+            var intent = new Intent(this, typeof (ItemDetailsViewPagerActivity2));
             intent.PutExtra("ItemId", e.Id);
-
             StartActivity(intent);
         }
     }

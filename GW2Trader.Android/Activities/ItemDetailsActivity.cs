@@ -1,8 +1,6 @@
-using System;
 using Android.App;
 using Android.OS;
 using Android.Views;
-using GW2Trader.Android.Fragments;
 using GW2Trader.Manager;
 using GW2Trader.Model;
 using TinyIoC;
@@ -33,9 +31,9 @@ namespace GW2Trader.Android.Activities
             ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             SetContentView(Resource.Layout.ItemDetailsFragmentContainer);
 
-            AddTab("General", 0, new ItemDetailsFragment(_item));
-            AddTab("Buy Orders", 0, new PriceListingFragment(_item, "Buy", "Demand"));
-            AddTab("Sell Orders", 0, new PriceListingFragment(_item, "Sell", "Supply"));
+            //AddTab("General", 0, new ItemDetailsFragment(_item));
+            //AddTab("Buy Orders", 0, new PriceListingFragment(_item, "Buy", "Demand"));
+           // AddTab("Sell Orders", 0, new PriceListingFragment(_item, "Sell", "Supply"));
         }
 
         private void AddTab(string name, int iconResourceId, Fragment view)

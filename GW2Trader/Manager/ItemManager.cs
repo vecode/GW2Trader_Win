@@ -122,9 +122,40 @@ namespace GW2Trader.Manager
         public void UpdatePriceListings(Item item)
         {
             var updateListings = _apiWrapper.Listings(item.Id);
-            item.SellOrders = updateListings.Sells.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity }).ToList();
 
-            item.BuyOrders = updateListings.Buys.Select(x => new PriceListing { Price = x.UnitPrice, Quantity = x.Quantity }).ToList();
+            List<PriceListing> updatedSellOrders = updateListings.Sells
+                .Select(x => new PriceListing
+                {
+                    Price = x.UnitPrice,
+                    Quantity = x.Quantity
+                }).ToList();
+
+            if (item.SellOrders == null)
+            {
+                item.SellOrders = updatedSellOrders;
+            }
+            else
+            {
+                item.SellOrders.Clear();
+                item.SellOrders.AddRange(updatedSellOrders);
+            }
+
+            List<PriceListing> updatedBuyOrders = updateListings.Buys
+                .Select(x => new PriceListing
+                {
+                    Price = x.UnitPrice,
+                    Quantity = x.Quantity
+                }).ToList();
+
+            if (item.BuyOrders == null)
+            {
+                item.BuyOrders = updatedBuyOrders;
+            }
+            else
+            {
+                item.BuyOrders.Clear();
+                item.BuyOrders.AddRange(updatedBuyOrders);
+            }
         }
 
         public void UpdatePriceListings(List<Item> items)

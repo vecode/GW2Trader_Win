@@ -15,7 +15,12 @@ namespace GW2Trader.Android.Adapter
         public PriceListingAdapter(Activity activity, List<PriceListing> priceListings)
         {
             _activity = activity;
-            _priceListings = priceListings;
+            _priceListings = priceListings ?? new List<PriceListing>();
+        }
+
+        public List<PriceListing> GetItems()
+        {
+            return _priceListings;
         }
 
         public override PriceListing this[int position] => _priceListings[position];
