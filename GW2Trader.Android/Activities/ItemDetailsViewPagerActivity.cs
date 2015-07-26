@@ -82,11 +82,7 @@ namespace GW2Trader.Android.Activities
 
         public override void OnPageSelected(int position)
         {
-            _fragmentAdapter.NotifyDataSetChanged();
-            Console.WriteLine("on page selected " + position.ToString());
-            IRefreshable fragment = (IRefreshable)_fragmentAdapter.GetItem(position);
-            //fragment?.OnResume();
-            fragment?.Refresh();            
+            _fragmentAdapter.NotifyDataSetChanged();          
         }
     }
 }

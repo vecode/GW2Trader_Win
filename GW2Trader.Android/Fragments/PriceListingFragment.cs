@@ -54,6 +54,7 @@ namespace GW2Trader.Android.Fragments
         public override void OnResume()
         {
             base.OnResume();
+            Refresh();
         }
 
         public void Refresh()

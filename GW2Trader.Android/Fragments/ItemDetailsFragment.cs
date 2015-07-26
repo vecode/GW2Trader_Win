@@ -22,9 +22,6 @@ namespace GW2Trader.Android.Fragments
         private TextView _demandTextView;
         private TextView _supplyTextView;
 
-        // TODO remove?
-        private View _view;
-
         private TextView _lastUpdateTextView;
         private TextView _nameTextView;
         private TextView _rarityTextView;
@@ -34,16 +31,14 @@ namespace GW2Trader.Android.Fragments
         private ImageView _iconImageView;
 
         private IIconStore _iconStore;
-        private IItemManager _itemManager;                       
-
+                   
         public ItemDetailsFragment(Item item)
         {
             _item = item;
         }
 
         public override void OnCreate(Bundle savedInstanceState)
-        {
-            _itemManager = TinyIoCContainer.Current.Resolve<IItemManager>();
+        {   
             _iconStore = TinyIoCContainer.Current.Resolve<IIconStore>();
             base.OnCreate(savedInstanceState);
         }
@@ -53,7 +48,6 @@ namespace GW2Trader.Android.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
 
             View view = inflater.Inflate(Resource.Layout.ItemDetails, container, false);
-            _view = view;
             FindViews(view);
 
             SetItemDetails(_item);
@@ -97,9 +91,6 @@ namespace GW2Trader.Android.Fragments
 
         private void SetItemDetails(Item item)
         {
-            if (_nameTextView == null)
-            {
-                return;}
             _nameTextView.Text = item.Name;
             _typeTextView.Text = item.Type;
             _subtypeTextView.Text = item.SubType;
@@ -130,6 +121,7 @@ namespace GW2Trader.Android.Fragments
         public override void OnResume()
         {
             base.OnResume();
+            Refresh();
         }
     }
 }

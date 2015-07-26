@@ -20,7 +20,7 @@ namespace GW2Trader.Android.Activities
         private IItemManager _itemManager;
 
         private ViewPager _viewPager;
-        private ItemDetailsFragmentAdapter _fragmentAdapter;
+        private ItemDetailsFragmentAdapter2 _fragmentAdapter;
         private IMenu _menu;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -34,12 +34,12 @@ namespace GW2Trader.Android.Activities
 
             SetContentView(Resource.Layout.ItemDetailsViewPager);
 
-            _fragmentAdapter = new ItemDetailsFragmentAdapter(SupportFragmentManager, _item);
+            _fragmentAdapter = new ItemDetailsFragmentAdapter2(SupportFragmentManager, _item);
 
             _viewPager = FindViewById<ViewPager>(Resource.Id.viewPager);
-            //_viewPager.OffscreenPageLimit = 0;
+            _viewPager.OffscreenPageLimit = 2;
             _viewPager.Adapter = _fragmentAdapter;
-            _viewPager.AddOnPageChangeListener(new PageListener(_fragmentAdapter));
+            _viewPager.AddOnPageChangeListener(new PageListener2(_fragmentAdapter));
 
         }
 
@@ -73,7 +73,7 @@ namespace GW2Trader.Android.Activities
 
     class PageListener2 : ViewPager.SimpleOnPageChangeListener
     {
-        private ItemDetailsFragmentAdapter2 _fragmentAdapter;
+        private readonly ItemDetailsFragmentAdapter2 _fragmentAdapter;
 
         public PageListener2(ItemDetailsFragmentAdapter2 fragmentAdapter)
         {
@@ -83,7 +83,7 @@ namespace GW2Trader.Android.Activities
         public override void OnPageSelected(int position)
         {
             Fragment fragment = _fragmentAdapter.Fragment(position);
-
+            _fragmentAdapter.NotifyDataSetChanged();
             fragment?.OnResume();
         }
     }

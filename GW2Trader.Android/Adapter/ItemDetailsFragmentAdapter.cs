@@ -58,11 +58,10 @@ namespace GW2Trader.Android.Adapter
 
         public override int GetItemPosition(Object objectValue)
         {
-            //PriceListingFragment fragment = (PriceListingFragment) objectValue;
-            //fragment?.Refresh();
-            if (objectValue is PriceListingFragment)
+            var value = objectValue as PriceListingFragment;
+            if (value != null)
             {
-                PriceListingFragment fragment = (PriceListingFragment)objectValue;
+                PriceListingFragment fragment = value;
                 fragment?.Refresh();
             }
 
