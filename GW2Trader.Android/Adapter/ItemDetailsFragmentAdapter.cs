@@ -30,10 +30,10 @@ namespace GW2Trader.Android.Adapter
                     fragment = new ItemDetailsFragment(_item);
                     break;
                 case 1:
-                    fragment = new PriceListingFragment(_item.BuyOrders, "Buy", "Demand");
+                    fragment = new PriceListingFragment(_item.BuyOrders, "Buy Price", "Demand");
                     break;
                 case 2:
-                    fragment = new PriceListingFragment(_item.SellOrders, "Sell", "Supply");
+                    fragment = new PriceListingFragment(_item.SellOrders, "Sell Price", "Supply");
                     break;
                 default:
                     fragment = null;

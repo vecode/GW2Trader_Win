@@ -5,6 +5,9 @@
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <Button
         android:text="Clear Icon Folder"
         android:layout_width="match_parent"

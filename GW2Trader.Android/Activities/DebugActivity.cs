@@ -2,18 +2,24 @@ using System;
 using System.IO;
 using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Widget;
 using Environment = Android.OS.Environment;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace GW2Trader.Android.Activities
 {
-    [Activity(Label = "DebugActivity")]
-    public class DebugActivity : Activity
+    [Activity]
+    public class DebugActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.DebugLayout);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Debug";
 
             var deleteIconsButton = FindViewById<Button>(Resource.Id.DeleteIconsButton);
             deleteIconsButton.Click += OnDeleteIconsButtonClicked;

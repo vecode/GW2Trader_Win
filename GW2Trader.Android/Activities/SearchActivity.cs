@@ -5,13 +5,13 @@ using Android.OS;
 using Android.Text;
 using Android.Widget;
 using GW2Trader.Android.Filter;
-using GW2Trader.Manager;
-using TinyIoC;
+using Android.Support.V7.App;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace GW2Trader.Android.Activities
 {
-    [Activity(Label = "SearchActivity")]
-    public class SearchActivity : Activity
+    [Activity]
+    public class SearchActivity : AppCompatActivity
     {
         private Button _searchButton;
 
@@ -24,6 +24,10 @@ namespace GW2Trader.Android.Activities
         private void InitUI()
         {
             SetContentView(Resource.Layout.Search);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Item Search";
 
             _searchButton = FindViewById<Button>(Resource.Id.ExecuteSearchButton);
             _searchButton.Click += OnSearchButtonClicked;

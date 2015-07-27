@@ -8,12 +8,14 @@ using Android.Widget;
 using GW2Trader.Android.Adapter;
 using GW2Trader.Manager;
 using GW2Trader.Model;
+using Android.Support.V7.App;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 using TinyIoC;
 
 namespace GW2Trader.Android.Activities
 {
-    [Activity(Label = "search result")]
-    public class SearchResultActivity : Activity
+    [Activity]
+    public class SearchResultActivity : AppCompatActivity
     {
         private const int PageSize = 25;
         private int _currentPage;
@@ -21,8 +23,8 @@ namespace GW2Trader.Android.Activities
         private List<Item> _items;
         private ItemAdapter _itemsAdapter;
         private ListView _listView;
-        private Button _nextPageButton;
-        private Button _previousPageButton;
+        private ImageButton _nextPageButton;
+        private ImageButton _previousPageButton;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -45,16 +47,20 @@ namespace GW2Trader.Android.Activities
         {
             SetContentView(Resource.Layout.SearchResult);
 
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Search Result";
+
             _listView = FindViewById<ListView>(Resource.Id.SearchResultListView);
 
             _itemsAdapter = new ItemAdapter(this, _items);
             _listView.Adapter = _itemsAdapter;
             _listView.ItemClick += OnItemClick;
 
-            _previousPageButton = FindViewById<Button>(Resource.Id.PreviousButton);
+            _previousPageButton = FindViewById<ImageButton>(Resource.Id.PreviousButton);
             _previousPageButton.Click += OnPreviousButtonClicked;
 
-            _nextPageButton = FindViewById<Button>(Resource.Id.NextButton);
+            _nextPageButton = FindViewById<ImageButton>(Resource.Id.NextButton);
             _nextPageButton.Click += OnNextButtonClicked;
         }
 
@@ -84,20 +90,18 @@ namespace GW2Trader.Android.Activities
 
         private void OnPreviousButtonClicked(object sender, EventArgs e)
         {
-            if (_currentPage > 0)
-            {
-                _currentPage--;
+            if (_currentPage <= 0) return;
+            _currentPage--;
 
-                var previousItems = Search();
-                if (previousItems.Any())
-                {
-                    _itemsAdapter.GetItems().Clear();
-                    _itemsAdapter.GetItems().AddRange(previousItems);
-                    _itemsAdapter.NotifyDataSetChanged();
-                    _listView.SetSelectionAfterHeaderView();
-                }
-                _nextPageButton.Clickable = true;
+            var previousItems = Search();
+            if (previousItems.Any())
+            {
+                _itemsAdapter.GetItems().Clear();
+                _itemsAdapter.GetItems().AddRange(previousItems);
+                _itemsAdapter.NotifyDataSetChanged();
+                _listView.SetSelectionAfterHeaderView();
             }
+            _nextPageButton.Clickable = true;
         }
 
         private List<Item> Search()
@@ -127,7 +131,7 @@ namespace GW2Trader.Android.Activities
 
         private void OnItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            var intent = new Intent(this, typeof (ItemDetailsViewPagerActivity));
+            var intent = new Intent(this, typeof (ItemDetailsActivity));
             intent.PutExtra("ItemId", e.Id);
             StartActivity(intent);
         }

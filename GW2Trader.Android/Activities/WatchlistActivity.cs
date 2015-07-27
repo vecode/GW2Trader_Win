@@ -1,16 +1,21 @@
 using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace GW2Trader.Android.Activities
 {
-    [Activity(Label = "WatchlistActivity")]
-    public class WatchlistActivity : Activity
+    [Activity]
+    public class WatchlistActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            // Create your application here
+            //SetContentView();
+            //var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            //SetSupportActionBar(toolbar);
+            //SupportActionBar.Title = "Watchlists";
         }
     }
 }

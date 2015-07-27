@@ -2,13 +2,15 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Widget;
 using GW2Trader.Android.Util;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace GW2Trader.Android.Activities
 {
-    [Activity(Label = "GW2Trader", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    [Activity(MainLauncher = true)]
+    public class MainActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -19,6 +21,10 @@ namespace GW2Trader.Android.Activities
 
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "GW2Trader";
 
             var settingsButton = FindViewById<Button>(Resource.Id.SettingsButton);
             settingsButton.Click += OnSettingsButtonClicked;
