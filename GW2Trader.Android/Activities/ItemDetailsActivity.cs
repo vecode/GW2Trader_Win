@@ -1,3 +1,4 @@
+using System.Threading;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.View;
@@ -21,6 +22,7 @@ namespace GW2Trader.Android.Activities
         private ViewPager _viewPager;
         private ItemDetailsFragmentAdapter _fragmentAdapter;
         private IMenu _menu;
+        private IMenuItem _refreshMenuItem;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,9 +49,10 @@ namespace GW2Trader.Android.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            _menu = menu;
-            MenuInflater inflater = MenuInflater;
-            inflater.Inflate(Resource.Menu.ItemDetailsMenu, menu);
+            _menu = menu;        
+            MenuInflater.Inflate(Resource.Menu.ItemDetailsMenu, menu);
+            _refreshMenuItem = _menu.FindItem(Resource.Id.Action_ItemDetailsRefresh);
+
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -57,10 +60,19 @@ namespace GW2Trader.Android.Activities
         {
             switch (item.ItemId)
             {
-                case Resource.Id.Itemdetails_Refresh:
-                    UpdatePriceData();
-                    _fragmentAdapter.RefreshFragment(_viewPager.CurrentItem);
+                case Resource.Id.Action_ItemDetailsRefresh:
+                    _refreshMenuItem.SetActionView(Resource.Layout.ProgressSpinner);
+                    try
+                    {
+                        ThreadPool.QueueUserWorkItem(x => UpdatePriceData());
+                    }
+                    catch (System.Exception)
+                    {
+                        // TODO inform user of failed task using dialog message
+                        throw;
+                    }
                     return true;
+
                 default:
                     return base.OnOptionsItemSelected(item);
             }
@@ -70,6 +82,12 @@ namespace GW2Trader.Android.Activities
         {
             _itemManager.UpdatePrices(_item);
             _itemManager.UpdatePriceListings(_item);
+
+            RunOnUiThread(() =>
+                {
+                    _fragmentAdapter.RefreshFragment(_viewPager.CurrentItem);
+                    _refreshMenuItem.SetActionView(null);
+                });
         }
     }
 

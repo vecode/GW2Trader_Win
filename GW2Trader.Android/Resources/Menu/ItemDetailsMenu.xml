@@ -2,10 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:GW2Trader="http://schemas.android.com/apk/res-auto">
   <!-- Search, should appear as action button -->
-  <item android:id="@+id/Itemdetails_Refresh"
-        android:icon="@drawable/icon"
+  <item android:id="@+id/Action_ItemDetailsRefresh"
+        android:icon="@drawable/Refresh"
         android:title="Refresh"
         GW2Trader:showAsAction="always"
         />
-  ...
 </menu>

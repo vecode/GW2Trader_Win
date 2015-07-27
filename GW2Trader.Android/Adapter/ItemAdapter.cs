@@ -22,15 +22,9 @@ namespace GW2Trader.Android.Adapter
             _items = items;
         }
 
-        public override Item this[int position]
-        {
-            get { return _items[position]; }
-        }
+        public override Item this[int position] => _items[position];
 
-        public override int Count
-        {
-            get { return _items.Count; }
-        }
+        public override int Count => _items.Count;
 
         public override long GetItemId(int position)
         {
@@ -40,9 +34,7 @@ namespace GW2Trader.Android.Adapter
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var item = _items[position];
-            var view = convertView;
-            if (view == null) // no view to re-use, create new
-                view = _activity.LayoutInflater.Inflate(Resource.Layout.SearchResultListViewItem, null);
+            var view = convertView ?? _activity.LayoutInflater.Inflate(Resource.Layout.SearchResultListViewItem, null);
             view.FindViewById<TextView>(Resource.Id.Name).Text = item.Name;
 
             var iconView = view.FindViewById<ImageView>(Resource.Id.Icon);

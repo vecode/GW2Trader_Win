@@ -1353,17 +1353,20 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f02003e
 			public const int Left = 2130837566;
 			
-			// aapt resource value: 0x7f020042
-			public const int notification_template_icon_bg = 2130837570;
+			// aapt resource value: 0x7f020043
+			public const int notification_template_icon_bg = 2130837571;
 			
 			// aapt resource value: 0x7f02003f
 			public const int placeholder = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int Right = 2130837568;
+			public const int Refresh = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int Silver_coin = 2130837569;
+			public const int Right = 2130837569;
+			
+			// aapt resource value: 0x7f020042
+			public const int Silver_coin = 2130837570;
 			
 			static Drawable()
 			{
@@ -1377,6 +1380,9 @@ namespace GW2Trader.Android
 		
 		public partial class Id
 		{
+			
+			// aapt resource value: 0x7f0b0096
+			public const int Action_ItemDetailsRefresh = 2131427478;
 			
 			// aapt resource value: 0x7f0b005a
 			public const int BuyPrice = 2131427418;
@@ -1396,8 +1402,8 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0058
 			public const int Demand = 2131427416;
 			
-			// aapt resource value: 0x7f0b008d
-			public const int ExecuteSearchButton = 2131427469;
+			// aapt resource value: 0x7f0b008e
+			public const int ExecuteSearchButton = 2131427470;
 			
 			// aapt resource value: 0x7f0b0069
 			public const int Gold = 2131427433;
@@ -1417,14 +1423,11 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0061
 			public const int ItemDetailsFragmentContainer = 2131427425;
 			
-			// aapt resource value: 0x7f0b0095
-			public const int Itemdetails_Refresh = 2131427477;
-			
 			// aapt resource value: 0x7f0b005d
 			public const int LastUpdate = 2131427421;
 			
-			// aapt resource value: 0x7f0b0084
-			public const int LevelTextView = 2131427460;
+			// aapt resource value: 0x7f0b0085
+			public const int LevelTextView = 2131427461;
 			
 			// aapt resource value: 0x7f0b007c
 			public const int ListingQuantity = 2131427452;
@@ -1435,26 +1438,26 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b005b
 			public const int Margin = 2131427419;
 			
+			// aapt resource value: 0x7f0b0089
+			public const int MaxLevel = 2131427465;
+			
 			// aapt resource value: 0x7f0b0088
-			public const int MaxLevel = 2131427464;
+			public const int MaxLevelTextView = 2131427464;
 			
 			// aapt resource value: 0x7f0b0087
-			public const int MaxLevelTextView = 2131427463;
+			public const int MinLevel = 2131427463;
 			
 			// aapt resource value: 0x7f0b0086
-			public const int MinLevel = 2131427462;
-			
-			// aapt resource value: 0x7f0b0085
-			public const int MinLevelTextView = 2131427461;
+			public const int MinLevelTextView = 2131427462;
 			
 			// aapt resource value: 0x7f0b0053
 			public const int Name = 2131427411;
 			
-			// aapt resource value: 0x7f0b008f
-			public const int NextButton = 2131427471;
+			// aapt resource value: 0x7f0b0090
+			public const int NextButton = 2131427472;
 			
-			// aapt resource value: 0x7f0b008e
-			public const int PreviousButton = 2131427470;
+			// aapt resource value: 0x7f0b008f
+			public const int PreviousButton = 2131427471;
 			
 			// aapt resource value: 0x7f0b0080
 			public const int Price = 2131427456;
@@ -1462,14 +1465,17 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b007e
 			public const int PriceListingListView = 2131427454;
 			
+			// aapt resource value: 0x7f0b0081
+			public const int ProgressBar = 2131427457;
+			
 			// aapt resource value: 0x7f0b007f
 			public const int Quantity = 2131427455;
 			
 			// aapt resource value: 0x7f0b0056
 			public const int Rarity = 2131427414;
 			
-			// aapt resource value: 0x7f0b008a
-			public const int RaritySpinner = 2131427466;
+			// aapt resource value: 0x7f0b008b
+			public const int RaritySpinner = 2131427467;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int Roi = 2131427420;
@@ -1477,11 +1483,11 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0064
 			public const int SearchButton = 2131427428;
 			
-			// aapt resource value: 0x7f0b0090
-			public const int SearchResultListView = 2131427472;
+			// aapt resource value: 0x7f0b0091
+			public const int SearchResultListView = 2131427473;
 			
-			// aapt resource value: 0x7f0b0082
-			public const int SearchView = 2131427458;
+			// aapt resource value: 0x7f0b0083
+			public const int SearchView = 2131427459;
 			
 			// aapt resource value: 0x7f0b0059
 			public const int SellPrice = 2131427417;
@@ -1504,11 +1510,11 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0054
 			public const int Type = 2131427412;
 			
-			// aapt resource value: 0x7f0b008c
-			public const int TypeSpinner = 2131427468;
+			// aapt resource value: 0x7f0b008d
+			public const int TypeSpinner = 2131427469;
 			
-			// aapt resource value: 0x7f0b0091
-			public const int UpdateDbButton = 2131427473;
+			// aapt resource value: 0x7f0b0092
+			public const int UpdateDbButton = 2131427474;
 			
 			// aapt resource value: 0x7f0b005f
 			public const int Watch = 2131427423;
@@ -1516,14 +1522,14 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0065
 			public const int WatchlistButton = 2131427429;
 			
+			// aapt resource value: 0x7f0b0095
+			public const int WatchlistCreateButton = 2131427477;
+			
 			// aapt resource value: 0x7f0b0094
-			public const int WatchlistCreateButton = 2131427476;
+			public const int WatchlistListView = 2131427476;
 			
 			// aapt resource value: 0x7f0b0093
-			public const int WatchlistListView = 2131427475;
-			
-			// aapt resource value: 0x7f0b0092
-			public const int WatchlistName = 2131427474;
+			public const int WatchlistName = 2131427475;
 			
 			// aapt resource value: 0x7f0b006f
 			public const int action0 = 2131427439;
@@ -1663,14 +1669,14 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b005e
 			public const int linearLayout1 = 2131427422;
 			
-			// aapt resource value: 0x7f0b0083
-			public const int linearLayout2 = 2131427459;
+			// aapt resource value: 0x7f0b0084
+			public const int linearLayout2 = 2131427460;
 			
-			// aapt resource value: 0x7f0b0089
-			public const int linearLayout3 = 2131427465;
+			// aapt resource value: 0x7f0b008a
+			public const int linearLayout3 = 2131427466;
 			
-			// aapt resource value: 0x7f0b008b
-			public const int linearLayout4 = 2131427467;
+			// aapt resource value: 0x7f0b008c
+			public const int linearLayout4 = 2131427468;
 			
 			// aapt resource value: 0x7f0b0009
 			public const int listMode = 2131427337;
@@ -1711,8 +1717,8 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b003a
 			public const int radio = 2131427386;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int relativeLayout1 = 2131427457;
+			// aapt resource value: 0x7f0b0082
+			public const int relativeLayout1 = 2131427458;
 			
 			// aapt resource value: 0x7f0b001f
 			public const int screen = 2131427359;
@@ -1993,37 +1999,40 @@ namespace GW2Trader.Android
 			public const int PriceListingListViewItem = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int Search = 2130903081;
+			public const int ProgressSpinner = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int SearchResult = 2130903082;
+			public const int Search = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int SearchResultListViewItem = 2130903083;
+			public const int SearchResult = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int select_dialog_item_material = 2130903084;
+			public const int SearchResultListViewItem = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int select_dialog_multichoice_material = 2130903085;
+			public const int select_dialog_item_material = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int select_dialog_singlechoice_material = 2130903086;
+			public const int select_dialog_multichoice_material = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int Settings = 2130903087;
+			public const int select_dialog_singlechoice_material = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int support_simple_spinner_dropdown_item = 2130903088;
+			public const int Settings = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int Toolbar = 2130903089;
+			public const int support_simple_spinner_dropdown_item = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int WatchlistListViewItem = 2130903090;
+			public const int Toolbar = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int WatchlistSelect = 2130903091;
+			public const int WatchlistListViewItem = 2130903091;
+			
+			// aapt resource value: 0x7f030034
+			public const int WatchlistSelect = 2130903092;
 			
 			static Layout()
 			{

@@ -136,6 +136,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\DebugLayout.axml" />
     <AndroidResource Include="Resources\layout\ItemDetailsViewPager.axml" />
+    <AndroidResource Include="Resources\layout\ProgressSpinner.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -182,6 +185,7 @@
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
     <AndroidResource Include="Resources\drawable\Right.png" />
     <AndroidResource Include="Resources\drawable\Left.png" />
+    <AndroidResource Include="Resources\drawable\Refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">
