@@ -25,9 +25,12 @@ namespace GW2Trader.Android.Activities
         {
             SetContentView(Resource.Layout.Search);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.ToolBar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Item Search";
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+            TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
+            textView.Text = "Search";
 
             _searchButton = FindViewById<Button>(Resource.Id.ExecuteSearchButton);
             _searchButton.Click += OnSearchButtonClicked;

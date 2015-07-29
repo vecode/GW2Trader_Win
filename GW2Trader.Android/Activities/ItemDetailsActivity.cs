@@ -1,9 +1,11 @@
+using System.Net;
 using System.Threading;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Widget;
 using GW2Trader.Android.Adapter;
 using GW2Trader.Manager;
 using GW2Trader.Model;
@@ -31,13 +33,16 @@ namespace GW2Trader.Android.Activities
             _itemManager = TinyIoCContainer.Current.Resolve<IItemManager>();
 
             var itemId = (int)Intent.GetLongExtra("ItemId", 0);
-            _item = _itemManager.GetItem(itemId);            
+            _item = _itemManager.GetItem(itemId);
 
             SetContentView(Resource.Layout.ItemDetailsViewPager);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.ToolBar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = _item.Name;
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+            TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
+            textView.Text = _item.Name;
 
             _fragmentAdapter = new ItemDetailsFragmentAdapter(SupportFragmentManager, _item);
 
@@ -49,7 +54,7 @@ namespace GW2Trader.Android.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            _menu = menu;        
+            _menu = menu;
             MenuInflater.Inflate(Resource.Menu.ItemDetailsMenu, menu);
             _refreshMenuItem = _menu.FindItem(Resource.Id.Action_ItemDetailsRefresh);
 
@@ -62,15 +67,24 @@ namespace GW2Trader.Android.Activities
             {
                 case Resource.Id.Action_ItemDetailsRefresh:
                     _refreshMenuItem.SetActionView(Resource.Layout.ProgressSpinner);
-                    try
+
+                    ThreadPool.QueueUserWorkItem(x =>
                     {
-                        ThreadPool.QueueUserWorkItem(x => UpdatePriceData());
-                    }
-                    catch (System.Exception)
-                    {
-                        // TODO inform user of failed task using dialog message
-                        throw;
-                    }
+                        try
+                        {
+                            UpdatePriceData();
+                        }
+                        catch (WebException ex)
+                        {
+                            RunOnUiThread(() =>
+                            {
+                                var toast = Toast.MakeText(this, "Update Failed", ToastLength.Short);
+                                toast.SetGravity(GravityFlags.CenterHorizontal | GravityFlags.CenterVertical, 0, 0);
+                                toast.Show();
+                                _refreshMenuItem.SetActionView(null);
+                            });
+                        }
+                    });
                     return true;
 
                 default:

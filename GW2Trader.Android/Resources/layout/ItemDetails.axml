@@ -246,12 +246,14 @@
             android:gravity="center|bottom"
             android:id="@+id/linearLayout1">
             <Button
+                style="@style/MyButtonStyle"
                 android:text="Watch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/Watch" />
             <Button
+                style="@style/MyButtonStyle"
                 android:text="Invest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

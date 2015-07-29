@@ -6,9 +6,10 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        android:id="@+id/ToolBar"
+        layout="@layout/ToolBar" />
     <Button
+        style="@style/MyButtonStyle"
         android:text="Clear Icon Folder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

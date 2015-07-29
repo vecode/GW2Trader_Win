@@ -17,7 +17,7 @@ namespace GW2Trader.Android.Activities
     [Activity]
     public class SearchResultActivity : AppCompatActivity
     {
-        private const int PageSize = 25;
+        private const int PageSize = 100;
         private int _currentPage;
         private IItemManager _itemManager;
         private List<Item> _items;
@@ -47,9 +47,12 @@ namespace GW2Trader.Android.Activities
         {
             SetContentView(Resource.Layout.SearchResult);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.ToolBar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Search Result";
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+            TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
+            textView.Text = "Search Result";
 
             _listView = FindViewById<ListView>(Resource.Id.SearchResultListView);
 
@@ -126,7 +129,8 @@ namespace GW2Trader.Android.Activities
             int maxLvl;
             int.TryParse(Intent.GetStringExtra("maxLevel"), out maxLvl);
 
-            return _itemManager.Search(query, rarity, type, pageSize: PageSize, page: _currentPage);
+            return _itemManager.Search(query, rarity, type, pageSize: PageSize, 
+                page: _currentPage, minLevel: minLvl, maxLevel: maxLvl);
         }
 
         private void OnItemClick(object sender, AdapterView.ItemClickEventArgs e)

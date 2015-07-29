@@ -17,9 +17,12 @@ namespace GW2Trader.Android.Activities
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.DebugLayout);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.ToolBar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Debug";
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+            TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
+            textView.Text = "Debug";
 
             var deleteIconsButton = FindViewById<Button>(Resource.Id.DeleteIconsButton);
             deleteIconsButton.Click += OnDeleteIconsButtonClicked;

@@ -3,20 +3,57 @@
   <style name="MyTheme" parent="MyTheme.Base">
   </style>
   <!-- Base theme applied no matter what API -->
+
+  <style name="MyButtonStyle" parent="android:Widget.Holo.Light.Button">
+    <item name="android:background">@drawable/ButtonBackground</item>
+    <item name="android:textColor">@color/ButtonTextColor</item>
+    <!--<item name="android:textAppearance">@style/TextAppearance.AppCompat.Button</item>-->
+    <item name="android:minHeight">48dip</item>
+    <item name="android:minWidth">88dip</item>
+    <item name="android:focusable">true</item>
+    <item name="android:clickable">true</item>
+    <item name="android:gravity">center_vertical|center_horizontal</item>
+    <item name="android:layout_marginTop">10dp</item>
+  </style>
+
+  <style name="MyImageButtonStyle" parent="android:Widget.Holo.Light.ImageButton">
+    <item name="android:background">@drawable/ImageButtonBackground</item>
+    <!--<item name="android:layout_margin">5dp</item>-->
+    <item name="android:minHeight">36dip</item>
+    <item name="android:gravity">center_vertical|center_horizontal</item>
+  </style>
+
   <style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-    <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
+    <item name="android:buttonStyle">@style/MyButtonStyle</item>
+    <item name="android:imageButtonStyle">@style/MyImageButtonStyle</item>
     <item name="windowNoTitle">true</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
     <item name="windowActionBar">false</item>
-    <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
-    <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">#2196F3</item>
-    <!-- colorPrimaryDark is used for the status bar -->
-    <item name="colorPrimaryDark">#1976D2</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
-    <item name="colorAccent">#FF4081</item>
-    <!-- You can also set colorControlNormal, colorControlActivated
-         colorControlHighlight and colorSwitchThumbNormal. -->
+    <!--Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette
+     colorPrimary is used for the default action bar background-->
+    <item name="colorPrimary">@color/ToolbarBackground</item>
+    <!--colorPrimaryDark is used for the status bar-->
+    <item name="colorPrimaryDark">#999999</item>
+    <!--colorAccent is used as the default value for colorControlActivated
+         which is used to tint widgets-->
+    <item name="colorAccent">@color/ColorAccent</item>
+    <!--You can also set colorControlNormal, colorControlActivated
+         colorControlHighlight and colorSwitchThumbNormal.-->
+    <item name="colorControlNormal">@color/LightGrey</item>
+    <item name="colorControlActivated">@color/ColorAccent</item>
+    <!--<item name="android:background">@color/WindowBackground</item>-->
+    <item name="android:windowBackground">@color/WindowBackground</item>
+    <item name="colorButtonNormal">#2196F3</item>
   </style>
-</resources>
+
+  <style name="MainToolBarTitleStyle" parent="@android:style/TextAppearance.Widget.TextView">
+    <item name="android:textColor">@color/ToolBarTextColor</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textSize">32sp</item>  
+  </style>
+
+  <style name="ToolBarTitleStyle" parent="MainToolBarTitleStyle">
+    <item name="android:textSize">18sp</item>
+    <item name="android:textColor">@color/ToolBarTextColor</item>
+  </style>
+ </resources>

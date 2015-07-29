@@ -6,8 +6,8 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        android:id="@+id/ToolBar"
+        layout="@layout/ToolBar" />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="fill_parent"
@@ -17,6 +17,8 @@
             android:id="@+id/pts_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
             android:paddingBottom="4dp"
             android:paddingTop="4dp" />
     </android.support.v4.view.ViewPager>

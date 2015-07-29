@@ -5,45 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relativeLayout1">
-  <include
-    android:layout_alignParentTop="true"
-    android:id="@+id/toolbar"
-    layout="@layout/toolbar" />
-  <LinearLayout
-      android:layout_alignParentBottom="true"
-      android:orientation="horizontal"
-      android:minWidth="25px"
-      android:minHeight="25px"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:weightSum="1.0"
-      android:id="@+id/linearLayout1">
-    <ImageButton
-        android:src="@drawable/Left"
-        android:layout_weight=".5"
-        android:layout_width="0dip"
+    <include
+        android:layout_alignParentTop="true"
+        android:id="@+id/ToolBar"
+        layout="@layout/ToolBar" />
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/PreviousButton" />
+        android:weightSum="1.0"
+        android:padding="5dp"
+        android:id="@+id/linearLayout1">
+        <ImageButton
+            android:src="@drawable/Left"
+            android:layout_weight=".5"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:id="@+id/PreviousButton" />
     <!--<TextView
         android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/CurrentItemsIndexTextView" />-->
-    <ImageButton
-        android:src="@drawable/Right"
-        android:layout_weight=".5"
-        android:layout_width="0dip"
+        <ImageButton
+            android:src="@drawable/Right"
+            android:layout_weight=".5"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/NextButton" />
+    </LinearLayout>
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/NextButton" />
-  </LinearLayout>
-  <ListView
-      android:minWidth="25px"
-      android:minHeight="25px"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/toolbar"
-      android:layout_above="@id/linearLayout1"
-      android:id="@+id/SearchResultListView"
-      android:layout_weight="1" />
+        android:layout_below="@id/ToolBar"
+        android:layout_above="@id/linearLayout1"
+        android:id="@+id/SearchResultListView"
+        android:layout_weight="1" />
 </RelativeLayout>

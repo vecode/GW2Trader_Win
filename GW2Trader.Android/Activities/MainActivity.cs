@@ -22,9 +22,13 @@ namespace GW2Trader.Android.Activities
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.ToolBar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "GW2Trader";
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+            TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
+            textView.Text = "GW2Trader";
+            
 
             var settingsButton = FindViewById<Button>(Resource.Id.SettingsButton);
             settingsButton.Click += OnSettingsButtonClicked;

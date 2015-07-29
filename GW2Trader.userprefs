@@ -6,4 +6,5 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.GUI.GW2Trader__Android AndroidDesignerPreferredDevice="Nexus 4" AndroidDeviceId-Debug="10.71.34.101:5555" />
+  <MonoDevelop.Ide.ItemProperties.GUI.GW2Trader.Android AndroidDesignerPreferredDevice="Nexus 4" />
 </Properties>

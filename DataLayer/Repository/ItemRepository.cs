@@ -79,17 +79,17 @@ namespace DataLayer.Repository
                 parameters.Add(subType);
             }
 
-            queryBuilder.AppendLine(" Level >= ? AND Level <= ? AND ");
+            queryBuilder.AppendLine(" Level >= ? AND Level <= ?");
             parameters.Add(minLevel);
             parameters.Add(maxLevel);
 
-            queryBuilder.AppendLine(" Margin >= ? AND Margin <= ? AND ");
-            parameters.Add(minMargin);
-            parameters.Add(maxMargin);
+            //queryBuilder.AppendLine(" Margin >= ? AND Margin <= ? AND ");
+            //parameters.Add(minMargin);
+            //parameters.Add(maxMargin);
 
-            queryBuilder.AppendLine(" ROI >= ? AND ROI <= ? ");
-            parameters.Add(minRoi);
-            parameters.Add(maxRoi);
+            //queryBuilder.AppendLine(" ROI >= ? AND ROI <= ? ");
+            //parameters.Add(minRoi);
+            //parameters.Add(maxRoi);
 
             queryBuilder.Append(" LIMIT ?, ?; ");           
 

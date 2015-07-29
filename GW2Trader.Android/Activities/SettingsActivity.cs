@@ -22,9 +22,12 @@ namespace GW2Trader.Android.Activities
             var container = TinyIoCContainer.Current;
             _itemManager = container.Resolve<IItemManager>();
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.ToolBar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Settings";
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+            TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
+            textView.Text = "Settings";
 
             var updateDbButton = FindViewById<Button>(Resource.Id.UpdateDbButton);
             updateDbButton.Click += OnUpdateDbButtonClick;

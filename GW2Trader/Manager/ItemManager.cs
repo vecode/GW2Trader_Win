@@ -86,7 +86,7 @@ namespace GW2Trader.Manager
                 Rarity = item.Rarity,
                 Level = item.Level,
                 Type = item.Type,
-                SubType = item.Details != null ? item.Details.Type : null
+                SubType = item.Details?.Type
             };
         }
 
