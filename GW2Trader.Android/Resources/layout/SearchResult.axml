@@ -4,42 +4,12 @@
     android:minHeight="25px"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/PageBackgroundColor"
     android:id="@+id/relativeLayout1">
     <include
         android:layout_alignParentTop="true"
         android:id="@+id/ToolBar"
         layout="@layout/ToolBar" />
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="1.0"
-        android:padding="5dp"
-        android:id="@+id/linearLayout1">
-        <ImageButton
-            android:src="@drawable/Left"
-            android:layout_weight=".5"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:id="@+id/PreviousButton" />
-    <!--<TextView
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/CurrentItemsIndexTextView" />-->
-        <ImageButton
-            android:src="@drawable/Right"
-            android:layout_weight=".5"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:id="@+id/NextButton" />
-    </LinearLayout>
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
@@ -48,5 +18,35 @@
         android:layout_below="@id/ToolBar"
         android:layout_above="@id/linearLayout1"
         android:id="@+id/SearchResultListView"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:divider="@color/SecondaryColorAccent"
+        android:dividerHeight="1dp" />
+    <LinearLayout
+        android:background="@drawable/BottomNavigationBackground"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:weightSum="1.0"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:gravity="center_vertical"
+        android:id="@+id/linearLayout1">
+        <ImageButton
+            android:src="@drawable/ArrowLeftSelector"
+            android:layout_weight=".5"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginRight="0dp"
+            android:id="@+id/PreviousButton" />
+        <View
+            style="@style/VerticalLineStyle" />
+        <ImageButton
+            android:src="@drawable/ArrowRightSelector"
+            android:layout_weight=".5"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginLeft="0dp"
+            android:id="@+id/NextButton" />
+    </LinearLayout>
 </RelativeLayout>

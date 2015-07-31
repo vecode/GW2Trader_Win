@@ -60,8 +60,8 @@ namespace GW2Trader.Android.Fragments
             //    Activity?.RunOnUiThread(() => SetItemDetails(_item));
             //});
 
-            var watchButton = view.FindViewById<Button>(Resource.Id.Watch);
-            watchButton.Click += OnWatchButtonClicked;
+            //var watchButton = view.FindViewById<LinearLayout>(Resource.Id.WatchButton);
+            //watchButton.Click += OnWatchButtonClicked;
             Console.WriteLine("view created");
             return view;
         }

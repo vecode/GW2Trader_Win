@@ -58,7 +58,7 @@ namespace GW2Trader.Android.Activities
 
             _itemsAdapter = new ItemAdapter(this, _items);
             _listView.Adapter = _itemsAdapter;
-            _listView.ItemClick += OnItemClick;
+            _listView.ItemClick += OnItemClick;          
 
             _previousPageButton = FindViewById<ImageButton>(Resource.Id.PreviousButton);
             _previousPageButton.Click += OnPreviousButtonClicked;
@@ -129,7 +129,10 @@ namespace GW2Trader.Android.Activities
             int maxLvl;
             int.TryParse(Intent.GetStringExtra("maxLevel"), out maxLvl);
 
-            return _itemManager.Search(query, rarity, type, pageSize: PageSize, 
+            //return _itemManager.Search(query, rarity, type, pageSize: PageSize,
+            //    page: _currentPage, minLevel: minLvl, maxLevel: maxLvl);
+
+            return _itemManager.Search(query, rarity, type, pageSize: PageSize,
                 page: _currentPage, minLevel: minLvl, maxLevel: maxLvl);
         }
 

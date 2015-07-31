@@ -10,130 +10,173 @@
         android:layout_alignParentTop="true"
         android:id="@+id/ToolBar"
         layout="@layout/ToolBar" />
-    <ScrollView
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_below="@id/ToolBar"
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView1">
-        <LinearLayout
-            android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ToolBar"
+        android:background="@color/PageBackgroundColor"
+        android:id="@+id/linearLayout1">
+        <SearchView
+            android:textColor="@color/TextColor"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/linearLayout1">
-            <SearchView
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/SearchView" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2">
+            <TextView
+                android:textColor="@color/TextColor"
+                android:text="Level"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/SearchView" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
+                android:layout_below="@id/SearchView"
+                android:id="@+id/LevelTextView"
+                android:layout_marginRight="4dp" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <TextView
+                android:textColor="@color/TextColor"
+                android:text="Min"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/MinLevelTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout2">
-                <TextView
-                    android:text="Level"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/SearchView"
-                    android:id="@+id/LevelTextView"
-                    android:layout_marginRight="4dp" />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-                <TextView
-                    android:text="Min"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/MinLevelTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginLeft="4dp" />
-                <EditText
-                    android:inputType="numberSigned"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/MinLevel"
-                    android:digits="0123456789"
-                    android:text="0" />
-                <TextView
-                    android:text="Max"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/MaxLevelTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginLeft="4dp" />
-                <EditText
-                    android:inputType="numberSigned"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/MaxLevel"
-                    android:digits="0123456789"
-                    android:text="80"
-                    android:numeric="integer" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+            <EditText
+                android:textColor="@color/TextColor"
+                android:inputType="numberSigned"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout3">
-                <TextView
-                    android:text="Rarity"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp" />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/RaritySpinner" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
+                android:id="@+id/MinLevel"
+                android:digits="0123456789"
+                android:gravity="center"
+                android:text="0" />
+            <TextView
+                android:textColor="@color/TextColor"
+                android:text="Max"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/MaxLevelTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/linearLayout4">
-                <TextView
-                    android:text="Type"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp" />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/TypeSpinner" />
-            </LinearLayout>
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp" />
+            <EditText
+                android:textColor="@color/TextColor"
+                android:inputType="numberSigned"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/MaxLevel"
+                android:digits="0123456789"
+                android:text="80"
+                android:gravity="center"
+                android:numeric="integer" />
         </LinearLayout>
-    </ScrollView>
-    <Button
-        style="@style/MyButtonStyle"
-        android:text="@string/Search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ExecuteSearchButton"
-        android:layout_alignParentBottom="true" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout3">
+            <TextView
+                android:textColor="@color/TextColor"
+                android:text="Rarity"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <Spinner
+                android:textColor="@color/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/RaritySpinner" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout4">
+            <TextView
+                android:textColor="@color/TextColor"
+                android:text="Type"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <Spinner
+                android:textColor="@color/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/TypeSpinner" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@drawable/BottomNavigationBackground"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
+        android:weightSum="1.5"
+        android:id="@+id/linearLayout1">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:id="@+id/SearchButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight=".5">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:src="@drawable/SearchIconSelector" />
+        </LinearLayout>
+    <!--<Button
+            android:background="@drawable/ItemSearchButton"
+            style="@style/MyButtonStyle"
+            android:text="@string/Search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ExecuteSearchButton"
+            android:layout_weight=".5"/-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".5" />
+    </LinearLayout>
 </RelativeLayout>

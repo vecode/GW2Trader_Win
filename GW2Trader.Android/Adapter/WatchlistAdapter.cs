@@ -17,15 +17,9 @@ namespace GW2Trader.Android.Adapter
             _watchlists = watchlists;
         }
 
-        public override Watchlist this[int position]
-        {
-            get { return _watchlists[position]; }
-        }
+        public override Watchlist this[int position] => _watchlists[position];
 
-        public override int Count
-        {
-            get { return _watchlists.Count; }
-        }
+        public override int Count => _watchlists.Count;
 
         public override long GetItemId(int position)
         {
@@ -35,9 +29,7 @@ namespace GW2Trader.Android.Adapter
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var watchlist = _watchlists[position];
-            var view = convertView;
-            if (view == null)
-                view = _activity.LayoutInflater.Inflate(Resource.Layout.WatchlistListViewItem, null);
+            var view = convertView ?? _activity.LayoutInflater.Inflate(Resource.Layout.WatchlistListViewItem, null);
 
             view.FindViewById<TextView>(Resource.Id.Name).Text = watchlist.Name;
             return view;

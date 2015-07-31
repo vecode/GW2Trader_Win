@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/WatchlistBackground"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    tools:actionBarNavMode="list">
+    <ImageView
+        android:src="@drawable/SampleItemIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/Icon" />
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Icon"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:textSize="25dip"
+        android:textColor="@color/PrimaryTextColor"
+        android:id="@+id/Name" />
+    <TextView
+        android:text="Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Icon"
+        android:layout_below="@id/Name"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dip"
+        android:textColor="@color/ColorAccent"
+        android:id="@+id/Description" />
+</RelativeLayout>

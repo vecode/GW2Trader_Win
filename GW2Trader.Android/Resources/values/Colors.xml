@@ -2,13 +2,18 @@
 
 <resources>
   <color name="ColorAccent">#2196F3</color>
+  <color name="SecondaryColorAccent">#151b21</color>
+  
   <color name="ToolbarBackground">@color/ColorAccent</color>
-  <color name="ButtonColor">@color/ColorAccent</color>
+  <color name="ButtonColor">@color/SecondaryColorAccent</color>
   <color name="ButtonTextColor">#FFFFFF</color>
   <!--<color name="WindowBackground">#FFFFFF</color>-->
   <color name="WindowBackground">@color/White</color>
   <color name="ToolBarTextColor">@color/White</color>
-  
+  <color name="PageBackgroundColor">@color/White</color>
+  <color name="PrimaryTextColor">@color/SecondaryColorAccent</color>
+  <color name="TextColor">@color/SecondaryColorAccent</color>
+  <color name="ToolBarBackgroundColor">@color/ColorAccent</color>
   
   <color name="White">#FFFFFF</color>
   <color name="Ivory">#FFFFF0</color>

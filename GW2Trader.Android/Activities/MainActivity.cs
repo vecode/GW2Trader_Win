@@ -28,12 +28,14 @@ namespace GW2Trader.Android.Activities
 
             TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
             textView.Text = "GW2Trader";
-            
 
-            var settingsButton = FindViewById<Button>(Resource.Id.SettingsButton);
+            var watchlistsButton = FindViewById<LinearLayout>(Resource.Id.WatchlistButton);
+            watchlistsButton.Click += OnWatchlistsButtonClicked;
+
+            var settingsButton = FindViewById<LinearLayout>(Resource.Id.SettingsButton);
             settingsButton.Click += OnSettingsButtonClicked;
 
-            var searchButton = FindViewById<Button>(Resource.Id.SearchButton);
+            var searchButton = FindViewById<LinearLayout>(Resource.Id.SearchButton);
             searchButton.Click += OnSearchButtonClicked;
 
             var debugButton = FindViewById<Button>(Resource.Id.DebugButton);
@@ -55,6 +57,12 @@ namespace GW2Trader.Android.Activities
         private void OnSearchButtonClicked(object sender, EventArgs e)
         {
             var intent = new Intent(this, typeof (SearchActivity));
+            StartActivity(intent);
+        }
+
+        private void OnWatchlistsButtonClicked(object sender, EventArgs e)
+        {
+            var intent = new Intent(this, typeof (WatchlistActivity));
             StartActivity(intent);
         }
     }

@@ -1,14 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
     <include
+        android:layout_alignParentTop="true"
         android:id="@+id/ToolBar"
         layout="@layout/ToolBar" />
+<!--<android.support.v4.view.ViewPager
+      android:layout_below="@id/ToolBar"
+      android:layout_above="@id/BottomMenu"
+      android:id="@+id/viewPager"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:text="viewpager">
+    <android.support.v4.view.PagerTabStrip
+        android:id="@+id/pts_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp" />
+  </android.support.v4.view.ViewPager>-->
+    <LinearLayout
+        android:background="@drawable/BottomNavigationBackground"
+        android:orientation="horizontal"
+        android:layout_height="48dp"
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1.5"
+        android:id="@+id/BottomMenu">
+        <LinearLayout
+            android:id="@+id/WatchlistButton"
+            android:layout_weight=".5"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:clickable="true"
+            android:layout_height="fill_parent"
+            android:padding="3dp"
+            android:gravity="center">
+            <ImageView
+                android:src="@drawable/WatchlistIconSelector"
+                android:layout_height="24dp"
+                android:layout_width="wrap_content" />
+        </LinearLayout>
+        <View
+            style="@style/VerticalLineStyle" />
+        <LinearLayout
+            android:id="@+id/CalculatorButton"
+            android:layout_weight=".5"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:clickable="true"
+            android:layout_height="fill_parent"
+            android:padding="3dp"
+            android:gravity="center">
+            <ImageView
+                android:src="@drawable/CalculatorIconSelector"
+                android:layout_height="24dp"
+                android:layout_width="wrap_content" />
+        </LinearLayout>
+        <View
+            style="@style/VerticalLineStyle" />
+        <LinearLayout
+            android:id="@+id/InvestmentButton"
+            android:layout_weight=".5"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:clickable="true"
+            android:layout_height="fill_parent"
+            android:padding="3dp"
+            android:gravity="center">
+            <ImageView
+                android:src="@drawable/InvestmentIconSelector"
+                android:layout_height="24dp"
+                android:layout_width="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
     <android.support.v4.view.ViewPager
+        android:layout_below="@id/ToolBar"
+        android:layout_above="@id/BottomMenu"
         android:id="@+id/viewPager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -22,4 +95,4 @@
             android:paddingBottom="4dp"
             android:paddingTop="4dp" />
     </android.support.v4.view.ViewPager>
-</LinearLayout>
+</RelativeLayout>

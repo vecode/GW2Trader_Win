@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/PageBackgroundColor"
+    android:id="@+id/ParentLayout">
+    <include
+        android:layout_alignParentTop="true"
+        android:id="@+id/ToolBar"
+        layout="@layout/ToolBar" />
+    <ListView
+        android:padding="10dp"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ToolBar"
+        android:id="@+id/WatchlistListView"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" />
+</RelativeLayout>

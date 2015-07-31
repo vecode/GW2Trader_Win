@@ -7,48 +7,225 @@
     tools:actionBarNavMode="list">
     <include
         android:id="@+id/ToolBar"
-        layout="@layout/MainToolBar" />
-<!--<ImageView
-        android:padding="10dp"
-        android:src="@drawable/Logo"
-        android:background="#FFFFFF"
+        layout="@layout/ToolBar" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:background="@color/White"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="10dp">
+            <LinearLayout
+                android:id="@+id/SearchButton"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ButtonBackground"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:clickable="true"
+                android:layout_height="48dp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/SearchIconSelector"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="24dp"
+                    android:layout_width="wrap_content" />
+                <TextView
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/ButtonTextColorSelector"
+                    android:text="Search" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/WatchlistButton"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ButtonBackground"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:clickable="true"
+                android:layout_height="48dp"
+                android:padding="3dp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/WatchlistIconSelector"
+                    android:layout_height="24dp"
+                    android:layout_width="wrap_content" />
+                <TextView
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/ButtonTextColorSelector"
+                    android:text="Watchlists" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/InvestmentButton"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ButtonBackground"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:clickable="true"
+                android:layout_height="48dp"
+                android:padding="3dp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/InvestmentIconSelector"
+                    android:layout_height="24dp"
+                    android:layout_width="wrap_content" />
+                <TextView
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/ButtonTextColorSelector"
+                    android:text="Investments" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/GemPriceButton"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ButtonBackground"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:clickable="true"
+                android:layout_height="48dp"
+                android:padding="3dp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/GemPriceIconSelector"
+                    android:layout_height="24dp"
+                    android:layout_width="wrap_content" />
+                <TextView
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/ButtonTextColorSelector"
+                    android:text="Gem Price" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/CalculatorButton"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ButtonBackground"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:clickable="true"
+                android:layout_height="48dp"
+                android:padding="3dp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/CalculatorIconSelector"
+                    android:layout_height="24dp"
+                    android:layout_width="wrap_content" />
+                <TextView
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/ButtonTextColorSelector"
+                    android:text="Calculator" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/HistoryButton"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ButtonBackground"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:clickable="true"
+                android:layout_height="48dp"
+                android:padding="3dp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/HistoryIconSelector"
+                    android:layout_height="24dp"
+                    android:layout_width="wrap_content" />
+                <TextView
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/ButtonTextColorSelector"
+                    android:text="History" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/SettingsButton"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ButtonBackground"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:clickable="true"
+                android:layout_height="48dp"
+                android:padding="3dp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/SettingsIconSelector"
+                    android:layout_height="24dp"
+                    android:layout_width="wrap_content" />
+                <TextView
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:textColor="@drawable/ButtonTextColorSelector"
+                    android:text="Settings" />
+            </LinearLayout>
+        <!--<Button
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="10dp"        
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Search" />
+    <Button
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="10dp"
+        android:text="@string/Watchlists"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Logo" />-->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="15dp">
-        <Button
-            style="@style/MyButtonStyle"
-            android:id="@+id/SearchButton"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Search" />
-        <Button
-            style="@style/MyButtonStyle"
-            android:text="@string/Watchlists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/WatchlistButton" />
-        <Button
-            style="@style/MyButtonStyle"
-            android:text="@string/Investments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/InvestmentButton" />
-        <Button
-            style="@style/MyButtonStyle"
-            android:text="@string/Settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/SettingsButton" />
-        <Button
-            style="@style/MyButtonStyle"
-            android:text="Debug"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/DebugButton" />
-    </LinearLayout>
+        android:id="@+id/WatchlistButton" />
+    <Button
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="10dp"
+        android:text="@string/Investments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/InvestmentButton" />
+    <Button
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="10dp"
+        android:text="Gem Price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/GemPriceButton" />
+    <Button
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="10dp"
+        android:text="Calculator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CalculatorButton" />
+    <Button
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="10dp"
+        android:text="History"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/HistoryButton" />
+    <Button
+        style="@style/MyButtonStyle"
+        android:layout_marginTop="10dp"
+        android:text="@string/Settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SettingsButton" />-->
+            <Button
+                style="@style/MyButtonStyle"
+                android:layout_marginTop="5dp"
+                android:text="Debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/DebugButton" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

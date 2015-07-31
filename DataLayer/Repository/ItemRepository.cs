@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using System;
 using SQLiteNetExtensions.Extensions;
 using GW2Trader.Data.Db;
 using DataLayer.Model;
@@ -70,7 +71,7 @@ namespace DataLayer.Repository
             if (!string.IsNullOrEmpty(type))
             {
                 queryBuilder.AppendLine(" Type LIKE ? AND ");
-                parameters.Add(type);
+                parameters.Add("%" + type + "%");
             }
 
             if (!string.IsNullOrEmpty(subType))
@@ -95,6 +96,8 @@ namespace DataLayer.Repository
 
             parameters.Add(pageSize * pageIndex);
             parameters.Add(pageSize);
+
+            var query = queryBuilder.ToString();
 
             using (var db = _dbProvider.GetDatabase())
             {

@@ -113,6 +113,8 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\drawable\Left.png" />
+    <AndroidResource Include="Resources\drawable\Right.png" />
     <AndroidResource Include="Resources\layout\Search.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -141,6 +143,12 @@
     <AndroidResource Include="Resources\drawable\ImageButtonBackground.xml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\Watchlist.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\SearchIconSelector.xml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -156,11 +164,12 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="notes.txt" />
     <Content Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </Content>
     <AndroidResource Include="Resources\drawable\placeholder.png" />
-    <AndroidResource Include="Resources\layout\SearchResultListViewItem.xml">
+    <AndroidResource Include="Resources\layout\SearchResultListViewItem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\Rarities.xml">
@@ -175,8 +184,9 @@
     <AndroidResource Include="Resources\drawable\Silver_coin.png" />
     <AndroidResource Include="Resources\drawable\Gold_coin.png" />
     <AndroidResource Include="Resources\drawable\Copper_coin.png" />
-    <AndroidResource Include="Resources\layout\WatchlistListViewItem.xml">
+    <AndroidResource Include="Resources\layout\WatchlistListViewItem.axml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PriceListingListViewItem.xml">
       <SubType>Designer</SubType>
@@ -190,11 +200,6 @@
     <AndroidResource Include="Resources\values\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Toolbar.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Right.png" />
-    <AndroidResource Include="Resources\drawable\Left.png" />
     <AndroidResource Include="Resources\drawable\Refresh.png" />
     <AndroidResource Include="Resources\values\Colors.xml">
       <SubType>Designer</SubType>
@@ -207,9 +212,52 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ImageButton.xml" />
-    <AndroidResource Include="Resources\layout\MainToolbar.xml">
+    <AndroidResource Include="Resources\layout\Toolbar.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\SampleItemIcon.jpg" />
+    <AndroidResource Include="Resources\drawable\WatchlistBackground.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ToolBarBackground.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ButtonSelector.xml" />
+    <AndroidResource Include="Resources\drawable\BottomNavigationBackground.xml" />
+    <AndroidResource Include="Resources\drawable\Search.png" />
+    <AndroidResource Include="Resources\drawable\Calculator.png" />
+    <AndroidResource Include="Resources\drawable\History.png" />
+    <AndroidResource Include="Resources\drawable\Investment.png" />
+    <AndroidResource Include="Resources\drawable\LogoPlaceholder.svg" />
+    <AndroidResource Include="Resources\drawable\Settings.png" />
+    <AndroidResource Include="Resources\drawable\Watchlist.png" />
+    <AndroidResource Include="Resources\drawable\ItemSearchButton.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ButtonTextColorSelector.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\SearchPressed.png" />
+    <AndroidResource Include="Resources\drawable\RightPressed.png" />
+    <AndroidResource Include="Resources\drawable\LeftPressed.png" />
+    <AndroidResource Include="Resources\drawable\WatchlistIconSelector.xml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Watch.png" />
+    <AndroidResource Include="Resources\drawable\WatchPressed.png" />
+    <AndroidResource Include="Resources\drawable\InvestmentIconSelector.xml" />
+    <AndroidResource Include="Resources\drawable\GemPriceIconSelector.xml" />
+    <AndroidResource Include="Resources\drawable\CalculatorIconSelector.xml" />
+    <AndroidResource Include="Resources\drawable\HistoryIconSelector.xml" />
+    <AndroidResource Include="Resources\drawable\SettingsIconSelector.xml" />
+    <AndroidResource Include="Resources\drawable\HistoryPressed.png" />
+    <AndroidResource Include="Resources\drawable\InvestmentPressed.png" />
+    <AndroidResource Include="Resources\drawable\SettingsPressed.png" />
+    <AndroidResource Include="Resources\drawable\CalculatorPressed.png" />
+    <AndroidResource Include="Resources\drawable\Gem.png" />
+    <AndroidResource Include="Resources\drawable\GemPressed.png" />
+    <AndroidResource Include="Resources\drawable\ArrowLeftSelector.xml" />
+    <AndroidResource Include="Resources\drawable\ArrowRightSelector.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

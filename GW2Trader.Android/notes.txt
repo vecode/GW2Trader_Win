@@ -1,0 +1,5 @@
+﻿spotifys colors:
+
+dark grey: #282828
+light grey: #adafb2
+blue: #4688d7

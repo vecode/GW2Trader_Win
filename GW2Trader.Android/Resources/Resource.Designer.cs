@@ -745,467 +745,482 @@ namespace GW2Trader.Android
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0a0065
-			public const int AliceBlue = 2131361893;
-			
-			// aapt resource value: 0x7f0a005b
-			public const int AntiqueWhite = 2131361883;
-			
-			// aapt resource value: 0x7f0a00b5
-			public const int Aqua = 2131361973;
-			
-			// aapt resource value: 0x7f0a009a
-			public const int Aquamarine = 2131361946;
-			
-			// aapt resource value: 0x7f0a0063
-			public const int Azure = 2131361891;
+			// aapt resource value: 0x7f0a006a
+			public const int AliceBlue = 2131361898;
 			
 			// aapt resource value: 0x7f0a0060
-			public const int Beige = 2131361888;
+			public const int AntiqueWhite = 2131361888;
 			
-			// aapt resource value: 0x7f0a0046
-			public const int Bisque = 2131361862;
+			// aapt resource value: 0x7f0a00ba
+			public const int Aqua = 2131361978;
 			
-			// aapt resource value: 0x7f0a00c4
-			public const int Black = 2131361988;
+			// aapt resource value: 0x7f0a009f
+			public const int Aquamarine = 2131361951;
 			
-			// aapt resource value: 0x7f0a0044
-			public const int BlanchedAlmond = 2131361860;
+			// aapt resource value: 0x7f0a0068
+			public const int Azure = 2131361896;
 			
-			// aapt resource value: 0x7f0a00c0
-			public const int Blue = 2131361984;
+			// aapt resource value: 0x7f0a0065
+			public const int Beige = 2131361893;
 			
-			// aapt resource value: 0x7f0a0093
-			public const int BlueViolet = 2131361939;
+			// aapt resource value: 0x7f0a004b
+			public const int Bisque = 2131361867;
 			
-			// aapt resource value: 0x7f0a0087
-			public const int Brown = 2131361927;
+			// aapt resource value: 0x7f0a00c9
+			public const int Black = 2131361993;
 			
-			// aapt resource value: 0x7f0a006d
-			public const int BurlyWood = 2131361901;
+			// aapt resource value: 0x7f0a0049
+			public const int BlanchedAlmond = 2131361865;
 			
-			// aapt resource value: 0x7f0a0035
-			public const int ButtonColor = 2131361845;
+			// aapt resource value: 0x7f0a00c5
+			public const int Blue = 2131361989;
+			
+			// aapt resource value: 0x7f0a0098
+			public const int BlueViolet = 2131361944;
+			
+			// aapt resource value: 0x7f0a008c
+			public const int Brown = 2131361932;
+			
+			// aapt resource value: 0x7f0a0072
+			public const int BurlyWood = 2131361906;
 			
 			// aapt resource value: 0x7f0a0036
-			public const int ButtonTextColor = 2131361846;
+			public const int ButtonColor = 2131361846;
 			
-			// aapt resource value: 0x7f0a00a5
-			public const int CadetBlue = 2131361957;
+			// aapt resource value: 0x7f0a0037
+			public const int ButtonTextColor = 2131361847;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int Chartreuse = 2131361947;
+			// aapt resource value: 0x7f0a00aa
+			public const int CadetBlue = 2131361962;
 			
-			// aapt resource value: 0x7f0a0077
-			public const int Chocolate = 2131361911;
+			// aapt resource value: 0x7f0a00a0
+			public const int Chartreuse = 2131361952;
+			
+			// aapt resource value: 0x7f0a007c
+			public const int Chocolate = 2131361916;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int ColorAccent = 2131361843;
 			
-			// aapt resource value: 0x7f0a0050
-			public const int Coral = 2131361872;
-			
-			// aapt resource value: 0x7f0a00a4
-			public const int CornflowerBlue = 2131361956;
-			
-			// aapt resource value: 0x7f0a0040
-			public const int Cornsilk = 2131361856;
-			
-			// aapt resource value: 0x7f0a0070
-			public const int Crimson = 2131361904;
-			
-			// aapt resource value: 0x7f0a00b6
-			public const int Cyan = 2131361974;
-			
-			// aapt resource value: 0x7f0a00c2
-			public const int DarkBlue = 2131361986;
-			
-			// aapt resource value: 0x7f0a00bc
-			public const int DarkCyan = 2131361980;
-			
-			// aapt resource value: 0x7f0a007f
-			public const int DarkGoldenrod = 2131361919;
-			
-			// aapt resource value: 0x7f0a0086
-			public const int DarkGray = 2131361926;
-			
-			// aapt resource value: 0x7f0a00bf
-			public const int DarkGreen = 2131361983;
-			
-			// aapt resource value: 0x7f0a007c
-			public const int DarkKhaki = 2131361916;
-			
-			// aapt resource value: 0x7f0a0091
-			public const int DarkMagenta = 2131361937;
-			
-			// aapt resource value: 0x7f0a00a6
-			public const int DarkOliveGreen = 2131361958;
-			
-			// aapt resource value: 0x7f0a004f
-			public const int DarkOrange = 2131361871;
-			
-			// aapt resource value: 0x7f0a008a
-			public const int DarkOrchid = 2131361930;
-			
-			// aapt resource value: 0x7f0a0092
-			public const int DarkRed = 2131361938;
-			
-			// aapt resource value: 0x7f0a006a
-			public const int DarkSalmon = 2131361898;
-			
-			// aapt resource value: 0x7f0a008f
-			public const int DarkSeaGreen = 2131361935;
+			// aapt resource value: 0x7f0a0055
+			public const int Coral = 2131361877;
 			
 			// aapt resource value: 0x7f0a00a9
-			public const int DarkSlateBlue = 2131361961;
-			
-			// aapt resource value: 0x7f0a00af
-			public const int DarkSlateGray = 2131361967;
-			
-			// aapt resource value: 0x7f0a00ba
-			public const int DarkTurquoise = 2131361978;
-			
-			// aapt resource value: 0x7f0a008c
-			public const int DarkViolet = 2131361932;
-			
-			// aapt resource value: 0x7f0a0054
-			public const int DeepPink = 2131361876;
-			
-			// aapt resource value: 0x7f0a00bb
-			public const int DeepSkyBlue = 2131361979;
-			
-			// aapt resource value: 0x7f0a00a2
-			public const int DimGray = 2131361954;
-			
-			// aapt resource value: 0x7f0a00b3
-			public const int DodgerBlue = 2131361971;
-			
-			// aapt resource value: 0x7f0a0080
-			public const int FireBrick = 2131361920;
-			
-			// aapt resource value: 0x7f0a003e
-			public const int FloralWhite = 2131361854;
-			
-			// aapt resource value: 0x7f0a00b1
-			public const int ForestGreen = 2131361969;
-			
-			// aapt resource value: 0x7f0a0055
-			public const int Fuchsia = 2131361877;
-			
-			// aapt resource value: 0x7f0a006f
-			public const int Gainsboro = 2131361903;
-			
-			// aapt resource value: 0x7f0a005d
-			public const int GhostWhite = 2131361885;
-			
-			// aapt resource value: 0x7f0a004a
-			public const int Gold = 2131361866;
-			
-			// aapt resource value: 0x7f0a0072
-			public const int Goldenrod = 2131361906;
-			
-			// aapt resource value: 0x7f0a0096
-			public const int Gray = 2131361942;
-			
-			// aapt resource value: 0x7f0a00be
-			public const int Green = 2131361982;
-			
-			// aapt resource value: 0x7f0a0084
-			public const int GreenYellow = 2131361924;
-			
-			// aapt resource value: 0x7f0a0064
-			public const int Honeydew = 2131361892;
-			
-			// aapt resource value: 0x7f0a0051
-			public const int HotPink = 2131361873;
-			
-			// aapt resource value: 0x7f0a0079
-			public const int IndianRed = 2131361913;
-			
-			// aapt resource value: 0x7f0a00a7
-			public const int Indigo = 2131361959;
-			
-			// aapt resource value: 0x7f0a003a
-			public const int Ivory = 2131361850;
-			
-			// aapt resource value: 0x7f0a0066
-			public const int Khaki = 2131361894;
-			
-			// aapt resource value: 0x7f0a006b
-			public const int Lavender = 2131361899;
-			
-			// aapt resource value: 0x7f0a0042
-			public const int LavenderBlush = 2131361858;
-			
-			// aapt resource value: 0x7f0a009c
-			public const int LawnGreen = 2131361948;
-			
-			// aapt resource value: 0x7f0a003f
-			public const int LemonChiffon = 2131361855;
-			
-			// aapt resource value: 0x7f0a0085
-			public const int LightBlue = 2131361925;
-			
-			// aapt resource value: 0x7f0a0067
-			public const int LightCoral = 2131361895;
-			
-			// aapt resource value: 0x7f0a006c
-			public const int LightCyan = 2131361900;
-			
-			// aapt resource value: 0x7f0a0059
-			public const int LightGoldenrodYellow = 2131361881;
-			
-			// aapt resource value: 0x7f0a008e
-			public const int LightGreen = 2131361934;
-			
-			// aapt resource value: 0x7f0a0075
-			public const int LightGrey = 2131361909;
-			
-			// aapt resource value: 0x7f0a004c
-			public const int LightPink = 2131361868;
-			
-			// aapt resource value: 0x7f0a004e
-			public const int LightSalmon = 2131361870;
-			
-			// aapt resource value: 0x7f0a00b2
-			public const int LightSeaGreen = 2131361970;
-			
-			// aapt resource value: 0x7f0a0094
-			public const int LightSkyBlue = 2131361940;
-			
-			// aapt resource value: 0x7f0a009e
-			public const int LightSlateGray = 2131361950;
-			
-			// aapt resource value: 0x7f0a0082
-			public const int LightSteelBlue = 2131361922;
-			
-			// aapt resource value: 0x7f0a003b
-			public const int LightYellow = 2131361851;
-			
-			// aapt resource value: 0x7f0a00b8
-			public const int Lime = 2131361976;
-			
-			// aapt resource value: 0x7f0a00ae
-			public const int LimeGreen = 2131361966;
-			
-			// aapt resource value: 0x7f0a005a
-			public const int Linen = 2131361882;
-			
-			// aapt resource value: 0x7f0a0056
-			public const int Magenta = 2131361878;
-			
-			// aapt resource value: 0x7f0a0099
-			public const int Maroon = 2131361945;
-			
-			// aapt resource value: 0x7f0a00a3
-			public const int MediumAquamarine = 2131361955;
-			
-			// aapt resource value: 0x7f0a00c1
-			public const int MediumBlue = 2131361985;
-			
-			// aapt resource value: 0x7f0a007e
-			public const int MediumOrchid = 2131361918;
-			
-			// aapt resource value: 0x7f0a008d
-			public const int MediumPurple = 2131361933;
-			
-			// aapt resource value: 0x7f0a00ad
-			public const int MediumSeaGreen = 2131361965;
-			
-			// aapt resource value: 0x7f0a009d
-			public const int MediumSlateBlue = 2131361949;
-			
-			// aapt resource value: 0x7f0a00b9
-			public const int MediumSpringGreen = 2131361977;
-			
-			// aapt resource value: 0x7f0a00a8
-			public const int MediumTurquoise = 2131361960;
-			
-			// aapt resource value: 0x7f0a007a
-			public const int MediumVioletRed = 2131361914;
-			
-			// aapt resource value: 0x7f0a00b4
-			public const int MidnightBlue = 2131361972;
-			
-			// aapt resource value: 0x7f0a005e
-			public const int MintCream = 2131361886;
+			public const int CornflowerBlue = 2131361961;
 			
 			// aapt resource value: 0x7f0a0045
-			public const int MistyRose = 2131361861;
+			public const int Cornsilk = 2131361861;
 			
-			// aapt resource value: 0x7f0a0047
-			public const int Moccasin = 2131361863;
+			// aapt resource value: 0x7f0a0075
+			public const int Crimson = 2131361909;
 			
-			// aapt resource value: 0x7f0a0048
-			public const int NavajoWhite = 2131361864;
+			// aapt resource value: 0x7f0a00bb
+			public const int Cyan = 2131361979;
 			
-			// aapt resource value: 0x7f0a00c3
-			public const int Navy = 2131361987;
+			// aapt resource value: 0x7f0a00c7
+			public const int DarkBlue = 2131361991;
 			
-			// aapt resource value: 0x7f0a0058
-			public const int OldLace = 2131361880;
+			// aapt resource value: 0x7f0a00c1
+			public const int DarkCyan = 2131361985;
 			
-			// aapt resource value: 0x7f0a0097
-			public const int Olive = 2131361943;
-			
-			// aapt resource value: 0x7f0a00a0
-			public const int OliveDrab = 2131361952;
-			
-			// aapt resource value: 0x7f0a004d
-			public const int Orange = 2131361869;
-			
-			// aapt resource value: 0x7f0a0053
-			public const int OrangeRed = 2131361875;
-			
-			// aapt resource value: 0x7f0a0073
-			public const int Orchid = 2131361907;
-			
-			// aapt resource value: 0x7f0a0068
-			public const int PaleGoldenrod = 2131361896;
+			// aapt resource value: 0x7f0a0084
+			public const int DarkGoldenrod = 2131361924;
 			
 			// aapt resource value: 0x7f0a008b
-			public const int PaleGreen = 2131361931;
+			public const int DarkGray = 2131361931;
 			
-			// aapt resource value: 0x7f0a0083
-			public const int PaleTurquoise = 2131361923;
-			
-			// aapt resource value: 0x7f0a0071
-			public const int PaleVioletRed = 2131361905;
-			
-			// aapt resource value: 0x7f0a0043
-			public const int PapayaWhip = 2131361859;
-			
-			// aapt resource value: 0x7f0a0049
-			public const int PeachPuff = 2131361865;
-			
-			// aapt resource value: 0x7f0a0078
-			public const int Peru = 2131361912;
-			
-			// aapt resource value: 0x7f0a004b
-			public const int Pink = 2131361867;
-			
-			// aapt resource value: 0x7f0a006e
-			public const int Plum = 2131361902;
+			// aapt resource value: 0x7f0a00c4
+			public const int DarkGreen = 2131361988;
 			
 			// aapt resource value: 0x7f0a0081
-			public const int PowderBlue = 2131361921;
+			public const int DarkKhaki = 2131361921;
 			
-			// aapt resource value: 0x7f0a0098
-			public const int Purple = 2131361944;
-			
-			// aapt resource value: 0x7f0a0057
-			public const int Red = 2131361879;
-			
-			// aapt resource value: 0x7f0a007d
-			public const int RosyBrown = 2131361917;
+			// aapt resource value: 0x7f0a0096
+			public const int DarkMagenta = 2131361942;
 			
 			// aapt resource value: 0x7f0a00ab
-			public const int RoyalBlue = 2131361963;
+			public const int DarkOliveGreen = 2131361963;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int SaddleBrown = 2131361936;
+			// aapt resource value: 0x7f0a0054
+			public const int DarkOrange = 2131361876;
 			
-			// aapt resource value: 0x7f0a005c
-			public const int Salmon = 2131361884;
+			// aapt resource value: 0x7f0a008f
+			public const int DarkOrchid = 2131361935;
 			
-			// aapt resource value: 0x7f0a0062
-			public const int SandyBrown = 2131361890;
+			// aapt resource value: 0x7f0a0097
+			public const int DarkRed = 2131361943;
 			
-			// aapt resource value: 0x7f0a00b0
-			public const int SeaGreen = 2131361968;
+			// aapt resource value: 0x7f0a006f
+			public const int DarkSalmon = 2131361903;
 			
-			// aapt resource value: 0x7f0a0041
-			public const int Seashell = 2131361857;
+			// aapt resource value: 0x7f0a0094
+			public const int DarkSeaGreen = 2131361940;
 			
-			// aapt resource value: 0x7f0a0088
-			public const int Sienna = 2131361928;
+			// aapt resource value: 0x7f0a00ae
+			public const int DarkSlateBlue = 2131361966;
 			
-			// aapt resource value: 0x7f0a007b
-			public const int Silver = 2131361915;
+			// aapt resource value: 0x7f0a00b4
+			public const int DarkSlateGray = 2131361972;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int SkyBlue = 2131361941;
+			// aapt resource value: 0x7f0a00bf
+			public const int DarkTurquoise = 2131361983;
 			
-			// aapt resource value: 0x7f0a00a1
-			public const int SlateBlue = 2131361953;
+			// aapt resource value: 0x7f0a0091
+			public const int DarkViolet = 2131361937;
 			
-			// aapt resource value: 0x7f0a009f
-			public const int SlateGray = 2131361951;
+			// aapt resource value: 0x7f0a0059
+			public const int DeepPink = 2131361881;
 			
-			// aapt resource value: 0x7f0a003d
-			public const int Snow = 2131361853;
+			// aapt resource value: 0x7f0a00c0
+			public const int DeepSkyBlue = 2131361984;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int SpringGreen = 2131361975;
+			// aapt resource value: 0x7f0a00a7
+			public const int DimGray = 2131361959;
 			
-			// aapt resource value: 0x7f0a00aa
-			public const int SteelBlue = 2131361962;
+			// aapt resource value: 0x7f0a00b8
+			public const int DodgerBlue = 2131361976;
 			
-			// aapt resource value: 0x7f0a0076
-			public const int Tan = 2131361910;
+			// aapt resource value: 0x7f0a0085
+			public const int FireBrick = 2131361925;
 			
-			// aapt resource value: 0x7f0a00bd
-			public const int Teal = 2131361981;
+			// aapt resource value: 0x7f0a0043
+			public const int FloralWhite = 2131361859;
+			
+			// aapt resource value: 0x7f0a00b6
+			public const int ForestGreen = 2131361974;
+			
+			// aapt resource value: 0x7f0a005a
+			public const int Fuchsia = 2131361882;
 			
 			// aapt resource value: 0x7f0a0074
-			public const int Thistle = 2131361908;
+			public const int Gainsboro = 2131361908;
 			
-			// aapt resource value: 0x7f0a0052
-			public const int Tomato = 2131361874;
+			// aapt resource value: 0x7f0a0062
+			public const int GhostWhite = 2131361890;
 			
-			// aapt resource value: 0x7f0a0038
-			public const int ToolBarTextColor = 2131361848;
+			// aapt resource value: 0x7f0a004f
+			public const int Gold = 2131361871;
 			
-			// aapt resource value: 0x7f0a0034
-			public const int ToolbarBackground = 2131361844;
+			// aapt resource value: 0x7f0a0077
+			public const int Goldenrod = 2131361911;
 			
-			// aapt resource value: 0x7f0a00ac
-			public const int Turquoise = 2131361964;
+			// aapt resource value: 0x7f0a009b
+			public const int Gray = 2131361947;
 			
-			// aapt resource value: 0x7f0a0069
-			public const int Violet = 2131361897;
-			
-			// aapt resource value: 0x7f0a0061
-			public const int Wheat = 2131361889;
-			
-			// aapt resource value: 0x7f0a0039
-			public const int White = 2131361849;
-			
-			// aapt resource value: 0x7f0a005f
-			public const int WhiteSmoke = 2131361887;
-			
-			// aapt resource value: 0x7f0a0037
-			public const int WindowBackground = 2131361847;
-			
-			// aapt resource value: 0x7f0a003c
-			public const int Yellow = 2131361852;
+			// aapt resource value: 0x7f0a00c3
+			public const int Green = 2131361987;
 			
 			// aapt resource value: 0x7f0a0089
-			public const int YellowGreen = 2131361929;
+			public const int GreenYellow = 2131361929;
 			
-			// aapt resource value: 0x7f0a00c5
-			public const int abc_background_cache_hint_selector_material_dark = 2131361989;
+			// aapt resource value: 0x7f0a0069
+			public const int Honeydew = 2131361897;
+			
+			// aapt resource value: 0x7f0a0056
+			public const int HotPink = 2131361878;
+			
+			// aapt resource value: 0x7f0a007e
+			public const int IndianRed = 2131361918;
+			
+			// aapt resource value: 0x7f0a00ac
+			public const int Indigo = 2131361964;
+			
+			// aapt resource value: 0x7f0a003f
+			public const int Ivory = 2131361855;
+			
+			// aapt resource value: 0x7f0a006b
+			public const int Khaki = 2131361899;
+			
+			// aapt resource value: 0x7f0a0070
+			public const int Lavender = 2131361904;
+			
+			// aapt resource value: 0x7f0a0047
+			public const int LavenderBlush = 2131361863;
+			
+			// aapt resource value: 0x7f0a00a1
+			public const int LawnGreen = 2131361953;
+			
+			// aapt resource value: 0x7f0a0044
+			public const int LemonChiffon = 2131361860;
+			
+			// aapt resource value: 0x7f0a008a
+			public const int LightBlue = 2131361930;
+			
+			// aapt resource value: 0x7f0a006c
+			public const int LightCoral = 2131361900;
+			
+			// aapt resource value: 0x7f0a0071
+			public const int LightCyan = 2131361905;
+			
+			// aapt resource value: 0x7f0a005e
+			public const int LightGoldenrodYellow = 2131361886;
+			
+			// aapt resource value: 0x7f0a0093
+			public const int LightGreen = 2131361939;
+			
+			// aapt resource value: 0x7f0a007a
+			public const int LightGrey = 2131361914;
+			
+			// aapt resource value: 0x7f0a0051
+			public const int LightPink = 2131361873;
+			
+			// aapt resource value: 0x7f0a0053
+			public const int LightSalmon = 2131361875;
+			
+			// aapt resource value: 0x7f0a00b7
+			public const int LightSeaGreen = 2131361975;
+			
+			// aapt resource value: 0x7f0a0099
+			public const int LightSkyBlue = 2131361945;
+			
+			// aapt resource value: 0x7f0a00a3
+			public const int LightSlateGray = 2131361955;
+			
+			// aapt resource value: 0x7f0a0087
+			public const int LightSteelBlue = 2131361927;
+			
+			// aapt resource value: 0x7f0a0040
+			public const int LightYellow = 2131361856;
+			
+			// aapt resource value: 0x7f0a00bd
+			public const int Lime = 2131361981;
+			
+			// aapt resource value: 0x7f0a00b3
+			public const int LimeGreen = 2131361971;
+			
+			// aapt resource value: 0x7f0a005f
+			public const int Linen = 2131361887;
+			
+			// aapt resource value: 0x7f0a005b
+			public const int Magenta = 2131361883;
+			
+			// aapt resource value: 0x7f0a009e
+			public const int Maroon = 2131361950;
+			
+			// aapt resource value: 0x7f0a00a8
+			public const int MediumAquamarine = 2131361960;
 			
 			// aapt resource value: 0x7f0a00c6
-			public const int abc_background_cache_hint_selector_material_light = 2131361990;
+			public const int MediumBlue = 2131361990;
+			
+			// aapt resource value: 0x7f0a0083
+			public const int MediumOrchid = 2131361923;
+			
+			// aapt resource value: 0x7f0a0092
+			public const int MediumPurple = 2131361938;
+			
+			// aapt resource value: 0x7f0a00b2
+			public const int MediumSeaGreen = 2131361970;
+			
+			// aapt resource value: 0x7f0a00a2
+			public const int MediumSlateBlue = 2131361954;
+			
+			// aapt resource value: 0x7f0a00be
+			public const int MediumSpringGreen = 2131361982;
+			
+			// aapt resource value: 0x7f0a00ad
+			public const int MediumTurquoise = 2131361965;
+			
+			// aapt resource value: 0x7f0a007f
+			public const int MediumVioletRed = 2131361919;
+			
+			// aapt resource value: 0x7f0a00b9
+			public const int MidnightBlue = 2131361977;
+			
+			// aapt resource value: 0x7f0a0063
+			public const int MintCream = 2131361891;
+			
+			// aapt resource value: 0x7f0a004a
+			public const int MistyRose = 2131361866;
+			
+			// aapt resource value: 0x7f0a004c
+			public const int Moccasin = 2131361868;
+			
+			// aapt resource value: 0x7f0a004d
+			public const int NavajoWhite = 2131361869;
+			
+			// aapt resource value: 0x7f0a00c8
+			public const int Navy = 2131361992;
+			
+			// aapt resource value: 0x7f0a005d
+			public const int OldLace = 2131361885;
+			
+			// aapt resource value: 0x7f0a009c
+			public const int Olive = 2131361948;
+			
+			// aapt resource value: 0x7f0a00a5
+			public const int OliveDrab = 2131361957;
+			
+			// aapt resource value: 0x7f0a0052
+			public const int Orange = 2131361874;
+			
+			// aapt resource value: 0x7f0a0058
+			public const int OrangeRed = 2131361880;
+			
+			// aapt resource value: 0x7f0a0078
+			public const int Orchid = 2131361912;
+			
+			// aapt resource value: 0x7f0a003a
+			public const int PageBackgroundColor = 2131361850;
+			
+			// aapt resource value: 0x7f0a006d
+			public const int PaleGoldenrod = 2131361901;
+			
+			// aapt resource value: 0x7f0a0090
+			public const int PaleGreen = 2131361936;
+			
+			// aapt resource value: 0x7f0a0088
+			public const int PaleTurquoise = 2131361928;
+			
+			// aapt resource value: 0x7f0a0076
+			public const int PaleVioletRed = 2131361910;
+			
+			// aapt resource value: 0x7f0a0048
+			public const int PapayaWhip = 2131361864;
+			
+			// aapt resource value: 0x7f0a004e
+			public const int PeachPuff = 2131361870;
+			
+			// aapt resource value: 0x7f0a007d
+			public const int Peru = 2131361917;
+			
+			// aapt resource value: 0x7f0a0050
+			public const int Pink = 2131361872;
+			
+			// aapt resource value: 0x7f0a0073
+			public const int Plum = 2131361907;
+			
+			// aapt resource value: 0x7f0a0086
+			public const int PowderBlue = 2131361926;
+			
+			// aapt resource value: 0x7f0a003b
+			public const int PrimaryTextColor = 2131361851;
+			
+			// aapt resource value: 0x7f0a009d
+			public const int Purple = 2131361949;
+			
+			// aapt resource value: 0x7f0a005c
+			public const int Red = 2131361884;
+			
+			// aapt resource value: 0x7f0a0082
+			public const int RosyBrown = 2131361922;
+			
+			// aapt resource value: 0x7f0a00b0
+			public const int RoyalBlue = 2131361968;
+			
+			// aapt resource value: 0x7f0a0095
+			public const int SaddleBrown = 2131361941;
+			
+			// aapt resource value: 0x7f0a0061
+			public const int Salmon = 2131361889;
+			
+			// aapt resource value: 0x7f0a0067
+			public const int SandyBrown = 2131361895;
+			
+			// aapt resource value: 0x7f0a00b5
+			public const int SeaGreen = 2131361973;
+			
+			// aapt resource value: 0x7f0a0046
+			public const int Seashell = 2131361862;
+			
+			// aapt resource value: 0x7f0a0034
+			public const int SecondaryColorAccent = 2131361844;
+			
+			// aapt resource value: 0x7f0a008d
+			public const int Sienna = 2131361933;
+			
+			// aapt resource value: 0x7f0a0080
+			public const int Silver = 2131361920;
+			
+			// aapt resource value: 0x7f0a009a
+			public const int SkyBlue = 2131361946;
+			
+			// aapt resource value: 0x7f0a00a6
+			public const int SlateBlue = 2131361958;
+			
+			// aapt resource value: 0x7f0a00a4
+			public const int SlateGray = 2131361956;
+			
+			// aapt resource value: 0x7f0a0042
+			public const int Snow = 2131361858;
+			
+			// aapt resource value: 0x7f0a00bc
+			public const int SpringGreen = 2131361980;
+			
+			// aapt resource value: 0x7f0a00af
+			public const int SteelBlue = 2131361967;
+			
+			// aapt resource value: 0x7f0a007b
+			public const int Tan = 2131361915;
+			
+			// aapt resource value: 0x7f0a00c2
+			public const int Teal = 2131361986;
+			
+			// aapt resource value: 0x7f0a003c
+			public const int TextColor = 2131361852;
+			
+			// aapt resource value: 0x7f0a0079
+			public const int Thistle = 2131361913;
+			
+			// aapt resource value: 0x7f0a0057
+			public const int Tomato = 2131361879;
+			
+			// aapt resource value: 0x7f0a003d
+			public const int ToolBarBackgroundColor = 2131361853;
+			
+			// aapt resource value: 0x7f0a0039
+			public const int ToolBarTextColor = 2131361849;
+			
+			// aapt resource value: 0x7f0a0035
+			public const int ToolbarBackground = 2131361845;
+			
+			// aapt resource value: 0x7f0a00b1
+			public const int Turquoise = 2131361969;
+			
+			// aapt resource value: 0x7f0a006e
+			public const int Violet = 2131361902;
+			
+			// aapt resource value: 0x7f0a0066
+			public const int Wheat = 2131361894;
+			
+			// aapt resource value: 0x7f0a003e
+			public const int White = 2131361854;
+			
+			// aapt resource value: 0x7f0a0064
+			public const int WhiteSmoke = 2131361892;
+			
+			// aapt resource value: 0x7f0a0038
+			public const int WindowBackground = 2131361848;
+			
+			// aapt resource value: 0x7f0a0041
+			public const int Yellow = 2131361857;
+			
+			// aapt resource value: 0x7f0a008e
+			public const int YellowGreen = 2131361934;
+			
+			// aapt resource value: 0x7f0a00ca
+			public const int abc_background_cache_hint_selector_material_dark = 2131361994;
+			
+			// aapt resource value: 0x7f0a00cb
+			public const int abc_background_cache_hint_selector_material_light = 2131361995;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int abc_input_method_navigation_guard = 2131361792;
 			
-			// aapt resource value: 0x7f0a00c7
-			public const int abc_primary_text_disable_only_material_dark = 2131361991;
+			// aapt resource value: 0x7f0a00cc
+			public const int abc_primary_text_disable_only_material_dark = 2131361996;
 			
-			// aapt resource value: 0x7f0a00c8
-			public const int abc_primary_text_disable_only_material_light = 2131361992;
+			// aapt resource value: 0x7f0a00cd
+			public const int abc_primary_text_disable_only_material_light = 2131361997;
 			
-			// aapt resource value: 0x7f0a00c9
-			public const int abc_primary_text_material_dark = 2131361993;
+			// aapt resource value: 0x7f0a00ce
+			public const int abc_primary_text_material_dark = 2131361998;
 			
-			// aapt resource value: 0x7f0a00ca
-			public const int abc_primary_text_material_light = 2131361994;
+			// aapt resource value: 0x7f0a00cf
+			public const int abc_primary_text_material_light = 2131361999;
 			
-			// aapt resource value: 0x7f0a00cb
-			public const int abc_search_url_text = 2131361995;
+			// aapt resource value: 0x7f0a00d0
+			public const int abc_search_url_text = 2131362000;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int abc_search_url_text_normal = 2131361793;
@@ -1216,11 +1231,11 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0a0003
 			public const int abc_search_url_text_selected = 2131361795;
 			
-			// aapt resource value: 0x7f0a00cc
-			public const int abc_secondary_text_material_dark = 2131361996;
+			// aapt resource value: 0x7f0a00d1
+			public const int abc_secondary_text_material_dark = 2131362001;
 			
-			// aapt resource value: 0x7f0a00cd
-			public const int abc_secondary_text_material_light = 2131361997;
+			// aapt resource value: 0x7f0a00d2
+			public const int abc_secondary_text_material_light = 2131362002;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int accent_material_dark = 2131361796;
@@ -1357,11 +1372,11 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0a0030
 			public const int switch_thumb_disabled_material_light = 2131361840;
 			
-			// aapt resource value: 0x7f0a00ce
-			public const int switch_thumb_material_dark = 2131361998;
+			// aapt resource value: 0x7f0a00d3
+			public const int switch_thumb_material_dark = 2131362003;
 			
-			// aapt resource value: 0x7f0a00cf
-			public const int switch_thumb_material_light = 2131361999;
+			// aapt resource value: 0x7f0a00d4
+			public const int switch_thumb_material_light = 2131362004;
 			
 			// aapt resource value: 0x7f0a0031
 			public const int switch_thumb_normal_material_dark = 2131361841;
@@ -1780,46 +1795,148 @@ namespace GW2Trader.Android
 			public const int abc_textfield_search_material = 2130837562;
 			
 			// aapt resource value: 0x7f02003b
-			public const int Button = 2130837563;
+			public const int ArrowLeftSelector = 2130837563;
 			
 			// aapt resource value: 0x7f02003c
-			public const int ButtonBackground = 2130837564;
+			public const int ArrowRightSelector = 2130837564;
 			
 			// aapt resource value: 0x7f02003d
-			public const int Copper_coin = 2130837565;
+			public const int BottomNavigationBackground = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int Gold_coin = 2130837566;
+			public const int Button = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
-			public const int Icon = 2130837567;
+			public const int ButtonBackground = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int ImageButton = 2130837568;
+			public const int ButtonSelector = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int ImageButtonBackground = 2130837569;
+			public const int ButtonTextColorSelector = 2130837569;
 			
 			// aapt resource value: 0x7f020042
-			public const int Left = 2130837570;
+			public const int Calculator = 2130837570;
 			
 			// aapt resource value: 0x7f020043
-			public const int Logo = 2130837571;
-			
-			// aapt resource value: 0x7f020048
-			public const int notification_template_icon_bg = 2130837576;
+			public const int CalculatorIconSelector = 2130837571;
 			
 			// aapt resource value: 0x7f020044
-			public const int placeholder = 2130837572;
+			public const int CalculatorPressed = 2130837572;
 			
 			// aapt resource value: 0x7f020045
-			public const int Refresh = 2130837573;
+			public const int Copper_coin = 2130837573;
 			
 			// aapt resource value: 0x7f020046
-			public const int Right = 2130837574;
+			public const int Gem = 2130837574;
 			
 			// aapt resource value: 0x7f020047
-			public const int Silver_coin = 2130837575;
+			public const int GemPressed = 2130837575;
+			
+			// aapt resource value: 0x7f020048
+			public const int GemPriceIconSelector = 2130837576;
+			
+			// aapt resource value: 0x7f020049
+			public const int Gold_coin = 2130837577;
+			
+			// aapt resource value: 0x7f02004a
+			public const int History = 2130837578;
+			
+			// aapt resource value: 0x7f02004b
+			public const int HistoryIconSelector = 2130837579;
+			
+			// aapt resource value: 0x7f02004c
+			public const int HistoryPressed = 2130837580;
+			
+			// aapt resource value: 0x7f02004d
+			public const int Icon = 2130837581;
+			
+			// aapt resource value: 0x7f02004e
+			public const int ImageButton = 2130837582;
+			
+			// aapt resource value: 0x7f02004f
+			public const int ImageButtonBackground = 2130837583;
+			
+			// aapt resource value: 0x7f020050
+			public const int Investment = 2130837584;
+			
+			// aapt resource value: 0x7f020051
+			public const int InvestmentIconSelector = 2130837585;
+			
+			// aapt resource value: 0x7f020052
+			public const int InvestmentPressed = 2130837586;
+			
+			// aapt resource value: 0x7f020053
+			public const int ItemSearchButton = 2130837587;
+			
+			// aapt resource value: 0x7f020054
+			public const int Left = 2130837588;
+			
+			// aapt resource value: 0x7f020055
+			public const int LeftPressed = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int Logo = 2130837590;
+			
+			// aapt resource value: 0x7f020057
+			public const int LogoPlaceholder = 2130837591;
+			
+			// aapt resource value: 0x7f02006a
+			public const int notification_template_icon_bg = 2130837610;
+			
+			// aapt resource value: 0x7f020058
+			public const int placeholder = 2130837592;
+			
+			// aapt resource value: 0x7f020059
+			public const int Refresh = 2130837593;
+			
+			// aapt resource value: 0x7f02005a
+			public const int Right = 2130837594;
+			
+			// aapt resource value: 0x7f02005b
+			public const int RightPressed = 2130837595;
+			
+			// aapt resource value: 0x7f02005c
+			public const int SampleItemIcon = 2130837596;
+			
+			// aapt resource value: 0x7f02005d
+			public const int Search = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int SearchIconSelector = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int SearchPressed = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int Settings = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int SettingsIconSelector = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public const int SettingsPressed = 2130837602;
+			
+			// aapt resource value: 0x7f020063
+			public const int Silver_coin = 2130837603;
+			
+			// aapt resource value: 0x7f020064
+			public const int ToolBarBackground = 2130837604;
+			
+			// aapt resource value: 0x7f020065
+			public const int Watch = 2130837605;
+			
+			// aapt resource value: 0x7f020066
+			public const int Watchlist = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int WatchlistBackground = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public const int WatchlistIconSelector = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int WatchPressed = 2130837609;
 			
 			static Drawable()
 			{
@@ -1834,17 +1951,23 @@ namespace GW2Trader.Android
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b0097
-			public const int Action_ItemDetailsRefresh = 2131427479;
+			// aapt resource value: 0x7f0b0098
+			public const int Action_ItemDetailsRefresh = 2131427480;
+			
+			// aapt resource value: 0x7f0b005d
+			public const int BottomMenu = 2131427421;
 			
 			// aapt resource value: 0x7f0b005a
 			public const int BuyPrice = 2131427418;
 			
-			// aapt resource value: 0x7f0b006e
-			public const int Copper = 2131427438;
+			// aapt resource value: 0x7f0b005f
+			public const int CalculatorButton = 2131427423;
 			
-			// aapt resource value: 0x7f0b006f
-			public const int CopperIcon = 2131427439;
+			// aapt resource value: 0x7f0b006d
+			public const int Copper = 2131427437;
+			
+			// aapt resource value: 0x7f0b006e
+			public const int CopperIcon = 2131427438;
 			
 			// aapt resource value: 0x7f0b0067
 			public const int DebugButton = 2131427431;
@@ -1855,77 +1978,83 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0058
 			public const int Demand = 2131427416;
 			
-			// aapt resource value: 0x7f0b008f
-			public const int ExecuteSearchButton = 2131427471;
+			// aapt resource value: 0x7f0b0096
+			public const int Description = 2131427478;
+			
+			// aapt resource value: 0x7f0b0064
+			public const int GemPriceButton = 2131427428;
+			
+			// aapt resource value: 0x7f0b0069
+			public const int Gold = 2131427433;
 			
 			// aapt resource value: 0x7f0b006a
-			public const int Gold = 2131427434;
-			
-			// aapt resource value: 0x7f0b006b
-			public const int GoldIcon = 2131427435;
-			
-			// aapt resource value: 0x7f0b0052
-			public const int Icon = 2131427410;
-			
-			// aapt resource value: 0x7f0b0060
-			public const int Invest = 2131427424;
+			public const int GoldIcon = 2131427434;
 			
 			// aapt resource value: 0x7f0b0065
-			public const int InvestmentButton = 2131427429;
+			public const int HistoryButton = 2131427429;
 			
-			// aapt resource value: 0x7f0b005d
-			public const int LastUpdate = 2131427421;
+			// aapt resource value: 0x7f0b0051
+			public const int Icon = 2131427409;
 			
-			// aapt resource value: 0x7f0b0086
-			public const int LevelTextView = 2131427462;
+			// aapt resource value: 0x7f0b0060
+			public const int InvestmentButton = 2131427424;
+			
+			// aapt resource value: 0x7f0b0056
+			public const int LastUpdate = 2131427414;
+			
+			// aapt resource value: 0x7f0b0085
+			public const int LevelTextView = 2131427461;
+			
+			// aapt resource value: 0x7f0b007c
+			public const int ListingQuantity = 2131427452;
 			
 			// aapt resource value: 0x7f0b007d
-			public const int ListingQuantity = 2131427453;
-			
-			// aapt resource value: 0x7f0b007e
-			public const int ListingText = 2131427454;
+			public const int ListingText = 2131427453;
 			
 			// aapt resource value: 0x7f0b005b
 			public const int Margin = 2131427419;
 			
-			// aapt resource value: 0x7f0b008a
-			public const int MaxLevel = 2131427466;
-			
 			// aapt resource value: 0x7f0b0089
-			public const int MaxLevelTextView = 2131427465;
+			public const int MaxLevel = 2131427465;
 			
 			// aapt resource value: 0x7f0b0088
-			public const int MinLevel = 2131427464;
+			public const int MaxLevelTextView = 2131427464;
 			
 			// aapt resource value: 0x7f0b0087
-			public const int MinLevelTextView = 2131427463;
+			public const int MinLevel = 2131427463;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int Name = 2131427411;
+			// aapt resource value: 0x7f0b0086
+			public const int MinLevelTextView = 2131427462;
 			
-			// aapt resource value: 0x7f0b0091
-			public const int NextButton = 2131427473;
+			// aapt resource value: 0x7f0b0052
+			public const int Name = 2131427410;
 			
 			// aapt resource value: 0x7f0b0090
-			public const int PreviousButton = 2131427472;
+			public const int NextButton = 2131427472;
 			
-			// aapt resource value: 0x7f0b0081
-			public const int Price = 2131427457;
+			// aapt resource value: 0x7f0b0094
+			public const int ParentLayout = 2131427476;
 			
-			// aapt resource value: 0x7f0b007f
-			public const int PriceListingListView = 2131427455;
-			
-			// aapt resource value: 0x7f0b0082
-			public const int ProgressBar = 2131427458;
+			// aapt resource value: 0x7f0b008f
+			public const int PreviousButton = 2131427471;
 			
 			// aapt resource value: 0x7f0b0080
-			public const int Quantity = 2131427456;
+			public const int Price = 2131427456;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int Rarity = 2131427414;
+			// aapt resource value: 0x7f0b007e
+			public const int PriceListingListView = 2131427454;
 			
-			// aapt resource value: 0x7f0b008c
-			public const int RaritySpinner = 2131427468;
+			// aapt resource value: 0x7f0b0081
+			public const int ProgressBar = 2131427457;
+			
+			// aapt resource value: 0x7f0b007f
+			public const int Quantity = 2131427455;
+			
+			// aapt resource value: 0x7f0b0055
+			public const int Rarity = 2131427413;
+			
+			// aapt resource value: 0x7f0b008b
+			public const int RaritySpinner = 2131427467;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int Roi = 2131427420;
@@ -1933,11 +2062,11 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0063
 			public const int SearchButton = 2131427427;
 			
-			// aapt resource value: 0x7f0b0092
-			public const int SearchResultListView = 2131427474;
+			// aapt resource value: 0x7f0b008e
+			public const int SearchResultListView = 2131427470;
 			
-			// aapt resource value: 0x7f0b0084
-			public const int SearchView = 2131427460;
+			// aapt resource value: 0x7f0b0083
+			public const int SearchView = 2131427459;
 			
 			// aapt resource value: 0x7f0b0059
 			public const int SellPrice = 2131427417;
@@ -1945,50 +2074,44 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0066
 			public const int SettingsButton = 2131427430;
 			
+			// aapt resource value: 0x7f0b006b
+			public const int Silver = 2131427435;
+			
 			// aapt resource value: 0x7f0b006c
-			public const int Silver = 2131427436;
+			public const int SilverIcon = 2131427436;
 			
-			// aapt resource value: 0x7f0b006d
-			public const int SilverIcon = 2131427437;
-			
-			// aapt resource value: 0x7f0b0055
-			public const int SubType = 2131427413;
+			// aapt resource value: 0x7f0b0054
+			public const int SubType = 2131427412;
 			
 			// aapt resource value: 0x7f0b0057
 			public const int Supply = 2131427415;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int Title = 2131427433;
+			// aapt resource value: 0x7f0b0093
+			public const int Title = 2131427475;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int ToolBar = 2131427407;
 			
-			// aapt resource value: 0x7f0b0054
-			public const int Type = 2131427412;
+			// aapt resource value: 0x7f0b0053
+			public const int Type = 2131427411;
 			
-			// aapt resource value: 0x7f0b008e
-			public const int TypeSpinner = 2131427470;
+			// aapt resource value: 0x7f0b008d
+			public const int TypeSpinner = 2131427469;
 			
-			// aapt resource value: 0x7f0b0093
-			public const int UpdateDbButton = 2131427475;
+			// aapt resource value: 0x7f0b0091
+			public const int UpdateDbButton = 2131427473;
 			
-			// aapt resource value: 0x7f0b005f
-			public const int Watch = 2131427423;
+			// aapt resource value: 0x7f0b005e
+			public const int WatchlistButton = 2131427422;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int WatchlistButton = 2131427428;
-			
-			// aapt resource value: 0x7f0b0096
-			public const int WatchlistCreateButton = 2131427478;
+			// aapt resource value: 0x7f0b0097
+			public const int WatchlistCreateButton = 2131427479;
 			
 			// aapt resource value: 0x7f0b0095
 			public const int WatchlistListView = 2131427477;
 			
-			// aapt resource value: 0x7f0b0094
-			public const int WatchlistName = 2131427476;
-			
-			// aapt resource value: 0x7f0b0070
-			public const int action0 = 2131427440;
+			// aapt resource value: 0x7f0b006f
+			public const int action0 = 2131427439;
 			
 			// aapt resource value: 0x7f0b0040
 			public const int action_bar = 2131427392;
@@ -2014,8 +2137,8 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0041
 			public const int action_context_bar = 2131427393;
 			
-			// aapt resource value: 0x7f0b0074
-			public const int action_divider = 2131427444;
+			// aapt resource value: 0x7f0b0073
+			public const int action_divider = 2131427443;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_menu_divider = 2131427330;
@@ -2047,14 +2170,14 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0036
 			public const int buttonPanel = 2131427382;
 			
-			// aapt resource value: 0x7f0b0071
-			public const int cancel_action = 2131427441;
+			// aapt resource value: 0x7f0b0070
+			public const int cancel_action = 2131427440;
 			
 			// aapt resource value: 0x7f0b0038
 			public const int checkbox = 2131427384;
 			
-			// aapt resource value: 0x7f0b0077
-			public const int chronometer = 2131427447;
+			// aapt resource value: 0x7f0b0076
+			public const int chronometer = 2131427446;
 			
 			// aapt resource value: 0x7f0b0017
 			public const int collapseActionView = 2131427351;
@@ -2089,8 +2212,8 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0014
 			public const int end = 2131427348;
 			
-			// aapt resource value: 0x7f0b007c
-			public const int end_padder = 2131427452;
+			// aapt resource value: 0x7f0b007b
+			public const int end_padder = 2131427451;
 			
 			// aapt resource value: 0x7f0b0027
 			public const int expand_activities_button = 2131427367;
@@ -2113,26 +2236,26 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0028
 			public const int image = 2131427368;
 			
-			// aapt resource value: 0x7f0b007b
-			public const int info = 2131427451;
+			// aapt resource value: 0x7f0b007a
+			public const int info = 2131427450;
 			
-			// aapt resource value: 0x7f0b0075
-			public const int line1 = 2131427445;
+			// aapt resource value: 0x7f0b0074
+			public const int line1 = 2131427444;
 			
-			// aapt resource value: 0x7f0b0079
-			public const int line3 = 2131427449;
+			// aapt resource value: 0x7f0b0078
+			public const int line3 = 2131427448;
 			
-			// aapt resource value: 0x7f0b005e
-			public const int linearLayout1 = 2131427422;
+			// aapt resource value: 0x7f0b0068
+			public const int linearLayout1 = 2131427432;
 			
-			// aapt resource value: 0x7f0b0085
-			public const int linearLayout2 = 2131427461;
+			// aapt resource value: 0x7f0b0084
+			public const int linearLayout2 = 2131427460;
 			
-			// aapt resource value: 0x7f0b008b
-			public const int linearLayout3 = 2131427467;
+			// aapt resource value: 0x7f0b008a
+			public const int linearLayout3 = 2131427466;
 			
-			// aapt resource value: 0x7f0b008d
-			public const int linearLayout4 = 2131427469;
+			// aapt resource value: 0x7f0b008c
+			public const int linearLayout4 = 2131427468;
 			
 			// aapt resource value: 0x7f0b0009
 			public const int listMode = 2131427337;
@@ -2140,8 +2263,8 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b002a
 			public const int list_item = 2131427370;
 			
-			// aapt resource value: 0x7f0b0073
-			public const int media_actions = 2131427443;
+			// aapt resource value: 0x7f0b0072
+			public const int media_actions = 2131427442;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int middle = 2131427349;
@@ -2173,17 +2296,14 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b003a
 			public const int radio = 2131427386;
 			
-			// aapt resource value: 0x7f0b0083
-			public const int relativeLayout1 = 2131427459;
+			// aapt resource value: 0x7f0b0082
+			public const int relativeLayout1 = 2131427458;
 			
 			// aapt resource value: 0x7f0b001f
 			public const int screen = 2131427359;
 			
 			// aapt resource value: 0x7f0b0032
 			public const int scrollView = 2131427378;
-			
-			// aapt resource value: 0x7f0b0051
-			public const int scrollView1 = 2131427409;
 			
 			// aapt resource value: 0x7f0b0044
 			public const int search_badge = 2131427396;
@@ -2242,8 +2362,8 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b0022
 			public const int src_over = 2131427362;
 			
-			// aapt resource value: 0x7f0b0072
-			public const int status_bar_latest_event_content = 2131427442;
+			// aapt resource value: 0x7f0b0071
+			public const int status_bar_latest_event_content = 2131427441;
 			
 			// aapt resource value: 0x7f0b004b
 			public const int submit_area = 2131427403;
@@ -2251,17 +2371,17 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b000b
 			public const int tabMode = 2131427339;
 			
-			// aapt resource value: 0x7f0b007a
-			public const int text = 2131427450;
+			// aapt resource value: 0x7f0b0079
+			public const int text = 2131427449;
 			
-			// aapt resource value: 0x7f0b0078
-			public const int text2 = 2131427448;
+			// aapt resource value: 0x7f0b0077
+			public const int text2 = 2131427447;
 			
 			// aapt resource value: 0x7f0b0033
 			public const int textSpacerNoButtons = 2131427379;
 			
-			// aapt resource value: 0x7f0b0076
-			public const int time = 2131427446;
+			// aapt resource value: 0x7f0b0075
+			public const int time = 2131427445;
 			
 			// aapt resource value: 0x7f0b002c
 			public const int title = 2131427372;
@@ -2269,8 +2389,8 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0b002f
 			public const int title_template = 2131427375;
 			
-			// aapt resource value: 0x7f0b0068
-			public const int toolbar = 2131427432;
+			// aapt resource value: 0x7f0b0092
+			public const int toolbar = 2131427474;
 			
 			// aapt resource value: 0x7f0b002e
 			public const int topPanel = 2131427374;
@@ -2419,70 +2539,70 @@ namespace GW2Trader.Android
 			public const int Main = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int MainToolbar = 2130903069;
+			public const int Money = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int Money = 2130903070;
+			public const int notification_media_action = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int notification_media_action = 2130903071;
+			public const int notification_media_cancel_action = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int notification_media_cancel_action = 2130903072;
+			public const int notification_template_big_media = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int notification_template_big_media = 2130903073;
+			public const int notification_template_big_media_narrow = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int notification_template_big_media_narrow = 2130903074;
+			public const int notification_template_lines = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int notification_template_lines = 2130903075;
+			public const int notification_template_media = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int notification_template_media = 2130903076;
+			public const int notification_template_part_chronometer = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int notification_template_part_chronometer = 2130903077;
+			public const int notification_template_part_time = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int notification_template_part_time = 2130903078;
+			public const int PriceListing = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int PriceListing = 2130903079;
+			public const int PriceListingListViewItem = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int PriceListingListViewItem = 2130903080;
+			public const int ProgressSpinner = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int ProgressSpinner = 2130903081;
+			public const int Search = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int Search = 2130903082;
+			public const int SearchResult = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int SearchResult = 2130903083;
+			public const int SearchResultListViewItem = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int SearchResultListViewItem = 2130903084;
+			public const int select_dialog_item_material = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int select_dialog_item_material = 2130903085;
+			public const int select_dialog_multichoice_material = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int select_dialog_multichoice_material = 2130903086;
+			public const int select_dialog_singlechoice_material = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int select_dialog_singlechoice_material = 2130903087;
+			public const int Settings = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int Settings = 2130903088;
+			public const int support_simple_spinner_dropdown_item = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int support_simple_spinner_dropdown_item = 2130903089;
+			public const int Toolbar = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int Toolbar = 2130903090;
+			public const int Watchlist = 2130903090;
 			
 			// aapt resource value: 0x7f030033
 			public const int WatchlistListViewItem = 2130903091;
@@ -3018,20 +3138,20 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f070070
 			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131165296;
 			
-			// aapt resource value: 0x7f070128
-			public const int MainToolBarTitleStyle = 2131165480;
-			
-			// aapt resource value: 0x7f070125
-			public const int MyButtonStyle = 2131165477;
+			// aapt resource value: 0x7f070129
+			public const int MainToolBarTitleStyle = 2131165481;
 			
 			// aapt resource value: 0x7f070126
-			public const int MyImageButtonStyle = 2131165478;
+			public const int MyButtonStyle = 2131165478;
+			
+			// aapt resource value: 0x7f070127
+			public const int MyImageButtonStyle = 2131165479;
 			
 			// aapt resource value: 0x7f070124
 			public const int MyTheme = 2131165476;
 			
-			// aapt resource value: 0x7f070127
-			public const int MyTheme_Base = 2131165479;
+			// aapt resource value: 0x7f070128
+			public const int MyTheme_Base = 2131165480;
 			
 			// aapt resource value: 0x7f070010
 			public const int Platform_AppCompat = 2131165200;
@@ -3306,8 +3426,11 @@ namespace GW2Trader.Android
 			// aapt resource value: 0x7f0700e2
 			public const int ThemeOverlay_AppCompat_Light = 2131165410;
 			
-			// aapt resource value: 0x7f070129
-			public const int ToolBarTitleStyle = 2131165481;
+			// aapt resource value: 0x7f07012a
+			public const int ToolBarTitleStyle = 2131165482;
+			
+			// aapt resource value: 0x7f070125
+			public const int VerticalLineStyle = 2131165477;
 			
 			// aapt resource value: 0x7f0700e3
 			public const int Widget_AppCompat_ActionBar = 2131165411;

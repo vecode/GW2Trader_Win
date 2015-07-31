@@ -6,6 +6,7 @@ using Android.Text;
 using Android.Widget;
 using GW2Trader.Android.Filter;
 using Android.Support.V7.App;
+using Android.Views;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace GW2Trader.Android.Activities
@@ -13,7 +14,7 @@ namespace GW2Trader.Android.Activities
     [Activity]
     public class SearchActivity : AppCompatActivity
     {
-        private Button _searchButton;
+        private LinearLayout _searchButton;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -30,9 +31,9 @@ namespace GW2Trader.Android.Activities
             SupportActionBar.SetDisplayShowTitleEnabled(false);
 
             TextView textView = toolbar.FindViewById<TextView>(Resource.Id.Title);
-            textView.Text = "Search";
+            textView.Text = "Item Search";
 
-            _searchButton = FindViewById<Button>(Resource.Id.ExecuteSearchButton);
+            _searchButton = FindViewById<LinearLayout>(Resource.Id.SearchButton);
             _searchButton.Click += OnSearchButtonClicked;
 
             var minLvl = FindViewById<EditText>(Resource.Id.MinLevel);
@@ -64,6 +65,11 @@ namespace GW2Trader.Android.Activities
             intent.PutExtra("Type", FindViewById<Spinner>(Resource.Id.TypeSpinner).SelectedItem.ToString());
 
             StartActivity(intent);
+        }
+
+        public override void OnBackPressed()
+        {
+            Finish();
         }
     }
 }
